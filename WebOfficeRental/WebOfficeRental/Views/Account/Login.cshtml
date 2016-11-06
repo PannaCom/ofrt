@@ -1,0 +1,63 @@
+﻿@using WebOfficeRental.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Trang đăng nhập quản trị";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <section id="loginForm">
+            <div class="page-header">
+                <h3 style="margin-top: 0;">@ViewBag.Title</h3>
+            </div>
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user-circle-o"></i></span>
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Vui lòng nhập tên đăng nhập" })
+                        </div>
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                    </div>                     
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Vui lòng nhập mật khẩu" })
+                        </div>
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div> 
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="checkbox" style="-webkit-user-select: none;">
+                            <label>@Html.CheckBoxFor(m => m.RememberMe) <b>Nhớ đăng nhập?</b></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <button class="btn btn-primary"><i class="fa fa-sign-in"></i> Đăng nhập</button>
+                    </div>
+                </div>
+
+            }
+        </section>
+    </div>
+    @*<div class="col-md-4">
+            <section id="socialLoginForm">
+                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            </section>
+        </div>*@
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
