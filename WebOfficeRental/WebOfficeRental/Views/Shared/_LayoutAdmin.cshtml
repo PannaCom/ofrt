@@ -9,11 +9,11 @@
     <title>@ViewBag.Title | Trang quản trị web bất động sản</title>
     @RenderSection("metatags", false)
     <!-- Bootstrap Core CSS -->
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
     <!-- MetisMenu CSS -->
-    <link href="~/Content/admin/vendor/metisMenu/metisMenu.min.css" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/admin/vendor/metisMenu/metisMenu.min.css")" rel="stylesheet" />
     <!-- Custom CSS -->
-    <link href="~/Content/admin/css/sb-admin-2.css" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/admin/css/sb-admin-2.css")" rel="stylesheet" />
     <link href="~/Content/admin/css/styles.css" rel="stylesheet" />
     <!-- Custom Fonts -->
     <link href="~/Content/font-awesome.css" rel="stylesheet" />
@@ -48,7 +48,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/admin/dashboard">
-                    <img src="~/Content/admin/img/admin_logo.png" style="height: 48px;" />
+                    Administrator Panel
                 </a>
             </div>
             <!-- /.navbar-header -->
@@ -70,52 +70,52 @@
                         @if (User.IsInRole("Administrator"))
                         {
                             <li>
-                                <a href="#"><i class="fa fa-shopping-bag fa-fw"></i> Cài đặt tài khoản <span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-user fa-fw"></i> Cài đặt tài khoản <span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li><a href="/admin/hethong/themsieuthi">Cập nhật thông tin</a></li>
-                                    <li><a href="/admin/hethong/dssieuthi">Thay đổi mật khẩu</a></li>
+                                    <li><a href="/admin/profile/update">Cập nhật thông tin</a></li>
+                                    <li><a href="/admin/profile/changepass">Thay đổi mật khẩu</a></li>
                                 </ul>
                             </li>
 
                             <li>
                                 <a href="#"><i class="fa fa-shopping-basket fa-fw"></i> Quản lý danh mục<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li><a href="/admin/hethong/themgianhang">Thêm danh mục</a></li>
-                                    <li><a href="/admin/hethong/dsgianhang">Danh sách danh mục</a></li>
+                                    <li><a href="#">Thêm danh mục</a></li>
+                                    <li><a href="#">Danh sách danh mục</a></li>
                                 </ul>
                             </li>
 
                             <li>
                                 <a href="#"><i class="fa fa-shopping-cart fa-fw"></i> Quản lý phòng<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li><a href="/admin/hethong/themmathang">Thêm phòng</a></li>
-                                    <li><a href="/admin/hethong/dsmathang">Danh sách phòng</a></li>
+                                    <li><a href="#">Thêm phòng</a></li>
+                                    <li><a href="#">Danh sách phòng</a></li>
                                 </ul>
                             </li>
 
                             <li>
                                 <a href="#"><i class="fa fa-bell-o fa-fw"></i> Quản lý menu<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li><a href="/admin/hethong/themsukien">Thêm sự kiện</a></li>
-                                    <li><a href="/admin/hethong/dssukien">Danh sách sự kiện</a></li>
+                                    <li><a href="#">Thêm sự kiện</a></li>
+                                    <li><a href="#">Danh sách sự kiện</a></li>
                                 </ul>
                             </li>
 
                             <li>
                                 <a href="#"><i class="fa fa-bell-o fa-fw"></i> Quản lý địa điểm, quận huyện, tòa nhà<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li><a href="/admin/hethong/themsukien">Thêm mới địa điểm</a></li>
-                                    <li><a href="/admin/hethong/dssukien">Danh sách địa điểm</a></li>
-                                    <li><a href="/admin/hethong/dssukien">Danh sách quận huyện</a></li>
-                                    <li><a href="/admin/hethong/dssukien">Danh sách tòa nhà</a></li>
+                                    <li><a href="#">Thêm mới địa điểm</a></li>
+                                    <li><a href="#">Danh sách địa điểm</a></li>
+                                    <li><a href="#">Danh sách quận huyện</a></li>
+                                    <li><a href="#">Danh sách tòa nhà</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-bell-o fa-fw"></i> Quản lý tin tức<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li><a href="/admin/hethong/themsukien">Thêm danh mục tin tức</a></li>
-                                    <li><a href="/admin/hethong/themsukien">Thêm mới tin tức</a></li>
-                                    <li><a href="/admin/hethong/dssukien">Danh sách tin tức</a></li>
+                                    <li><a href="#">Thêm danh mục tin tức</a></li>
+                                    <li><a href="#">Thêm mới tin tức</a></li>
+                                    <li><a href="#">Danh sách tin tức</a></li>
                                 </ul>
                             </li>
                         }
@@ -126,8 +126,13 @@
             <!-- /.navbar-static-side -->
         </nav>
         <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    @RenderSection("PageTitleHeader", required: false)
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
             @RenderBody()
-
         </div>
         <footer style="padding: 0 30px;">
             <p style="padding-top: 10px;">&copy; 2016 copyright</p>

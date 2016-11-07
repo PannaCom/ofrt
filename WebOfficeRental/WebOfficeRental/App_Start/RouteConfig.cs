@@ -26,6 +26,20 @@ namespace WebOfficeRental
             );
 
             routes.MapRoute(
+              "UpdateAccount",
+              "admin/profile/update",
+              new { controller = "Manage", action = "UserProfile" }
+            );
+
+            routes.MapRoute(
+                "ChangePasswordAccount",
+                "admin/profile/changepass",
+                new { controller = "Manage", action = "ChangePassword" }
+            );
+
+
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

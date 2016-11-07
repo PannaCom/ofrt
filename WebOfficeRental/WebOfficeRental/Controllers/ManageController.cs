@@ -228,6 +228,7 @@ namespace WebOfficeRental.Controllers
             {
                 return View(model);
             }
+
             var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
             if (result.Succeeded)
             {
@@ -236,7 +237,9 @@ namespace WebOfficeRental.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                 }
-                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+
+                TempData["Updated"] = "Mật khẩu đã được thay đổi.";
+                return RedirectToRoute("ChangePasswordAccount");
             }
             AddErrors(result);
             return View(model);
@@ -318,6 +321,47 @@ namespace WebOfficeRental.Controllers
             }
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
+        }
+
+
+        public async Task<ActionResult> UserProfile()
+        {
+            string userId = User.Identity.GetUserId();
+            var user = await UserManager.FindByIdAsync(userId);
+            var getUserInfo = new UserProfile()
+            {
+                FullName = user.FullName,
+                PhoneNumber = user.PhoneNumber
+            };
+            return View(getUserInfo);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> UserProfile(UserProfile model)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Vui lòng kiểm tra lại thông tin các trường.");
+                return View(model);
+            }
+            string userId = User.Identity.GetUserId();
+            var user = await UserManager.FindByIdAsync(userId);
+
+            // Update the details   
+            user.PhoneNumber = model.PhoneNumber ?? null;
+            user.FullName = model.FullName ?? null;
+            // This is the part that doesn't work
+            var result = await UserManager.UpdateAsync(user);
+
+            // However, it always succeeds inspite of not updating the database
+            if (!result.Succeeded)
+            {
+                AddErrors(result);
+                return View(model);
+            }
+            TempData["Updated"] = "Cập nhật thông tin tài khoản thành công.";
+            return RedirectToRoute("UpdateAccount");
         }
 
         protected override void Dispose(bool disposing)

@@ -1,44 +1,1973 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application 2222</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <title>@ViewBag.Title</title>
+    <!-- Bootstrap core CSS -->
+    <link href="@Url.Content("~/Themes/KodeProperty/Content/css/bootstrap.css")" rel="stylesheet">
+    <!-- Jquery Range Slider CSS -->
+    <link href="@Url.Content("~/Themes/KodeProperty/Content/css/range-slider.css")" rel="stylesheet">
+    <!-- Owl Carousel CSS -->
+    <link href="@Url.Content("~/Themes/KodeProperty/Content/css/owl.carousel.css")" rel="stylesheet">
+    <!-- Pretty Photo CSS -->
+    <link href="@Url.Content("~/Themes/KodeProperty/Content/css/prettyPhoto.css")" rel="stylesheet">
+    <!-- Bx-Slider StyleSheet CSS -->
+    <link href="@Url.Content("~/Themes/KodeProperty/Content/css/jquery.bxslider.css")" rel="stylesheet">
+    <!-- Font Awesome StyleSheet CSS -->
+    <link href="@Url.Content("~/Themes/KodeProperty/Content/css/font-awesome.css")" rel="stylesheet">
+    <!-- SVG Font StyleSheet CSS -->
+    <link href="@Url.Content("~/Themes/KodeProperty/Content/css/svg.css")" rel="stylesheet">
+    <!-- Chosen Script CSS -->
+    <link href="@Url.Content("~/Themes/KodeProperty/Content/css/chosen.min.css")" rel="stylesheet">
+    <!-- DL Menu CSS -->
+    <link href="@Url.Content("~/Themes/KodeProperty/Content/js/dl-menu/component.css")" rel="stylesheet">
+    <!-- Widget CSS -->
+    <link href="@Url.Content("~/Themes/KodeProperty/Content/css/widget.css")" rel="stylesheet">
+    <!-- Typography CSS -->
+    <link href="@Url.Content("~/Themes/KodeProperty/Content/css/typography.css")" rel="stylesheet">
+    <!-- Shortcodes CSS -->
+    <link href="@Url.Content("~/Themes/KodeProperty/Content/css/shortcodes.css")" rel="stylesheet">
+    <!-- Custom Main StyleSheet CSS -->
+    <link href="@Url.Content("~/Themes/KodeProperty/Content/style.css")" rel="stylesheet">
+    <!-- Color CSS -->
+    <link href="@Url.Content("~/Themes/KodeProperty/Content/css/color.css")" rel="stylesheet">
+    <!-- Responsive CSS -->
+    <link href="@Url.Content("~/Themes/KodeProperty/Content/css/responsive.css")" rel="stylesheet" />
 </head>
+
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+    <!--Kode Wrapper Start-->
+    <div class="kf_wrapper">
+
+        <!--Header 3 Wrap Start-->
+        <header class="header2">
+            <!--Top Bar Wrap Start-->
+            <div class="kf_hdr2_top_strip">
+                <!--container start-->
+                <div class="container">
+                    <!--top_strip_colum start-->
+                    <div class="kf_hdr2_strip_column">
+                        <!--top_strip_caption start-->
+                        <div class="kf_top_weather">
+                            <p><a href="#">Weather in</a>  colorrado rviver<span>25 °F / 13 °C </span></p>
+                        </div>
+                        <!--top_strip_caption end-->
+                        <!--top_strip_soical start-->
+                        <div class="kf_hdr2_social_icon">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-flag"></i>Languages</a></li>
+                                <li><a href="Register.html"><i class="fa fa-plus"></i>Register</a></li>
+                                <li><a href="Login.html"><i class="fa fa-lock"></i>Login</a></li>
+                            </ul>
+                        </div>
+                        <!--top_strip_soical end-->
+                    </div>
+                    <!--top_strip_colum end-->
+                </div>
+                <!--container end-->
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            <!--Top Bar Wrap End-->
+            <!--Logo & Ui Element Wrap Start-->
+            <div class="kf_hdr2_logo_bar">
+                <!--container start-->
+                <div class="container">
+                    <!--top_navi_logo start-->
+                    <div class="kf_hdr2_logo_wrap">
+                        <!--Logo Wrap Start-->
+                        <div class="kf_logo">
+                            <a href="index-3.html"><img src="images/logo.png" alt=""></a>
+                        </div>
+                        <!--Logo Wrap End-->
+                        <div class="kf_hdr2_search">
+                            <input type="text" placeholder="Search keyword...">
+                            <a href="#" style="position: absolute; top: 8px;"><i class="fa fa-search"></i></a>
+                        </div>
+                        <!--top_navi_caption start-->
+                        <div class="top_navi_caption">
+                            <ul>
+                                <li>
+                                    <div class="top_navi_circal">
+                                        <a href="#"><i class="fa fa-phone"></i></a>
+                                        <div class="top_navi_kode">
+                                            <h3>Call Us Anytime</h3>
+                                            <span>0800-0123-254-02</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="top_navi_circal">
+                                        <a href="#"><i class="fa fa-clock-o"></i></a>
+                                        <div class="top_navi_kode">
+                                            <h3>Opening Time</h3>
+                                            <span>9 :00 - 14:00</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="top_navi_circal">
+                                        <a href="#"><i class="fa fa-envelope"></i></a>
+                                        <div class="top_navi_kode">
+                                            <h3>Mail Us</h3>
+                                            <span>9:00 - 14:00</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--top_navi_caption end-->
+                    </div>
+                    <!--top_navi_logo end-->
+                </div>
+                <!--container end-->
+            </div>
+            <!--Logo & Ui Element Wrap End-->
+            <!--Navigation & Social Icon Wrap Start-->
+            <div class="kf_hdr2_navigation">
+                <!--container start-->
+                <div class="container">
+                    <!--law_navigation_list start-->
+                    <div class="kf_hdr2_nav_list">
+                        <!--law_navigtion start-->
+                        <div class="kf_main_navigation">
+                            <ul>
+                                <li class="active">
+                                    <a href="index-3.html">Home</a>
+                                    <ul>
+                                        <li><a href="index.html">Home Style 1</a></li>
+                                        <li><a href="index-2.html">Home Style 2</a></li>
+                                        <li><a href="index-3.html">Home Style 3</a></li>
+                                        <li><a href="index-4.html">Home Style 4</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="about-us.html">About Us</a></li>
+                                <li>
+                                    <a href="#">Blog</a>
+                                    <ul>
+                                        <li><a href="blog-grid.html">Blog Grid Style</a></li>
+                                        <li><a href="blog-lisiting.html">Blog Listing Style 1</a></li>
+                                        <li><a href="blog-lisiting-2.html">Blog Listing Style 2</a></li>
+                                        <li><a href="blog-detail.html">Blog Detail Style 1</a></li>
+                                        <li><a href="blog-detail-2.html">Blog Detail Style 2</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Properties</a>
+                                    <ul>
+                                        <li><a href="property-listing.html">Property Grid Style</a></li>
+                                        <li><a href="property-listing-01.html">Property Listing Style 1</a></li>
+                                        <li><a href="property-listing-02.html">Property Listing Style 2</a></li>
+                                        <li><a href="property-listing-03.html">Property Detail Style 3</a></li>
+                                        <li><a href="property-listing-04.html">Property Detail Style 4</a></li>
+                                        <li><a href="property-detail.html">Property Detail</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Team</a>
+                                    <ul>
+                                        <li><a href="our-team.html">Our Team</a></li>
+                                        <li><a href="team-detail.html">Team Detail</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Pages</a>
+                                    <ul>
+                                        <li><a href="gallery.html">Gallery</a></li>
+                                        <li><a href="submit-property.html">Submit Property</a></li>
+                                        <li><a href="Price-table.html">Price Table</a></li>
+                                        <li><a href="404-page.html">404 Page</a></li>
+                                        <li><a href="comming-soon.html">Comming Soon</a></li>
+                                        <li><a href="Login.html">Login</a></li>
+                                        <li><a href="Register.html">Register</a></li>
+                                        <li><a href="password-reset.html">Password Reset</a></li>
+                                        <li><a href="shortcode.html">Short Code</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="contact-us.html">Contact Us</a></li>
+                            </ul>
+                        </div>
+                        <!--law_navigtion end-->
+                        <!--law_navigation_social_icon start-->
+                        <div class="kf_menu_scl_icon">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                            </ul>
+                        </div>
+                        <!--law_navigation_social_icon end-->
+                        <!--DL Menu Start-->
+                        <div id="kode-responsive-navigation" class="dl-menuwrapper">
+                            <button class="dl-trigger">Open Menu</button>
+                            <ul class="dl-menu">
+                                <li class="active">
+                                    <a href="index-3.html">Home</a>
+                                    <ul class="dl-submenu">
+                                        <li><a href="index.html">Home Style 1</a></li>
+                                        <li><a href="index-2.html">Home Style 2</a></li>
+                                        <li><a href="index-3.html">Home Style 3</a></li>
+                                        <li><a href="index-4.html">Home Style 4</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="about-us.html">About Us</a></li>
+                                <li class="menu-item kode-parent-menu">
+                                    <a href="#">Blog</a>
+                                    <ul class="dl-submenu">
+                                        <li><a href="blog-grid.html">Blog Grid Style</a></li>
+                                        <li><a href="blog-lisiting.html">Blog Listing Style 1</a></li>
+                                        <li><a href="blog-lisiting-2.html">Blog Listing Style 2</a></li>
+                                        <li><a href="blog-detail.html">Blog Detail Style 1</a></li>
+                                        <li><a href="blog-detail-2.html">Blog Detail Style 2</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item kode-parent-menu">
+                                    <a href="#">Properties</a>
+                                    <ul class="dl-submenu">
+                                        <li><a href="property-listing.html">Property Grid Style</a></li>
+                                        <li><a href="property-listing-01.html">Property Listing Style 1</a></li>
+                                        <li><a href="property-listing-02.html">Property Listing Style 2</a></li>
+                                        <li><a href="property-listing-03.html">Property Detail Style 3</a></li>
+                                        <li><a href="property-listing-04.html">Property Detail Style 4</a></li>
+                                        <li><a href="property-detail.html">Property Detail</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item kode-parent-menu">
+                                    <a href="#">Team</a>
+                                    <ul class="dl-submenu">
+                                        <li><a href="our-team.html">Our Team</a></li>
+                                        <li><a href="team-detail.html">Team Detail</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item kode-parent-menu">
+                                    <a href="#">Pages</a>
+                                    <ul class="dl-submenu">
+                                        <li><a href="gallery.html">Gallery</a></li>
+                                        <li><a href="submit-property.html">Submit Property</a></li>
+                                        <li><a href="Price-table.html">Price Table</a></li>
+                                        <li><a href="404-page.html">404 Page</a></li>
+                                        <li><a href="comming-soon.html">Comming Soon</a></li>
+                                        <li><a href="Login.html">Login</a></li>
+                                        <li><a href="Register.html">Register</a></li>
+                                        <li><a href="password-reset.html">Password Reset</a></li>
+                                        <li><a href="shortcode.html">Short Code</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="contact-us.html">Contact Us</a></li>
+                            </ul>
+                        </div>
+                        <!--DL Menu END-->
+
+                    </div>
+                    <!--law_navigation_list end-->
+                </div>
+                <!--container end-->
+            </div>
+            <!--Navigation & Social Icon Wrap Start-->
+        </header>
+        <!--Header 3 Wrap End-->
+        <!--Main Banner Wrap Start-->
+        <div class="kf_banner_wrap">
+            <ul class="banner_bxslider">
+                <li>
+                    <img src="extra-images/banner-01.jpg" alt="">
+                </li>
+                <li>
+                    <img src="extra-images/banner-02.jpg" alt="">
+                </li>
+                <li>
+                    <img src="extra-images/banner-03.jpg" alt="">
+                </li>
+                <li>
+                    <img src="extra-images/banner-04.jpg" alt="">
+                </li>
+                <li>
+                    <img src="extra-images/banner-05.jpg" alt="">
+                </li>
+                <li>
+                    <img src="extra-images/banner-06.jpg" alt="">
+                </li>
+            </ul>
+            <!--Schedule Visit Wrap Start-->
+            <div class="kf_schedule_wrap">
+                <h3>SABESTIAN VILLA</h3>
+                <p>123, NEAR SHAMMER LAKE, NEW YOURK, NY - 10001</p>
+                <ul class="kf_schedule_room">
+                    <li>03 Bedroom </li>
+                    <li>03 Bathrooms </li>
+                    <li>2790 Sq Ft Area </li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+                <div class="kf_schedule_visit">
+                    <h4>$1,555,450</h4>
+                    <a href="#">Schedule Visit</a>
+                </div>
+            </div>
+            <!--Schedule Visit Wrap End-->
+        </div>
+        <!--Main Banner Wrap End-->
+        <!--Content Wrap Start-->
+        <div class="kf_property_content_wrap">
+            
+            <!--Advance Search Wrap Start-->
+            <div class="kf_advance_search_bg">
+                <div class="container">
+                    <!--Tab Link Wrap Start-->
+                    <div class="kf_search_tab_wrap">
+                        <ul data-tabs="tabs">
+                            <li class="active"><a data-toggle="tab" href="#listing">All Listing</a></li>
+                            <li><a data-toggle="tab" href="#rent">For Rent</a></li>
+                            <li><a data-toggle="tab" href="#sale">For Sale</a></li>
+                            <li><a data-toggle="tab" href="#auction">Auctions</a></li>
+                        </ul>
+                    </div>
+                    <!--Tab Link Wrap End-->
+                    <!--Search Form Wrap Start-->
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="listing">
+                            <div class="kf_advacnce_search_form">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <label>Keyword</label>
+                                                <input type="text" name="property_id">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <label>Property ID</label>
+                                                <select class="chosen-select">
+                                                    <option>Any</option>
+                                                    <option>Option 2</option>
+                                                    <option>Option 3</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <label>Location</label>
+                                                <select class="chosen-select">
+                                                    <option>Any</option>
+                                                    <option>Miami</option>
+                                                    <option>-Little Havana</option>
+                                                    <option>-Perrine</option>
+                                                    <option>-Doral</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <label>Property Status</label>
+                                                <select class="chosen-select">
+                                                    <option>Any</option>
+                                                    <option>For Rent</option>
+                                                    <option>For Rent</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <label>Property Type</label>
+                                                <select class="chosen-select">
+                                                    <option>Any</option>
+                                                    <option>Commercial</option>
+                                                    <option>-Office</option>
+                                                    <option>-Shop</option>
+                                                    <option>-Residential</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <label>Min Beds</label>
+                                                <select class="chosen-select">
+                                                    <option>Any</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field kf_range_slider">
+                                                <label>Price Range</label>
+                                                <input type="text" class="amount" readonly>
+                                                <div class="kf_range_slider">
+                                                    <span>Min</span>
+                                                    <div class="slider-range"></div>
+                                                    <span>Max</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <input type="submit" value="Search Property">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="rent">
+                            <div class="kf_advacnce_search_form">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <label>Keyword</label>
+                                                <input type="text" name="property_id">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <label>Property ID</label>
+                                                <select class="chosen-select">
+                                                    <option>Any</option>
+                                                    <option>Option 2</option>
+                                                    <option>Option 3</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <label>Location</label>
+                                                <select class="chosen-select">
+                                                    <option>Any</option>
+                                                    <option>Miami</option>
+                                                    <option>-Little Havana</option>
+                                                    <option>-Perrine</option>
+                                                    <option>-Doral</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <label>Property Status</label>
+                                                <select class="chosen-select">
+                                                    <option>Any</option>
+                                                    <option>For Rent</option>
+                                                    <option>For Rent</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <label>Min Beds</label>
+                                                <select class="chosen-select">
+                                                    <option>Any</option>
+                                                    <option>Commercial</option>
+                                                    <option>-Office</option>
+                                                    <option>-Shop</option>
+                                                    <option>-Residential</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <label>Min Baths</label>
+                                                <select class="chosen-select">
+                                                    <option>Any</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field kf_range_slider">
+                                                <label>Price Range</label>
+                                                <input type="text" class="amount" readonly>
+                                                <div class="kf_range_slider">
+                                                    <span>Min</span>
+                                                    <div class="slider-range"></div>
+                                                    <span>Max</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <input type="submit" value="Search Property">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="sale">
+                            <div class="kf_advacnce_search_form">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <label>Keyword</label>
+                                                <input type="text" name="property_id">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <label>Property ID</label>
+                                                <select class="chosen-select">
+                                                    <option>Any</option>
+                                                    <option>Option 2</option>
+                                                    <option>Option 3</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <label>Location</label>
+                                                <select class="chosen-select">
+                                                    <option>Any</option>
+                                                    <option>Miami</option>
+                                                    <option>-Little Havana</option>
+                                                    <option>-Perrine</option>
+                                                    <option>-Doral</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <label>Property Status</label>
+                                                <select class="chosen-select">
+                                                    <option>Any</option>
+                                                    <option>For Rent</option>
+                                                    <option>For Rent</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <label>Min Beds</label>
+                                                <select class="chosen-select">
+                                                    <option>Any</option>
+                                                    <option>Commercial</option>
+                                                    <option>-Office</option>
+                                                    <option>-Shop</option>
+                                                    <option>-Residential</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <label>Min Beds</label>
+                                                <select class="chosen-select">
+                                                    <option>Any</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field kf_range_slider">
+                                                <label>Price Range</label>
+                                                <input type="text" class="amount" readonly>
+                                                <div class="kf_range_slider">
+                                                    <span>Min</span>
+                                                    <div class="slider-range"></div>
+                                                    <span>Max</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <input type="submit" value="Search Property">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="auction">
+                            <div class="kf_advacnce_search_form">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <label>Keyword</label>
+                                                <input type="text" name="property_id">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <label>Property ID</label>
+                                                <select class="chosen-select">
+                                                    <option>Any</option>
+                                                    <option>Option 2</option>
+                                                    <option>Option 3</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <label>Location</label>
+                                                <select class="chosen-select">
+                                                    <option>Any</option>
+                                                    <option>Miami</option>
+                                                    <option>-Little Havana</option>
+                                                    <option>-Perrine</option>
+                                                    <option>-Doral</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <label>Property Status</label>
+                                                <select class="chosen-select">
+                                                    <option>Any</option>
+                                                    <option>For Rent</option>
+                                                    <option>For Rent</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <label>Property Type</label>
+                                                <select class="chosen-select">
+                                                    <option>Any</option>
+                                                    <option>Commercial</option>
+                                                    <option>-Office</option>
+                                                    <option>-Shop</option>
+                                                    <option>-Residential</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <label>Min Beds</label>
+                                                <select class="chosen-select">
+                                                    <option>Any</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field kf_range_slider">
+                                                <label>Price Range</label>
+                                                <input type="text" class="amount" readonly>
+                                                <div class="kf_range_slider">
+                                                    <span>Min</span>
+                                                    <div class="slider-range"></div>
+                                                    <span>Max</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="kf_search_field">
+                                                <input type="submit" value="Search Property">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Search Form Wrap End-->
+                </div>
+            </div>
+            <!--Advance Search Wrap Start-->
+            <!--Properting Listing Wrap Start-->
+            <section class="kf_property_listing_bg">
+                <div class="container">
+                    <!--Heading Wrap Start-->
+                    <div class="kf_heading_1">
+                        <h3>PROPERTY LISTINGS</h3>
+                        <p>Lorem Ipsum orem  simply dummy </p>
+                        <span class="kf_property_line"></span>
+                    </div>
+                    <!--Heading Wrap End-->
+                    <!--Property Listing Wrap Start-->
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="kf_property_listing_wrap">
+                                <figure>
+                                    <img src="extra-images/listing-06.jpg" alt="">
+                                    <figcaption class="kf_listing_detail">
+                                        <span class="kf_listing_overlay"></span>
+                                        <a class="kf_md_btn kf_link_1" href="property-detail.html">View Detail</a>
+                                    </figcaption>
+                                </figure>
+                                <div class="kf_property_listing_des">
+                                    <h5><a href="property-detail.html">Bill Tower, Survey, NJ</a></h5>
+                                    <p>Aliquam vitae sem id sem efficitur interdum. Phasellus ut nulla nisi. Sed varius… </p>
+                                    <div class="kf_listing_total_price">
+                                        <h4>$5,505</h4>
+                                    </div>
+                                    <ul>
+                                        <li>3 Room</li>
+                                        <li>1 Bath</li>
+                                        <li>2 Beds</li>
+                                        <li>10 Sqft</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <div class="kf_property_listing_wrap">
+                                <figure>
+                                    <img src="extra-images/listing-02.jpg" alt="">
+                                    <figcaption class="kf_listing_detail">
+                                        <span class="kf_listing_overlay"></span>
+                                        <a class="kf_md_btn kf_link_1" href="property-detail.html">View Detail</a>
+                                    </figcaption>
+                                </figure>
+                                <div class="kf_property_listing_des">
+                                    <h5><a href="property-detail.html">Florida 5, Pinecrest, FL</a></h5>
+                                    <p>The bedding was hardly able to cover it and seemed ready to slide off… </p>
+                                    <div class="kf_listing_total_price">
+                                        <h4>$195,000</h4>
+                                    </div>
+                                    <ul>
+                                        <li>4 Room</li>
+                                        <li>3 Bath</li>
+                                        <li>2 Beds</li>
+                                        <li>84 Sqft</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <div class="kf_property_listing_wrap">
+                                <figure>
+                                    <img src="extra-images/listing-03.jpg" alt="">
+                                    <figcaption class="kf_listing_detail">
+                                        <span class="kf_listing_overlay"></span>
+                                        <a class="kf_md_btn kf_link_1" href="property-detail.html">View Detail</a>
+                                    </figcaption>
+                                </figure>
+                                <div class="kf_property_listing_des">
+                                    <h5><a href="property-detail.html">Southwest Croase, CA</a></h5>
+                                    <p>Look at our Latest listed properties and check out the facilities on them, We… </p>
+                                    <div class="kf_listing_total_price">
+                                        <h4>$250,199</h4>
+                                    </div>
+                                    <ul>
+                                        <li>8 Room</li>
+                                        <li>5 Bath</li>
+                                        <li>10 Beds</li>
+                                        <li>20 Sqft</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <div class="kf_property_listing_wrap">
+                                <figure>
+                                    <img src="extra-images/listing-04.jpg" alt="">
+                                    <figcaption class="kf_listing_detail">
+                                        <span class="kf_listing_overlay"></span>
+                                        <a class="kf_md_btn kf_link_1" href="property-detail.html">View Detail</a>
+                                    </figcaption>
+                                </figure>
+                                <div class="kf_property_listing_des">
+                                    <h5><a href="property-detail.html">5359 Kensington, Colorado Rd</a></h5>
+                                    <p>Many desktop publishing fact thagr or reader will distracted packages and … </p>
+                                    <div class="kf_listing_total_price">
+                                        <h4>$ 2,500</h4>
+                                    </div>
+                                    <ul>
+                                        <li>3 Room</li>
+                                        <li>1 Bath</li>
+                                        <li>2 Beds</li>
+                                        <li>10 Sqft</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <div class="kf_property_listing_wrap">
+                                <figure>
+                                    <img src="extra-images/listing-05.jpg" alt="">
+                                    <figcaption class="kf_listing_detail">
+                                        <span class="kf_listing_overlay"></span>
+                                        <a class="kf_md_btn kf_link_1" href="property-detail.html">View Detail</a>
+                                    </figcaption>
+                                </figure>
+                                <div class="kf_property_listing_des">
+                                    <h5><a href="property-detail.html">120 Biscayne Rd, Miami</a></h5>
+                                    <p>He lay on his armour-like back, and if he lifted his head a little he could see… </p>
+                                    <div class="kf_listing_total_price">
+                                        <h4>$125,799</h4>
+                                    </div>
+                                    <ul>
+                                        <li>6 Room</li>
+                                        <li>2 Bath</li>
+                                        <li>4 Beds</li>
+                                        <li>15 Sqft</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <div class="kf_property_listing_wrap">
+                                <figure>
+                                    <img src="extra-images/listing-01.jpg" alt="">
+                                    <figcaption class="kf_listing_detail">
+                                        <span class="kf_listing_overlay"></span>
+                                        <a class="kf_md_btn kf_link_1" href="property-detail.html">View Detail</a>
+                                    </figcaption>
+                                </figure>
+                                <div class="kf_property_listing_des">
+                                    <h5><a href="property-detail.html">Avenue Boulevard, Coral</a></h5>
+                                    <p>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed… </p>
+                                    <div class="kf_listing_total_price">
+                                        <h4>$990,985</h4>
+                                    </div>
+                                    <ul>
+                                        <li>7 Room</li>
+                                        <li>3 Bath</li>
+                                        <li>4 Beds</li>
+                                        <li>30 Sqft</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Property Listing Wrap End-->
+                </div>
+            </section>
+            <!--Properting Listing Wrap End-->
+            <!--Watch The Video Wrap Start-->
+            <section class="kf_property_video_bg">
+                <div class="kf_video_wrap">
+                    <div class="kf_play_btn">
+                        <a data-rel="prettyPhoto" href="extra-images/listing-01.jpg"><i class="fa fa-play"></i></a>
+                    </div>
+                    <h2>Watch the video</h2>
+                    <p>Check Out Our Video Presentation</p>
+                    <a href="#">Veiw  Video <i class="fa fa-caret-right"></i></a>
+                </div>
+            </section>
+            <!--Watch The Video Wrap End-->
+            <!--Most Recent Property Wrap Start-->
+            <section class="kf_recent_property_bg">
+                <div class="container">
+                    <!--Heading Wrap Start-->
+                    <div class="kf_heading_1">
+                        <h3>Most Recent Property</h3>
+                        <p>Lorem Ipsum orem  simply dummy </p>
+                        <span class="kf_property_line"></span>
+                    </div>
+                    <!--Heading Wrap End-->
+                    <!--Most Recent Property List Wrap Start-->
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="kf_recent_property_wrap">
+                                <figure>
+                                    <img src="extra-images/recent-01.jpg" alt="">
+                                </figure>
+                                <div class="kf_like_property">
+                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                </div>
+                                <div class="kf_recent_visible_des">
+                                    <h5>$2,200</h5>
+                                    <p>87 Weepingwood #33, Irvine, CA</p>
+                                </div>
+                                <div class="kf_recent_property_des">
+                                    <h5>$ 170,000,000</h5>
+                                    <p>One morning, when Gregor Samsa woke from troubled dreams,He lay on his armour-like back, and if he found himself transformed…</p>
+
+                                    <ul class="kf_recent_rating">
+                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star-half-full"></i></a></li>
+                                    </ul>
+
+                                    <div class="kf_recent_property_meta">
+                                        <ul>
+                                            <li>
+                                                <i class="fa fa-list"></i>
+                                                <div class="kf_recent_meta_des">
+                                                    <p>Listing ID: 1234</p>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <i class="fa fa-map-marker"></i>
+                                                <div class="kf_recent_meta_des">
+                                                    <p>Loaction: Clooney Road, London</p>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <i class="fa fa-dollar"></i>
+                                                <div class="kf_recent_meta_des">
+                                                    <p>Type: For Sale</p>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <i class="fa fa-bed"></i>
+                                                <div class="kf_recent_meta_des">
+                                                    <p>Bedrooms : 6</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <a class="kf_md_btn kf_link_1" href="#">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <div class="kf_recent_property_wrap">
+                                <figure>
+                                    <img src="extra-images/recent-02.jpg" alt="">
+                                </figure>
+                                <div class="kf_like_property">
+                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                </div>
+                                <div class="kf_recent_visible_des">
+                                    <h5>$ 170,000,000</h5>
+                                    <p>2139 Anniversary Ln, Newport Beach</p>
+                                </div>
+                                <div class="kf_recent_property_des">
+                                    <h5>$ 170,000,000</h5>
+                                    <p>One morning, when Gregor Samsa woke from, he found himself transformed…</p>
+
+                                    <a class="kf_md_btn kf_link_1" href="#">Book Now</a>
+                                </div>
+                            </div>
+
+                            <div class="kf_recent_property_wrap">
+                                <figure>
+                                    <img src="extra-images/recent-02.jpg" alt="">
+                                </figure>
+                                <div class="kf_like_property">
+                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                </div>
+                                <div class="kf_recent_visible_des">
+                                    <h5>$ 10,000,000</h5>
+                                    <p>34 Morena #17, Irvine, CA</p>
+                                </div>
+                                <div class="kf_recent_property_des">
+                                    <h5>$ 170,000,000</h5>
+                                    <p>Lorem Ipsum.when Gregor Samsa Proin gravida nibh vel velit auctor aliquet...</p>
+
+                                    <a class="kf_md_btn kf_link_1" href="#">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="kf_recent_property_wrap">
+                                <figure>
+                                    <img src="extra-images/recent-03.jpg" alt="">
+                                </figure>
+                                <div class="kf_like_property">
+                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                </div>
+                                <div class="kf_recent_visible_des">
+                                    <h5>$ 150,000,000</h5>
+                                    <p>635 W 42nd St New York</p>
+                                </div>
+                                <div class="kf_recent_property_des">
+                                    <h5>$ 170,000,000</h5>
+                                    <p>Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum..</p>
+
+                                    <ul class="kf_recent_rating">
+                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star-half-full"></i></a></li>
+                                    </ul>
+
+                                    <div class="kf_recent_property_meta">
+                                        <ul>
+                                            <li>
+                                                <i class="fa fa-list"></i>
+                                                <div class="kf_recent_meta_des">
+                                                    <p>Listing ID: 1234</p>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <i class="fa fa-map-marker"></i>
+                                                <div class="kf_recent_meta_des">
+                                                    <p>Loaction: Clooney Road, London</p>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <i class="fa fa-dollar"></i>
+                                                <div class="kf_recent_meta_des">
+                                                    <p>Type: For Sale</p>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <i class="fa fa-bed"></i>
+                                                <div class="kf_recent_meta_des">
+                                                    <p>Bedrooms : 6</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <a class="kf_md_btn kf_link_1" href="#">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Most Recent Property List Wrap End-->
+
+                </div>
+            </section>
+            <!--Most Recent Property Wrap End-->
+            <!--Leased And Sold Property Wrap Start-->
+            <div class="kf_leased_property_bg">
+                <div class="kf_leased_property">
+                    <h2>105</h2>
+                    <span class="kf_property_line white_color"></span>
+                    <h3>Leased Properties</h3>
+                    <a class="kf_sm_btn kf_link_1" href="#">View All</a>
+                </div>
+
+                <div class="kf_leased_property kf_sold_property">
+                    <h2>105</h2>
+                    <span class="kf_property_line white_color"></span>
+                    <h3>Sold Properties</h3>
+                    <a class="kf_sm_btn kf_link_1" href="#">View All</a>
+                </div>
+
+            </div>
+            <!--Leased And Sold Property Wrap End-->
+            <!--Property For Rent Wrap Start-->
+            <section>
+                <div class="container">
+                    <!--Heading Wrap Start-->
+                    <div class="kf_heading_1">
+                        <h3>Property For Rent</h3>
+                        <p>Lorem Ipsum orem  simply dummy </p>
+                        <span class="kf_property_line"></span>
+                    </div>
+                    <!--Heading Wrap End-->
+                    <!--Property For rent List Start-->
+                    <div class="kf_rent_property owl-carousel owl-theme">
+                        <div class="item">
+                            <div class="kf_property_rent_wrap">
+                                <figure>
+                                    <img src="extra-images/rent-01.jpg" alt="">
+                                    <figcaption class="kf_listing_detail">
+                                        <span class="kf_listing_overlay"></span>
+                                        <a class="kf_md_btn kf_link_1" href="property-detail.html">View Detail</a>
+                                        <div class="kf_rent_label">
+                                            <p>For Rent</p>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                                <div class="kf_rent_property_des">
+                                    <h6><a href="property-detail.html">Villa in Hialeah, Dade County</a></h6>
+                                    <ul>
+                                        <li>
+                                            <i class="fa fa-bed"></i>
+                                            <p>bedroom</p>
+                                            <span>9</span>
+                                        </li>
+                                        <li>
+                                            <i class="icon-bath"></i>
+                                            <p>Bathroom</p>
+                                            <span>6</span>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-car"></i>
+                                            <p>Garage</p>
+                                            <span>2</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="kf_rent_location">
+                                    <h6><i class="fa fa-map-marker"></i>South Dakota</h6>
+                                    <div class="kf_rent_total_price">
+                                        <h6>$2,500</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="kf_property_rent_wrap">
+                                <figure>
+                                    <img src="extra-images/rent-02.jpg" alt="">
+                                    <figcaption class="kf_listing_detail">
+                                        <span class="kf_listing_overlay"></span>
+                                        <a class="kf_md_btn kf_link_1" href="property-detail.html">View Detail</a>
+                                        <div class="kf_rent_label">
+                                            <p>For Sale</p>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                                <div class="kf_rent_property_des">
+                                    <h6><a href="property-detail.html">401 Biscayne Boulevard, Miami</a></h6>
+                                    <ul>
+                                        <li>
+                                            <i class="fa fa-bed"></i>
+                                            <p>bedroom</p>
+                                            <span>5</span>
+                                        </li>
+                                        <li>
+                                            <i class="icon-bath"></i>
+                                            <p>Bathroom</p>
+                                            <span>4</span>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-car"></i>
+                                            <p>Garage</p>
+                                            <span>2</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="kf_rent_location">
+                                    <h6><i class="fa fa-map-marker"></i>Denman, London</h6>
+                                    <div class="kf_rent_total_price">
+                                        <h6>$3,500</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="kf_property_rent_wrap">
+                                <figure>
+                                    <img src="extra-images/rent-03.jpg" alt="">
+                                    <figcaption class="kf_listing_detail">
+                                        <span class="kf_listing_overlay"></span>
+                                        <a class="kf_md_btn kf_link_1" href="property-detail.html">View Detail</a>
+                                        <div class="kf_rent_label">
+                                            <p>For Rent</p>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                                <div class="kf_rent_property_des">
+                                    <h6><a href="property-detail.html">1200 Anastasia Avenue, Coral Gables</a></h6>
+                                    <ul>
+                                        <li>
+                                            <i class="fa fa-bed"></i>
+                                            <p>bedroom</p>
+                                            <span>5</span>
+                                        </li>
+                                        <li>
+                                            <i class="icon-bath"></i>
+                                            <p>Bathroom</p>
+                                            <span>4</span>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-car"></i>
+                                            <p>Garage</p>
+                                            <span>1</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="kf_rent_location">
+                                    <h6><i class="fa fa-map-marker"></i>United Kingdom</h6>
+                                    <div class="kf_rent_total_price">
+                                        <h6>$6,600</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="kf_property_rent_wrap">
+                                <figure>
+                                    <img src="extra-images/rent-04.jpg" alt="">
+                                    <figcaption class="kf_listing_detail">
+                                        <span class="kf_listing_overlay"></span>
+                                        <a class="kf_md_btn kf_link_1" href="property-detail.html">View Detail</a>
+                                        <div class="kf_rent_label">
+                                            <p>For Sale</p>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                                <div class="kf_rent_property_des">
+                                    <h6><a href="property-detail.html">15421 Southwest 39th Terrace</a></h6>
+                                    <ul>
+                                        <li>
+                                            <i class="fa fa-bed"></i>
+                                            <p>bedroom</p>
+                                            <span>3</span>
+                                        </li>
+                                        <li>
+                                            <i class="icon-bath"></i>
+                                            <p>Bathroom</p>
+                                            <span>1</span>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-car"></i>
+                                            <p>Garage</p>
+                                            <span>2</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="kf_rent_location">
+                                    <h6><i class="fa fa-map-marker"></i>South Aylesford</h6>
+                                    <div class="kf_rent_total_price">
+                                        <h6>$5,800</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="kf_property_rent_wrap">
+                                <figure>
+                                    <img src="extra-images/rent-05.jpg" alt="">
+                                    <figcaption class="kf_listing_detail">
+                                        <span class="kf_listing_overlay"></span>
+                                        <a class="kf_md_btn kf_link_1" href="property-detail.html">View Detail</a>
+                                        <div class="kf_rent_label">
+                                            <p>For Rent</p>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                                <div class="kf_rent_property_des">
+                                    <h6><a href="property-detail.html">Sabestian Villa, NY $259 / WK</a></h6>
+                                    <ul>
+                                        <li>
+                                            <i class="fa fa-bed"></i>
+                                            <p>bedroom</p>
+                                            <span>5</span>
+                                        </li>
+                                        <li>
+                                            <i class="icon-bath"></i>
+                                            <p>Bathroom</p>
+                                            <span>4</span>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-car"></i>
+                                            <p>Garage</p>
+                                            <span>2</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="kf_rent_location">
+                                    <h6><i class="fa fa-map-marker"></i>Braidwood Dakota</h6>
+                                    <div class="kf_rent_total_price">
+                                        <h6>$4,500</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="kf_property_rent_wrap">
+                                <figure>
+                                    <img src="extra-images/rent-06.jpg" alt="">
+                                    <figcaption class="kf_listing_detail">
+                                        <span class="kf_listing_overlay"></span>
+                                        <a class="kf_md_btn kf_link_1" href="property-detail.html">View Detail</a>
+                                        <div class="kf_rent_label">
+                                            <p>For Sale</p>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                                <div class="kf_rent_property_des">
+                                    <h6><a href="property-detail.html">Sabestian WK Detail Villa, NY</a></h6>
+                                    <ul>
+                                        <li>
+                                            <i class="fa fa-bed"></i>
+                                            <p>bedroom</p>
+                                            <span>10</span>
+                                        </li>
+                                        <li>
+                                            <i class="icon-bath"></i>
+                                            <p>Bathroom</p>
+                                            <span>6</span>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-car"></i>
+                                            <p>Garage</p>
+                                            <span>3</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="kf_rent_location">
+                                    <h6><i class="fa fa-map-marker"></i>Trinity Square</h6>
+                                    <div class="kf_rent_total_price">
+                                        <h6>$7,500</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="kf_property_rent_wrap">
+                                <figure>
+                                    <img src="extra-images/rent-07.jpg" alt="">
+                                    <figcaption class="kf_listing_detail">
+                                        <span class="kf_listing_overlay"></span>
+                                        <a class="kf_md_btn kf_link_1" href="property-detail.html">View Detail</a>
+                                        <div class="kf_rent_label">
+                                            <p>For Rent</p>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                                <div class="kf_rent_property_des">
+                                    <h6><a href="property-detail.html">Sabestian Villa, NY $259 / WK</a></h6>
+                                    <ul>
+                                        <li>
+                                            <i class="fa fa-bed"></i>
+                                            <p>bedroom</p>
+                                            <span>8</span>
+                                        </li>
+                                        <li>
+                                            <i class="icon-bath"></i>
+                                            <p>Bathroom</p>
+                                            <span>4</span>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-car"></i>
+                                            <p>Garage</p>
+                                            <span>2</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="kf_rent_location">
+                                    <h6><i class="fa fa-map-marker"></i>  Queen's Walk, </h6>
+                                    <div class="kf_rent_total_price">
+                                        <h6>$8,500</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="kf_property_rent_wrap">
+                                <figure>
+                                    <img src="extra-images/rent-08.jpg" alt="">
+                                    <figcaption class="kf_listing_detail">
+                                        <span class="kf_listing_overlay"></span>
+                                        <a class="kf_md_btn kf_link_1" href="property-detail.html">View Detail</a>
+                                        <div class="kf_rent_label">
+                                            <p>For Sale</p>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                                <div class="kf_rent_property_des">
+                                    <h6><a href="property-detail.html">Bill Tower,Detail Survey, NJ</a></h6>
+                                    <ul>
+                                        <li>
+                                            <i class="fa fa-bed"></i>
+                                            <p>bedroom</p>
+                                            <span>5</span>
+                                        </li>
+                                        <li>
+                                            <i class="icon-bath"></i>
+                                            <p>Bathroom</p>
+                                            <span>3</span>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-car"></i>
+                                            <p>Garage</p>
+                                            <span>1</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="kf_rent_location">
+                                    <h6><i class="fa fa-map-marker"></i>South Dakota</h6>
+                                    <div class="kf_rent_total_price">
+                                        <h6>$4,000</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="kf_property_rent_wrap">
+                                <figure>
+                                    <img src="extra-images/rent-09.jpg" alt="">
+                                    <figcaption class="kf_listing_detail">
+                                        <span class="kf_listing_overlay"></span>
+                                        <a class="kf_md_btn kf_link_1" href="property-detail.html">View Detail</a>
+                                        <div class="kf_rent_label">
+                                            <p>For Rent</p>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                                <div class="kf_rent_property_des">
+                                    <h6><a href="property-detail.html">Florida 5, Detail Pinecrest, FL</a></h6>
+                                    <ul>
+                                        <li>
+                                            <i class="fa fa-bed"></i>
+                                            <p>bedroom</p>
+                                            <span>8</span>
+                                        </li>
+                                        <li>
+                                            <i class="icon-bath"></i>
+                                            <p>Bathroom</p>
+                                            <span>5</span>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-car"></i>
+                                            <p>Garage</p>
+                                            <span>3</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="kf_rent_location">
+                                    <h6><i class="fa fa-map-marker"></i>34, Irvine, CA</h6>
+                                    <div class="kf_rent_total_price">
+                                        <h6>$3,500</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="kf_property_rent_wrap">
+                                <figure>
+                                    <img src="extra-images/rent-01.jpg" alt="">
+                                    <figcaption class="kf_listing_detail">
+                                        <span class="kf_listing_overlay"></span>
+                                        <a class="kf_md_btn kf_link_1" href="property-detail.html">View Detail</a>
+                                        <div class="kf_rent_label">
+                                            <p>For Sale</p>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                                <div class="kf_rent_property_des">
+                                    <h6><a href="property-detail.html">259 Dream in Charing Detail</a></h6>
+                                    <ul>
+                                        <li>
+                                            <i class="fa fa-bed"></i>
+                                            <p>bedroom</p>
+                                            <span>5</span>
+                                        </li>
+                                        <li>
+                                            <i class="icon-bath"></i>
+                                            <p>Bathroom</p>
+                                            <span>3</span>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-car"></i>
+                                            <p>Garage</p>
+                                            <span>2</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="kf_rent_location">
+                                    <h6><i class="fa fa-map-marker"></i>South Dakota</h6>
+                                    <div class="kf_rent_total_price">
+                                        <h6>$5,600</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Property For rent List End-->
+                </div>
+            </section>
+            <!--Property For Rent Wrap End-->
+            <!--Our Agent Warp Start-->
+            <section class="kf_our_agent_bg">
+                <div class="container">
+                    <!--Heading Wrap Start-->
+                    <div class="kf_heading_1">
+                        <h3>Our Agent</h3>
+                        <p>Lorem Ipsum orem  simply dummy </p>
+                        <span class="kf_property_line"></span>
+                    </div>
+                    <!--Heading Wrap End-->
+                    <!--Agent List Wrap Start-->
+                    <div class="kf_agent_slider owl-carousel owl-theme">
+                        <div class="item">
+                            <div class="kf_agent_wrap">
+                                <figure>
+                                    <img src="extra-images/agent-01.jpg" alt="">
+                                    <figcaption>
+                                        <span class="kf_listing_overlay"></span>
+                                    </figcaption>
+                                </figure>
+                                <div class="kf_agent_des">
+                                    <h6><a href="team-detail.html">Michael Smart</a></h6>
+                                    <span class="kf_property_line"></span>
+                                    <p>Expert Agent</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="kf_agent_wrap">
+                                <figure>
+                                    <img src="extra-images/agent-02.jpg" alt="">
+                                    <figcaption>
+                                        <span class="kf_listing_overlay"></span>
+                                    </figcaption>
+                                </figure>
+                                <div class="kf_agent_des">
+                                    <h6><a href="team-detail.html">Mathew Root</a></h6>
+                                    <span class="kf_property_line"></span>
+                                    <p>Area Agent</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="kf_agent_wrap">
+                                <figure>
+                                    <img src="extra-images/agent-03.jpg" alt="">
+                                    <figcaption>
+                                        <span class="kf_listing_overlay"></span>
+                                    </figcaption>
+                                </figure>
+                                <div class="kf_agent_des">
+                                    <h6><a href="team-detail.html">Jane Doe</a></h6>
+                                    <span class="kf_property_line"></span>
+                                    <p>Avlar Real Estate</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="kf_agent_wrap">
+                                <figure>
+                                    <img src="extra-images/agent-04.jpg" alt="">
+                                    <figcaption>
+                                        <span class="kf_listing_overlay"></span>
+                                    </figcaption>
+                                </figure>
+                                <div class="kf_agent_des">
+                                    <h6><a href="team-detail.html">Laura Mills</a></h6>
+                                    <span class="kf_property_line"></span>
+                                    <p>Expert Agent</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="kf_agent_wrap">
+                                <figure>
+                                    <img src="extra-images/agent-05.jpg" alt="">
+                                    <figcaption>
+                                        <span class="kf_listing_overlay"></span>
+                                    </figcaption>
+                                </figure>
+                                <div class="kf_agent_des">
+                                    <h6><a href="team-detail.html">Chelsea Huntington</a></h6>
+                                    <span class="kf_property_line"></span>
+                                    <p>Expert Agent</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="kf_agent_wrap">
+                                <figure>
+                                    <img src="extra-images/agent-06.jpg" alt="">
+                                    <figcaption>
+                                        <span class="kf_listing_overlay"></span>
+                                    </figcaption>
+                                </figure>
+                                <div class="kf_agent_des">
+                                    <h6><a href="team-detail.html">Michael Smart</a></h6>
+                                    <span class="kf_property_line"></span>
+                                    <p>Expert Agent</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Agent List Wrap End-->
+
+                </div>
+            </section>
+            <!--Our Agent Warp End-->
+            <!--Number Counter Wrap Start-->
+            <section class="kf_num_counter_bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="kf_num_count_wrap">
+                                <i class="fa fa-flag-o"></i>
+                                <h2 class="counter">2180</h2>
+                                <a href="#">Happy Client</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="kf_num_count_wrap">
+                                <i class="fa fa-building-o"></i>
+                                <h2 class="counter">3300</h2>
+                                <a href="#">APARTMENTS</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="kf_num_count_wrap">
+                                <i class="fa fa-home"></i>
+                                <h2 class="counter">2200</h2>
+                                <a href="#">HOUSES & vila</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="kf_num_count_wrap">
+                                <i class="fa fa-user"></i>
+                                <h2 class="counter">5000</h2>
+                                <a href="#">Professional Agent</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--Number Counter Wrap End-->
+            <!--Latest Blog Post Wrap Start-->
+            <section>
+                <div class="container">
+                    <!--Heading Wrap Start-->
+                    <div class="kf_heading_1">
+                        <h3>Our Agent</h3>
+                        <p>Latest Blog Post </p>
+                        <span class="kf_property_line"></span>
+                    </div>
+                    <!--Heading Wrap End-->
+                    <!--Blog List Wrap Start-->
+                    <div class="kf_blog_slider owl-carousel owl-theme">
+                        <div class="item">
+                            <div class="kf_blog_post_wrap">
+                                <h6>.01</h6>
+                                <figure>
+                                    <img src="extra-images/blog-01.jpg" alt="">
+                                </figure>
+                                <div class="kf_blog_des">
+                                    <h6><a href="blog-detail.html">University near to sabestian villa</a></h6>
+                                    <ul class="kf_blog_post_meta">
+                                        <li><i class="fa fa-calendar"></i><a href="#">11/05/2009</a></li>
+                                        <li><i class="fa fa-user"></i><a href="#">Admin</a></li>
+                                        <li><i class="fa fa-comments"></i><a href="#">05</a></li>
+                                    </ul>
+                                    <p>Duis facilisis nibh quam, sit amet interdum tellus sollicitudin tempor. Curabitur aliquam…</p>
+                                    <a class="kf_link_2" href="blog-detail.html">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="kf_blog_post_wrap">
+                                <h6>.02</h6>
+                                <figure>
+                                    <img src="extra-images/blog-02.jpg" alt="">
+                                </figure>
+                                <div class="kf_blog_des">
+                                    <h6><a href="blog-detail.html">LAW FIRM OPENED NEAR TO VILLA</a></h6>
+                                    <ul class="kf_blog_post_meta">
+                                        <li><i class="fa fa-calendar"></i><a href="#">07/03/2010</a></li>
+                                        <li><i class="fa fa-user"></i><a href="#">Admin</a></li>
+                                        <li><i class="fa fa-comments"></i><a href="#">05</a></li>
+                                    </ul>
+                                    <p>Aliquam dui justo, feugiat eu ligula at, posuere cursus enim. Fusce dictum egestas sem eu </p>
+                                    <a class="kf_link_2" href="blog-detail.html">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="kf_blog_post_wrap">
+                                <h6>.03</h6>
+                                <figure>
+                                    <img src="extra-images/blog-03.jpg" alt="">
+                                </figure>
+                                <div class="kf_blog_des">
+                                    <h6><a href="blog-detail.html">Villa In Hialeah, Dade County</a></h6>
+                                    <ul class="kf_blog_post_meta">
+                                        <li><i class="fa fa-calendar"></i><a href="#">15/02/2014</a></li>
+                                        <li><i class="fa fa-user"></i><a href="#">Admin</a></li>
+                                        <li><i class="fa fa-comments"></i><a href="#">05</a></li>
+                                    </ul>
+                                    <p>Phasellus tincidunt augue id nulla bibendum, non efficitur ante placerat. Donec tortor eros, </p>
+                                    <a class="kf_link_2" href="blog-detail.html">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="kf_blog_post_wrap">
+                                <h6>.05</h6>
+                                <figure>
+                                    <img src="extra-images/blog-04.jpg" alt="">
+                                </figure>
+                                <div class="kf_blog_des">
+                                    <h6><a href="blog-detail.html">1200 Anastasia Avenue, Coral Gables</a></h6>
+                                    <ul class="kf_blog_post_meta">
+                                        <li><i class="fa fa-calendar"></i><a href="#">13/08/2013</a></li>
+                                        <li><i class="fa fa-user"></i><a href="#">Admin</a></li>
+                                        <li><i class="fa fa-comments"></i><a href="#">05</a></li>
+                                    </ul>
+                                    <p>Cras neque turpis, dictum at tempus a, dapibus sit amet tortor. Interdum et malesuada </p>
+                                    <a class="kf_link_2" href="blog-detail.html">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="kf_blog_post_wrap">
+                                <h6>.05</h6>
+                                <figure>
+                                    <img src="extra-images/blog-02.jpg" alt="">
+                                </figure>
+                                <div class="kf_blog_des">
+                                    <h6><a href="blog-detail.html">20 Apartments Of Type A</a></h6>
+                                    <ul class="kf_blog_post_meta">
+                                        <li><i class="fa fa-calendar"></i><a href="#">15/08/2015/a></li>
+                                        <li><i class="fa fa-user"></i><a href="#">Admin</a></li>
+                                        <li><i class="fa fa-comments"></i><a href="#">05</a></li>
+                                    </ul>
+                                    <p>Vestibulum quam nisi, pretium a nibh sit amet, consectetur hendrerit mi. Aenean elit porta.</p>
+                                    <a class="kf_link_2" href="blog-detail.html">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Blog List Wrap End-->
+
+                </div>
+                <!--Blog List Wrap End-->
+            </section>
+            @RenderBody();
+        </div>
+        
+        <!--Latest Blog Post Wrap End-->
+
+    </div>
+    <!--Content Wrap End-->
+    <!--Footer Wrap Start-->
+    <!--Map Wrap Start-->
+    <div class="kf_property_map_wrap">
+        <div class="map-canvas" id="map-canvas"></div>
+    </div>
+    <!--Map Wrap End-->
+    <!--Company Wrap Start-->
+    <div class="kf_property_compnay_bg">
+        <div class="container">
+            <div class="kf_company_slider owl-carousel owl-theme">
+                <div class="item">
+                    <div class="kf_compnay_wrap">
+                        <a href="#"><img src="extra-images/company-01.jpg" alt=""></a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="kf_compnay_wrap">
+                        <a href="#"><img src="extra-images/company-02.jpg" alt=""></a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="kf_compnay_wrap">
+                        <a href="#"><img src="extra-images/company-03.jpg" alt=""></a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="kf_compnay_wrap">
+                        <a href="#"><img src="extra-images/company-04.jpg" alt=""></a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="kf_compnay_wrap">
+                        <a href="#"><img src="extra-images/company-05.jpg" alt=""></a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="kf_compnay_wrap">
+                        <a href="#"><img src="extra-images/company-01.jpg" alt=""></a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="kf_compnay_wrap">
+                        <a href="#"><img src="extra-images/company-02.jpg" alt=""></a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+    <!--Company Wrap End-->
+    <!--Twitter Wrap Start-->
+    <div class="kf_twitter_wrap_bg">
+        <div class="container">
+            <div class="kf_twitter_wrap">
+                <div class="kf_twitter_logo">
+                    <i class="fa fa-twitter"></i>
+                </div>
+                <div class="kf_twitter_des">
+                    <ul class="kf_twitter_slider">
+                        <li>
+                            <div class="kf_twitter_msg">
+                                <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet, lorem quis bibendum..</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="kf_twitter_msg">
+                                <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet, lorem quis bibendum..</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="kf_twitter_msg">
+                                <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet, lorem quis bibendum..</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
+    <!--Twitter Wrap End-->
+    <!--Footer Widget Wrap Start-->
+    <footer class="kf_footer_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="kf_foo_contact">
+                        <div class="kf_footer_logo">
+                            <a href="#"><img src="images/footer-logo.png" alt=""></a>
+                            <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum..</p>
+                        </div>
+                        <ul class="kf_foo_address">
+                            <li>
+                                <i class="fa fa-facebook"></i>
+                                <span>666 71 888 & 211 222 333</span>
+                            </li>
+                            <li>
+                                <i class="fa fa-envelope"></i>
+                                <a href="#">info@kodeforest.com</a>
+                            </li>
+                            <li>
+                                <i class="fa fa-map-marker"></i>
+                                <span>Visit Us 153 Fake Street-London United Kindom</span>
+                            </li>
+                        </ul>
+                        <ul class="kf_foo_social_icon">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+                <div class="col-md-3 col-sm-6">
+                    <div class="kf_foo_featured_listing widget">
+                        <h6>Featured Listing</h6>
+                        <figure>
+                            <img src="extra-images/featured-listing-01.jpg" alt="">
+                            <figcaption class="kf_foo_listing_hover">
+                                <p>$ 2,856,00</p>
+                            </figcaption>
+                        </figure>
+                        <div class="kf_foo_listing_des">
+                            <h6><a href="#">Good Looking Family Vila</a></h6>
+                            <p>2908 Rd. South Colomibanos Stree DE 12907</p>
+                            <ul class="kf_foo_listing_meta">
+                                <li><i class="fa fa-bed"></i>7 bd</li>
+                                <li><i class="icon-bath"></i>4 ba</li>
+                                <li><i class="fa fa-arrows-alt"></i>9387 sqf</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="kf_foo_latest_wrap widget">
+                        <h6>Latest Post</h6>
+                        <ul>
+                            <li>
+                                <div class="kf_foo_latest_post">
+                                    <figure>
+                                        <img src="extra-images/latest-post-01.jpg" alt="">
+                                    </figure>
+                                    <div class="kf_foo_post_des">
+                                        <p><a href="#">An organization or Economic</a></p>
+                                        <span>Feb 12 2016</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="kf_foo_latest_post">
+                                    <figure>
+                                        <img src="extra-images/latest-post-01.jpg" alt="">
+                                    </figure>
+                                    <div class="kf_foo_post_des">
+                                        <p><a href="#">An organization or Economic</a></p>
+                                        <span>Feb 12 2016</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="kf_foo_latest_post">
+                                    <figure>
+                                        <img src="extra-images/latest-post-01.jpg" alt="">
+                                    </figure>
+                                    <div class="kf_foo_post_des">
+                                        <p><a href="#">An organization or Economic</a></p>
+                                        <span>Feb 12 2016</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="kf_foo_property_type widget">
+                        <h6>PROPERTY TYPES</h6>
+                        <ul>
+                            <li><a href="#">Residential  <span>09</span></a></li>
+                            <li><a href="#">Villa  <span>10</span></a></li>
+                            <li><a href="#">Single Family  <span>11</span></a></li>
+                            <li><a href="#">Condominium  <span>08</span></a></li>
+                            <li><a href="#">Apartment Building  <span>03</span></a></li>
+                            <li><a href="#">Apartment  <span>06</span></a></li>
+                            <li><a href="#">Commercial  <span>18</span></a></li>
+                            <li><a href="#">Shop  <span>12</span></a></li>
+                            <li><a href="#">Office  <span>09</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <!--Footer Widget Wrap End-->
+    <!--Copy Right Wrap Start-->
+    <div class="kf_copy_right">
+        <div class="container">
+            <div class="kf_copyright_element">
+                <ul>
+                    <li>Copyright@2016 <a href="#">kodeproperty</a></li>
+                    <li><a href="#">Terms & Coditions</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li>Designed by <a href="#"> kodeforest</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--Copy Right Wrap Start-->
+    <!--Footer Wrap End-->
+    </div>
+    <!--Kode Wrapper End-->
+    <!--Jquery Library-->
+    <script src="@Url.Content("~/Themes/KodeProperty/Content/js/jquery.js")"></script>
+    <!--Jquery UI Library-->
+    <script src="@Url.Content("~/Themes/KodeProperty/Content/js/range-slider.js")"></script>
+    <!--Bootstrap core JavaScript-->
+    <script src="@Url.Content("~/Themes/KodeProperty/Content/js/bootstrap.js")"></script>
+    <!--Bx-Slider JavaScript-->
+    <script src="@Url.Content("~/Themes/KodeProperty/Content/js/jquery.bxslider.js")"></script>
+    <!--Owl Carousel JavaScript-->
+    <script src="@Url.Content("~/Themes/KodeProperty/Content/js/owl.carousel.js")"></script>
+    <!--Pretty Photo JavaScript-->
+    <script src="@Url.Content("~/Themes/KodeProperty/Content/js/jquery.prettyPhoto.js")"></script>
+    <!--Accordian JavaScript-->
+    <script src="@Url.Content("~/Themes/KodeProperty/Content/js/jquery.accordion.js")"></script>
+    <!--Number Count (Waypoints) JavaScript-->
+    <script src="@Url.Content("~/Themes/KodeProperty/Content/js/waypoints-min.js")"></script>
+    <!-- Chosen Script Javascript -->
+    <script src="@Url.Content("~/Themes/KodeProperty/Content/js/chosen.jquery.min.js")"></script>
+    <!-- Time Counter Script Javascript -->
+    <script src="@Url.Content("~/Themes/KodeProperty/Content/js/jquery.downCount.js")"></script>
+    <!--Dl Menu Script-->
+    <script src="@Url.Content("~/Themes/KodeProperty/Content/js/dl-menu/modernizr.custom.js")"></script>
+    <script src="@Url.Content("~/Themes/KodeProperty/Content/js/dl-menu/jquery.dlmenu.js")"></script>
+    <!--Map JavaScript-->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <!--Custom JavaScript-->
+    <script src="@Url.Content("~/Themes/KodeProperty/Content/js/custom.js")"></script>
+
 </body>
 </html>

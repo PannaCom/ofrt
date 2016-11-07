@@ -9,7 +9,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-    width: 2px;
+    width: 8px;
 }
 /* for vertical scrollbars */
 ::-webkit-scrollbar-track {
