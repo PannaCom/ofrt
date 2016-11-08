@@ -17,6 +17,7 @@ namespace WebOfficeRental.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
+            this.articles = new HashSet<article>();
             this.UserClaims = new HashSet<UserClaim>();
             this.UserLogins = new HashSet<UserLogin>();
             this.Roles = new HashSet<Role>();
@@ -36,6 +37,8 @@ namespace WebOfficeRental.Models
         public string UserName { get; set; }
         public string FullName { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<article> articles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserClaim> UserClaims { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

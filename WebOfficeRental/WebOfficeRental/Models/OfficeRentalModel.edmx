@@ -5,12 +5,128 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="officerentalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ArticleCategories">
+          <Key>
+            <PropertyRef Name="art_cat_id" />
+          </Key>
+          <Property Name="art_cat_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="art_cat_name" Type="nvarchar" MaxLength="250" />
+          <Property Name="art_cat_position" Type="int" />
+          <Property Name="art_cat_slug_url" Type="nvarchar" MaxLength="505" />
+          <Property Name="art_cat_parent_id" Type="int" />
+        </EntityType>
+        <EntityType Name="articles">
+          <Key>
+            <PropertyRef Name="article_id" />
+          </Key>
+          <Property Name="article_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="article_name" Type="nvarchar" MaxLength="505" />
+          <Property Name="article_description" Type="nvarchar" MaxLength="505" />
+          <Property Name="article_content" Type="ntext" />
+          <Property Name="article_type" Type="int" />
+          <Property Name="article_slugurl" Type="nvarchar" MaxLength="505" />
+          <Property Name="article_photo_sm" Type="nvarchar" MaxLength="505" />
+          <Property Name="article_photo_lg" Type="nvarchar" MaxLength="505" />
+          <Property Name="tags" Type="nvarchar" MaxLength="505" />
+          <Property Name="views" Type="int" />
+          <Property Name="votes" Type="int" />
+          <Property Name="art_cat_id" Type="int" />
+          <Property Name="user_id" Type="nvarchar" MaxLength="128" />
+          <Property Name="create_date" Type="datetime" />
+          <Property Name="modifi_date" Type="datetime" />
+          <Property Name="published_date" Type="datetime" />
+          <Property Name="published" Type="bit" />
+        </EntityType>
+        <EntityType Name="BannerAdvs">
+          <Key>
+            <PropertyRef Name="banner_adv_id" />
+          </Key>
+          <Property Name="banner_adv_id" Type="int" Nullable="false" />
+          <Property Name="banner_adv_name" Type="nvarchar" MaxLength="250" />
+          <Property Name="banner_adv_photo" Type="nvarchar" MaxLength="250" />
+          <Property Name="banner_adv_position" Type="int" />
+          <Property Name="banner_adv_fromdate" Type="datetime" />
+          <Property Name="banner_adv_todate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="buildings">
+          <Key>
+            <PropertyRef Name="bulding_id" />
+          </Key>
+          <Property Name="bulding_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bulding_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="building_url" Type="nvarchar" MaxLength="505" />
+          <Property Name="city_id" Type="int" />
+          <Property Name="building_address" Type="nvarchar" MaxLength="255" />
+          <Property Name="building_picture" Type="nvarchar" MaxLength="255" />
+          <Property Name="building_phonenumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="building_email" Type="nvarchar" MaxLength="250" />
+          <Property Name="building_fanpage" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="cities">
+          <Key>
+            <PropertyRef Name="city_id" />
+          </Key>
+          <Property Name="city_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="district" Type="nvarchar" MaxLength="255" />
+          <Property Name="provinces" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="menus">
+          <Key>
+            <PropertyRef Name="menu_id" />
+          </Key>
+          <Property Name="menu_id" Type="int" Nullable="false" />
+          <Property Name="menu_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="menu_url" Type="nvarchar" MaxLength="505" />
+          <Property Name="menu_parent_id" Type="int" />
+          <Property Name="menu_position" Type="int" />
+          <Property Name="menu_position_index" Type="int" />
+        </EntityType>
+        <EntityType Name="offices">
+          <Key>
+            <PropertyRef Name="office_id" />
+          </Key>
+          <Property Name="office_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="office_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="office_type" Type="int" />
+          <Property Name="office_new_type" Type="int" />
+          <Property Name="office_address" Type="nvarchar" MaxLength="505" />
+          <Property Name="office_price_type" Type="int" />
+          <Property Name="office_price_public" Type="int" />
+          <Property Name="office_hotmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="office_hotline" Type="nvarchar" MaxLength="50" />
+          <Property Name="offcie_fanpage" Type="nvarchar" MaxLength="505" />
+          <Property Name="office_acreage" Type="int" />
+          <Property Name="office_door" Type="int" />
+          <Property Name="office_table" Type="int" />
+          <Property Name="office_photo" Type="nvarchar" MaxLength="250" />
+          <Property Name="office_photo_slider" Type="nvarchar" MaxLength="250" />
+          <Property Name="office_other_descriptions" Type="nvarchar" MaxLength="1010" />
+          <Property Name="office_views" Type="int" />
+          <Property Name="office_votes" Type="int" />
+          <Property Name="office_connection" Type="nvarchar" MaxLength="250" />
+          <Property Name="buiding_id" Type="int" />
+        </EntityType>
+        <EntityType Name="OfficeServices">
+          <Key>
+            <PropertyRef Name="office_id" />
+            <PropertyRef Name="service_id" />
+          </Key>
+          <Property Name="office_id" Type="bigint" Nullable="false" />
+          <Property Name="service_id" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Roles">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="services">
+          <Key>
+            <PropertyRef Name="service_id" />
+          </Key>
+          <Property Name="service_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="service_name" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="UserClaims">
           <Key>
@@ -57,6 +173,54 @@
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="FullName" Type="nvarchar" MaxLength="256" />
         </EntityType>
+        <Association Name="FK_ArticleCategories_ArticleCategories">
+          <End Role="ArticleCategories" Type="Self.ArticleCategories" Multiplicity="0..1" />
+          <End Role="ArticleCategories1" Type="Self.ArticleCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArticleCategories">
+              <PropertyRef Name="art_cat_id" />
+            </Principal>
+            <Dependent Role="ArticleCategories1">
+              <PropertyRef Name="art_cat_parent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_articles_ArticleCategories">
+          <End Role="ArticleCategories" Type="Self.ArticleCategories" Multiplicity="0..1" />
+          <End Role="articles" Type="Self.articles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArticleCategories">
+              <PropertyRef Name="art_cat_id" />
+            </Principal>
+            <Dependent Role="articles">
+              <PropertyRef Name="art_cat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_articles_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="articles" Type="Self.articles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="articles">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_buildings_cities">
+          <End Role="cities" Type="Self.cities" Multiplicity="0..1" />
+          <End Role="buildings" Type="Self.buildings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="buildings">
+              <PropertyRef Name="city_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_UserClaims_dbo_Users_UserId">
           <End Role="Users" Type="Self.Users" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -113,12 +277,85 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_menus_menus">
+          <End Role="menus" Type="Self.menus" Multiplicity="0..1" />
+          <End Role="menus1" Type="Self.menus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="menus">
+              <PropertyRef Name="menu_id" />
+            </Principal>
+            <Dependent Role="menus1">
+              <PropertyRef Name="menu_parent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_offices_buildings">
+          <End Role="buildings" Type="Self.buildings" Multiplicity="0..1" />
+          <End Role="offices" Type="Self.offices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="buildings">
+              <PropertyRef Name="bulding_id" />
+            </Principal>
+            <Dependent Role="offices">
+              <PropertyRef Name="buiding_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OfficeServices_offices">
+          <End Role="offices" Type="Self.offices" Multiplicity="1" />
+          <End Role="OfficeServices" Type="Self.OfficeServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="offices">
+              <PropertyRef Name="office_id" />
+            </Principal>
+            <Dependent Role="OfficeServices">
+              <PropertyRef Name="office_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OfficeServices_services">
+          <End Role="services" Type="Self.services" Multiplicity="1" />
+          <End Role="OfficeServices" Type="Self.OfficeServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="services">
+              <PropertyRef Name="service_id" />
+            </Principal>
+            <Dependent Role="OfficeServices">
+              <PropertyRef Name="service_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="officerentalModelStoreContainer">
+          <EntitySet Name="ArticleCategories" EntityType="Self.ArticleCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="articles" EntityType="Self.articles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BannerAdvs" EntityType="Self.BannerAdvs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="buildings" EntityType="Self.buildings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cities" EntityType="Self.cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="menus" EntityType="Self.menus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="offices" EntityType="Self.offices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OfficeServices" EntityType="Self.OfficeServices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="services" EntityType="Self.services" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserClaims" EntityType="Self.UserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserLogins" EntityType="Self.UserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ArticleCategories_ArticleCategories" Association="Self.FK_ArticleCategories_ArticleCategories">
+            <End Role="ArticleCategories" EntitySet="ArticleCategories" />
+            <End Role="ArticleCategories1" EntitySet="ArticleCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_articles_ArticleCategories" Association="Self.FK_articles_ArticleCategories">
+            <End Role="ArticleCategories" EntitySet="ArticleCategories" />
+            <End Role="articles" EntitySet="articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_articles_Users" Association="Self.FK_articles_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="articles" EntitySet="articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_buildings_cities" Association="Self.FK_buildings_cities">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="buildings" EntitySet="buildings" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_UserClaims_dbo_Users_UserId" Association="Self.FK_dbo_UserClaims_dbo_Users_UserId">
             <End Role="Users" EntitySet="Users" />
             <End Role="UserClaims" EntitySet="UserClaims" />
@@ -135,16 +372,64 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="UserRoles" EntitySet="UserRoles" />
           </AssociationSet>
+          <AssociationSet Name="FK_menus_menus" Association="Self.FK_menus_menus">
+            <End Role="menus" EntitySet="menus" />
+            <End Role="menus1" EntitySet="menus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_offices_buildings" Association="Self.FK_offices_buildings">
+            <End Role="buildings" EntitySet="buildings" />
+            <End Role="offices" EntitySet="offices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OfficeServices_offices" Association="Self.FK_OfficeServices_offices">
+            <End Role="offices" EntitySet="offices" />
+            <End Role="OfficeServices" EntitySet="OfficeServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OfficeServices_services" Association="Self.FK_OfficeServices_services">
+            <End Role="services" EntitySet="services" />
+            <End Role="OfficeServices" EntitySet="OfficeServices" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="officerentalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="officerentalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ArticleCategories" EntityType="officerentalModel.ArticleCategory" />
+          <EntitySet Name="articles" EntityType="officerentalModel.article" />
+          <EntitySet Name="BannerAdvs" EntityType="officerentalModel.BannerAdv" />
+          <EntitySet Name="buildings" EntityType="officerentalModel.building" />
+          <EntitySet Name="cities" EntityType="officerentalModel.city" />
+          <EntitySet Name="menus" EntityType="officerentalModel.menu" />
+          <EntitySet Name="offices" EntityType="officerentalModel.office" />
           <EntitySet Name="Roles" EntityType="officerentalModel.Role" />
+          <EntitySet Name="services" EntityType="officerentalModel.service" />
           <EntitySet Name="UserClaims" EntityType="officerentalModel.UserClaim" />
           <EntitySet Name="UserLogins" EntityType="officerentalModel.UserLogin" />
           <EntitySet Name="Users" EntityType="officerentalModel.User" />
+          <AssociationSet Name="FK_ArticleCategories_ArticleCategories" Association="officerentalModel.FK_ArticleCategories_ArticleCategories">
+            <End Role="ArticleCategory" EntitySet="ArticleCategories" />
+            <End Role="ArticleCategory1" EntitySet="ArticleCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_articles_ArticleCategories" Association="officerentalModel.FK_articles_ArticleCategories">
+            <End Role="ArticleCategory" EntitySet="ArticleCategories" />
+            <End Role="article" EntitySet="articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_articles_Users" Association="officerentalModel.FK_articles_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="article" EntitySet="articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_buildings_cities" Association="officerentalModel.FK_buildings_cities">
+            <End Role="city" EntitySet="cities" />
+            <End Role="building" EntitySet="buildings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_offices_buildings" Association="officerentalModel.FK_offices_buildings">
+            <End Role="building" EntitySet="buildings" />
+            <End Role="office" EntitySet="offices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_menus_menus" Association="officerentalModel.FK_menus_menus">
+            <End Role="menu" EntitySet="menus" />
+            <End Role="menu1" EntitySet="menus" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_UserClaims_dbo_Users_UserId" Association="officerentalModel.FK_dbo_UserClaims_dbo_Users_UserId">
             <End Role="User" EntitySet="Users" />
             <End Role="UserClaim" EntitySet="UserClaims" />
@@ -153,11 +438,128 @@
             <End Role="User" EntitySet="Users" />
             <End Role="UserLogin" EntitySet="UserLogins" />
           </AssociationSet>
+          <AssociationSet Name="OfficeServices" Association="officerentalModel.OfficeServices">
+            <End Role="office" EntitySet="offices" />
+            <End Role="service" EntitySet="services" />
+          </AssociationSet>
           <AssociationSet Name="UserRoles" Association="officerentalModel.UserRoles">
             <End Role="Role" EntitySet="Roles" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="ArticleCategory">
+          <Key>
+            <PropertyRef Name="art_cat_id" />
+          </Key>
+          <Property Name="art_cat_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="art_cat_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="art_cat_position" Type="Int32" />
+          <Property Name="art_cat_slug_url" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
+          <Property Name="art_cat_parent_id" Type="Int32" />
+          <NavigationProperty Name="ArticleCategories1" Relationship="officerentalModel.FK_ArticleCategories_ArticleCategories" FromRole="ArticleCategory" ToRole="ArticleCategory1" />
+          <NavigationProperty Name="ArticleCategory1" Relationship="officerentalModel.FK_ArticleCategories_ArticleCategories" FromRole="ArticleCategory1" ToRole="ArticleCategory" />
+          <NavigationProperty Name="articles" Relationship="officerentalModel.FK_articles_ArticleCategories" FromRole="ArticleCategory" ToRole="article" />
+        </EntityType>
+        <EntityType Name="article">
+          <Key>
+            <PropertyRef Name="article_id" />
+          </Key>
+          <Property Name="article_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="article_name" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
+          <Property Name="article_description" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
+          <Property Name="article_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="article_type" Type="Int32" />
+          <Property Name="article_slugurl" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
+          <Property Name="article_photo_sm" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
+          <Property Name="article_photo_lg" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
+          <Property Name="tags" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
+          <Property Name="views" Type="Int32" />
+          <Property Name="votes" Type="Int32" />
+          <Property Name="art_cat_id" Type="Int32" />
+          <Property Name="user_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="create_date" Type="DateTime" Precision="3" />
+          <Property Name="modifi_date" Type="DateTime" Precision="3" />
+          <Property Name="published_date" Type="DateTime" Precision="3" />
+          <Property Name="published" Type="Boolean" />
+          <NavigationProperty Name="ArticleCategory" Relationship="officerentalModel.FK_articles_ArticleCategories" FromRole="article" ToRole="ArticleCategory" />
+          <NavigationProperty Name="User" Relationship="officerentalModel.FK_articles_Users" FromRole="article" ToRole="User" />
+        </EntityType>
+        <EntityType Name="BannerAdv">
+          <Key>
+            <PropertyRef Name="banner_adv_id" />
+          </Key>
+          <Property Name="banner_adv_id" Type="Int32" Nullable="false" />
+          <Property Name="banner_adv_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="banner_adv_photo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="banner_adv_position" Type="Int32" />
+          <Property Name="banner_adv_fromdate" Type="DateTime" Precision="3" />
+          <Property Name="banner_adv_todate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="building">
+          <Key>
+            <PropertyRef Name="bulding_id" />
+          </Key>
+          <Property Name="bulding_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bulding_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="building_url" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
+          <Property Name="city_id" Type="Int32" />
+          <Property Name="building_address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="building_picture" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="building_phonenumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="building_email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="building_fanpage" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="city" Relationship="officerentalModel.FK_buildings_cities" FromRole="building" ToRole="city" />
+          <NavigationProperty Name="offices" Relationship="officerentalModel.FK_offices_buildings" FromRole="building" ToRole="office" />
+        </EntityType>
+        <EntityType Name="city">
+          <Key>
+            <PropertyRef Name="city_id" />
+          </Key>
+          <Property Name="city_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="district" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="provinces" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="buildings" Relationship="officerentalModel.FK_buildings_cities" FromRole="city" ToRole="building" />
+        </EntityType>
+        <EntityType Name="menu">
+          <Key>
+            <PropertyRef Name="menu_id" />
+          </Key>
+          <Property Name="menu_id" Type="Int32" Nullable="false" />
+          <Property Name="menu_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="menu_url" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
+          <Property Name="menu_parent_id" Type="Int32" />
+          <Property Name="menu_position" Type="Int32" />
+          <Property Name="menu_position_index" Type="Int32" />
+          <NavigationProperty Name="menus1" Relationship="officerentalModel.FK_menus_menus" FromRole="menu" ToRole="menu1" />
+          <NavigationProperty Name="menu1" Relationship="officerentalModel.FK_menus_menus" FromRole="menu1" ToRole="menu" />
+        </EntityType>
+        <EntityType Name="office">
+          <Key>
+            <PropertyRef Name="office_id" />
+          </Key>
+          <Property Name="office_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="office_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="office_type" Type="Int32" />
+          <Property Name="office_new_type" Type="Int32" />
+          <Property Name="office_address" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
+          <Property Name="office_price_type" Type="Int32" />
+          <Property Name="office_price_public" Type="Int32" />
+          <Property Name="office_hotmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="office_hotline" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="offcie_fanpage" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
+          <Property Name="office_acreage" Type="Int32" />
+          <Property Name="office_door" Type="Int32" />
+          <Property Name="office_table" Type="Int32" />
+          <Property Name="office_photo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="office_photo_slider" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="office_other_descriptions" Type="String" MaxLength="1010" FixedLength="false" Unicode="true" />
+          <Property Name="office_views" Type="Int32" />
+          <Property Name="office_votes" Type="Int32" />
+          <Property Name="office_connection" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="buiding_id" Type="Int32" />
+          <NavigationProperty Name="building" Relationship="officerentalModel.FK_offices_buildings" FromRole="office" ToRole="building" />
+          <NavigationProperty Name="services" Relationship="officerentalModel.OfficeServices" FromRole="office" ToRole="service" />
+        </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
@@ -165,6 +567,14 @@
           <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Users" Relationship="officerentalModel.UserRoles" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="service">
+          <Key>
+            <PropertyRef Name="service_id" />
+          </Key>
+          <Property Name="service_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="service_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="offices" Relationship="officerentalModel.OfficeServices" FromRole="service" ToRole="office" />
         </EntityType>
         <EntityType Name="UserClaim">
           <Key>
@@ -204,10 +614,83 @@
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="FullName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="articles" Relationship="officerentalModel.FK_articles_Users" FromRole="User" ToRole="article" />
           <NavigationProperty Name="UserClaims" Relationship="officerentalModel.FK_dbo_UserClaims_dbo_Users_UserId" FromRole="User" ToRole="UserClaim" />
           <NavigationProperty Name="UserLogins" Relationship="officerentalModel.FK_dbo_UserLogins_dbo_Users_UserId" FromRole="User" ToRole="UserLogin" />
           <NavigationProperty Name="Roles" Relationship="officerentalModel.UserRoles" FromRole="User" ToRole="Role" />
         </EntityType>
+        <Association Name="FK_ArticleCategories_ArticleCategories">
+          <End Type="officerentalModel.ArticleCategory" Role="ArticleCategory" Multiplicity="0..1" />
+          <End Type="officerentalModel.ArticleCategory" Role="ArticleCategory1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArticleCategory">
+              <PropertyRef Name="art_cat_id" />
+            </Principal>
+            <Dependent Role="ArticleCategory1">
+              <PropertyRef Name="art_cat_parent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_articles_ArticleCategories">
+          <End Type="officerentalModel.ArticleCategory" Role="ArticleCategory" Multiplicity="0..1" />
+          <End Type="officerentalModel.article" Role="article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArticleCategory">
+              <PropertyRef Name="art_cat_id" />
+            </Principal>
+            <Dependent Role="article">
+              <PropertyRef Name="art_cat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_articles_Users">
+          <End Type="officerentalModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="officerentalModel.article" Role="article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="article">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_buildings_cities">
+          <End Type="officerentalModel.city" Role="city" Multiplicity="0..1" />
+          <End Type="officerentalModel.building" Role="building" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="city">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="building">
+              <PropertyRef Name="city_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_offices_buildings">
+          <End Type="officerentalModel.building" Role="building" Multiplicity="0..1" />
+          <End Type="officerentalModel.office" Role="office" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="building">
+              <PropertyRef Name="bulding_id" />
+            </Principal>
+            <Dependent Role="office">
+              <PropertyRef Name="buiding_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_menus_menus">
+          <End Type="officerentalModel.menu" Role="menu" Multiplicity="0..1" />
+          <End Type="officerentalModel.menu" Role="menu1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="menu">
+              <PropertyRef Name="menu_id" />
+            </Principal>
+            <Dependent Role="menu1">
+              <PropertyRef Name="menu_parent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_UserClaims_dbo_Users_UserId">
           <End Type="officerentalModel.User" Role="User" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -236,21 +719,141 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="OfficeServices">
+          <End Type="officerentalModel.office" Role="office" Multiplicity="*" />
+          <End Type="officerentalModel.service" Role="service" Multiplicity="*" />
+        </Association>
         <Association Name="UserRoles">
           <End Type="officerentalModel.Role" Role="Role" Multiplicity="*" />
           <End Type="officerentalModel.User" Role="User" Multiplicity="*" />
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="officerentalModelStoreContainer" CdmEntityContainer="officerentalEntities">
+          <EntitySetMapping Name="ArticleCategories">
+            <EntityTypeMapping TypeName="officerentalModel.ArticleCategory">
+              <MappingFragment StoreEntitySet="ArticleCategories">
+                <ScalarProperty Name="art_cat_parent_id" ColumnName="art_cat_parent_id" />
+                <ScalarProperty Name="art_cat_slug_url" ColumnName="art_cat_slug_url" />
+                <ScalarProperty Name="art_cat_position" ColumnName="art_cat_position" />
+                <ScalarProperty Name="art_cat_name" ColumnName="art_cat_name" />
+                <ScalarProperty Name="art_cat_id" ColumnName="art_cat_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="articles">
+            <EntityTypeMapping TypeName="officerentalModel.article">
+              <MappingFragment StoreEntitySet="articles">
+                <ScalarProperty Name="published" ColumnName="published" />
+                <ScalarProperty Name="published_date" ColumnName="published_date" />
+                <ScalarProperty Name="modifi_date" ColumnName="modifi_date" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="art_cat_id" ColumnName="art_cat_id" />
+                <ScalarProperty Name="votes" ColumnName="votes" />
+                <ScalarProperty Name="views" ColumnName="views" />
+                <ScalarProperty Name="tags" ColumnName="tags" />
+                <ScalarProperty Name="article_photo_lg" ColumnName="article_photo_lg" />
+                <ScalarProperty Name="article_photo_sm" ColumnName="article_photo_sm" />
+                <ScalarProperty Name="article_slugurl" ColumnName="article_slugurl" />
+                <ScalarProperty Name="article_type" ColumnName="article_type" />
+                <ScalarProperty Name="article_content" ColumnName="article_content" />
+                <ScalarProperty Name="article_description" ColumnName="article_description" />
+                <ScalarProperty Name="article_name" ColumnName="article_name" />
+                <ScalarProperty Name="article_id" ColumnName="article_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BannerAdvs">
+            <EntityTypeMapping TypeName="officerentalModel.BannerAdv">
+              <MappingFragment StoreEntitySet="BannerAdvs">
+                <ScalarProperty Name="banner_adv_todate" ColumnName="banner_adv_todate" />
+                <ScalarProperty Name="banner_adv_fromdate" ColumnName="banner_adv_fromdate" />
+                <ScalarProperty Name="banner_adv_position" ColumnName="banner_adv_position" />
+                <ScalarProperty Name="banner_adv_photo" ColumnName="banner_adv_photo" />
+                <ScalarProperty Name="banner_adv_name" ColumnName="banner_adv_name" />
+                <ScalarProperty Name="banner_adv_id" ColumnName="banner_adv_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="buildings">
+            <EntityTypeMapping TypeName="officerentalModel.building">
+              <MappingFragment StoreEntitySet="buildings">
+                <ScalarProperty Name="building_fanpage" ColumnName="building_fanpage" />
+                <ScalarProperty Name="building_email" ColumnName="building_email" />
+                <ScalarProperty Name="building_phonenumber" ColumnName="building_phonenumber" />
+                <ScalarProperty Name="building_picture" ColumnName="building_picture" />
+                <ScalarProperty Name="building_address" ColumnName="building_address" />
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+                <ScalarProperty Name="building_url" ColumnName="building_url" />
+                <ScalarProperty Name="bulding_name" ColumnName="bulding_name" />
+                <ScalarProperty Name="bulding_id" ColumnName="bulding_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cities">
+            <EntityTypeMapping TypeName="officerentalModel.city">
+              <MappingFragment StoreEntitySet="cities">
+                <ScalarProperty Name="provinces" ColumnName="provinces" />
+                <ScalarProperty Name="district" ColumnName="district" />
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="menus">
+            <EntityTypeMapping TypeName="officerentalModel.menu">
+              <MappingFragment StoreEntitySet="menus">
+                <ScalarProperty Name="menu_position_index" ColumnName="menu_position_index" />
+                <ScalarProperty Name="menu_position" ColumnName="menu_position" />
+                <ScalarProperty Name="menu_parent_id" ColumnName="menu_parent_id" />
+                <ScalarProperty Name="menu_url" ColumnName="menu_url" />
+                <ScalarProperty Name="menu_name" ColumnName="menu_name" />
+                <ScalarProperty Name="menu_id" ColumnName="menu_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="offices">
+            <EntityTypeMapping TypeName="officerentalModel.office">
+              <MappingFragment StoreEntitySet="offices">
+                <ScalarProperty Name="buiding_id" ColumnName="buiding_id" />
+                <ScalarProperty Name="office_connection" ColumnName="office_connection" />
+                <ScalarProperty Name="office_votes" ColumnName="office_votes" />
+                <ScalarProperty Name="office_views" ColumnName="office_views" />
+                <ScalarProperty Name="office_other_descriptions" ColumnName="office_other_descriptions" />
+                <ScalarProperty Name="office_photo_slider" ColumnName="office_photo_slider" />
+                <ScalarProperty Name="office_photo" ColumnName="office_photo" />
+                <ScalarProperty Name="office_table" ColumnName="office_table" />
+                <ScalarProperty Name="office_door" ColumnName="office_door" />
+                <ScalarProperty Name="office_acreage" ColumnName="office_acreage" />
+                <ScalarProperty Name="offcie_fanpage" ColumnName="offcie_fanpage" />
+                <ScalarProperty Name="office_hotline" ColumnName="office_hotline" />
+                <ScalarProperty Name="office_hotmail" ColumnName="office_hotmail" />
+                <ScalarProperty Name="office_price_public" ColumnName="office_price_public" />
+                <ScalarProperty Name="office_price_type" ColumnName="office_price_type" />
+                <ScalarProperty Name="office_address" ColumnName="office_address" />
+                <ScalarProperty Name="office_new_type" ColumnName="office_new_type" />
+                <ScalarProperty Name="office_type" ColumnName="office_type" />
+                <ScalarProperty Name="office_name" ColumnName="office_name" />
+                <ScalarProperty Name="office_id" ColumnName="office_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="officerentalModel.Role">
               <MappingFragment StoreEntitySet="Roles">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="services">
+            <EntityTypeMapping TypeName="officerentalModel.service">
+              <MappingFragment StoreEntitySet="services">
+                <ScalarProperty Name="service_name" ColumnName="service_name" />
+                <ScalarProperty Name="service_id" ColumnName="service_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -292,6 +895,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="OfficeServices" TypeName="officerentalModel.OfficeServices" StoreEntitySet="OfficeServices">
+            <EndProperty Name="service">
+              <ScalarProperty Name="service_id" ColumnName="service_id" />
+            </EndProperty>
+            <EndProperty Name="office">
+              <ScalarProperty Name="office_id" ColumnName="office_id" />
+            </EndProperty>
+          </AssociationSetMapping>
           <AssociationSetMapping Name="UserRoles" TypeName="officerentalModel.UserRoles" StoreEntitySet="UserRoles">
             <EndProperty Name="User">
               <ScalarProperty Name="Id" ColumnName="UserId" />

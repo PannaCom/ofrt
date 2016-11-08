@@ -57,6 +57,10 @@ namespace WebOfficeRental.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToRoute("Admin");
+            }
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -68,10 +72,7 @@ namespace WebOfficeRental.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                return RedirectToRoute("Admin");
-            }
+            
             if (!ModelState.IsValid)
             {
                 return View(model);
