@@ -37,7 +37,11 @@ namespace WebOfficeRental
                 new { controller = "Manage", action = "ChangePassword" }
             );
 
-
+            routes.MapRoute(
+                "AdminListMenus",
+                "admin/list/menus",
+                new { controller = "Menus", action = "ListMenus" }
+            );
 
             routes.MapRoute(
                 name: "Default",
