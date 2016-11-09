@@ -37,11 +37,31 @@ namespace WebOfficeRental
                 new { controller = "Manage", action = "ChangePassword" }
             );
 
+            #region Quản lý menu
             routes.MapRoute(
                 "AdminListMenus",
                 "admin/list/menus",
                 new { controller = "Menus", action = "ListMenus" }
             );
+
+            routes.MapRoute(
+               "AdminAddMenu",
+               "admin/menu/add",
+               new { controller = "Menus", action = "AddNewMenu" }
+           );
+
+            routes.MapRoute(
+               "AdminAddMenu",
+               "admin/menu/{id}/edit",
+               new { controller = "Menus", action = "EditMenu", id = UrlParameter.Optional }
+           );
+
+            routes.MapRoute(
+               "AdminAddMenu",
+               "admin/menu/{id}/delete",
+               new { controller = "Menus", action = "DeleteMenu", id = UrlParameter.Optional }
+           );
+            #endregion
 
             routes.MapRoute(
                 name: "Default",
