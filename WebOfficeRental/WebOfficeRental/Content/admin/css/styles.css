@@ -161,8 +161,12 @@
     color: red;
 }
 
-.bold-option {
+.font-w-bold {
     font-weight: bold;
+}
+
+.color-white {
+    color: #fff;
 }
 
 .select-danhmuc > .bold-option {
@@ -412,4 +416,14 @@ position: absolute;
 .img-100x100 {
     width: 100px;
     height: 100px;
+}
+
+.required-after:after {
+    content: "(*)";
+    padding-left: 5px;
+    color: red;
+}
+
+.color-red {
+    color: red;
 }

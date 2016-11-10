@@ -1,0 +1,175 @@
+﻿@model PagedList.IPagedList<WebOfficeRental.Models.menu>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Danh sách menu";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Styles {
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <link href="~/Content/admin/vendor/datatable/dataTables.bootstrap.min.css" rel="stylesheet" />
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="page-header">
+            <h3>@ViewBag.Title <a href="/admin/AddNewMenu" class="btn btn-primary pull-right" style="color: #fff;">Thêm mới menu</a></h3>
+        </div>
+        @if (TempData["Deleted"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                @Html.Raw(TempData["Deleted"])
+            </div>
+        }
+
+        @if (TempData["Updated"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                @Html.Raw(TempData["Updated"])
+            </div>
+        }
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default box box-primary">
+            <div class="panel-heading">
+                @using (Html.BeginForm("ListMenus", "Menus", FormMethod.Get, new { @class = "form-inline", role = "form", @id = "search-menus", onsubmit = "return validate()" }))
+                {
+                    <div class="form-group">
+                        <label for="searchQuery" class="control-label">Tìm kiếm: </label>
+                        @Html.TextBox("search", "", new { @class = "form-control", placeholder = "Nhập tên menu" })
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-primary"><i class="fa fa-search"></i>Tìm kiếm</button>
+                    </div>
+                }
+            </div>
+
+            <script>
+                function validate() {
+                    if (document.getElementById("search").value === "") {
+                        alert("Vui lòng nhập từ khóa tìm kiếm");
+                        return false;
+                    } else {
+                        return true;
+                    };
+
+                }
+
+            </script>
+
+
+
+            <div class="panel-body">
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped" id="table-menus">
+                        <thead>
+                            <tr>
+                                <th style="width: 50px;">Số TT</th>
+                                <th>Tên menu</th>
+                                <th>Menu Cha</th>
+                                <th>Vị trí</th>
+                                <th>Thứ tự</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{int i = 1;}
+                            @if (Model != null)
+                            {
+                                if (Model.Count > 0)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@i</td>
+                                            <td>@item.menu_name</td>
+                                            <td>
+                                                @if (item.menu1 != null)
+                                                {
+                                                    @item.menu1.menu_name
+                                                }
+                                            </td>
+
+                                            <td>
+                                                @if (item.menu_position == 1)
+                                                {
+                                                    <span>Menu trên</span>
+                                                }
+                                                else if (item.menu_position == 2)
+                                                {
+                                                    <span>Menu dưới</span>
+                                                }
+                                            </td>
+                                            <td>
+                                                @item.menu_position_index
+                                            </td>
+                                            <td>
+                                                @Html.RouteLink("Sửa", "AdminEditMenu", new { id = item.menu_id }, htmlAttributes: new { @class = "btn btn-primary" })
+                                                @Html.RouteLink("Xóa", "AdminDeleteMenu", new { id = item.menu_id }, htmlAttributes: new { @class = "btn btn-primary" })
+                                            </td>
+                                        </tr>
+                                                i++;
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="6">
+                                            Không tìm thấy có menu
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="6">
+                                        Không có menu
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                @if (Model != null)
+                {
+                    @Html.PagedListPager(Model, page => Url.RouteUrl("AdminListMenus", new { search = ViewBag.search, pg = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script src="~/Content/admin/vendor/datatable/jquery.dataTables.min.js"></script>
+<script src="~/Content/admin/vendor/datatable/dataTables.bootstrap.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#table-menus').DataTable({
+                paging: false,
+                "oLanguage": {
+                    "sEmptyTable": "Không tìm thấy menu nào.",
+                    "sLoadingRecords": "Vui lòng - chờ...",
+                    "sSearch": "Tìm kiếm nhanh: ",
+                    "sZeroRecords": "Không tìm thấy menu nào.",
+                    "sInfo": ""
+                }
+            });
+        });
+
+    </script>    
+}

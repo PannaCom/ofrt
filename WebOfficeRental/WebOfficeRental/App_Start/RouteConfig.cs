@@ -51,16 +51,23 @@ namespace WebOfficeRental
            );
 
             routes.MapRoute(
-               "AdminAddMenu",
+               "AdminEditMenu",
                "admin/menu/{id}/edit",
                new { controller = "Menus", action = "EditMenu", id = UrlParameter.Optional }
            );
 
             routes.MapRoute(
-               "AdminAddMenu",
+               "AdminDeleteMenu",
                "admin/menu/{id}/delete",
                new { controller = "Menus", action = "DeleteMenu", id = UrlParameter.Optional }
            );
+
+            routes.MapRoute(
+                "AGetPositionMenuNew",
+                "admin/menu/getpositionmenu",
+                new { controller = "Menus", action = "getPositionMenuNew" }
+            );
+
             #endregion
 
             routes.MapRoute(

@@ -191,6 +191,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\configs.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\article.cs">
       <DependentUpon>OfficeRentalModel.tt</DependentUpon>
@@ -230,6 +231,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OfficeRentalModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\OfficeRentalViewModel.cs" />
     <Compile Include="Models\Role.cs">
       <DependentUpon>OfficeRentalModel.tt</DependentUpon>
     </Compile>
@@ -1116,11 +1118,16 @@
     <Content Include="Themes\ClearTheme\Views\Shared\Error.cshtml" />
     <Content Include="Themes\ClearTheme\Views\Web.config" />
     <Content Include="Views\Manage\UserProfile.cshtml" />
+    <Content Include="Views\Menus\AddNewMenu.cshtml" />
+    <Content Include="Views\Shared\_MenuAdminPartial.cshtml" />
+    <Content Include="Views\Menus\_lstmenutopPartial.cshtml" />
+    <Content Include="Views\Menus\_childmenuPartial.cshtml" />
+    <Content Include="Views\Menus\ListMenus.cshtml" />
+    <Content Include="Views\Menus\EditMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\admin\img\" />
-    <Folder Include="Views\Menus\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

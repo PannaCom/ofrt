@@ -1,0 +1,65 @@
+﻿<ul class="nav" id="side-menu">
+    <li>
+        <a href="/" target="_blank"><i class="fa icon-home fa-fw"></i> Trang chủ</a>
+    </li>
+    @if (User.IsInRole("Administrator"))
+    {
+        <li>
+            <a href="#"><i class="fa fa-user fa-fw"></i> Cài đặt tài khoản <span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level">
+                <li><a href="/admin/profile/update">Cập nhật thông tin</a></li>
+                <li><a href="/admin/profile/changepass">Thay đổi mật khẩu</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="#"><i class="fa fa-building fa-fw"></i> Quản lý tòa nhà<span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level">
+                <li><a href="#">Thêm danh mục tòa nhà</a></li>
+                <li><a href="#">Danh sách tòa nhà</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="#"><i class="fa fa-building-o fa-fw"></i> Quản lý văn phòng<span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level">
+                <li><a href="#">Thêm văn phòng</a></li>
+                <li><a href="#">Danh sách văn phòng cho thuê</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="#"><i class="fa fa-bars fa-fw"></i> Quản lý menu<span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level">
+                <li><a href="/admin/menu/add">Thêm menu</a></li>
+                <li><a href="/admin/list/menus">Danh sách menu</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="#"><i class="fa fa-map-marker fa-fw"></i> Quản lý địa điểm<span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level">
+                <li><a href="#">Thêm mới địa điểm</a></li>
+                <li><a href="#">Danh sách địa điểm</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="#"><i class="fa fa-medkit fa-fw"></i> Quản lý dịch vụ văn phòng<span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level">
+                <li><a href="#">Thêm mới dịch vụ</a></li>
+                <li><a href="#">Danh sách dịch vụ</a></li>
+            </ul>
+        </li>
+        
+        <li>
+            <a href="#"><i class="fa fa-bell-o fa-fw"></i> Quản lý tin tức<span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level">
+                <li><a href="#">Thêm danh mục tin tức</a></li>
+                <li><a href="#">Thêm mới tin tức</a></li>
+                <li><a href="#">Danh sách tin tức</a></li>
+            </ul>
+        </li>
+    }
+</ul>
+
