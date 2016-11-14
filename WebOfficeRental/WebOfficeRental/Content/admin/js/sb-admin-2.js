@@ -137,3 +137,7 @@ function popitup(url, windowName) {
     if (window.focus) { newwindow.focus(); }
     return false;
 }
+
+function gotoUrl(url) {
+    location.href = url;
+}

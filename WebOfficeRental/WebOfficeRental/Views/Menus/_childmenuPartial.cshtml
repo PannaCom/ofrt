@@ -1,9 +1,14 @@
-﻿@model WebOfficeRental.Models.LstMenu
+﻿@using WebOfficeRental.Models
+@model LstMenu
 @foreach (var item in Model.LstMenus)
 {
     if (item != null)
     {
-        <option value="@item.MenuId" class="@if(item.LstMenus.Count > 0) {@Html.DisplayName("font-w-bold")} else {}">@item.MenuName</option>
+        <option value="@item.MenuId" class="@if(item.LstMenus.Count > 0) {@Html.DisplayName("font-w-bold")} else {}">
+            @if (item.LstMenus.Count > 0)
+            {@Html.DisplayName("--")}
+            else { }@item.MenuName
+        </option>
         if (item.LstMenus.Count > 0)
         {
             @Html.Partial("_childmenuPartial", item)

@@ -1,7 +1,11 @@
-﻿@model WebOfficeRental.Models.MemuVM
+﻿@using WebOfficeRental.Models
+@model MemuVM
+
+@{
     ViewBag.Title = "Sửa menu";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+
 @section PageTitleHeader {
     <div class="page-header">
         <h3><i class="fa fa-bars fa-2x fa-color-red"></i> @ViewBag.Title</h3>
@@ -15,10 +19,132 @@
             @Html.Raw(TempData["Updated"])
         </div>
     }
+
+    @if (TempData["Errored"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            @Html.Raw(TempData["Errored"])
+        </div>
+    }
 }
 
 <div class="row">
     <div class="col-md-12">
+        <div class="panel panel-default box box-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Sửa menu <b>@ViewBag.TenMenu</b></h3>
+            </div>
 
+            <div class="panel-body">
+                @using (Html.BeginForm("EditMenu", "Menus", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", role = "form", @id = "form-edit-menu" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(m => m.menu_id)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.menu_name, htmlAttributes: new { @class = "control-label col-md-2 required-after" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(model => model.menu_name, htmlAttributes: new { @class = "form-control", placeholder = "Nhập tên menu" })
+                            @Html.ValidationMessageFor(model => model.menu_name, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.menu_url, htmlAttributes: new { @class = "control-label col-md-2 required-after" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(model => model.menu_url, htmlAttributes: new { @class = "form-control", placeholder = "Link menu" })
+                            @Html.ValidationMessageFor(model => model.menu_url, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.menu_parent_id, htmlAttributes: new { @class = "control-label col-md-2 required-after" })
+                        <div class="col-md-8">
+                            @Html.HiddenFor(m => m.menu_parent_id)
+                            @{ Html.RenderAction("_lstmenutopPartial", "Menus"); }
+                            @Html.ValidationMessageFor(model => model.menu_parent_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    
+                    <script>
+                        //$(window).on('load', function () {
+                        //    if ($('#menu_parent_id').val() !== "") {
+                        //        $('#menu_parent').val($('#menu_parent_id').val());
+                        //    }
+                        //})
+
+                        window.onload = function () {
+                            if (document.getElementById('menu_parent_id').value !== "") {
+                                document.getElementById('menu_parent').value = document.getElementById('menu_parent_id').value;
+                            }
+                        }
+                    </script>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.menu_position, htmlAttributes: new { @class = "control-label col-md-2 required-after" })
+                        <div class="col-md-8">
+                            @if (ViewBag.lstPoMn != null)
+                            {
+                                @Html.DropDownListFor(m => m.menu_position, new SelectList(ViewBag.lstPoMn, "Value", "Text"), "-Chọn vị trí menu-", new { @class = "form-control width-200" })
+                            }
+                            @Html.ValidationMessageFor(model => model.menu_position, "", new { @class = "text-danger has-error" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.menu_position_index, htmlAttributes: new { @class = "control-label col-md-2 required-after" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(model => model.menu_position_index, htmlAttributes: new { @class = "form-control", type = "number", placeholder = "Nhập thứ tự menu" })
+                            @Html.ValidationMessageFor(model => model.menu_position_index, "", new { @class = "text-danger has-error" })
+                            <span class="help-block">Chọn vị trí menu để tự tính thứ tự menu mới.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            @*<input type="submit" class="btn btn-primary" value="Cập nhật menu" />*@
+                            <button class="btn btn-primary"><i class="fa fa-edit"></i> Cập nhật</button>
+                            <span class="btn btn-danger" onclick="gotoUrl('@Url.RouteUrl("AdminDeleteMenu", new { id = Model.menu_id })')"><i class="fa fa-trash"></i> Xóa</span>
+                        </div>
+                    </div>
+
+                }
+
+
+            </div>
+
+        </div>
     </div>
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        //$.validator.setDefaults({
+        //    ignore: []
+        //});
+
+        $(function () {
+            $(document).ready(function () {
+                $("#form-edit-menu").data("validator").settings.ignore = "";
+                // code here this
+                $('#menu_parent').on('change', function () {
+                    if ($(this).val() !== "") {
+                        $('#menu_parent_id').val($(this).val());
+                    } else {
+                        $('#menu_parent_id').val('');
+                    }
+                })
+
+            });
+        });
+    </script>
+
+}

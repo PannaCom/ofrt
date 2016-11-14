@@ -15,6 +15,7 @@ namespace WebOfficeRental.Controllers
     public class MenusController : Controller
     {
         private officerentalEntities db = new officerentalEntities();
+        
 
         // GET: Menus
         public ActionResult AddNewMenu()
@@ -59,6 +60,7 @@ namespace WebOfficeRental.Controllers
             if (pg == null) pg = 1;
             int pageNumber = (pg ?? 1);
             ViewBag.pg = pg;
+            db.Configuration.LazyLoadingEnabled = true;
             var data = db.menus.Where(x => x.menu_parent_id != null);
             if (data == null)
             {
@@ -81,7 +83,7 @@ namespace WebOfficeRental.Controllers
 
             if (id == null || id == 0)
             {
-                return View();
+                return RedirectToRoute("Admin");
             }
             menu _menu = await db.menus.FindAsync(id);
             if (_menu == null)
@@ -122,7 +124,7 @@ namespace WebOfficeRental.Controllers
                     _menu.menu_position = model.menu_position ?? null;
                     _menu.menu_position_index = model.menu_position_index ?? null;
                     _menu.menu_url = model.menu_url ?? null;
-                    db.Entry<menu>(_menu).State = System.Data.Entity.EntityState.Modified;
+                    db.Entry(_menu).State = System.Data.Entity.EntityState.Modified;
                     await db.SaveChangesAsync();
                     TempData["Updated"] = "Cập nhật menu thành công";
                 }
@@ -162,6 +164,51 @@ namespace WebOfficeRental.Controllers
                     model.LstMenus.Add(child);
                 }
             }
+        }
+
+        //DeleteMenu
+        public ActionResult DeleteMenu(int? id)
+        {
+            if (id == null || id == 0 || id == 1)
+            {
+                return RedirectToRoute("Admin");
+            }
+            menu _menu = db.menus.Find(id);
+            if (_menu == null)
+            {
+                return View();
+            }
+            return View(_menu);
+        }
+
+
+        [HttpPost, ActionName("DeleteMenu")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteMenuConfirmed(int? id)
+        {
+            menu _menu = await db.menus.FindAsync(id);
+            if (_menu == null)
+            {
+                return View();
+            }
+            if (_menu.menus1.Count() > 0)
+            {
+                TempData["Error"] = "Bạn không thể xóa menu này. <br /> Menu này chứa Menu con khác. Vui lòng xóa danh mục con trước.";
+                return RedirectToRoute("AdminDeleteMenu", new { id = _menu.menu_id });
+            }
+            db.menus.Remove(_menu);
+            await db.SaveChangesAsync();
+            TempData["Deleted"] = "Menu đã được xóa khỏi danh sách.";
+            return RedirectToRoute("AdminListMenus");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }    
+            base.Dispose(disposing);
         }
 
         //getPositionMenuNew        

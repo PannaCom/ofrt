@@ -427,3 +427,16 @@ position: absolute;
 .color-red {
     color: red;
 }
+
+table.table_order_stt {
+  counter-reset: rowNumber-1;
+}
+table.table_order_stt tr {
+  counter-increment: rowNumber;
+}
+table.table_order_stt tr td:first-child::before {
+  content: counter(rowNumber);
+  min-width: 1em;
+  margin-right: 0.5em;
+  text-align: center;
+}

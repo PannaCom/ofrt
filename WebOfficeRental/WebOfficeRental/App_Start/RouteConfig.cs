@@ -48,25 +48,62 @@ namespace WebOfficeRental
                "AdminAddMenu",
                "admin/menu/add",
                new { controller = "Menus", action = "AddNewMenu" }
-           );
+            );
 
             routes.MapRoute(
                "AdminEditMenu",
                "admin/menu/{id}/edit",
                new { controller = "Menus", action = "EditMenu", id = UrlParameter.Optional }
-           );
+            );
 
             routes.MapRoute(
                "AdminDeleteMenu",
                "admin/menu/{id}/delete",
                new { controller = "Menus", action = "DeleteMenu", id = UrlParameter.Optional }
-           );
+            );
+
+
+
+            //routes.MapRoute(
+            //    "AGetPositionMenuNew",
+            //    "admin/menu/getpositionmenu",
+            //    new { controller = "Menus", action = "getPositionMenuNew" }
+            //);
+
+            #endregion
+
+            #region Quản lý địa điểm: quận huyện/tỉnh thành
+            routes.MapRoute(
+                "AdminListCitys",
+                "admin/list/menus",
+                new { controller = "Menus", action = "ListMenus" }
+            );
 
             routes.MapRoute(
-                "AGetPositionMenuNew",
-                "admin/menu/getpositionmenu",
-                new { controller = "Menus", action = "getPositionMenuNew" }
+               "AdminAddMenu",
+               "admin/menu/add",
+               new { controller = "Menus", action = "AddNewMenu" }
             );
+
+            routes.MapRoute(
+               "AdminEditMenu",
+               "admin/menu/{id}/edit",
+               new { controller = "Menus", action = "EditMenu", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+               "AdminDeleteMenu",
+               "admin/menu/{id}/delete",
+               new { controller = "Menus", action = "DeleteMenu", id = UrlParameter.Optional }
+            );
+
+
+
+            //routes.MapRoute(
+            //    "AGetPositionMenuNew",
+            //    "admin/menu/getpositionmenu",
+            //    new { controller = "Menus", action = "getPositionMenuNew" }
+            //);
 
             #endregion
 
