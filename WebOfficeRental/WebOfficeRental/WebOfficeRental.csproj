@@ -185,6 +185,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CitysController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenusController.cs" />
@@ -1125,6 +1126,7 @@
     <Content Include="Views\Menus\ListMenus.cshtml" />
     <Content Include="Views\Menus\EditMenu.cshtml" />
     <Content Include="Views\Menus\DeleteMenu.cshtml" />
+    <Content Include="Views\Citys\AddNewCity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -60,7 +60,6 @@ namespace WebOfficeRental.Controllers
             if (pg == null) pg = 1;
             int pageNumber = (pg ?? 1);
             ViewBag.pg = pg;
-            db.Configuration.LazyLoadingEnabled = true;
             var data = db.menus.Where(x => x.menu_parent_id != null);
             if (data == null)
             {
