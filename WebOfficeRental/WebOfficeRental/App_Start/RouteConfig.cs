@@ -72,23 +72,23 @@ namespace WebOfficeRental
 
             #endregion
 
-            #region Quản lý địa điểm: quận huyện/tỉnh thành
+            #region Quản lý địa điểm: quận huyện thành phố/tỉnh thành
             routes.MapRoute(
                 "AdminListCitys",
-                "admin/list/menus",
-                new { controller = "Menus", action = "ListMenus" }
+                "admin/list/citys",
+                new { controller = "Citys", action = "ListCitys" }
             );
 
             routes.MapRoute(
-               "AdminAddMenu",
-               "admin/menu/add",
-               new { controller = "Menus", action = "AddNewMenu" }
+               "AdminAddCity",
+               "admin/city/add",
+               new { controller = "Citys", action = "AddNewCity" }
             );
 
             routes.MapRoute(
-               "AdminEditMenu",
-               "admin/menu/{id}/edit",
-               new { controller = "Menus", action = "EditMenu", id = UrlParameter.Optional }
+               "AdminEditCity",
+               "admin/city/{id}/edit",
+               new { controller = "Menus", action = "EditCity", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
