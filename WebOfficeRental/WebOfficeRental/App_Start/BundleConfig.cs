@@ -26,6 +26,11 @@ namespace WebOfficeRental
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/datatable").Include(
+                    "~/Content/admin/vendor/datatable/jquery.dataTables.min.js",
+                    "~/Content/admin/vendor/datatable/dataTables.bootstrap.min.js"
+                ));
         }
     }
 }

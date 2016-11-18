@@ -88,13 +88,13 @@ namespace WebOfficeRental
             routes.MapRoute(
                "AdminEditCity",
                "admin/city/{id}/edit",
-               new { controller = "Menus", action = "EditCity", id = UrlParameter.Optional }
+               new { controller = "Citys", action = "EditCity", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
-               "AdminDeleteMenu",
-               "admin/menu/{id}/delete",
-               new { controller = "Menus", action = "DeleteMenu", id = UrlParameter.Optional }
+               "AdminDeleteCity",
+               "admin/city/{id}/delete",
+               new { controller = "Citys", action = "DeleteCity", id = UrlParameter.Optional }
             );
 
 

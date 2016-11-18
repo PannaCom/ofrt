@@ -50,6 +50,7 @@ namespace WebOfficeRental.Controllers
             catch (Exception ex)
             {
                 ModelState.AddModelError("", "Có lỗi xảy ra khi thêm menu");
+                configs.SaveTolog(ex.ToString());
                 return View(model);
             }
         }
@@ -132,6 +133,7 @@ namespace WebOfficeRental.Controllers
             catch (Exception ex) 
             {
                 TempData["Errored"] = "Có lỗi xảy ra khi cập nhật menu.";
+                configs.SaveTolog(ex.ToString());
                 return RedirectToRoute("AdminEditMenu", new { id = model.menu_id });
             }
            
@@ -195,9 +197,18 @@ namespace WebOfficeRental.Controllers
                 TempData["Error"] = "Bạn không thể xóa menu này. <br /> Menu này chứa Menu con khác. Vui lòng xóa danh mục con trước.";
                 return RedirectToRoute("AdminDeleteMenu", new { id = _menu.menu_id });
             }
-            db.menus.Remove(_menu);
-            await db.SaveChangesAsync();
-            TempData["Deleted"] = "Menu đã được xóa khỏi danh sách.";
+            try
+            {
+                db.menus.Remove(_menu);
+                await db.SaveChangesAsync();
+                TempData["Deleted"] = "Menu đã được xóa khỏi danh sách.";
+            }
+            catch (Exception ex)
+            {
+                configs.SaveTolog(ex.ToString());
+                throw;
+            }
+            
             return RedirectToRoute("AdminListMenus");
         }
 
