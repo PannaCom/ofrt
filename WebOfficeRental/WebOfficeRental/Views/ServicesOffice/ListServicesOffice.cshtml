@@ -1,7 +1,7 @@
-﻿@model PagedList.IPagedList<WebOfficeRental.Models.menu>
+﻿@model PagedList.IPagedList<WebOfficeRental.Models.service>
 @using PagedList.Mvc;
 @{
-    ViewBag.Title = "Danh sách menu";
+    ViewBag.Title = "Danh sách dịch vụ văn phòng";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -13,7 +13,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="page-header">
-            <h3>@ViewBag.Title <span class="btn btn-primary pull-right" onclick="gotoUrl('@Url.RouteUrl("AdminAddMenu")')"><i class="fa fa-plus"></i> Thêm mới menu</span></h3>
+            <h3>@ViewBag.Title <span class="btn btn-primary pull-right" onclick="gotoUrl('@Url.RouteUrl("AdminAddService")')"><i class="fa fa-plus"></i> Thêm dịch vụ văn phòng</span></h3>
         </div>
         @if (TempData["Deleted"] != null)
         {
@@ -42,11 +42,11 @@
     <div class="col-lg-12">
         <div class="panel panel-default box box-primary">
             <div class="panel-heading">
-                @using (Html.BeginForm("ListMenus", "Menus", FormMethod.Get, new { @class = "form-inline", role = "form", @id = "search-menus", onsubmit = "return validate()" }))
+                @using (Html.BeginForm("ListServicesOffice", "ServicesOffice", FormMethod.Get, new { @class = "form-inline", role = "form", @id = "search-service-office", onsubmit = "return validate()" }))
                 {
                     <div class="form-group">
                         <label for="searchQuery" class="control-label">Tìm kiếm: </label>
-                        @Html.TextBox("search", "", new { @class = "form-control", placeholder = "Nhập tên menu" })
+                        @Html.TextBox("search", "", new { @class = "form-control", placeholder = "Nhập tên dịch vụ cần tìm" })
                     </div>
 
                     <div class="form-group">
@@ -64,19 +64,16 @@
                         return true;
                     };
                 }
-            </script>           
+            </script>
 
             <div class="panel-body">
 
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped table_order_stt" id="table-menus">
+                    <table class="table table-bordered table-striped table_order_stt" id="table-service-office">
                         <thead>
                             <tr>
                                 <th class="no-sort" style="width: 50px; text-align: center;">Số TT</th>
-                                <th>Tên menu</th>
-                                <th>Menu Cha</th>
-                                <th>Vị trí</th>
-                                <th>Thứ tự</th>
+                                <th>Dịch vụ văn phòng</th>
                                 <th style="width: 144px;" class="no-sort"></th>
                             </tr>
                         </thead>
@@ -89,31 +86,10 @@
                                     {
                                         <tr>
                                             <td style="text-align: center;"></td>
-                                            <td>@item.menu_name</td>
+                                            <td>@item.service_name</td>
                                             <td>
-                                                @if (item.menu1 != null)
-                                                {
-                                                    @item.menu1.menu_name
-                                                }
-                                            </td>
-
-                                            <td>
-                                                @if (item.menu_position == 1)
-                                                {
-                                                    <span>Menu trên</span>
-                                                }
-                                                else if (item.menu_position == 2)
-                                                {
-                                                    <span>Menu dưới</span>
-                                                }
-                                            </td>
-                                            <td>
-                                                @item.menu_position_index
-                                            </td>
-                                            <td>
-                                                <span class="btn btn-primary" onclick="gotoUrl('@Url.RouteUrl("AdminEditMenu", new { id = item.menu_id })')"><i class="fa fa-edit"></i> Sửa</span>
-                                                <span class="btn btn-danger" onclick="gotoUrl('@Url.RouteUrl("AdminDeleteMenu", new { id = item.menu_id })')"><i class="fa fa-trash"></i> Xóa</span>
-                                                
+                                                <span class="btn btn-primary" onclick="gotoUrl('@Url.RouteUrl("AdminEditService", new { id = item.service_id })')"><i class="fa fa-edit"></i> Sửa</span>
+                                                <span class="btn btn-danger" onclick="gotoUrl('@Url.RouteUrl("AdminDeleteServices", new { id = item.service_id })')"><i class="fa fa-trash"></i> Xóa</span>
                                             </td>
                                         </tr>
                                     }
@@ -122,7 +98,7 @@
                                 {
                                     <tr>
                                         <td colspan="6">
-                                            Không tìm thấy menu
+                                            Chưa có dịch vụ
                                         </td>
                                     </tr>
                                 }
@@ -131,7 +107,7 @@
                             {
                                 <tr>
                                     <td colspan="6">
-                                        Không có menu
+                                        Chưa có dịch vụ
                                     </td>
                                 </tr>
                             }
@@ -140,7 +116,7 @@
                 </div>
                 @if (Model != null)
                 {
-                    @Html.PagedListPager(Model, page => Url.RouteUrl("AdminListMenus", new { search = ViewBag.search, pg = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+                    @Html.PagedListPager(Model, page => Url.RouteUrl("AdminListServices", new { search = ViewBag.search, pg = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
                 }
 
             </div>
@@ -149,18 +125,17 @@
 </div>
 
 @section Scripts {
-    <script src="~/Content/admin/vendor/datatable/jquery.dataTables.min.js"></script>
-    <script src="~/Content/admin/vendor/datatable/dataTables.bootstrap.min.js"></script>
+    @Scripts.Render("~/bundles/datatable")
     <script>
 
         $(document).ready(function () {
-            $('#table-menus').DataTable({
+            $('#table-service-office').DataTable({
                 paging: false,
                 "oLanguage": {
-                    "sEmptyTable": "Không tìm thấy menu nào.",
+                    "sEmptyTable": "Không tìm thấy dịch vụ văn phòng.",
                     "sLoadingRecords": "Vui lòng - chờ...",
                     "sSearch": "Tìm kiếm nhanh: ",
-                    "sZeroRecords": "Không tìm thấy menu nào.",
+                    "sZeroRecords": "Không tìm thấy dịch vụ văn phòng.",
                     "sInfo": ""
                 },
                 "order": [],

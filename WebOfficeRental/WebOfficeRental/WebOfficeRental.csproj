@@ -189,6 +189,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenusController.cs" />
+    <Compile Include="Controllers\ServicesOfficeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -811,6 +812,8 @@
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
+    <Content Include="Scripts\jquery-confirm.min.css" />
+    <Content Include="Scripts\jquery-confirm.min.js" />
     <Content Include="Scripts\jquery-ui-1.12.0.js" />
     <Content Include="Scripts\jquery-ui-1.12.0.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -1128,6 +1131,12 @@
     <Content Include="Views\Menus\DeleteMenu.cshtml" />
     <Content Include="Views\Citys\AddNewCity.cshtml" />
     <Content Include="Views\Citys\ListCitys.cshtml" />
+    <Content Include="Views\Citys\EditCity.cshtml" />
+    <Content Include="Views\Citys\DeleteCity.cshtml" />
+    <Content Include="Views\ServicesOffice\ListServicesOffice.cshtml" />
+    <Content Include="Views\ServicesOffice\AddNewServicesOffice.cshtml" />
+    <Content Include="Views\ServicesOffice\EditServicesOffice.cshtml" />
+    <Content Include="Views\ServicesOffice\DeleteServicesOffice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

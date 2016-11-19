@@ -55,7 +55,6 @@ function main() {
         })
 
     }());
-
 }
 main();
 
@@ -141,3 +140,22 @@ function popitup(url, windowName) {
 function gotoUrl(url) {
     location.href = url;
 }
+
+function confirmDelete(event) {
+    if (confirm("Bạn không thể khôi phục lại nếu bạn đã xóa. Bạn chắc chắn tiếp tục xóa.")) {
+        return true;
+    } else {
+        event.preventDefault();
+        return false;
+    }
+}
+
+jQuery.fn.confirmSubmit = function (message) {
+    $(this).submit(function (event) {
+        if (confirm(message)) {
+            $(this).find('button[type="submit"]').prop('disabled', true);
+        } else {
+            event.preventDefault();
+        }
+    });
+};

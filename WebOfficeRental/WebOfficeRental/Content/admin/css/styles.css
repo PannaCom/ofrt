@@ -440,3 +440,5 @@ table.table_order_stt tr td:first-child::before {
   margin-right: 0.5em;
   text-align: center;
 }
+
+.dataTables_info {display: none!important;}

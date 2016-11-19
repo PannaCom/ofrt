@@ -1,13 +1,13 @@
 ﻿@using WebOfficeRental.Models
-@model menu
+@model service
 @{
-    ViewBag.Title = "Xóa menu";
+    ViewBag.Title = "Xóa dịch vụ văn phòng";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 @section PageTitleHeader {
     <div class="page-header">
-        <h3><i class="fa fa-bars fa-2x fa-color-red"></i> @ViewBag.Title</h3>
+        <h3><i class="fa fa-medkit fa-2x fa-color-red"></i> @ViewBag.Title</h3>
     </div>
 
     @if (TempData["Errored"] != null)
@@ -18,7 +18,6 @@
             </button>
             @Html.Raw(TempData["Errored"])
         </div>
-
     }
 
     @if (TempData["Deleted"] != null)
@@ -31,7 +30,6 @@
         </div>
     }
 
-
 }
 
 @if (Model != null)
@@ -41,15 +39,17 @@
         <div class="col-lg-6">
             <div class="panel panel-default box box-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Bạn chắc chắn muốn xóa menu <b>@Html.DisplayFor(m => m.menu_name)?</b></h3>
+                    <h3 class="panel-title">Bạn chắc chắn muốn xóa dịch vụ văn phòng: <b>@Html.DisplayFor(m => m.service_name)?</b></h3>
                 </div>
                 <div class="panel-body">
                     @using (Html.BeginForm())
                     {
                         @Html.AntiForgeryToken()
-                        @*<input type="submit" class="btn btn-primary" value="Xóa menu" />*@
-                        <button class="btn btn-danger" id="confirmdelete"><i class="fa fa-trash"></i> Xóa</button>
-                        <span class="btn btn-default" onclick="gotoUrl('@Url.RouteUrl("AdminListMenus")')"><i class="fa fa-close"></i> Hủy xóa</span>
+                        <button type="submit" class="btn btn-danger" id="confirmdelete">
+                            <i class=" fa fa-trash">
+                            </i> Xóa
+                        </button>
+                        <span class="btn btn-default" onclick="gotoUrl('@Url.RouteUrl("AdminListServices")')"><i class="fa fa-close"></i> Hủy xóa</span>
                     }
                 </div>
             </div>
@@ -59,7 +59,7 @@
 }
 else
 {
-    <span>Không tìm thấy menu.</span>
+    <span>Không tìm thấy dịch vụ yêu cầu.</span>
 }
 
 @section Scripts {

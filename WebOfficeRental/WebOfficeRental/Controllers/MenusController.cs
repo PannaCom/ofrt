@@ -206,7 +206,6 @@ namespace WebOfficeRental.Controllers
             catch (Exception ex)
             {
                 configs.SaveTolog(ex.ToString());
-                throw;
             }
             
             return RedirectToRoute("AdminListMenus");

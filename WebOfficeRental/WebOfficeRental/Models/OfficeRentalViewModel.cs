@@ -46,10 +46,21 @@ namespace WebOfficeRental.Models
         public int city_id { get; set; }
         [Display(Name = "Tên quận huyện/thành phố")]
         [Required(ErrorMessage = "{0} không được để trống.")]
+        [StringLength(255, ErrorMessage = "{0} không được dài quá 255 ký tự.")]
         public string district { get; set; }
         [Display(Name = "Tỉnh thành")]
         [Required(ErrorMessage = "{0} không được để trống.")]
+        [StringLength(255, ErrorMessage = "{0} không được dài quá 255 ký tự.")]
         public string provinces { get; set; }
+    }
+
+    public class ServerOfficeVM
+    {
+        public int Id { get; set; }
+        [Display(Name = "Dịch vụ văn phòng")]
+        [Required(ErrorMessage = "{0} không được để trống.")]
+        [StringLength(250, ErrorMessage = "{0} không được dài quá 250 ký tự.")]
+        public string name { get; set; }
     }
 
 }
