@@ -51,7 +51,7 @@ function main() {
         'use strict';
         $(document).ready(function () {
             //code here
-
+            //close anh dropzone         
         })
 
     }());
@@ -98,39 +98,6 @@ function toDate(s) {
     return false;
 }
 
-//function UploadDropzone() {
-//    Dropzone.autoDiscover = false;
-//    $("#dZUpload1").dropzone({
-//        url: "/Account/SaveAnh1",
-//        addRemoveLinks: true,
-//        maxFiles: 1,
-//        maxFilesize: 10,
-//        uploadMultiple: true,
-//        acceptedFiles: "image/*",
-//        dictFallbackMessage: "Trình duyệt của bạn không hỗ trợ kéo thả tệp để tải lên.",
-//        dictFallbackText: "Please use the fallback form below to upload your files like in the olden days.",
-//        dictFileTooBig: "Tệp có dung lượng quá lớn ({{filesize}}MiB). Dung lượng cho phép: {{maxFilesize}}MiB.",
-//        dictInvalidFileType: "Tệp bạn chọn không được phép tải lên.",
-//        dictResponseError: "Server responded with {{statusCode}} code.",
-//        dictCancelUpload: "Hủy tải lên",
-//        dictCancelUploadConfirmation: "Bạn chắc chắn muốn hủy tải lên?",
-//        dictRemoveFile: "Loại bỏ tệp tin",
-//        dictMaxFilesExceeded: "Bạn không thể tải lên nhiều tệp.",
-//        success: function (file, response) {
-//            var imgPath = response.Message;
-//            console.log(response);
-//            file.previewElement.classList.add("dz-success");
-//        },
-
-//        error: function (file, response) {
-//            file.previewElement.classList.add("dz-error");
-//            $(file.previewElement).find('.dz-error-message').text(response);
-//        },
-//        HiddenFilesPath: 'body'
-//    });
-//};
-//UploadDropzone();
-
 function popitup(url, windowName) {
     newwindow = window.open(url, windowName, 'height=600,width=500,toolbar=0,menubar=0,location=0');
     if (window.focus) { newwindow.focus(); }
@@ -159,3 +126,43 @@ jQuery.fn.confirmSubmit = function (message) {
         }
     });
 };
+
+function UploadImage(d1, d2, d3) {
+    var myUpAnh = new Dropzone(d1, {
+        url: "/Load/SaveImage",
+        addRemoveLinks: true,
+        maxFiles: 1,
+        maxFilesize: 2,
+        uploadMultiple: true,
+        acceptedFiles: "image/*",
+        clickable: d2 + '>i',
+        dictFallbackMessage: "Trình duyệt của bạn không hỗ trợ kéo thả tệp để tải lên.",
+        dictFallbackText: "Please use the fallback form below to upload your files like in the olden days.",
+        dictFileTooBig: "Tệp có dung lượng quá lớn ({{filesize}}MiB). Dung lượng cho phép: {{maxFilesize}}MiB.",
+        dictInvalidFileType: "Tệp bạn chọn không được phép tải lên.",
+        dictResponseError: "Server responded with {{statusCode}} code.",
+        success: function (file, response) {
+            var imgPath = response.Message;
+            if (imgPath !== "") {
+                $(d3).val(imgPath);
+                $(d2).css('background-image', 'url("' + imgPath + '")');
+            }
+            this.removeFile(file);
+        },
+        error: function (file, response) {
+            alert(response);
+            this.removeFile(file);
+        },
+        init: function () {
+            this.on("thumbnail", function (file) {
+                $(d2).append('<div class="loaded">'
+                + '<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>'
+                + '</div>');
+            })
+        },
+        complete: function () {
+            $(d2).children('.loaded').remove();
+        },
+        HiddenFilesPath: 'body'
+    });
+}

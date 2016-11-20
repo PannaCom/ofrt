@@ -120,10 +120,6 @@
     background-image: url('ajax-loader.gif');
 }
 
-/*#wrapper > .navbar > .navbar-header > .navbar-brand {
-    padding: 0px; /* firefox bug fix */
-}*/
-
     #wrapper > .navbar > .navbar-header > .navbar-brand > img {
         height: 100%;
         width: 237px;
@@ -400,17 +396,56 @@ position: absolute;
     background-size: contain;
     background-image: url('/Content/img/no-image.png');
     border: 1px dashed #CCB;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .upanh > i {
     position: absolute;
-    top: 36%;
-    left: 40%;
+    top: 16%;
+    left: 17%;
     opacity: .5;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 29px;
 }
 
 .upanh:hover > i {
     opacity: 1;
+}
+
+.upanh:hover > .closed > i {
+    opacity: 1;
+}
+
+.upanh > .closed {
+    float: right;
+}
+
+.loaded {
+    width: 100%;
+    height: 148px;
+    z-index: 22;
+    position: absolute;
+    top: 0;
+    background: #fff;
+}
+
+    .loaded > i {
+        position: absolute;
+        left: 33%;
+        top: 34%;
+    }
+
+.undropzone {
+    display: none;
+    visibility: hidden;
+    min-height: 1px!important;
+    padding: 0!important;
+    border: 0!important;
+    background: rgba(0, 0, 0, 0)!important;
 }
 
 .img-100x100 {
@@ -442,3 +477,7 @@ table.table_order_stt tr td:first-child::before {
 }
 
 .dataTables_info {display: none!important;}
+
+.dz-preview {
+    display: none!important;
+}

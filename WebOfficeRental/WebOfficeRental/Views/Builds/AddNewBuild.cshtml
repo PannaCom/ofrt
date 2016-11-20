@@ -1,0 +1,197 @@
+﻿@using WebOfficeRental.Models
+@model BuildsVM
+@{
+    ViewBag.Title = "Thêm tòa nhà";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBkU0wNRlEciZZmIqc9QR7IiEm9tXg48I&libraries=places" type="text/javascript"></script>
+<script src="~/Scripts/jquery.geocomplete.min.js"></script>
+@section styles {
+    @Styles.Render("~/Content/dropzonescss")
+}
+@section PageTitleHeader {
+    <div class="page-header">
+        <h3><i class="fa fa-building  fa-2x fa-color-red"></i> @ViewBag.Title</h3>
+    </div>
+    @if (TempData["Updated"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            @Html.Raw(TempData["Updated"])
+        </div>
+    }
+    @if (TempData["Errored"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            @Html.Raw(TempData["Errored"])
+        </div>
+    }
+}
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default box box-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Vui lòng nhập đầy đủ các trường có dấu <span class="color-red">(*)</span></h3>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("AddNewBuild", "Builds", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", role = "form", @id = "add-new-build-ofice" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.bulding_name, htmlAttributes: new { @class = "control-label col-md-4 required-after" })
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(model => model.bulding_name, htmlAttributes: new { @class = "form-control", placeholder = "Nhập tên tòa nhà" })
+                            @Html.ValidationMessageFor(model => model.bulding_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.provinces, htmlAttributes: new { @class = "control-label col-md-4 required-after" })
+                        <div class="col-md-6">
+                            <select class="form-control" name="provinces" id="provinces" onchange="getQuanHuyen();" data-val="true"
+                                    data-val-length="Tỉnh thành không được dài quá 255 ký tự." data-val-length-max="255"
+                                    data-val-required="Tỉnh thành không được để trống."
+                                    aria-required="true" aria-describedby="provinces-error" aria-invalid="true">
+                                <option value=''>--Chọn tỉnh thành--</option>
+                            </select>
+                            @Html.ValidationMessageFor(model => model.provinces, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.district, htmlAttributes: new { @class = "control-label col-md-4 required-after" })
+                        <div class="col-md-6">
+                            <select class="form-control" name="district" id="district" onchange="getCity();" data-val="true"
+                                    data-val-length="Quận/huyện không được dài quá 255 ký tự." data-val-length-max="255"
+                                    data-val-required="Quận/huyện không được để trống."
+                                    aria-required="true" aria-describedby="district-error" aria-invalid="true">
+                                <option value=''>--Chọn quận huyện--</option>
+                            </select>
+                            @Html.ValidationMessageFor(model => model.district, "", new { @class = "text-danger" })
+                            <span class="help-block">Chọn tỉnh thành trước khi chọn quận/huyện.</span>
+                        </div>
+                    </div>
+                    @Html.HiddenFor(m => m.city_id)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.building_address, htmlAttributes: new { @class = "control-label col-md-4 required-after" })
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(model => model.building_address, htmlAttributes: new { @class = "form-control", placeholder = "Nhập địa chỉ tòa nhà" })
+                            @Html.ValidationMessageFor(model => model.building_address, "", new { @class = "text-danger" })
+                            <span class="help-block">Bạn có thể chọn địa chỉ từ danh sách gợi ý.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.building_picture, new { @class = "col-md-4 control-label required-after" })
+                        <div class="col-md-6">
+                            <div id="divbuilding_picture" class="upanh">
+                                <a class="closed"><i class="fa fa-close fa-2x"></i></a>
+                                @Html.HiddenFor(m => m.building_picture)
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>                            
+                            <div id="dzbuilding_picture" class="dropzone undropzone">
+                            </div>
+                            @Html.ValidationMessageFor(m => m.building_picture, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.building_phonenumber, htmlAttributes: new { @class = "control-label col-md-4 required-after" })
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(model => model.building_phonenumber, htmlAttributes: new { @class = "form-control", placeholder = "Nhập Số hotline tòa nhà" })
+                            @Html.ValidationMessageFor(model => model.building_phonenumber, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.building_email, htmlAttributes: new { @class = "control-label col-md-4 required-after" })
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(model => model.building_email, htmlAttributes: new { @class = "form-control", placeholder = "Nhập địa chỉ Email tòa nhà" })
+                            @Html.ValidationMessageFor(model => model.building_email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.building_fanpage, htmlAttributes: new { @class = "control-label col-md-4 required-after" })
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(model => model.building_fanpage, htmlAttributes: new { @class = "form-control", placeholder = "Nhập địa chỉ Fanpage tòa nhà" })
+                            @Html.ValidationMessageFor(model => model.building_fanpage, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-4 col-md-6">
+                            <button class="btn btn-primary">
+                                <i class="fa fa-plus"></i> Thêm mới
+                            </button>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/dropzonescripts")
+    <script>
+
+        $.ajax({
+            url: "/Load/getTinhThanh",
+            cache: false
+        }).done(function (html) {
+            $("#provinces").html("" + html);
+        });
+        function getQuanHuyen() {
+            $.ajax({
+                url: "/Load/getQuanHuyen?keyword=" + $("#provinces").val(),
+                cache: false
+            }).done(function (html) {
+                $("#district").html("" + html);
+            });
+        }
+
+        function getCity() {
+            if ($("#district").val() !== "") {
+                $.ajax({
+                    url: "/Builds/getCityId?tinh=" + $("#provinces").val() + "&huyen=" + $("#district").val(),
+                    cache: false
+                }).done(function (html) {
+                    $("#city_id").val(html);
+                });
+            }
+        }
+
+        $("input#building_address").geocomplete();
+        $.validator.setDefaults({
+            ignore: ""
+        });
+        $(document).ready(function () {
+            Dropzone.autoDiscover = false;
+            UploadImage('#divbuilding_picture', '#divbuilding_picture', '#building_picture');
+            $('.closed').click(function (e) {
+                e.preventDefault();
+                if ($(this).siblings('input').val() !== "") {
+                    if (confirm("Bạn chắc chắn muốn xóa ảnh?")) {
+                        $(this).parent('.upanh').css('background-image', 'url("/Content/img/no-image.png")');
+                        $(this).siblings('input').val('');
+                    }
+                }
+            });
+        });
+
+    </script>
+}

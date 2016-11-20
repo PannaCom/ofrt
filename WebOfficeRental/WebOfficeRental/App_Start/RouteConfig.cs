@@ -133,7 +133,37 @@ namespace WebOfficeRental
             );
             #endregion
 
+            #region Quản lý tòa nhà (building)
+            routes.MapRoute(
+                "AdminListBuilds",
+                "admin/list/builds",
+                new { controller = "Builds", action = "ListBuilds" }
+            );
 
+            routes.MapRoute(
+               "AdminAddBuild",
+               "admin/build/add",
+               new { controller = "Builds", action = "AddNewBuild" }
+            );
+
+            routes.MapRoute(
+               "AdminEditBuild",
+               "admin/build/{id}/edit",
+               new { controller = "Builds", action = "EditBuild", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+               "AdminDeleteBuild",
+               "admin/build/{id}/delete",
+               new { controller = "Builds", action = "DeleteBuild", id = UrlParameter.Optional }
+            );
+            #endregion
+
+            #region Quản lý văn phòng (offices)
+
+
+
+            #endregion
 
             routes.MapRoute(
                 name: "Default",

@@ -63,4 +63,43 @@ namespace WebOfficeRental.Models
         public string name { get; set; }
     }
 
+    public class BuildsVM
+    {
+        public int bulding_id { get; set; }
+        [Display(Name = "Tên tòa nhà")]
+        [Required(ErrorMessage = "{0} không được để trống.")]
+        [StringLength(255, ErrorMessage = "{0} không được dài quá 255 ký tự.")]
+        public string bulding_name { get; set; }
+        public int? city_id { get; set; }
+        [Display(Name = "Quận/huyện")]
+        [Required(ErrorMessage = "{0} không được để trống.")]
+        [StringLength(255, ErrorMessage = "{0} không được dài quá 255 ký tự.")]
+        public string district { get; set; }
+        [Display(Name = "Tỉnh thành")]
+        [Required(ErrorMessage = "{0} không được để trống.")]
+        [StringLength(255, ErrorMessage = "{0} không được dài quá 255 ký tự.")]
+        public string provinces { get; set; }
+        [Display(Name = "Địa chỉ")]
+        [Required(ErrorMessage = "{0} không được để trống.")]
+        [StringLength(255, ErrorMessage = "{0} không được dài quá 255 ký tự.")]
+        public string building_address { get; set; }
+        [Display(Name = "Hình ảnh")]
+        [Required(ErrorMessage = "{0} không được để trống.")]
+        [StringLength(255, ErrorMessage = "{0} không được dài quá 255 ký tự.")]
+        public string building_picture { get; set; }
+        [Display(Name = "Điện thoại")]
+        [Required(ErrorMessage = "{0} không được để trống.")]
+        [StringLength(50, ErrorMessage = "{0} không được dài quá 50 ký tự.")]
+        public string building_phonenumber { get; set; }
+        [Display(Name = "Email")]
+        [EmailAddress(ErrorMessage="{0} Không đúng định dạng, phải là example@gmail.com")]
+        [Required(ErrorMessage = "{0} không được để trống.")]
+        [StringLength(250, ErrorMessage = "{0} không được dài quá 250 ký tự.")]
+        public string building_email { get; set; }
+        [Display(Name = "Fanpage")]
+        [Required(ErrorMessage = "{0} không được để trống.")]
+        [StringLength(255, ErrorMessage = "{0} không được dài quá 255 ký tự.")]
+        public string building_fanpage { get; set; }
+    }
+
 }

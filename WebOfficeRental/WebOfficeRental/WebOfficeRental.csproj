@@ -185,6 +185,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\LoadController.cs" />
+    <Compile Include="Controllers\BuildsController.cs" />
     <Compile Include="Controllers\CitysController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -307,6 +309,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\img\no-image.png" />
     <Content Include="Content\login\css\styles.css" />
     <Content Include="Content\login\img\bg2.png" />
     <Content Include="Content\login\img\websieuthi1.png" />
@@ -817,6 +820,8 @@
     <Content Include="Scripts\jquery-ui-1.12.0.js" />
     <Content Include="Scripts\jquery-ui-1.12.0.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.geocomplete.js" />
+    <Content Include="Scripts\jquery.geocomplete.min.js" />
     <Content Include="Scripts\jquery.ui.datepicker-vi-VN.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -1137,10 +1142,15 @@
     <Content Include="Views\ServicesOffice\AddNewServicesOffice.cshtml" />
     <Content Include="Views\ServicesOffice\EditServicesOffice.cshtml" />
     <Content Include="Views\ServicesOffice\DeleteServicesOffice.cshtml" />
+    <Content Include="Views\Builds\ListBuilds.cshtml" />
+    <Content Include="Views\Builds\AddNewBuild.cshtml" />
+    <Content Include="Views\Builds\EditBuild.cshtml" />
+    <Content Include="Views\Builds\DeleteBuild.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\admin\img\" />
+    <Folder Include="images\photos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

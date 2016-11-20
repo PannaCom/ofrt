@@ -1,0 +1,155 @@
+﻿@model PagedList.IPagedList<WebOfficeRental.Models.building>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Danh sách tòa nhà";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Styles {
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <link href="~/Content/admin/vendor/datatable/dataTables.bootstrap.min.css" rel="stylesheet" />
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="page-header">
+            <h3>@ViewBag.Title <span class="btn btn-primary pull-right" onclick="gotoUrl('@Url.RouteUrl("AdminAddBuild")')"><i class="fa fa-plus"></i> Thêm dịch vụ văn phòng</span></h3>
+        </div>
+        @if (TempData["Deleted"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                @Html.Raw(TempData["Deleted"])
+            </div>
+        }
+
+        @if (TempData["Updated"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                @Html.Raw(TempData["Updated"])
+            </div>
+        }
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default box box-primary">
+            <div class="panel-heading">
+                @using (Html.BeginForm("ListBuilds", "Builds", FormMethod.Get, new { @class = "form-inline", role = "form", @id = "search-build-office", onsubmit = "return validate()" }))
+                {
+                    <div class="form-group">
+                        <label for="searchQuery" class="control-label">Tìm kiếm: </label>
+                        @Html.TextBox("search", "", new { @class = "form-control", placeholder = "Nhập tên tòa nhà cần tìm" })
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-primary"><i class="fa fa-search"></i>Tìm kiếm</button>
+                    </div>
+                }
+            </div>
+
+            <script>
+                function validate() {
+                    if (document.getElementById("search").value === "") {
+                        alert('Vui lòng nhập từ khóa tìm kiếm');
+                        return false;
+                    } else {
+                        return true;
+                    };
+                }
+            </script>
+
+            <div class="panel-body">
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table_order_stt" id="table-build-office">
+                        <thead>
+                            <tr>
+                                <th class="no-sort" style="width: 50px; text-align: center;">Số TT</th>
+                                <th>Tên tòa nhà</th>
+                                <th>Quận/huyện</th>
+                                <th>Tỉnh thành phố</th>
+                                <th>Địa chỉ</th>
+                                <th style="width: 144px;" class="no-sort"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                if (Model.Count > 0)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td style="text-align: center;"></td>
+                                            <td>@item.bulding_name</td>
+                                            <td>@item.district</td>
+                                            <td>@item.provinces</td>
+                                            <td>@item.building_address</td>
+                                            <td>
+                                                <span class="btn btn-primary" onclick="gotoUrl('@Url.RouteUrl("AdminEditBuild", new { id = item.bulding_id })')"><i class="fa fa-edit"></i> Sửa</span>
+                                                <span class="btn btn-danger" onclick="gotoUrl('@Url.RouteUrl("AdminDeleteBuild", new { id = item.bulding_id })')"><i class="fa fa-trash"></i> Xóa</span>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="6">
+                                            Chưa có tòa nhà
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="6">
+                                        Chưa có tòa nhà
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                @if (Model != null)
+                {
+                    @Html.PagedListPager(Model, page => Url.RouteUrl("AdminListBuilds", new { search = ViewBag.search, pg = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/datatable")
+    <script>
+
+        $(document).ready(function () {
+            $('#table-build-office').DataTable({
+                paging: false,
+                "oLanguage": {
+                    "sEmptyTable": "Không tìm thấy tòa nhà văn phòng.",
+                    "sLoadingRecords": "Vui lòng - chờ...",
+                    "sSearch": "Tìm kiếm nhanh: ",
+                    "sZeroRecords": "Không tìm thấy tòa nhà văn phòng.",
+                    "sInfo": ""
+                },
+                "order": [],
+                columnDefs: [
+                    { targets: 'no-sort', orderable: false }
+                ]
+            });
+        });
+
+    </script>
+}

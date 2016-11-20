@@ -170,7 +170,13 @@ namespace WebOfficeRental.Controllers
             {
                 return View();
             }
-            
+
+            if (_city.buildings.Count > 0)
+            {
+                TempData["Errored"] = "Địa chỉ này không thể xóa.";
+                return RedirectToRoute("AdminDeleteCity", new { id = id });
+            }
+
             try
             {
                 db.cities.Remove(_city);

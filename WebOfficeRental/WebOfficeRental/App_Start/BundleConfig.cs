@@ -31,6 +31,13 @@ namespace WebOfficeRental
                     "~/Content/admin/vendor/datatable/jquery.dataTables.min.js",
                     "~/Content/admin/vendor/datatable/dataTables.bootstrap.min.js"
                 ));
+
+            bundles.Add(new ScriptBundle("~/bundles/dropzonescripts").Include(
+                     "~/Scripts/dropzone/dropzone.js"));
+
+            bundles.Add(new StyleBundle("~/Content/dropzonescss").Include(
+                     "~/Scripts/dropzone/basic.css",
+                     "~/Scripts/dropzone/dropzone.css"));
         }
     }
 }

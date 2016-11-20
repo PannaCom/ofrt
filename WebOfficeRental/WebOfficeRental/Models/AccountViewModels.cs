@@ -48,7 +48,7 @@ namespace WebOfficeRental.Models
 
     public class LoginViewModel
     {
-        [Required(ErrorMessage="Vui lòng nhập địa chỉ Email.")]
+        [Required(ErrorMessage="Vui lòng nhập tên đăng nhập.")]
         [Display(Name = "Tên đăng nhập")]
         public string UserName { get; set; }
 

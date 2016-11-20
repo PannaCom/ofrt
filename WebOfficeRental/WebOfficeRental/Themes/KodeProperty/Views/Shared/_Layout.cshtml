@@ -1,11 +1,28 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
+<head prefix="og: http://ogp.me/ns#">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
 
     <title>@ViewBag.Title</title>
+    @RenderSection("metatags", false)
+    <meta name="description" content="Web site bất động sản">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="robots" content="index,follow,noodp">
+    <meta property="og:locale" content="vi_VN">
+    <meta property="og:type" content="Product">
+    <meta property="og:url" content="">
+    <meta property="og:title" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" itemprop="thumbnailUrl" content="">
+    
+    <!-- Favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
     <!-- Bootstrap core CSS -->
     <link href="@Url.Content("~/Themes/KodeProperty/Content/css/bootstrap.css")" rel="stylesheet">
     <!-- Jquery Range Slider CSS -->

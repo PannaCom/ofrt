@@ -37,6 +37,7 @@
             </div>
 
             <div class="panel-body">
+                <h4>Vui lòng nhập đầy đủ các trường có dấu <span class="color-red">(*)</span></h4>
                 @using (Html.BeginForm("EditServicesOffice", "ServicesOffice", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", role = "form", @id = "form-edit-so" }))
                 {
                     @Html.AntiForgeryToken()
@@ -52,7 +53,7 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
+                        <div class="col-md-offset-4 col-md-8">
                             <button class="btn btn-primary"><i class="fa fa-edit"></i> Cập nhật</button>
                             <span class="btn btn-danger" onclick="gotoUrl('@Url.RouteUrl("AdminDeleteServices", new { id = Model.Id })')"><i class="fa fa-trash"></i> Xóa</span>
                         </div>
