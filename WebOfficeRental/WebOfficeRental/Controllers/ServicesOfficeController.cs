@@ -165,5 +165,14 @@ namespace WebOfficeRental.Controllers
             return RedirectToRoute("AdminListServices");
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
     }
 }
