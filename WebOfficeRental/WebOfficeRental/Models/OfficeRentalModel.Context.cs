@@ -32,6 +32,7 @@ namespace WebOfficeRental.Models
         public virtual DbSet<city> cities { get; set; }
         public virtual DbSet<menu> menus { get; set; }
         public virtual DbSet<office> offices { get; set; }
+        public virtual DbSet<OfficeService> OfficeServices { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<service> services { get; set; }
         public virtual DbSet<UserClaim> UserClaims { get; set; }

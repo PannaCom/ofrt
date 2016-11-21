@@ -210,7 +210,7 @@
         $(document).ready(function () {
             $('#building_picture').val() !== "" ? $('#divbuilding_picture').css('background-image', 'url("' + $('#building_picture').val() + '")') : false;
             Dropzone.autoDiscover = false;
-            UploadImage('#divbuilding_picture', '#divbuilding_picture', '#building_picture');
+            UploadImage('#dzbuilding_picture', '#divbuilding_picture', '#building_picture', 2);
             $('.closed').click(function (e) {
                 e.preventDefault();
                 if ($(this).siblings('input').val() !== "") {

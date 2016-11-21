@@ -17,7 +17,7 @@ namespace WebOfficeRental.Controllers
         {
             var p = (from q in db.cities where q.provinces != null orderby q.provinces ascending select q.provinces).ToList().Distinct();
             string pro = "<option value=''>--Chọn tỉnh thành--</option>";
-            if (pro.Count() > 0)
+            if (p.Count() > 0)
             {
                 foreach (var item in p)
                 {

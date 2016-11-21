@@ -1,0 +1,388 @@
+﻿@using WebOfficeRental.Models
+@model OfficeVM
+@{
+    ViewBag.Title = "Sửa văn phòng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section styles {
+    @Styles.Render("~/Content/dropzonescss")
+}
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+
+@section PageTitleHeader {
+    <div class="page-header">
+        <h3><i class="fa fa-building-o  fa-2x fa-color-red"></i> @ViewBag.Title <b>:</b> @ViewBag.OfficeName</h3>
+    </div>
+    @if (TempData["Updated"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            @Html.Raw(TempData["Updated"])
+        </div>
+    }
+    @if (TempData["Errored"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            @Html.Raw(TempData["Errored"])
+        </div>
+    }
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default box box-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Vui lòng nhập đầy đủ các trường có dấu <span class="color-red">(*)</span></h3>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("EditOffice", "Offices", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", role = "form", @id = "add-edit-ofice" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(m=>m.office_id)
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.buiding_id, htmlAttributes: new { @class = "control-label col-md-4 required-after" })
+                        <div class="col-md-6">
+
+                            <select class="form-control" name="buiding_id" id="buiding_id" data-val="true"
+                                    data-val-required="Vui lòng chọn tòa nhà"
+                                    aria-required="true" aria-describedby="buiding_id-error" aria-invalid="true">
+                                <option value=''>--Chọn tòa nhà--</option>
+
+                            </select>
+                            @Html.ValidationMessageFor(model => model.buiding_id, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.office_name, htmlAttributes: new { @class = "control-label col-md-4 required-after" })
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(model => model.office_name, htmlAttributes: new { @class = "form-control", placeholder = "Nhập tên văn phòng" })
+                            @Html.ValidationMessageFor(model => model.office_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.office_type, htmlAttributes: new { @class = "control-label col-md-4 required-after" })
+                        <div class="col-md-6">
+                            <select class="form-control" name="office_type" id="office_type" data-val="true" data-val-required="Loại phòng cho thuê không được để trống." aria-required="true" aria-describedby="office_type-error" aria-invalid="true">
+                                <option value=''>--Chọn Loại phòng cho thuê--</option>
+                                <option value='1'>-Văn phòng cho thuê</option>
+                                <option value='2'>-Văn phòng chọn gói</option>
+                                <option value='3'>-Phòng họp</option>
+                                <option value='4'>-Loại khác</option>
+                            </select>
+                            @Html.ValidationMessageFor(model => model.office_type, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.office_new_type, htmlAttributes: new { @class = "control-label col-md-4 required-after" })
+                        <div class="col-md-6">
+                            <select class="form-control" name="office_new_type" id="office_new_type" data-val="true"
+                                    data-val-required="Loại tin không được để trống."
+                                    aria-required="true" aria-describedby="office_new_type-error" aria-invalid="true">
+                                <option value=''>--Chọn loại tin--</option>
+                                <option value='1'>-Tin thường</option>
+                                <option value='2'>-Tin nổi bật-</option>
+                            </select>
+                            @Html.ValidationMessageFor(model => model.office_new_type, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.office_address, htmlAttributes: new { @class = "control-label col-md-4 required-after" })
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(model => model.office_address, htmlAttributes: new { @class = "form-control", placeholder = "Nhập địa chỉ văn phòng" })
+                            @Html.ValidationMessageFor(model => model.office_address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    @Html.HiddenFor(m => m.office_price_public)
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.office_price_public, htmlAttributes: new { @class = "control-label col-md-4 required-after" })
+                        <div class="col-md-3">
+                            <select class="form-control" name="giaca" id="giaca" onchange="getGiaCa();">
+                                <option value="">-Giá thuê-</option>
+                                <option value="-1">-Giá thỏa thuận</option>
+                                <option value="1">-Giá công khai</option>
+                            </select>
+                            @Html.ValidationMessageFor(model => model.office_price_public, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3" id="HienNhapGia" style="display: none;">
+                            <input type="number" name="GiaCongKhai" id="GiaCongKhai" class="form-control" placeholder="Nhập giá cho thuê" onchange="setPricePublic();" />
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.office_hotmail, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(model => model.office_hotmail, htmlAttributes: new { @class = "form-control", placeholder = "Nhập địa chỉ Email văn phòng" })
+                            @Html.ValidationMessageFor(model => model.office_hotmail, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.office_hotline, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(model => model.office_hotline, htmlAttributes: new { @class = "form-control", placeholder = "Nhập số hotline văn phòng" })
+                            @Html.ValidationMessageFor(model => model.office_hotline, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.office_fanpage, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(model => model.office_fanpage, htmlAttributes: new { @class = "form-control", placeholder = "Nhập Fan page văn phòng" })
+                            @Html.ValidationMessageFor(model => model.office_fanpage, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.office_acreage, htmlAttributes: new { @class = "control-label col-md-4 required-after" })
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(model => model.office_acreage, htmlAttributes: new { @class = "form-control", placeholder = "Nhập diện tích văn phòng", type = "number" })
+                            @Html.ValidationMessageFor(model => model.office_acreage, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.office_door, htmlAttributes: new { @class = "control-label col-md-4 required-after" })
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(model => model.office_door, htmlAttributes: new { @class = "form-control", placeholder = "Nhập diện tích văn phòng", type = "number" })
+                            @Html.ValidationMessageFor(model => model.office_door, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.office_table, htmlAttributes: new { @class = "control-label col-md-4 required-after" })
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(model => model.office_table, htmlAttributes: new { @class = "form-control", placeholder = "Nhập diện tích văn phòng", type = "number" })
+                            @Html.ValidationMessageFor(model => model.office_table, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.office_photo, new { @class = "col-md-4 control-label required-after" })
+                        <div class="col-md-6">
+                            <div id="divoffice_photo" class="upanh">
+                                <a class="closed"><i class="fa fa-close fa-2x"></i></a>
+                                @Html.HiddenFor(m => m.office_photo)
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                            <div id="dzoffice_photo" class="dropzone undropzone">
+                            </div>
+                            @Html.ValidationMessageFor(m => m.office_photo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.office_photo_slider, new { @class = "col-md-4 control-label required-after" })
+                        <div class="col-md-6">
+                            <div id="divoffice_photo_slider" class="upanh">
+                                <a class="closed"><i class="fa fa-close fa-2x"></i></a>
+                                @Html.HiddenFor(m => m.office_photo_slider)
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                            <div id="dzoffice_photo_slider" class="dropzone undropzone">
+                            </div>
+                            @Html.ValidationMessageFor(m => m.office_photo_slider, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.office_other_descriptions, new { @class = "col-md-4 control-label" })
+                        <div class="col-md-6">
+                            @Html.TextAreaFor(m => m.office_other_descriptions, new { @class = "form-control", @rows = "5" })
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Dịch vụ văn phòng</label>
+                        <div class="col-md-6">
+                            <select multiple class="form-control" name="dichvuvp" id="dichvuvp" style="height: 200px;"></select>
+                            <span class="help-block">Giữ phím ctr để chọn nhiều dịch vụ cho văn phòng.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-4 col-md-6">
+                            <button class="btn btn-primary">
+                                <i class="fa fa-edit"></i> Cập nhật
+                            </button>
+                            <span class="btn btn-danger" onclick="gotoUrl('@Url.RouteUrl("AdminDeleteOffice", new { id = Model.office_id })')"><i class="fa fa-trash"></i> Xóa</span>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@*@if (Model.buiding_id != null)
+{
+    <script>
+        $(window).on('load', function () {
+            $('#buiding_id').val('@Model.buiding_id');
+        })
+    </script>
+}*@
+
+@if (Model.office_type != null)
+{
+    <script>
+        
+        $(document).ready(function () {
+            setTimeout(function () {
+                $('#office_type').val('@Model.office_type');
+            }, 500)
+        })
+    </script>
+}
+
+@if (Model.office_new_type != null)
+{
+    <script>
+        $(window).on('load', function () {
+            $('#office_new_type').val('@Model.office_new_type');
+        })
+    </script>
+}
+
+@if (Model.office_price_public == -1)
+{
+    <script>
+        $(window).on('load', function () {
+            $('#giaca').val('@Model.office_price_public');
+        })
+    </script>
+}
+else
+{
+    <script>
+        $(window).on('load', function () {
+            $('#giaca').val('1')
+            $('#HienNhapGia').fadeIn();
+            $('#GiaCongKhai').val('@Model.office_price_public');
+        })       
+    </script>
+}
+
+@if (Model.dichvuvp.Count() > 0)
+{
+    <script>
+        setTimeout(function () {
+            var values = "@string.Join(",", Model.dichvuvp.Select(x=>x.ToString()).ToArray())";
+            if (values.length == 1) {
+                $("#dichvuvp").val(values);
+            }
+            $.each(values.split(","), function (i, e) {
+                $("#dichvuvp option[value='" + e + "']").prop("selected", true);
+            });
+        }, 1000)
+        
+    </script>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/dropzonescripts")
+
+
+   <script>
+    $.ajax({
+        url: "/Offices/getToaNha",
+        cache: false
+    }).done(function (html) {
+        $("#buiding_id").html("" + html);
+        if (@Model.buiding_id != null) {
+            $('#buiding_id').val('@Model.buiding_id');
+        }
+    });
+
+
+    $.ajax({
+        url: "/Offices/getDichvuvp",
+        cache: false
+    }).done(function (html) {
+        $("#dichvuvp").html("" + html);
+    });
+
+    function getGiaCa() {
+        if ($('#giaca').val() !== "") {
+            if ($('#giaca').val() === '-1') {
+                $('#office_price_public').val('-1');
+                $('#HienNhapGia').fadeOut();
+                $('#GiaCongKhai').val('');
+            } else if ($('#giaca').val() === '1') {
+                $('#office_price_public').val('');
+                $('#HienNhapGia').fadeIn();
+            }
+        }
+    }
+
+    function setPricePublic() {
+        if ($('#GiaCongKhai').val() !== "") {
+            var $gia = $('#GiaCongKhai').val();
+            $('#office_price_public').val($gia);
+        };
+    }
+
+    $.validator.setDefaults({
+        ignore: ""
+    });
+    $(document).ready(function () {
+        $('#office_photo').val() !== "" ? $('#divoffice_photo').css('background-image', 'url("' + $('#office_photo').val() + '")') : false;
+        $('#office_photo_slider').val() !== "" ? $('#divoffice_photo_slider').css('background-image', 'url("' + $('#office_photo_slider').val() + '")') : false;
+        Dropzone.autoDiscover = false;
+        UploadImage('#dzoffice_photo', '#divoffice_photo', '#office_photo', 5);
+        UploadImage('#dzoffice_photo_slider', '#divoffice_photo_slider', '#office_photo_slider', 5);
+        $('.closed').click(function (e) {
+            e.preventDefault();
+            if ($(this).siblings('input').val() !== "") {
+                if (confirm("Bạn chắc chắn muốn xóa ảnh?")) {
+                    $(this).parent('.upanh').css('background-image', 'url("/Content/img/no-image.png")');
+                    $(this).siblings('input').val('');
+                }
+            }
+        });
+
+        CKEDITOR.replace('office_other_descriptions', {
+            // Define the toolbar groups as it is a more accessible solution.
+            toolbarGroups: [
+                { "name": "basicstyles", "groups": ["basicstyles"] },
+                { "name": "links", "groups": ["links"] },
+                { "name": "paragraph", "groups": ["list", "blocks"] },
+                { "name": "document", "groups": ["mode"] },
+                { "name": "insert", "groups": ["insert"] },
+                { "name": "styles", "groups": ["styles"] },
+                { "name": "about", "groups": ["about"] }
+            ],
+            // Remove the redundant buttons from toolbar groups defined above.
+            removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar',
+            height: '200px'
+        })
+
+    })
+
+
+</script>
+
+
+
+}
+

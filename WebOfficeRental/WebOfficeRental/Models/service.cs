@@ -17,13 +17,13 @@ namespace WebOfficeRental.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public service()
         {
-            this.offices = new HashSet<office>();
+            this.OfficeServices = new HashSet<OfficeService>();
         }
     
         public int service_id { get; set; }
         public string service_name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<office> offices { get; set; }
+        public virtual ICollection<OfficeService> OfficeServices { get; set; }
     }
 }

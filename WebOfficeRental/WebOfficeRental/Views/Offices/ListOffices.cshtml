@@ -1,7 +1,7 @@
-﻿@model PagedList.IPagedList<WebOfficeRental.Models.building>
+﻿@model PagedList.IPagedList<WebOfficeRental.Models.office>
 @using PagedList.Mvc;
 @{
-    ViewBag.Title = "Danh sách tòa nhà";
+    ViewBag.Title = "Danh sách văn phòng";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -13,7 +13,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="page-header">
-            <h3>@ViewBag.Title <span class="btn btn-primary pull-right" onclick="gotoUrl('@Url.RouteUrl("AdminAddBuild")')"><i class="fa fa-plus"></i> Thêm tòa nhà</span></h3>
+            <h3>@ViewBag.Title <span class="btn btn-primary pull-right" onclick="gotoUrl('@Url.RouteUrl("AdminAddOffice")')"><i class="fa fa-plus"></i> Thêm văn phòng</span></h3>
         </div>
         @if (TempData["Deleted"] != null)
         {
@@ -42,11 +42,11 @@
     <div class="col-lg-12">
         <div class="panel panel-default box box-primary">
             <div class="panel-heading">
-                @using (Html.BeginForm("ListBuilds", "Builds", FormMethod.Get, new { @class = "form-inline", role = "form", @id = "search-build-office", onsubmit = "return validate()" }))
+                @using (Html.BeginForm("ListOffices", "Offices", FormMethod.Get, new { @class = "form-inline", role = "form", @id = "search-offices", onsubmit = "return validate()" }))
                 {
                     <div class="form-group">
                         <label for="searchQuery" class="control-label">Tìm kiếm: </label>
-                        @Html.TextBox("search", "", new { @class = "form-control", placeholder = "Nhập tên tòa nhà cần tìm" })
+                        @Html.TextBox("search", "", new { @class = "form-control", placeholder = "Nhập tên văn phòng cần tìm" })
                     </div>
 
                     <div class="form-group">
@@ -69,14 +69,15 @@
             <div class="panel-body">
 
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped table_order_stt" id="table-build-office">
+                    <table class="table table-bordered table-striped table_order_stt" id="table-offices">
                         <thead>
                             <tr>
                                 <th class="no-sort" style="width: 50px; text-align: center;">Số TT</th>
-                                <th>Tên tòa nhà</th>
-                                <th>Quận/huyện</th>
-                                <th>Tỉnh thành phố</th>
-                                <th>Địa chỉ</th>
+                                <th>Tên văn phòng</th>
+                                <th>Loại phòng</th>
+                                <th>Giá cả</th>
+                                <th>Ngày đăng</th>
+                                <th>Tòa nhà</th>
                                 <th style="width: 144px;" class="no-sort"></th>
                             </tr>
                         </thead>
@@ -89,13 +90,43 @@
                                     {
                                         <tr>
                                             <td style="text-align: center;"></td>
-                                            <td>@item.bulding_name</td>
-                                            <td>@item.district</td>
-                                            <td>@item.provinces</td>
-                                            <td>@item.building_address</td>
+                                            <td>@item.office_name</td>
                                             <td>
-                                                <span class="btn btn-primary" onclick="gotoUrl('@Url.RouteUrl("AdminEditBuild", new { id = item.bulding_id })')"><i class="fa fa-edit"></i> Sửa</span>
-                                                <span class="btn btn-danger" onclick="gotoUrl('@Url.RouteUrl("AdminDeleteBuild", new { id = item.bulding_id })')"><i class="fa fa-trash"></i> Xóa</span>
+                                                @if (item.office_type == 1)
+                                                {
+                                                    <span>Văn phòng cho thuê</span>
+                                                }
+                                                else if (item.office_type == 2)
+                                                {
+                                                    <span>Văn phòng cho thuê chọn gói</span>
+                                                }
+                                                else if (item.office_type == 3)
+                                                {
+                                                    <span>Phòng họp</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>Văn phòng khác</span>
+                                                }
+                                            
+                                            </td>
+                                            <td style="text-align: right;">
+                                                @if (item.office_price_public == -1)
+                                                {
+                                                    <span>Thỏa thuận</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>@string.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"),"{0:#,###}", item.office_price_public)</span>
+                                                }
+                                            </td>
+                                            <td>
+                                                @string.Format("{0:dd/MM/yyyy HH:mm tt}", item.updated_date)
+                                            </td>
+                                            <td>@item.building.bulding_name</td>
+                                            <td>
+                                                <span class="btn btn-primary" onclick="gotoUrl('@Url.RouteUrl("AdminEditOffice", new { id = item.office_id })')"><i class="fa fa-edit"></i> Sửa</span>
+                                                <span class="btn btn-danger" onclick="gotoUrl('@Url.RouteUrl("AdminDeleteOffice", new { id = item.office_id })')"><i class="fa fa-trash"></i> Xóa</span>
                                             </td>
                                         </tr>
                                     }
@@ -103,8 +134,8 @@
                                 else
                                 {
                                     <tr>
-                                        <td colspan="6">
-                                            Chưa có tòa nhà
+                                        <td colspan="7">
+                                            Chưa có văn phòng nào
                                         </td>
                                     </tr>
                                 }
@@ -112,8 +143,8 @@
                             else
                             {
                                 <tr>
-                                    <td colspan="6">
-                                        Chưa có tòa nhà
+                                    <td colspan="7">
+                                        Chưa có văn phòng nào
                                     </td>
                                 </tr>
                             }
@@ -122,7 +153,7 @@
                 </div>
                 @if (Model != null)
                 {
-                    @Html.PagedListPager(Model, page => Url.RouteUrl("AdminListBuilds", new { search = ViewBag.search, pg = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+                    @Html.PagedListPager(Model, page => Url.RouteUrl("AdminListOffices", new { search = ViewBag.search, pg = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
                 }
 
             </div>
@@ -135,13 +166,13 @@
     <script>
 
         $(document).ready(function () {
-            $('#table-build-office').DataTable({
+            $('#table-offices').DataTable({
                 paging: false,
                 "oLanguage": {
-                    "sEmptyTable": "Không tìm thấy tòa nhà văn phòng.",
+                    "sEmptyTable": "Không tìm thấy văn phòng.",
                     "sLoadingRecords": "Vui lòng - chờ...",
                     "sSearch": "Tìm kiếm nhanh: ",
-                    "sZeroRecords": "Không tìm thấy tòa nhà văn phòng.",
+                    "sZeroRecords": "Không tìm thấy văn phòng.",
                     "sInfo": ""
                 },
                 "order": [],

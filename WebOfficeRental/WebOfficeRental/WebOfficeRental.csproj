@@ -191,6 +191,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenusController.cs" />
+    <Compile Include="Controllers\OfficesController.cs" />
     <Compile Include="Controllers\ServicesOfficeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -236,6 +237,9 @@
       <DependentUpon>OfficeRentalModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\OfficeRentalViewModel.cs" />
+    <Compile Include="Models\OfficeService.cs">
+      <DependentUpon>OfficeRentalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Role.cs">
       <DependentUpon>OfficeRentalModel.tt</DependentUpon>
     </Compile>
@@ -1146,6 +1150,10 @@
     <Content Include="Views\Builds\AddNewBuild.cshtml" />
     <Content Include="Views\Builds\EditBuild.cshtml" />
     <Content Include="Views\Builds\DeleteBuild.cshtml" />
+    <Content Include="Views\Offices\ListOffices.cshtml" />
+    <Content Include="Views\Offices\AddNewOffice.cshtml" />
+    <Content Include="Views\Offices\EditOffice.cshtml" />
+    <Content Include="Views\Offices\DeleteOffice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

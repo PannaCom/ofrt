@@ -181,7 +181,7 @@
         });
         $(document).ready(function () {
             Dropzone.autoDiscover = false;
-            UploadImage('#divbuilding_picture', '#divbuilding_picture', '#building_picture');
+            UploadImage('#dzbuilding_picture', '#divbuilding_picture', '#building_picture', 2);
             $('.closed').click(function (e) {
                 e.preventDefault();
                 if ($(this).siblings('input').val() !== "") {

@@ -17,7 +17,7 @@ namespace WebOfficeRental.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public office()
         {
-            this.services = new HashSet<service>();
+            this.OfficeServices = new HashSet<OfficeService>();
         }
     
         public long office_id { get; set; }
@@ -25,11 +25,10 @@ namespace WebOfficeRental.Models
         public Nullable<int> office_type { get; set; }
         public Nullable<int> office_new_type { get; set; }
         public string office_address { get; set; }
-        public Nullable<int> office_price_type { get; set; }
         public Nullable<int> office_price_public { get; set; }
         public string office_hotmail { get; set; }
         public string office_hotline { get; set; }
-        public string offcie_fanpage { get; set; }
+        public string office_fanpage { get; set; }
         public Nullable<int> office_acreage { get; set; }
         public Nullable<int> office_door { get; set; }
         public Nullable<int> office_table { get; set; }
@@ -46,6 +45,6 @@ namespace WebOfficeRental.Models
     
         public virtual building building { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<service> services { get; set; }
+        public virtual ICollection<OfficeService> OfficeServices { get; set; }
     }
 }

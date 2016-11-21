@@ -161,7 +161,29 @@ namespace WebOfficeRental
 
             #region Quản lý văn phòng (offices)
 
+            routes.MapRoute(
+                "AdminListOffices",
+                "admin/list/offices",
+                new { controller = "Offices", action = "ListOffices" }
+            );
 
+            routes.MapRoute(
+               "AdminAddOffice",
+               "admin/office/add",
+               new { controller = "Offices", action = "AddNewOffice" }
+            );
+
+            routes.MapRoute(
+               "AdminEditOffice",
+               "admin/office/{id}/edit",
+               new { controller = "Offices", action = "EditOffice", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+               "AdminDeleteOffice",
+               "admin/offices/{id}/delete",
+               new { controller = "Offices", action = "DeleteOffice", id = UrlParameter.Optional }
+            );
 
             #endregion
 

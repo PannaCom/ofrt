@@ -127,12 +127,12 @@ jQuery.fn.confirmSubmit = function (message) {
     });
 };
 
-function UploadImage(d1, d2, d3) {
+function UploadImage(d1, d2, d3, i1) {
     var myUpAnh = new Dropzone(d1, {
         url: "/Load/SaveImage",
         addRemoveLinks: true,
         maxFiles: 1,
-        maxFilesize: 2,
+        maxFilesize: i1,
         uploadMultiple: true,
         acceptedFiles: "image/*",
         clickable: d2 + '>i',
