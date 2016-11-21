@@ -470,13 +470,17 @@ p {
 .top_navi_kode{
 	float:left;
 }
-.top_navi_kode h3{
-	margin:0px;
+    .top_navi_kode h3 {
+        /*margin:0px;
 	font-size:14px;
 	font-weight:Semibold;
 	color:#666666;
-	margin-bottom:7px;
-}
+	margin-bottom:7px;*/
+        font-weight:bold;
+        color: #fff;
+        padding: 11px;
+        background: #f6911e;
+    }
 .top_navi_kode span{
 	display:inline-block;
 	font-size:14px;
@@ -545,12 +549,19 @@ p {
 	text-align:center;
 	font-size:18px;
 	border-radius:100%;
-	margin-left:9px;
-	color:#fff;
+	margin-left:9px;	
+    color: #fff;
 }
+
+.kf_menu_scl_icon > ul > li > a {
+    background-color:#fff!important;
+    color: #0070bb;
+}
+
 .kf_menu_scl_icon ul li a:hover{
-	background-color:#0070bb;
+	background-color:#f6911e;
 }
+
 .kf_menu_scl_icon ul li a i{
 	line-height:37px;
 }

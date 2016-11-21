@@ -378,3 +378,10 @@ $(document).ready(function(){
 
 		map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
 	}
+
+	$.ajax({
+	    url: "/Home/LoadMenu",
+	    cache: false
+	}).done(function (html) {
+	    $("#menu > ul").html("" + html);
+	});

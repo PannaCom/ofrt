@@ -6,17 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">    
 
     <title>@ViewBag.Title</title>
-    @RenderSection("metatags", false)
-    <meta name="description" content="Web site bất động sản">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
-    <meta name="robots" content="index,follow,noodp">
-    <meta property="og:locale" content="vi_VN">
-    <meta property="og:type" content="Product">
-    <meta property="og:url" content="">
-    <meta property="og:title" content="">
-    <meta property="og:description" content="">
-    <meta property="og:image" itemprop="thumbnailUrl" content="">
+    @RenderSection("metatags", false)    
     
     <!-- Favicons
     ================================================== -->
@@ -62,41 +52,15 @@
 
         <!--Header 3 Wrap Start-->
         <header class="header2">
-            <!--Top Bar Wrap Start-->
-            <div class="kf_hdr2_top_strip">
-                <!--container start-->
-                <div class="container">
-                    <!--top_strip_colum start-->
-                    <div class="kf_hdr2_strip_column">
-                        <!--top_strip_caption start-->
-                        <div class="kf_top_weather">
-                            <p><a href="#">Weather in</a>  colorrado rviver<span>25 °F / 13 °C </span></p>
-                        </div>
-                        <!--top_strip_caption end-->
-                        <!--top_strip_soical start-->
-                        <div class="kf_hdr2_social_icon">
-                            <ul>
-                                <li><a href="#"><i class="fa fa-flag"></i>Languages</a></li>
-                                <li><a href="Register.html"><i class="fa fa-plus"></i>Register</a></li>
-                                <li><a href="Login.html"><i class="fa fa-lock"></i>Login</a></li>
-                            </ul>
-                        </div>
-                        <!--top_strip_soical end-->
-                    </div>
-                    <!--top_strip_colum end-->
-                </div>
-                <!--container end-->
-            </div>
-            <!--Top Bar Wrap End-->
             <!--Logo & Ui Element Wrap Start-->
-            <div class="kf_hdr2_logo_bar">
+            <div class="kf_hdr2_logo_bar" style="background-color: #0066B1;">
                 <!--container start-->
                 <div class="container">
                     <!--top_navi_logo start-->
                     <div class="kf_hdr2_logo_wrap">
                         <!--Logo Wrap Start-->
                         <div class="kf_logo">
-                            <a href="index-3.html"><img src="images/logo.png" alt=""></a>
+                            <a href="/"><img src="images/logo2.png" alt=""></a>
                         </div>
                         <!--Logo Wrap End-->
                         <div class="kf_hdr2_search">
@@ -104,32 +68,12 @@
                             <a href="#" style="position: absolute; top: 8px;"><i class="fa fa-search"></i></a>
                         </div>
                         <!--top_navi_caption start-->
-                        <div class="top_navi_caption">
+                        <div class="top_navi_caption nav navbar-right">
                             <ul>
                                 <li>
                                     <div class="top_navi_circal">
-                                        <a href="#"><i class="fa fa-phone"></i></a>
                                         <div class="top_navi_kode">
-                                            <h3>Call Us Anytime</h3>
-                                            <span>0800-0123-254-02</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="top_navi_circal">
-                                        <a href="#"><i class="fa fa-clock-o"></i></a>
-                                        <div class="top_navi_kode">
-                                            <h3>Opening Time</h3>
-                                            <span>9 :00 - 14:00</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="top_navi_circal">
-                                        <a href="#"><i class="fa fa-envelope"></i></a>
-                                        <div class="top_navi_kode">
-                                            <h3>Mail Us</h3>
-                                            <span>9:00 - 14:00</span>
+                                            <h3>HOTLINE: 0123456789</h3>
                                         </div>
                                     </div>
                                 </li>
@@ -143,138 +87,26 @@
             </div>
             <!--Logo & Ui Element Wrap End-->
             <!--Navigation & Social Icon Wrap Start-->
-            <div class="kf_hdr2_navigation">
+            <div class="kf_hdr2_navigation" style="background: #468DBB;">
                 <!--container start-->
                 <div class="container">
                     <!--law_navigation_list start-->
                     <div class="kf_hdr2_nav_list">
                         <!--law_navigtion start-->
-                        <div class="kf_main_navigation">
-                            <ul>
-                                <li class="active">
-                                    <a href="index-3.html">Home</a>
-                                    <ul>
-                                        <li><a href="index.html">Home Style 1</a></li>
-                                        <li><a href="index-2.html">Home Style 2</a></li>
-                                        <li><a href="index-3.html">Home Style 3</a></li>
-                                        <li><a href="index-4.html">Home Style 4</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="about-us.html">About Us</a></li>
-                                <li>
-                                    <a href="#">Blog</a>
-                                    <ul>
-                                        <li><a href="blog-grid.html">Blog Grid Style</a></li>
-                                        <li><a href="blog-lisiting.html">Blog Listing Style 1</a></li>
-                                        <li><a href="blog-lisiting-2.html">Blog Listing Style 2</a></li>
-                                        <li><a href="blog-detail.html">Blog Detail Style 1</a></li>
-                                        <li><a href="blog-detail-2.html">Blog Detail Style 2</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Properties</a>
-                                    <ul>
-                                        <li><a href="property-listing.html">Property Grid Style</a></li>
-                                        <li><a href="property-listing-01.html">Property Listing Style 1</a></li>
-                                        <li><a href="property-listing-02.html">Property Listing Style 2</a></li>
-                                        <li><a href="property-listing-03.html">Property Detail Style 3</a></li>
-                                        <li><a href="property-listing-04.html">Property Detail Style 4</a></li>
-                                        <li><a href="property-detail.html">Property Detail</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Team</a>
-                                    <ul>
-                                        <li><a href="our-team.html">Our Team</a></li>
-                                        <li><a href="team-detail.html">Team Detail</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Pages</a>
-                                    <ul>
-                                        <li><a href="gallery.html">Gallery</a></li>
-                                        <li><a href="submit-property.html">Submit Property</a></li>
-                                        <li><a href="Price-table.html">Price Table</a></li>
-                                        <li><a href="404-page.html">404 Page</a></li>
-                                        <li><a href="comming-soon.html">Comming Soon</a></li>
-                                        <li><a href="Login.html">Login</a></li>
-                                        <li><a href="Register.html">Register</a></li>
-                                        <li><a href="password-reset.html">Password Reset</a></li>
-                                        <li><a href="shortcode.html">Short Code</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="contact-us.html">Contact Us</a></li>
-                            </ul>
-                        </div>
+                        @Html.Partial("_MenuPartial")
                         <!--law_navigtion end-->
                         <!--law_navigation_social_icon start-->
                         <div class="kf_menu_scl_icon">
                             <ul>
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google"></i></a></li>
+                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
                             </ul>
                         </div>
                         <!--law_navigation_social_icon end-->
                         <!--DL Menu Start-->
-                        <div id="kode-responsive-navigation" class="dl-menuwrapper">
-                            <button class="dl-trigger">Open Menu</button>
-                            <ul class="dl-menu">
-                                <li class="active">
-                                    <a href="index-3.html">Home</a>
-                                    <ul class="dl-submenu">
-                                        <li><a href="index.html">Home Style 1</a></li>
-                                        <li><a href="index-2.html">Home Style 2</a></li>
-                                        <li><a href="index-3.html">Home Style 3</a></li>
-                                        <li><a href="index-4.html">Home Style 4</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="about-us.html">About Us</a></li>
-                                <li class="menu-item kode-parent-menu">
-                                    <a href="#">Blog</a>
-                                    <ul class="dl-submenu">
-                                        <li><a href="blog-grid.html">Blog Grid Style</a></li>
-                                        <li><a href="blog-lisiting.html">Blog Listing Style 1</a></li>
-                                        <li><a href="blog-lisiting-2.html">Blog Listing Style 2</a></li>
-                                        <li><a href="blog-detail.html">Blog Detail Style 1</a></li>
-                                        <li><a href="blog-detail-2.html">Blog Detail Style 2</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item kode-parent-menu">
-                                    <a href="#">Properties</a>
-                                    <ul class="dl-submenu">
-                                        <li><a href="property-listing.html">Property Grid Style</a></li>
-                                        <li><a href="property-listing-01.html">Property Listing Style 1</a></li>
-                                        <li><a href="property-listing-02.html">Property Listing Style 2</a></li>
-                                        <li><a href="property-listing-03.html">Property Detail Style 3</a></li>
-                                        <li><a href="property-listing-04.html">Property Detail Style 4</a></li>
-                                        <li><a href="property-detail.html">Property Detail</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item kode-parent-menu">
-                                    <a href="#">Team</a>
-                                    <ul class="dl-submenu">
-                                        <li><a href="our-team.html">Our Team</a></li>
-                                        <li><a href="team-detail.html">Team Detail</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item kode-parent-menu">
-                                    <a href="#">Pages</a>
-                                    <ul class="dl-submenu">
-                                        <li><a href="gallery.html">Gallery</a></li>
-                                        <li><a href="submit-property.html">Submit Property</a></li>
-                                        <li><a href="Price-table.html">Price Table</a></li>
-                                        <li><a href="404-page.html">404 Page</a></li>
-                                        <li><a href="comming-soon.html">Comming Soon</a></li>
-                                        <li><a href="Login.html">Login</a></li>
-                                        <li><a href="Register.html">Register</a></li>
-                                        <li><a href="password-reset.html">Password Reset</a></li>
-                                        <li><a href="shortcode.html">Short Code</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="contact-us.html">Contact Us</a></li>
-                            </ul>
-                        </div>
+                        @Html.Partial("_MenuMobile")                        
                         <!--DL Menu END-->
 
                     </div>

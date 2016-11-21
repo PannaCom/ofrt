@@ -364,6 +364,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="home--full2.jpg" />
+    <Content Include="images\logo2.png" />
+    <Content Include="index.html" />
     <Content Include="Models\OfficeRentalModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>OfficeRentalModel.edmx</DependentUpon>
@@ -1154,6 +1157,8 @@
     <Content Include="Views\Offices\AddNewOffice.cshtml" />
     <Content Include="Views\Offices\EditOffice.cshtml" />
     <Content Include="Views\Offices\DeleteOffice.cshtml" />
+    <Content Include="Themes\KodeProperty\Views\Shared\_MenuPartial.cshtml" />
+    <Content Include="Themes\KodeProperty\Views\Shared\_MenuMobile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
