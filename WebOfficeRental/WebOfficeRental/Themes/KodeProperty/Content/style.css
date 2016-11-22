@@ -981,16 +981,16 @@ p {
 	-webkit-transform:scale(0);	
 	-moz-transform:scale(0);
 }
-.kf_listing_detail > a.kf_link_1{
-	color:#fff;
-	border:1px solid #fff;
-	position:absolute;
-	top:50%;
-	left:50%;
-	margin:-30px 0px 0px -70px;
-	transform:scale(0);
-	-webkit-transform:scale(0);	
-	-moz-transform:scale(0);	
+.kf_listing_detail > a.kf_link_1 {
+    color: #fff;
+    border: 1px solid #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -29px 0 0 -45px;
+    transform: scale(0);
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
 }
 .kf_property_listing_des{
 	float:left;
@@ -5190,3 +5190,44 @@ ul.kf_tag_list li a{
 		   Filterable Gallery Page Css End
 	  ==============================================================
 */
+
+@media (min-width: 992px) {
+    #top-toa-nha > .container > .row > div {
+        padding: 3px;
+    }
+
+        #top-toa-nha > .container > .row > div > .kf_property_listing_wrap {
+            margin-bottom: 0;
+        }
+}
+
+
+.kf_register_email .form-inline .input-group {
+    width: 100%;
+}
+
+.kf_heading_3 {
+        margin-bottom: 30px;
+}
+
+.kf_heading_3 > h3 {
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 600;
+}
+
+.kf_heading_3 > p {
+    color: #fff;
+    font-size: 27px;
+    font-weight: 200;
+    line-height: 1.2em;
+}
+
+.kf_hotline_bg {
+   background: url('css/images/bg-1.png') no-repeat left #0066B1;
+    padding: 60px 0;
+    background-position-x: 103px;
+    background-position-y: 22px;
+    background-size: inherit;
+    border-bottom: 7px solid #001e3a;
+}

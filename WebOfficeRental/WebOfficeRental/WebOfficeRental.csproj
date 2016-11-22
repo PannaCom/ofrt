@@ -1160,6 +1160,9 @@
     <Content Include="Themes\KodeProperty\Views\Shared\_MenuPartial.cshtml" />
     <Content Include="Themes\KodeProperty\Views\Shared\_MenuMobile.cshtml" />
     <Content Include="Themes\KodeProperty\Views\Home\_SectionOfficeHot.cshtml" />
+    <Content Include="Themes\KodeProperty\Views\Home\_SectionAllBuilds.cshtml" />
+    <Content Include="Themes\KodeProperty\Views\Home\_SectionSearch.cshtml" />
+    <Content Include="Themes\KodeProperty\Views\Home\_SectionRegisterEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

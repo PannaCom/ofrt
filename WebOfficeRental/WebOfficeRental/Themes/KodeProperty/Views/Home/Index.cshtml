@@ -15,5 +15,12 @@
     <meta property="og:image" itemprop="thumbnailUrl" content="">
 }
 
-@{Html.RenderAction("LoadOfficeNewHot");}
+@section MainBanner {
+    @{Html.RenderAction("LoadOfficeNewHot");}    
+}
 
+@Html.Partial("_SectionSearch")
+
+@{Html.RenderAction("LoadAllBuilds");}
+
+@Html.Partial("_SectionRegisterEmail")

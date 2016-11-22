@@ -95,5 +95,11 @@ namespace WebOfficeRental.Controllers
             return PartialView("_SectionOfficeHot", model);
         }
 
+        public ActionResult LoadAllBuilds()
+        {
+            var model = (from b in db.buildings select b).ToList();
+            return PartialView("_SectionAllBuilds", model);
+        }
+
     }
 }
