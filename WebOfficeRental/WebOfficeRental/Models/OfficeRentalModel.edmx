@@ -42,10 +42,7 @@
           </Key>
           <Property Name="banner_adv_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="banner_adv_name" Type="nvarchar" MaxLength="250" />
-          <Property Name="banner_adv_photo" Type="nvarchar" MaxLength="250" />
-          <Property Name="banner_adv_position" Type="int" />
-          <Property Name="banner_adv_fromdate" Type="datetime" />
-          <Property Name="banner_adv_todate" Type="datetime" />
+          <Property Name="banner_adv_photo" Type="nvarchar" MaxLength="550" />
         </EntityType>
         <EntityType Name="buildings">
           <Key>
@@ -399,7 +396,6 @@
         <EntityContainer Name="officerentalEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ArticleCategories" EntityType="officerentalModel.ArticleCategory" />
           <EntitySet Name="articles" EntityType="officerentalModel.article" />
-          <EntitySet Name="BannerAdvs" EntityType="officerentalModel.BannerAdv" />
           <EntitySet Name="buildings" EntityType="officerentalModel.building" />
           <EntitySet Name="cities" EntityType="officerentalModel.city" />
           <EntitySet Name="menus" EntityType="officerentalModel.menu" />
@@ -454,6 +450,7 @@
             <End Role="Role" EntitySet="Roles" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="BannerAdvs" EntityType="officerentalModel.BannerAdv" />
         </EntityContainer>
         <EntityType Name="ArticleCategory">
           <Key>
@@ -490,17 +487,6 @@
           <Property Name="status" Type="Boolean" />
           <NavigationProperty Name="ArticleCategory" Relationship="officerentalModel.FK_articles_ArticleCategories" FromRole="article" ToRole="ArticleCategory" />
           <NavigationProperty Name="User" Relationship="officerentalModel.FK_articles_Users" FromRole="article" ToRole="User" />
-        </EntityType>
-        <EntityType Name="BannerAdv">
-          <Key>
-            <PropertyRef Name="banner_adv_id" />
-          </Key>
-          <Property Name="banner_adv_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="banner_adv_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="banner_adv_photo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="banner_adv_position" Type="Int32" />
-          <Property Name="banner_adv_fromdate" Type="DateTime" Precision="3" />
-          <Property Name="banner_adv_todate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="building">
           <Key>
@@ -768,6 +754,14 @@
           <End Type="officerentalModel.Role" Role="Role" Multiplicity="*" />
           <End Type="officerentalModel.User" Role="User" Multiplicity="*" />
         </Association>
+        <EntityType Name="BannerAdv">
+          <Key>
+            <PropertyRef Name="banner_adv_id" />
+          </Key>
+          <Property Name="banner_adv_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="banner_adv_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="banner_adv_photo" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -804,18 +798,6 @@
                 <ScalarProperty Name="article_description" ColumnName="article_description" />
                 <ScalarProperty Name="article_name" ColumnName="article_name" />
                 <ScalarProperty Name="article_id" ColumnName="article_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BannerAdvs">
-            <EntityTypeMapping TypeName="officerentalModel.BannerAdv">
-              <MappingFragment StoreEntitySet="BannerAdvs">
-                <ScalarProperty Name="banner_adv_todate" ColumnName="banner_adv_todate" />
-                <ScalarProperty Name="banner_adv_fromdate" ColumnName="banner_adv_fromdate" />
-                <ScalarProperty Name="banner_adv_position" ColumnName="banner_adv_position" />
-                <ScalarProperty Name="banner_adv_photo" ColumnName="banner_adv_photo" />
-                <ScalarProperty Name="banner_adv_name" ColumnName="banner_adv_name" />
-                <ScalarProperty Name="banner_adv_id" ColumnName="banner_adv_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -956,6 +938,15 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="BannerAdvs">
+            <EntityTypeMapping TypeName="officerentalModel.BannerAdv">
+              <MappingFragment StoreEntitySet="BannerAdvs">
+                <ScalarProperty Name="banner_adv_photo" ColumnName="banner_adv_photo" />
+                <ScalarProperty Name="banner_adv_name" ColumnName="banner_adv_name" />
+                <ScalarProperty Name="banner_adv_id" ColumnName="banner_adv_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

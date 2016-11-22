@@ -193,6 +193,32 @@ namespace WebOfficeRental
 
             #endregion
 
+            #region Quản lý banner quảng cáo
+            routes.MapRoute(
+                "AdminListBaners",
+                "admin/list/baners",
+                new { controller = "Baners", action = "ListBaners" }
+            );
+
+            routes.MapRoute(
+               "AdminAddBaner",
+               "admin/baner/add",
+               new { controller = "Baners", action = "AddNewBaner" }
+            );
+
+            routes.MapRoute(
+               "AdminEditBaner",
+               "admin/baner/{id}/edit",
+               new { controller = "Baners", action = "EditBaner", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+               "AdminDeleteBaner",
+               "admin/baner/{id}/delete",
+               new { controller = "Baners", action = "DeleteBaner", id = UrlParameter.Optional }
+            );
+            #endregion
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

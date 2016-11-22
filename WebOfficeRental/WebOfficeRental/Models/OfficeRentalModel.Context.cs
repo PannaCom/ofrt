@@ -27,7 +27,6 @@ namespace WebOfficeRental.Models
     
         public virtual DbSet<ArticleCategory> ArticleCategories { get; set; }
         public virtual DbSet<article> articles { get; set; }
-        public virtual DbSet<BannerAdv> BannerAdvs { get; set; }
         public virtual DbSet<building> buildings { get; set; }
         public virtual DbSet<city> cities { get; set; }
         public virtual DbSet<menu> menus { get; set; }
@@ -38,5 +37,6 @@ namespace WebOfficeRental.Models
         public virtual DbSet<UserClaim> UserClaims { get; set; }
         public virtual DbSet<UserLogin> UserLogins { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<BannerAdv> BannerAdvs { get; set; }
     }
 }

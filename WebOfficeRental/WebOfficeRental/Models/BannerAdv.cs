@@ -17,8 +17,5 @@ namespace WebOfficeRental.Models
         public int banner_adv_id { get; set; }
         public string banner_adv_name { get; set; }
         public string banner_adv_photo { get; set; }
-        public Nullable<int> banner_adv_position { get; set; }
-        public Nullable<System.DateTime> banner_adv_fromdate { get; set; }
-        public Nullable<System.DateTime> banner_adv_todate { get; set; }
     }
 }

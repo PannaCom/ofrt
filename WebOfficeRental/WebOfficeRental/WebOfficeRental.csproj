@@ -185,6 +185,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BanersController.cs" />
     <Compile Include="Controllers\LoadController.cs" />
     <Compile Include="Controllers\BuildsController.cs" />
     <Compile Include="Controllers\CitysController.cs" />
@@ -1163,6 +1164,7 @@
     <Content Include="Themes\KodeProperty\Views\Home\_SectionAllBuilds.cshtml" />
     <Content Include="Themes\KodeProperty\Views\Home\_SectionSearch.cshtml" />
     <Content Include="Themes\KodeProperty\Views\Home\_SectionRegisterEmail.cshtml" />
+    <Content Include="Views\Baners\ListBaners.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
