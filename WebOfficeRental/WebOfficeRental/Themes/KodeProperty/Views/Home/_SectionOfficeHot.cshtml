@@ -1,0 +1,71 @@
+﻿@using WebOfficeRental.Models
+@using WebOfficeRental.Helpers
+@model List<office>
+
+<div class="kf_banner_wrap">
+    <ul class="banner_bxslider">
+        @if (Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+                <li>
+                    <img src="@item.office_photo_slider" alt="">
+                    <div class="kf_schedule_wrap">
+                        <h3>@item.office_name</h3>
+                        <p>@if(item.office_address != null) {<text>@item.office_address - </text>} @item.building.building_address</p>
+                        <ul class="kf_schedule_room">
+                            <li>Diện tích: @item.office_acreage m<sup>2</sup></li>
+                            <li>Số cửa: @item.office_door</li>
+                            <li>Số bàn ghế: @item.office_table</li>
+                        </ul>
+                        <div class="kf_schedule_visit">
+                            <h4>
+                                @if (item.office_price_public == -1)
+                                {
+                                    <text>Thỏa thuận</text>
+                                }
+                                else
+                                {
+                                    <text>@string.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:#,###}", item.office_price_public)</text>
+                                }
+                            </h4>
+                            <a href="@string.Format("/van-phong/{0}/{1}-{2}", configs.unicodeToNoMark(@item.building.bulding_name), configs.unicodeToNoMark(@item.office_name), @item.office_id)">Đặt thuê</a>
+                        </div>
+                    </div>
+                </li>
+            }
+        }
+        @*<li>
+            <img src="/extra-images/banner-01.jpg" alt="">
+            <div class="kf_schedule_wrap">
+                <h3>SABESTIAN VILLA 1</h3>
+                <p>123, NEAR SHAMMER LAKE, NEW YOURK, NY - 10001</p>
+                <ul class="kf_schedule_room">
+                    <li>03 Bedroom </li>
+                    <li>03 Bathrooms </li>
+                    <li>2790 Sq Ft Area </li>
+                </ul>
+                <div class="kf_schedule_visit">
+                    <h4>$1,555,450</h4>
+                    <a href="#">Schedule Visit</a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <img src="/extra-images/banner-02.jpg" alt="">
+            <div class="kf_schedule_wrap">
+                <h3>SABESTIAN VILLA 2</h3>
+                <p>123, NEAR SHAMMER LAKE, NEW YOURK, NY - 10001</p>
+                <ul class="kf_schedule_room">
+                    <li>03 Bedroom </li>
+                    <li>03 Bathrooms </li>
+                    <li>2790 Sq Ft Area </li>
+                </ul>
+                <div class="kf_schedule_visit">
+                    <h4>$1,555,450</h4>
+                    <a href="#">Schedule Visit</a>
+                </div>
+            </div>
+        </li>*@
+    </ul>
+</div>

@@ -156,7 +156,7 @@ namespace WebOfficeRental.Models
         [Required(ErrorMessage = "{0} không được để trống.")]
         public Nullable<int> office_table { get; set; }
 
-        [Display(Name = "Ảnh nhỏ")]
+        [Display(Name = "Ảnh văn phòng")]
         [Required(ErrorMessage = "{0} không được để trống.")]
         [StringLength(250, ErrorMessage = "{0} không được dài quá 250 ký tự.")]
         public string office_photo { get; set; }
@@ -174,6 +174,8 @@ namespace WebOfficeRental.Models
         public Nullable<int> buiding_id { get; set; }
 
         public int[] dichvuvp { get; set; }
+
+        public bool? status { get; set; }
     }
 
 }

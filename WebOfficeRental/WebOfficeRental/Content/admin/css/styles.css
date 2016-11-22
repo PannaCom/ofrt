@@ -481,3 +481,7 @@ table.table_order_stt tr td:first-child::before {
 .dz-preview {
     display: none!important;
 }
+
+.text-line-through {
+   text-decoration: line-through;
+}

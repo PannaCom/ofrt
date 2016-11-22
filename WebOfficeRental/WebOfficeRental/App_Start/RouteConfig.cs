@@ -181,9 +181,15 @@ namespace WebOfficeRental
 
             routes.MapRoute(
                "AdminDeleteOffice",
-               "admin/offices/{id}/delete",
+               "admin/office/{id}/delete",
                new { controller = "Offices", action = "DeleteOffice", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+              "AdminRestoreOffice",
+              "admin/office/{id}/restore",
+              new { controller = "Offices", action = "RestoreOffice", id = UrlParameter.Optional }
+           );
 
             #endregion
 

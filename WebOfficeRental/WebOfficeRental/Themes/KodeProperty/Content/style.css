@@ -655,7 +655,6 @@ p {
 }
 .kf_banner_wrap ul.banner_bxslider li{
 	float:left;
-	width:100%;
 	position:relative;	
 }
 .kf_banner_wrap ul.banner_bxslider > li:before{

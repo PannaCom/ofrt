@@ -64,7 +64,7 @@
                         </div>
                         <!--Logo Wrap End-->
                         <div class="kf_hdr2_search">
-                            <input type="text" placeholder="Search keyword...">
+                            <input type="text" placeholder="Nhập từ khóa tìm kiếm...">
                             <a href="#" style="position: absolute; top: 8px;"><i class="fa fa-search"></i></a>
                         </div>
                         <!--top_navi_caption start-->
@@ -93,7 +93,7 @@
                     <!--law_navigation_list start-->
                     <div class="kf_hdr2_nav_list">
                         <!--law_navigtion start-->
-                        @Html.Partial("_MenuPartial")
+                        @{Html.RenderAction("LoadMenu", "Home");}
                         <!--law_navigtion end-->
                         <!--law_navigation_social_icon start-->
                         <div class="kf_menu_scl_icon">
@@ -106,7 +106,7 @@
                         </div>
                         <!--law_navigation_social_icon end-->
                         <!--DL Menu Start-->
-                        @Html.Partial("_MenuMobile")                        
+                        @{Html.RenderAction("LoadMenuMobile", "Home"); }                       
                         <!--DL Menu END-->
 
                     </div>
@@ -116,45 +116,10 @@
             </div>
             <!--Navigation & Social Icon Wrap Start-->
         </header>
+        @RenderBody()
         <!--Header 3 Wrap End-->
         <!--Main Banner Wrap Start-->
-        <div class="kf_banner_wrap">
-            <ul class="banner_bxslider">
-                <li>
-                    <img src="extra-images/banner-01.jpg" alt="">
-                </li>
-                <li>
-                    <img src="extra-images/banner-02.jpg" alt="">
-                </li>
-                <li>
-                    <img src="extra-images/banner-03.jpg" alt="">
-                </li>
-                <li>
-                    <img src="extra-images/banner-04.jpg" alt="">
-                </li>
-                <li>
-                    <img src="extra-images/banner-05.jpg" alt="">
-                </li>
-                <li>
-                    <img src="extra-images/banner-06.jpg" alt="">
-                </li>
-            </ul>
-            <!--Schedule Visit Wrap Start-->
-            <div class="kf_schedule_wrap">
-                <h3>SABESTIAN VILLA</h3>
-                <p>123, NEAR SHAMMER LAKE, NEW YOURK, NY - 10001</p>
-                <ul class="kf_schedule_room">
-                    <li>03 Bedroom </li>
-                    <li>03 Bathrooms </li>
-                    <li>2790 Sq Ft Area </li>
-                </ul>
-                <div class="kf_schedule_visit">
-                    <h4>$1,555,450</h4>
-                    <a href="#">Schedule Visit</a>
-                </div>
-            </div>
-            <!--Schedule Visit Wrap End-->
-        </div>
+        
         <!--Main Banner Wrap End-->
         <!--Content Wrap Start-->
         <div class="kf_property_content_wrap">
@@ -1570,7 +1535,7 @@
                 </div>
                 <!--Blog List Wrap End-->
             </section>
-            @RenderBody();
+           
         </div>
         
         <!--Latest Blog Post Wrap End-->

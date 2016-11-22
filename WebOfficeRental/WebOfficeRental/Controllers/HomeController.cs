@@ -37,9 +37,15 @@ namespace WebOfficeRental.Controllers
             return View();
         }
 
-        public string LoadMenu()
+        private List<menu> GetMenu()
         {
             var menu = (from m in db.menus where m.menu_parent_id == 1 orderby m.menu_position_index select m).ToList();
+            return menu;
+        }
+
+        public ActionResult LoadMenu()
+        {
+            var menu = GetMenu();
             string _menu = "";
             foreach (var item in menu)
             {
@@ -57,10 +63,37 @@ namespace WebOfficeRental.Controllers
                 }
                 _menu += li + "</li>";
             }
-            return _menu;
+            return PartialView("_MenuPartial", _menu);
         }
 
-        
+        public ActionResult LoadMenuMobile()
+        {
+            var menu = GetMenu();
+            string _menu = "";
+            foreach (var item in menu)
+            {
+                var li = string.Format("<li class='{0}'><a href='{1}'>{2}</a>", item.menus1.Count > 0 ? "menu-item kode-parent-menu" : "", item.menu_url, item.menu_name);
+                if (item.menus1.Count > 0)
+                {
+                    var ul = "<ul class='dl-submenu'>";
+                    foreach (var item2 in item.menus1)
+                    {
+                        var li2 = string.Format("<li><a href='{0}'>{1}</a></li>", item2.menu_url, item2.menu_name);
+                        ul += li2;
+                    }
+                    ul += "</ul>";
+                    li += ul;
+                }
+                _menu += li + "</li>";
+            }
+            return PartialView("_MenuMobile", _menu);
+        }
+
+        public ActionResult LoadOfficeNewHot()
+        {
+            var model = (from o in db.offices where o.status == true && o.office_new_type == 2 orderby o.updated_date descending select o).ToList();
+            return PartialView("_SectionOfficeHot", model);
+        }
 
     }
 }

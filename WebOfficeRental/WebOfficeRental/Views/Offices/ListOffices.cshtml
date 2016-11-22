@@ -78,6 +78,7 @@
                                 <th>Giá cả</th>
                                 <th>Ngày đăng</th>
                                 <th>Tòa nhà</th>
+                                <th class="no-sort">Trạng thái</th>
                                 <th style="width: 144px;" class="no-sort"></th>
                             </tr>
                         </thead>
@@ -88,7 +89,7 @@
                                 {
                                     foreach (var item in Model)
                                     {
-                                        <tr>
+                                        <tr class='@if (item.status == false) {<text>text-line-through</text>}'>
                                             <td style="text-align: center;"></td>
                                             <td>@item.office_name</td>
                                             <td>
@@ -108,7 +109,7 @@
                                                 {
                                                     <span>Văn phòng khác</span>
                                                 }
-                                            
+
                                             </td>
                                             <td style="text-align: right;">
                                                 @if (item.office_price_public == -1)
@@ -117,7 +118,7 @@
                                                 }
                                                 else
                                                 {
-                                                    <span>@string.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"),"{0:#,###}", item.office_price_public)</span>
+                                                    <span>@string.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:#,###}", item.office_price_public)</span>
                                                 }
                                             </td>
                                             <td>
@@ -125,8 +126,16 @@
                                             </td>
                                             <td>@item.building.bulding_name</td>
                                             <td>
+                                                @if (item.status == false)
+                                                {
+                                                    <span>Đã xóa</span>
+                                                }
+                                            </td>
+                                            <td>
                                                 <span class="btn btn-primary" onclick="gotoUrl('@Url.RouteUrl("AdminEditOffice", new { id = item.office_id })')"><i class="fa fa-edit"></i> Sửa</span>
                                                 <span class="btn btn-danger" onclick="gotoUrl('@Url.RouteUrl("AdminDeleteOffice", new { id = item.office_id })')"><i class="fa fa-trash"></i> Xóa</span>
+                                               
+                                                
                                             </td>
                                         </tr>
                                     }

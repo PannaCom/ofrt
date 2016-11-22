@@ -1,5 +1,18 @@
 $(document).ready(function(){
-	"use strict";
+    "use strict";
+    //$.ajax({
+	//    url: "/Home/LoadMenu",
+	//    cache: false
+	//}).done(function (html) {
+	//    $("#menu > ul").html("" + html);
+	//});
+
+	//$.ajax({
+	//    url: "/Home/LoadMenuMobile",
+	//    cache: false
+	//}).done(function (html) {
+	//    $("#kode-responsive-navigation > ul").html("" + html);
+	//});
 	
 	/*
 	  ==============================================================
@@ -7,7 +20,9 @@ $(document).ready(function(){
 	  ============================================================== */
 	if($('.banner_bxslider').length){
 		$('.banner_bxslider').bxSlider({
-			auto:true,
+		    auto: ($(".banner_bxslider li").length > 1) ? true: false,
+		    pager: ($(".banner_bxslider li").length > 1) ? true : false,
+		    pause: 5000
 		});
 	}
 	
@@ -20,7 +35,7 @@ $(document).ready(function(){
 				if( $(this).siblings('a').attr('href') && $(this).siblings('a').attr('href') != '#' ){
 					var parent_nav = $('<li class="menu-item kode-parent-menu"></li>');
 					parent_nav.append($(this).siblings('a').clone());
-					
+
 					$(this).prepend(parent_nav);
 				}
 			});
@@ -379,9 +394,4 @@ $(document).ready(function(){
 		map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
 	}
 
-	$.ajax({
-	    url: "/Home/LoadMenu",
-	    cache: false
-	}).done(function (html) {
-	    $("#menu > ul").html("" + html);
-	});
+	

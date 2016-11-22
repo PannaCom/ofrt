@@ -155,18 +155,15 @@
 {
     <script>
     $(window).on('load', function () {
-        $('#provinces').val('@Html.Raw(Model.provinces)');
         $.ajax({
             url: "/Load/getQuanHuyen?keyword=@Html.Raw(Model.provinces)",
                 cache: false
             }).done(function (html) {
                 $("#district").html("" + html);
+                @if(@Model.district != null){
+                    <text>$('#district').val('@Html.Raw(Model.district)');</text>
+                }
             });
-
-            setTimeout(function () {
-                $('#district').val('@Html.Raw(Model.district ?? "")');
-            }, 500);
-
         })
     </script>
 }
@@ -177,50 +174,55 @@
 
     <script>
 
+    $.ajax({
+        url: "/Load/getTinhThanh",
+        cache: false
+    }).done(function (html) {
+        $("#provinces").html("" + html);
+        @if (@Model.provinces != null) {
+            <text>$('#provinces').val('@Html.Raw(Model.provinces)');</text>
+        }
+    });
+
+    function getQuanHuyen() {
         $.ajax({
-            url: "/Load/getTinhThanh",
+            url: "/Load/getQuanHuyen?keyword=" + $("#provinces").val(),
             cache: false
         }).done(function (html) {
-            $("#provinces").html("" + html);
+            $("#district").html("" + html);            
         });
-        function getQuanHuyen() {
+    }
+
+    function getCity() {
+        if ($("#district").val() !== "") {
             $.ajax({
-                url: "/Load/getQuanHuyen?keyword=" + $("#provinces").val(),
+                url: "/Builds/getCityId?tinh=" + $("#provinces").val() + "&huyen=" + $("#district").val(),
                 cache: false
             }).done(function (html) {
-                $("#district").html("" + html);
+                $("#city_id").val(html);
+
             });
         }
+    }
 
-        function getCity() {
-            if ($("#district").val() !== "") {
-                $.ajax({
-                    url: "/Builds/getCityId?tinh=" + $("#provinces").val() + "&huyen=" + $("#district").val(),
-                    cache: false
-                }).done(function (html) {
-                    $("#city_id").val(html);
-                });
-            }
-        }
-
-        $("input#building_address").geocomplete();
-        $.validator.setDefaults({
-            ignore: ""
-        });
-        $(document).ready(function () {
-            $('#building_picture').val() !== "" ? $('#divbuilding_picture').css('background-image', 'url("' + $('#building_picture').val() + '")') : false;
-            Dropzone.autoDiscover = false;
-            UploadImage('#dzbuilding_picture', '#divbuilding_picture', '#building_picture', 2);
-            $('.closed').click(function (e) {
-                e.preventDefault();
-                if ($(this).siblings('input').val() !== "") {
-                    if (confirm("Bạn chắc chắn muốn xóa ảnh?")) {
-                        $(this).parent('.upanh').css('background-image', 'url("/Content/img/no-image.png")');
-                        $(this).siblings('input').val('');
-                    }
+    $("input#building_address").geocomplete();
+    $.validator.setDefaults({
+        ignore: ""
+    });
+    $(document).ready(function () {
+        $('#building_picture').val() !== "" ? $('#divbuilding_picture').css('background-image', 'url("' + $('#building_picture').val() + '")') : false;
+        Dropzone.autoDiscover = false;
+        UploadImage('/Load/SaveImage', '#dzbuilding_picture', '#divbuilding_picture', '#building_picture', 10);
+        $('.closed').click(function (e) {
+            e.preventDefault();
+            if ($(this).siblings('input').val() !== "") {
+                if (confirm("Bạn chắc chắn muốn xóa ảnh?")) {
+                    $(this).parent('.upanh').css('background-image', 'url("/Content/img/no-image.png")');
+                    $(this).siblings('input').val('');
                 }
-            });
+            }
         });
+    });
 
     </script>
 }

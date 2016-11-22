@@ -135,7 +135,8 @@ namespace WebOfficeRental.Controllers
                 office_photo_slider = model.office_photo_slider,
                 office_other_descriptions = model.office_other_descriptions,
                 buiding_id = model.buiding_id,
-                dichvuvp = model.OfficeServices.Select(x=>x.service_id).ToArray()
+                dichvuvp = model.OfficeServices.Select(x=>x.service_id).ToArray(),
+                status = model.status
             };
 
             ViewBag.OfficeName = model.office_name;
@@ -243,7 +244,9 @@ namespace WebOfficeRental.Controllers
 
             try
             {
-                db.offices.Remove(model);
+                model.deleted_date = DateTime.Now;
+                model.status = false;
+                db.Entry(model).State = System.Data.Entity.EntityState.Modified;
                 await db.SaveChangesAsync();
                 TempData["Deleted"] = "Đã xóa văn phòng thành công.";
             }
@@ -253,6 +256,35 @@ namespace WebOfficeRental.Controllers
             }
 
             return RedirectToRoute("AdminListOffices");
+        }
+
+        //RestoreOffice       
+        public async Task<ActionResult> RestoreOffice(long? id)
+        {           
+            try
+            {
+                var _office = await db.offices.FindAsync(id);
+                if (_office != null)
+                {
+                    if (_office.status == false)
+                    {
+                        _office.status = true;
+                        db.Entry(_office).State = System.Data.Entity.EntityState.Modified;
+                        await db.SaveChangesAsync();
+
+                        TempData["Updated"] = "Văn phòng đã được khôi phục.";
+                    }
+                    
+                }
+                return RedirectToRoute("AdminEditOffice", new { id = id });
+            }
+            catch (Exception ex)
+            {
+                TempData["Errored"] = "Có lỗi xảy ra khi khôi phục.";
+                configs.SaveTolog(ex.ToString());
+                return RedirectToRoute("AdminEditOffice", new { id = id });
+            }
+
         }
 
         public string getToaNha()

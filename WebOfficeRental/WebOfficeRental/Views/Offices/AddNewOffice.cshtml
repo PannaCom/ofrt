@@ -184,13 +184,14 @@
                             <div id="dzoffice_photo" class="dropzone undropzone">
                             </div>
                             @Html.ValidationMessageFor(m => m.office_photo, "", new { @class = "text-danger" })
+                            <span class="help-block">Nên chọn hình có kích thước 1x1, ví dụ 500x500px.</span>
                         </div>
                     </div>
 
                     <div class="form-group">
                         @Html.LabelFor(m => m.office_photo_slider, new { @class = "col-md-4 control-label required-after" })
                         <div class="col-md-6">
-                            <div id="divoffice_photo_slider" class="upanh">
+                            <div id="divoffice_photo_slider" class="upanh" style="width: 100%;">
                                 <a class="closed"><i class="fa fa-close fa-2x"></i></a>
                                 @Html.HiddenFor(m => m.office_photo_slider)
                                 <i class="fa fa-plus fa-3x"></i>
@@ -198,6 +199,7 @@
                             <div id="dzoffice_photo_slider" class="dropzone undropzone">
                             </div>
                             @Html.ValidationMessageFor(m => m.office_photo_slider, "", new { @class = "text-danger" })
+                            <span class="help-block">Nên chọn hình có kích thước 16:9, ví dụ 1920x790px.</span>
                         </div>
                     </div>
 
@@ -280,8 +282,8 @@
         $(document).ready(function () {
 
             Dropzone.autoDiscover = false;
-            UploadImage('#dzoffice_photo', '#divoffice_photo', '#office_photo', 5);
-            UploadImage('#dzoffice_photo_slider', '#divoffice_photo_slider', '#office_photo_slider', 5);
+            UploadImage('/Load/SaveImage', '#dzoffice_photo', '#divoffice_photo', '#office_photo', 12);
+            UploadImage('/Load/SaveImageBig', '#dzoffice_photo_slider', '#divoffice_photo_slider', '#office_photo_slider', 12);
             $('.closed').click(function (e) {
                 e.preventDefault();
                 if ($(this).siblings('input').val() !== "") {

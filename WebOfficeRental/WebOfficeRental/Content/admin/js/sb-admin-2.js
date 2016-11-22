@@ -127,9 +127,9 @@ jQuery.fn.confirmSubmit = function (message) {
     });
 };
 
-function UploadImage(d1, d2, d3, i1) {
+function UploadImage(urllink, d1, d2, d3, i1) { /*Hàm upanh, phần tử up ảnh, phần tử hiện thị, input nhận, dung lượng ảnh cho phép*/
     var myUpAnh = new Dropzone(d1, {
-        url: "/Load/SaveImage",
+        url: urllink,
         addRemoveLinks: true,
         maxFiles: 1,
         maxFilesize: i1,
