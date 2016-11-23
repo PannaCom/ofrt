@@ -1,0 +1,67 @@
+﻿<!--Header 3 Wrap Start-->
+<header class="header2">
+    <!--Logo & Ui Element Wrap Start-->
+    <div class="kf_hdr2_logo_bar" style="background-color: #0066B1;">
+        <!--container start-->
+        <div class="container">
+            <!--top_navi_logo start-->
+            <div class="kf_hdr2_logo_wrap">
+                <!--Logo Wrap Start-->
+                <div class="kf_logo">
+                    <a href="/"><img src="images/logo3.png" alt=""></a>
+                </div>
+                <!--Logo Wrap End-->
+                <div class="kf_hdr2_search">
+                    <input type="text" placeholder="Nhập từ khóa tìm kiếm...">
+                    <a href="#" style="position: absolute; top: 8px;"><i class="fa fa-search"></i></a>
+                </div>
+                <!--top_navi_caption start-->
+                <div class="top_navi_caption nav navbar-right">
+                    <ul>
+                        <li>
+                            <div class="top_navi_circal">
+                                <div class="top_navi_kode">
+                                    <h3>HOTLINE: 0123456789</h3>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!--top_navi_caption end-->
+            </div>
+            <!--top_navi_logo end-->
+        </div>
+        <!--container end-->
+    </div>
+    <!--Logo & Ui Element Wrap End-->
+    <!--Navigation & Social Icon Wrap Start-->
+    <div class="kf_hdr2_navigation" style="background: #468DBB;">
+        <!--container start-->
+        <div class="container">
+            <!--law_navigation_list start-->
+            <div class="kf_hdr2_nav_list">
+                <!--law_navigtion start-->
+                @{Html.RenderAction("LoadMenu", "Home");}
+                <!--law_navigtion end-->
+                <!--law_navigation_social_icon start-->
+                <div class="kf_menu_scl_icon">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google"></i></a></li>
+                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                    </ul>
+                </div>
+                <!--law_navigation_social_icon end-->
+                <!--DL Menu Start-->
+                @{Html.RenderAction("LoadMenuMobile", "Home"); }
+                <!--DL Menu END-->
+
+            </div>
+            <!--law_navigation_list end-->
+        </div>
+        <!--container end-->
+    </div>
+    <!--Navigation & Social Icon Wrap Start-->
+</header>
+<!--Header 3 Wrap End-->

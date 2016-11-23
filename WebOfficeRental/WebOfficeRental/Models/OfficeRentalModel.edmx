@@ -43,6 +43,7 @@
           <Property Name="banner_adv_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="banner_adv_name" Type="nvarchar" MaxLength="250" />
           <Property Name="banner_adv_photo" Type="nvarchar" MaxLength="550" />
+          <Property Name="Link" Type="nvarchar" MaxLength="550" />
         </EntityType>
         <EntityType Name="buildings">
           <Key>
@@ -113,6 +114,13 @@
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="office_id" Type="bigint" Nullable="false" />
           <Property Name="service_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="register_email">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmailOrPhone" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -334,6 +342,7 @@
           <EntitySet Name="menus" EntityType="Self.menus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="offices" EntityType="Self.offices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OfficeServices" EntityType="Self.OfficeServices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="register_email" EntityType="Self.register_email" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="services" EntityType="Self.services" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserClaims" EntityType="Self.UserClaims" Schema="dbo" store:Type="Tables" />
@@ -451,6 +460,7 @@
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <EntitySet Name="BannerAdvs" EntityType="officerentalModel.BannerAdv" />
+          <EntitySet Name="register_email" EntityType="officerentalModel.register_email" />
         </EntityContainer>
         <EntityType Name="ArticleCategory">
           <Key>
@@ -761,6 +771,14 @@
           <Property Name="banner_adv_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="banner_adv_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="banner_adv_photo" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="register_email">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmailOrPhone" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -941,9 +959,18 @@
           <EntitySetMapping Name="BannerAdvs">
             <EntityTypeMapping TypeName="officerentalModel.BannerAdv">
               <MappingFragment StoreEntitySet="BannerAdvs">
+                <ScalarProperty Name="Link" ColumnName="Link" />
                 <ScalarProperty Name="banner_adv_photo" ColumnName="banner_adv_photo" />
                 <ScalarProperty Name="banner_adv_name" ColumnName="banner_adv_name" />
                 <ScalarProperty Name="banner_adv_id" ColumnName="banner_adv_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="register_email">
+            <EntityTypeMapping TypeName="officerentalModel.register_email">
+              <MappingFragment StoreEntitySet="register_email">
+                <ScalarProperty Name="EmailOrPhone" ColumnName="EmailOrPhone" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

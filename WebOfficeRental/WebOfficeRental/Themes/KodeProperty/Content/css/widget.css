@@ -26,7 +26,7 @@
 	position:relative;
 	margin:0 0 30px;
 	padding:0 0 15px;
-	text-transform:uppercase;	
+	/*text-transform:uppercase;*/	
 }
 .widget > h6:before{
 	content:"";
@@ -167,9 +167,28 @@ ul.kf_foo_listing_meta li i{
 	float:left;
 	width:100%;
 	position:relative;
-	padding:12px 0;
-	border-bottom:1px solid #303231;	
+	padding:5px 0;
+	/*border-bottom:1px solid #303231;*/
 }
+
+.kf_foo_contact li {
+    padding-bottom: 5px;
+}
+
+.kf_foo_contact li a {
+    color: #fff;
+}
+
+.kf_foo_latest_wrap li a {
+    color: #fff;	
+    border-bottom: 1px solid transparent;
+}
+
+.kf_foo_latest_wrap li:hover a {
+    color: #e4e4e4;	
+    border-color: #e4e4e4;
+}
+
 .kf_foo_latest_wrap li:first-child{
 	padding-top:0px;	
 }

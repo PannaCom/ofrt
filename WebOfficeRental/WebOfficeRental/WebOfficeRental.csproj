@@ -241,6 +241,9 @@
     <Compile Include="Models\OfficeService.cs">
       <DependentUpon>OfficeRentalModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\register_email.cs">
+      <DependentUpon>OfficeRentalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Role.cs">
       <DependentUpon>OfficeRentalModel.tt</DependentUpon>
     </Compile>
@@ -367,6 +370,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="home--full2.jpg" />
     <Content Include="images\logo2.png" />
+    <Content Include="images\logo3.png" />
+    <Content Include="images\logo4.png" />
     <Content Include="index.html" />
     <Content Include="Models\OfficeRentalModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -851,6 +856,8 @@
     <Content Include="Themes\KodeProperty\Content\css\font-awesome.css" />
     <Content Include="Themes\KodeProperty\Content\css\images\bx_loader.gif" />
     <Content Include="Themes\KodeProperty\Content\css\images\controls.png" />
+    <Content Include="Themes\KodeProperty\Content\css\images\taisao_bg.png" />
+    <Content Include="Themes\KodeProperty\Content\css\images\toanha_bg.png" />
     <Content Include="Themes\KodeProperty\Content\css\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Themes\KodeProperty\Content\css\images\ui-bg_glass_75_e6e6e6_1x400.png" />
     <Content Include="Themes\KodeProperty\Content\css\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
@@ -1165,6 +1172,16 @@
     <Content Include="Themes\KodeProperty\Views\Home\_SectionSearch.cshtml" />
     <Content Include="Themes\KodeProperty\Views\Home\_SectionRegisterEmail.cshtml" />
     <Content Include="Views\Baners\ListBaners.cshtml" />
+    <Content Include="Views\Baners\AddNewBaner.cshtml" />
+    <Content Include="Views\Baners\EditBaner.cshtml" />
+    <Content Include="Views\Baners\DeleteBaner.cshtml" />
+    <Content Include="Themes\KodeProperty\Views\Home\_SectionCompnay.cshtml" />
+    <Content Include="Themes\KodeProperty\Views\Home\_SectionMapWrap.cshtml" />
+    <Content Include="Themes\KodeProperty\Views\Home\_SectionNumCounter.cshtml" />
+    <Content Include="Themes\KodeProperty\Views\Home\_SectionWhyChooseWe.cshtml" />
+    <Content Include="Themes\KodeProperty\Views\Shared\_FooterPartial.cshtml" />
+    <Content Include="Themes\KodeProperty\Views\Shared\_HeaderPartial.cshtml" />
+    <Content Include="Themes\KodeProperty\Views\Home\_SectionOfficeType.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -178,4 +178,21 @@ namespace WebOfficeRental.Models
         public bool? status { get; set; }
     }
 
+    public class banerVM
+    {
+        public int Id { get; set; }
+        [Display(Name = "Tên banner")]
+        [Required(ErrorMessage = "{0} không được để trống.")]
+        [StringLength(250, ErrorMessage = "{0} không được dài quá 250 ký tự.")]
+        public string name { get; set; }
+        [Display(Name = "Đường dẫn")]
+        [Required(ErrorMessage = "{0} không được để trống.")]
+        public string link { get; set; }
+        [Display(Name = "Hình ảnh")]
+        [Required(ErrorMessage = "{0} không được để trống.")]
+        [StringLength(500, ErrorMessage = "{0} không được dài quá 500 ký tự.")]
+        public string photo { get; set; }
+    }
+
+
 }

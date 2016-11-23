@@ -12,11 +12,9 @@ namespace WebOfficeRental.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class BannerAdv
+    public partial class register_email
     {
-        public int banner_adv_id { get; set; }
-        public string banner_adv_name { get; set; }
-        public string banner_adv_photo { get; set; }
-        public string Link { get; set; }
+        public long Id { get; set; }
+        public string EmailOrPhone { get; set; }
     }
 }

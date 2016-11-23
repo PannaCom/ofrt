@@ -1,0 +1,120 @@
+﻿@using WebOfficeRental.Models
+@model banerVM
+@{
+    ViewBag.Title = "Sửa baner quảng cáo";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section styles {
+    @Styles.Render("~/Content/dropzonescss")
+}
+@section PageTitleHeader {
+    <div class="page-header">
+        <h3><i class="fa fa-send fa-2x fa-color-red"></i> @ViewBag.Title</h3>
+    </div>
+    @if (TempData["Updated"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            @Html.Raw(TempData["Updated"])
+        </div>
+    }
+
+    @if (TempData["Errored"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            @Html.Raw(TempData["Errored"])
+        </div>
+    }
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default box box-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Sửa địa chỉ <b>@ViewBag.disTrict</b></h3>
+            </div>
+
+            <div class="panel-body">
+                @using (Html.BeginForm("EditBaner", "Baners", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", role = "form", @id = "form-edit-baner" }))
+                {
+                    <h4>Vui lòng nhập đầy đủ các trường có dấu <span class="color-red">(*)</span></h4>
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(m => m.Id)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-4 required-after" })
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(model => model.name, htmlAttributes: new { @class = "form-control", placeholder = "Nhập tên baner quảng cáo" })
+                            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.link, htmlAttributes: new { @class = "control-label col-md-4 required-after" })
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(model => model.link, htmlAttributes: new { @class = "form-control", placeholder = "Nhập địa chỉ truy cập" })
+                            @Html.ValidationMessageFor(model => model.link, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.photo, new { @class = "col-md-4 control-label required-after" })
+                        <div class="col-md-6">
+                            <div id="divphoto" class="upanh">
+                                <a class="closed"><i class="fa fa-close fa-2x"></i></a>
+                                @Html.HiddenFor(m => m.photo)
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                            <div id="dzphoto" class="dropzone undropzone">
+                            </div>
+                            @Html.ValidationMessageFor(m => m.photo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-4 col-md-8">
+                            <button class="btn btn-primary"><i class="fa fa-edit"></i> Cập nhật</button>
+                            <span class="btn btn-danger" onclick="gotoUrl('@Url.RouteUrl("AdminDeleteBaner", new { id = Model.Id })')"><i class="fa fa-trash"></i> Xóa</span>
+                        </div>
+                    </div>
+
+                }
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/dropzonescripts")
+    <script>
+        $.validator.setDefaults({
+            ignore: ""
+        });
+        $(document).ready(function () {
+            $('#photo').val() !== "" ? $('#divphoto').css('background-image', 'url("' + $('#photo').val() + '")') : false;
+            Dropzone.autoDiscover = false;
+            UploadImage('/Load/SaveImage', '#dzphoto', '#divphoto', '#photo', 12);
+            $('.closed').click(function (e) {
+                e.preventDefault();
+                if ($(this).siblings('input').val() !== "") {
+                    if (confirm("Bạn chắc chắn muốn xóa ảnh?")) {
+                        $(this).parent('.upanh').css('background-image', 'url("/Content/img/no-image.png")');
+                        $(this).siblings('input').val('');
+                    }
+                }
+            });
+        })
+    </script>
+}

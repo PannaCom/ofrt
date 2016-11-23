@@ -1,0 +1,24 @@
+﻿@using WebOfficeRental.Models
+@using WebOfficeRental.Helpers
+@model List<BannerAdv> 
+<!--Company Wrap Start-->
+<div class="kf_property_compnay_bg">
+    <div class="container">
+
+        <div class="kf_company_slider owl-carousel owl-theme">
+            @if (Model.Count > 0)
+            {
+                foreach (var item in Model)
+                {
+                    <div class="item">
+                        <div class="kf_compnay_wrap">
+                            <a href="@item.Link"><img src="@item.banner_adv_photo" alt="@item.banner_adv_name"></a>
+                        </div>
+                    </div>
+                }
+            }            
+           
+        </div>
+    </div>
+</div>
+<!--Company Wrap End-->

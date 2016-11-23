@@ -1,8 +1,151 @@
-﻿
+﻿@model PagedList.IPagedList<WebOfficeRental.Models.BannerAdv>
+@using PagedList.Mvc;
 @{
-    ViewBag.Title = "ListBaners";
+    ViewBag.Title = "Danh sách quảng cáo";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>ListBaners</h2>
+@section Styles {
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <link href="~/Content/admin/vendor/datatable/dataTables.bootstrap.min.css" rel="stylesheet" />
+}
 
+<div class="row">
+    <div class="col-lg-12">
+        <div class="page-header">
+            <h3>@ViewBag.Title <span class="btn btn-primary pull-right" onclick="gotoUrl('@Url.RouteUrl("AdminAddBaner")')"><i class="fa fa-plus"></i> Thêm banner quảng cáo</span></h3>
+        </div>
+        @if (TempData["Deleted"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                @Html.Raw(TempData["Deleted"])
+            </div>
+        }
+
+        @if (TempData["Updated"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                @Html.Raw(TempData["Updated"])
+            </div>
+        }
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default box box-primary">
+            <div class="panel-heading">
+                @using (Html.BeginForm("AdminListBaners", "Baners", FormMethod.Get, new { @class = "form-inline", role = "form", @id = "search-baner", onsubmit = "return validate()" }))
+                {
+                    <div class="form-group">
+                        <label for="searchQuery" class="control-label">Tìm kiếm: </label>
+                        @Html.TextBox("search", "", new { @class = "form-control", placeholder = "Nhập tên từ khóa cần tìm" })
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-primary"><i class="fa fa-search"></i>Tìm kiếm</button>
+                    </div>
+                }
+            </div>
+
+            <script>
+                function validate() {
+                    if (document.getElementById("search").value === "") {
+                        alert('Vui lòng nhập từ khóa tìm kiếm');
+                        return false;
+                    } else {
+                        return true;
+                    };
+                }
+            </script>
+
+            <div class="panel-body">
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table_order_stt" id="table-baner">
+                        <thead>
+                            <tr>
+                                <th class="no-sort" style="width: 50px; text-align: center;">Số TT</th>
+                                <th>Tên quảng cáo</th>
+                                <th>Hình ảnh</th>
+                                <th style="width: 144px;" class="no-sort"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                if (Model.Count > 0)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td style="text-align: center;"></td>
+                                            <td>@item.banner_adv_name</td>
+                                            <td><img width="100" src="@item.banner_adv_photo" /></td>
+                                            <td>
+                                                <span class="btn btn-primary" onclick="gotoUrl('@Url.RouteUrl("AdminEditBaner", new { id = item.banner_adv_id })')"><i class="fa fa-edit"></i> Sửa</span>
+                                                <span class="btn btn-danger" onclick="gotoUrl('@Url.RouteUrl("AdminDeleteBaner", new { id = item.banner_adv_id })')"><i class="fa fa-trash"></i> Xóa</span>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="6">
+                                            Chưa có quảng cáo
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="6">
+                                        Chưa có quảng cáo
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                @if (Model != null)
+                {
+                    @Html.PagedListPager(Model, page => Url.RouteUrl("AdminListBaners", new { search = ViewBag.search, pg = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/datatable")
+    <script>
+
+        $(document).ready(function () {
+            $('#table-baner').DataTable({
+                paging: false,
+                "oLanguage": {
+                    "sEmptyTable": "Không tìm thấy quảng cáo",
+                    "sLoadingRecords": "Vui lòng - chờ...",
+                    "sSearch": "Tìm kiếm nhanh: ",
+                    "sZeroRecords": "Không tìm thấy quảng cáo.",
+                    "sInfo": ""
+                },
+                "order": [],
+                columnDefs: [
+                    { targets: 'no-sort', orderable: false }
+                ]
+            });
+        });
+
+    </script>
+}

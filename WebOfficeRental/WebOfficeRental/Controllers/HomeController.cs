@@ -101,5 +101,39 @@ namespace WebOfficeRental.Controllers
             return PartialView("_SectionAllBuilds", model);
         }
 
+        public ActionResult LoadCompnay()
+        {
+            var model = (from c in db.BannerAdvs orderby c.banner_adv_name select c).ToList();
+            return PartialView("_SectionCompnay", model);
+        }
+
+        [HttpPost]
+        public ActionResult RegisterEmail(string inputemail)
+        {
+            if (inputemail == null) inputemail = "";
+            int result = 0;
+            var _emailexist = db.register_email.Where(c => c.EmailOrPhone == inputemail).FirstOrDefault();
+            if (_emailexist != null)
+            {
+                result = 2;
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+
+            try
+            {
+                register_email model = new register_email();
+                model.EmailOrPhone = inputemail ?? null;
+                db.register_email.Add(model);
+                db.SaveChanges();
+                result = 1;
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                WebOfficeRental.Helpers.configs.SaveTolog(ex.ToString());
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+        }
+
     }
 }
