@@ -154,5 +154,20 @@ namespace WebOfficeRental.Controllers
             return View();
         }
 
+        public ActionResult VanPhong1()
+        {
+            return View();
+        }
+
+        public ActionResult VanPhong2()
+        {
+            return View();
+        }
+
+        public ActionResult ToaNha()
+        {
+            return View();
+        }
+
     }
 }
