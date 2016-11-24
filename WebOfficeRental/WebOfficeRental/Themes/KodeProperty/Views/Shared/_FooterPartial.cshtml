@@ -5,7 +5,7 @@
             <div class="col-md-3 col-sm-6">
                 <div class="kf_foo_contact">
                     <div class="kf_footer_logo">
-                        <a href="#"><img src="images/logo4.png" alt=""></a>
+                        <a href="#"><img src="../images/logo5.png" alt=""></a>
                     </div>
                     <ul class="kf_foo_address">
                         <li>
@@ -20,14 +20,7 @@
                             <i class="fa fa-map-marker"></i>
                             <span>P105 Ngõ 78 Duy Tân, Dịch Vọng, Cầu Giấy, Hà Nội</span>
                         </li>
-                    </ul>
-                    <ul class="kf_foo_social_icon">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    </ul>
+                    </ul>                    
                 </div>
             </div>
 
@@ -35,11 +28,11 @@
                 <div class="kf_foo_featured_listing widget">
                     <h6>Đăng ký nhận tin qua email</h6>
 
-                    <form class="kf_foo_listing_des" method="post">
+                    <form class="kf_foo_listing_des" method="post" id="kf_form_regmail">
                         <div class="form-group">
-                            <input placeholder="Nhập email" name="emailFooter" class="form-control" id="emailFooter" />
+                            <input placeholder="Nhập email" name="emailFooter" class="form-control" id="kf_form_regmail_input" />
                             <p>* Chúng tôi không spam bạn, bạn có thể hủy bất cứ lúc nào.</p>
-                            <button class="btn btn-primary">Đăng ký</button>
+                            <button class="btn btn-primary" id="kf_form_regmail_button"><i class="fa fa-spinner fa-pulse" style="display: none;"></i> Đăng ký</button>
                         </div>
                     </form>
                 </div>
@@ -81,10 +74,16 @@
                         <li><a href="#">Hà Nội  <span style="float: right;">(84) 456 789</span></a></li>
                         <li><a href="#">Hồ chí mình  <span style="float: right;">(84) 456 789</span></a></li>
                         <li>
-                            <a href="#"><i class="fa fa-2x fa-yahoo"></i></a>
                             <a href="#"><i class="fa fa-2x fa-skype"></i></a>
                             <p style="font-style: italic;">(!!)Giải đáp thắc mắc của bạn 24/7</p>
                         </li>
+                    </ul>
+                    <ul class="kf_foo_social_icon">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -93,3 +92,64 @@
     </div>
 </footer>
 <!--Footer Widget Wrap End-->
+
+<div class="kf_copy_right">
+    <div class="container">
+        <div class="kf_copyright_element">
+            <ul>
+                <li>&copy; 2016</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+    // this is the id of the form
+    $("#kf_form_regmail").submit(function (e) {
+        if (document.getElementById("kf_form_regmail_input").value !== "") {
+            var url = "/Home/RegisterEmail"; // the script where you handle the form input.
+            var $ie = document.getElementById("kf_form_regmail_input").value;
+            if (validateEmail($ie)) {
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: {inputemail: $ie},
+                    beforeSend: function () {
+                        $('#kf_form_regmail_button').children('i').fadeIn();
+                    },
+                    success: function (data) {
+                        if (data === 1) {
+                            setTimeout(function () {
+                                alert('Bạn đã đăng ký nhận thông báo qua thành công.');
+                                $('#kf_form_regmail_button').prop('disabled', true);
+                            }, 2000);
+                        } else if (data === 2) {
+                            setTimeout(function () {
+                                alert('Email của bạn đã đăng ký nhận thông báo.');
+                            }, 2000);
+                        }
+                    },
+                    complete: function () {
+                        setTimeout(function () {
+                            $('#kf_form_regmail_button').children('i').fadeOut();
+                        }, 1000);
+                    }
+                });
+
+            } else {
+                alert('Địa chỉ email không đúng định dạng.');
+                return false;
+            }
+
+        } else {
+            alert('Vui lòng nhập địa chỉ email');
+            return false;
+        };
+
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+    });
+
+</script>

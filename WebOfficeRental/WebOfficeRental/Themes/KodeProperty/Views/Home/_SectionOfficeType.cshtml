@@ -2,60 +2,28 @@
     <div class="container">
         <div class="row">
             <div class="col-md-push-1 col-md-5">
-                <div class="panel panel-default kf_office_type_panel">                    
+                <div class="panel panel-default kf_office_type_panel">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><span>Văn phòng cho thuê</span> <a class="pull-right" href="#">Xem tất cả >></a></h3>
+                        <h3 class="panel-title"><span>Văn phòng cho thuê</span> <a class="pull-right" href="/van-phong/van-phong-cho-thue">Xem tất cả >></a></h3>
                     </div>
                     <div class="panel-body">
                         <ul>
-                            <li class="kf_office_type_wrap">
-                                <figure>
-                                    <img src="/images/photos/20161122/3b6619fad00744cc9f1225906837d20e.jpg" width="50" height="50" />                                    
-                                </figure>
-                                <div class="kf_office_type_content">
-                                    <h5>Cầu giấy</h5>
-                                    <a href="#">Văn phòng 40 M<sup>2</sup></a>
-                                    <p>TÒa nhà Kim Ánh</p>
-                                    <p><b>Giá: </b> 7.000.000<b>đ</b></p>
-                                </div>
-                            </li>
-                            <li class="kf_office_type_wrap">
-                                <figure>
-                                    <img src="/images/photos/20161122/3b6619fad00744cc9f1225906837d20e.jpg" width="50" height="50" />
-                                </figure>
-                                <div class="kf_office_type_content">
-                                    <h5>Cầu giấy</h5>
-                                    <a href="#">Văn phòng 40 M<sup>2</sup></a>
-                                    <p>TÒa nhà Kim Ánh</p>
-                                    <p><b>Giá: </b> 7.000.000<b>đ</b></p>
-                                </div>
-                            </li>
-                            <li class="kf_office_type_wrap">
-                                <figure>
-                                    <img src="/images/photos/20161122/3b6619fad00744cc9f1225906837d20e.jpg" width="50" height="50" />
-                                </figure>
-                                <div class="kf_office_type_content">
-                                    <h5>Cầu giấy</h5>
-                                    <a href="#">Văn phòng 40 M<sup>2</sup></a>
-                                    <p>TÒa nhà Kim Ánh</p>
-                                    <p><b>Giá: </b> 7.000.000<b>đ</b></p>
-                                </div>
-                            </li>
+                            @{Html.RenderAction("LoadOfficeType1", "Home");}                            
                         </ul>
                     </div>
                 </div>
-
             </div>
-
 
             <div class="col-md-push-1 col-md-5">
                 <div class="panel panel-default kf_office_type_panel">
-                    
+
                     <div class="panel-heading">
-                        <h3 class="panel-title"><span>Văn phòng trọn gói</span> <a class="pull-right" href="#">Xem tất cả >></a></h3>
+                        <h3 class="panel-title"><span>Văn phòng trọn gói</span> <a class="pull-right" href="/van-phong/van-phong-tron-goi">Xem tất cả >></a></h3>
                     </div>
                     <div class="panel-body">
-                        â
+                        <ul>
+                            @{Html.RenderAction("LoadOfficeType2", "Home");}
+                        </ul>
                     </div>
                 </div>
             </div>

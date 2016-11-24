@@ -112,7 +112,7 @@ namespace WebOfficeRental.Controllers
         {
             if (inputemail == null) inputemail = "";
             int result = 0;
-            var _emailexist = db.register_email.Where(c => c.EmailOrPhone == inputemail).FirstOrDefault();
+            var _emailexist = db.register_email.Where(c => c.email_or_phone == inputemail).FirstOrDefault();
             if (_emailexist != null)
             {
                 result = 2;
@@ -122,7 +122,8 @@ namespace WebOfficeRental.Controllers
             try
             {
                 register_email model = new register_email();
-                model.EmailOrPhone = inputemail ?? null;
+                model.email_or_phone = inputemail ?? null;
+                model.date = DateTime.Now;
                 db.register_email.Add(model);
                 db.SaveChanges();
                 result = 1;
@@ -133,6 +134,24 @@ namespace WebOfficeRental.Controllers
                 WebOfficeRental.Helpers.configs.SaveTolog(ex.ToString());
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        public ActionResult LoadOfficeType1()
+        {
+            var model = (from o in db.offices where o.status == true && o.office_type == 1 orderby o.updated_date descending select o).Take(3).ToList();
+            return PartialView("_LoadOfficeType1", model);
+        }
+
+        public ActionResult LoadOfficeType2()
+        {
+            var model = (from o in db.offices where o.status == true && o.office_type == 2 orderby o.updated_date descending select o).Take(3).ToList();
+            return PartialView("_LoadOfficeType2", model);
+        }
+
+        public ActionResult Search1()
+        {
+
+            return View();
         }
 
     }

@@ -29,6 +29,7 @@
         <AssociationConnector Association="officerentalModel.FK_dbo_UserLogins_dbo_Users_UserId" />
         <AssociationConnector Association="officerentalModel.UserRoles" />
         <EntityTypeShape EntityType="officerentalModel.BannerAdv" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="officerentalModel.contact_rent" Width="1.5" PointX="10.375" PointY="0.75" />
         <EntityTypeShape EntityType="officerentalModel.register_email" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>

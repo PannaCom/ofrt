@@ -1,0 +1,29 @@
+﻿@using WebOfficeRental.Models
+@using WebOfficeRental.Helpers
+@model List<office>
+    @if (Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+            <li class="kf_office_type_wrap">
+                <figure>
+                    <img src="@item.office_photo" width="50" height="50" />
+                </figure>
+                <div class="kf_office_type_content">
+                    <h5 style="font-size: 17px;">@item.building.building_address</h5>
+                    <a href="@string.Format("/van-phong/{0}/{1}-{2}", configs.unicodeToNoMark(@item.building.bulding_name), configs.unicodeToNoMark(@item.office_name), @item.office_id)">Văn phòng @item.office_acreage m<sup>2</sup></a>
+                    <p>@item.building.bulding_name</p>
+                    <p class="kf_office_type_price"><b>Giá: </b> 
+                        @if (item.office_price_public == -1)
+                        {
+                            <text>Thỏa thuận</text>
+                        }
+                        else
+                        {
+                            <text>@string.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:#,###}", item.office_price_public)<b>đ</b></text>
+                        }
+                    <p />
+                </div>
+            </li>
+        }
+    }

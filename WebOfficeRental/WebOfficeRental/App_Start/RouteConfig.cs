@@ -219,6 +219,16 @@ namespace WebOfficeRental
             );
             #endregion
 
+            #region Search Văn phòng 
+
+            routes.MapRoute(
+                "SearchOffices",
+                "search/van-phong",
+                new { controller = "Home", action = "Search1" }
+            );
+
+            #endregion
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

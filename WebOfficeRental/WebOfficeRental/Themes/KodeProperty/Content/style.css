@@ -193,8 +193,9 @@ p {
     }
 
         .kf_logo a img {
-            width: auto;
             height: auto;
+            width: 274px;
+            margin-top: -16px;
         }
 /*
 	  ==============================================================
@@ -885,6 +886,12 @@ p {
     margin: 0px 0px 30px;
 }
 
+    .kf_heading_1 p a {
+        color: #999999;
+        font-weight: 700;
+        margin-top: -1px;
+    }
+
     .kf_heading_1 h3 {
         font-weight: bold;
         text-transform: uppercase;
@@ -899,7 +906,7 @@ p {
             left: 0px;
             width: 100%;
             height: 20px;
-            background-image: url(images/heading-icon.png);
+            background-image: url(/images/heading-icon.png);
             background-size: auto;
             background-repeat: no-repeat;
             background-position: center;
@@ -2368,7 +2375,7 @@ ul.kf_schedule_room {
     width: 100%;
     position: relative;
     margin: -55px 0px 0px;
-    padding-bottom: 70px;
+    padding: 70px 0;
     z-index: 9;
     background: #f9f9f9;
 }
@@ -6038,10 +6045,16 @@ ul.kf_tag_list {
 }
 
 .kf_office_type_wrap {
-    border-bottom: 1px solid #cbcbcb;
+        border-bottom: 1px solid #cbcbcb;
     height: auto;
-    padding: 0 0 11px;
     margin-bottom: 5px;
+    position: relative;
+    min-height: 122px;
+}
+
+.kf_office_type_price {
+        font-size: 20px;
+    color: #0066b1;
 }
 
 .kf_office_type_wrap:last-child {
@@ -6060,11 +6073,28 @@ ul.kf_tag_list {
             height: auto;
         }
 
+        .kf_office_type_wrap p {
+            margin-bottom: 5px;
+         }
 
+.kf_footer_logo a img {
+    width: 274px;
+    height: auto;
+    margin-left: -22px;
+    margin-top: -22px;
+}
 
-@media (max-width: 512px) { 
+@media (max-width: 512px) {
     .kf_office_type_wrap figure {
         width: 100%;
         margin-right: 0;
     }
+
+    .kf_office_type_wrap p {
+        margin-bottom: 0;
+    }
+}
+
+.margin_top_zero {
+    margin-top: 0;
 }

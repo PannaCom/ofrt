@@ -69,6 +69,20 @@
           <Property Name="district" Type="nvarchar" MaxLength="255" />
           <Property Name="provinces" Type="nvarchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="contact_rent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="full_name" Type="nvarchar" MaxLength="505" />
+          <Property Name="email" Type="nvarchar" MaxLength="505" />
+          <Property Name="phone" Type="varchar" MaxLength="50" />
+          <Property Name="message" Type="ntext" />
+          <Property Name="office_id" Type="bigint" />
+          <Property Name="office_name" Type="nvarchar" MaxLength="505" />
+          <Property Name="contact_date" Type="datetime" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
         <EntityType Name="menus">
           <Key>
             <PropertyRef Name="menu_id" />
@@ -117,10 +131,11 @@
         </EntityType>
         <EntityType Name="register_email">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EmailOrPhone" Type="nvarchar" MaxLength="250" />
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email_or_phone" Type="nvarchar" MaxLength="250" />
+          <Property Name="date" Type="datetime" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -339,6 +354,7 @@
           <EntitySet Name="BannerAdvs" EntityType="Self.BannerAdvs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="buildings" EntityType="Self.buildings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cities" EntityType="Self.cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="contact_rent" EntityType="Self.contact_rent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="menus" EntityType="Self.menus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="offices" EntityType="Self.offices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OfficeServices" EntityType="Self.OfficeServices" Schema="dbo" store:Type="Tables" />
@@ -460,6 +476,7 @@
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <EntitySet Name="BannerAdvs" EntityType="officerentalModel.BannerAdv" />
+          <EntitySet Name="contact_rent" EntityType="officerentalModel.contact_rent" />
           <EntitySet Name="register_email" EntityType="officerentalModel.register_email" />
         </EntityContainer>
         <EntityType Name="ArticleCategory">
@@ -773,12 +790,27 @@
           <Property Name="banner_adv_photo" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
           <Property Name="Link" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="contact_rent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="full_name" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="office_id" Type="Int64" />
+          <Property Name="office_name" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
+          <Property Name="contact_date" Type="DateTime" Precision="3" />
+          <Property Name="status" Type="Boolean" />
+        </EntityType>
         <EntityType Name="register_email">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmailOrPhone" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email_or_phone" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="date" Type="DateTime" Precision="3" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -966,11 +998,27 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="contact_rent">
+            <EntityTypeMapping TypeName="officerentalModel.contact_rent">
+              <MappingFragment StoreEntitySet="contact_rent">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="contact_date" ColumnName="contact_date" />
+                <ScalarProperty Name="office_name" ColumnName="office_name" />
+                <ScalarProperty Name="office_id" ColumnName="office_id" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="full_name" ColumnName="full_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="register_email">
             <EntityTypeMapping TypeName="officerentalModel.register_email">
               <MappingFragment StoreEntitySet="register_email">
-                <ScalarProperty Name="EmailOrPhone" ColumnName="EmailOrPhone" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="email_or_phone" ColumnName="email_or_phone" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -126,8 +126,8 @@
 	height: auto;
 	outline: 0;
 	border: 1px solid #aaa;
-	background: #fff url(../images/chosen-sprite.png) no-repeat 100% -20px;
-	background: url(../images/chosen-sprite.png) no-repeat 100% -20px;
+	background: #fff url(chosen-sprite.png) no-repeat 100% -20px;
+	background: url(chosen-sprite.png) no-repeat 100% -20px;
 	font-size: 1em;
 	font-family: sans-serif;
 	line-height: normal;

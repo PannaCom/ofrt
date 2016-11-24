@@ -214,6 +214,9 @@
     <Compile Include="Models\city.cs">
       <DependentUpon>OfficeRentalModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\contact_rent.cs">
+      <DependentUpon>OfficeRentalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\menu.cs">
@@ -369,6 +372,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="home--full2.jpg" />
+    <Content Include="images\logo5.png" />
     <Content Include="images\logo2.png" />
     <Content Include="images\logo3.png" />
     <Content Include="images\logo4.png" />
@@ -856,6 +860,8 @@
     <Content Include="Themes\KodeProperty\Content\css\font-awesome.css" />
     <Content Include="Themes\KodeProperty\Content\css\images\bx_loader.gif" />
     <Content Include="Themes\KodeProperty\Content\css\images\controls.png" />
+    <Content Include="Themes\KodeProperty\Content\css\images\footer-bg.png" />
+    <Content Include="Themes\KodeProperty\Content\css\images\heading-icon.png" />
     <Content Include="Themes\KodeProperty\Content\css\images\taisao_bg.png" />
     <Content Include="Themes\KodeProperty\Content\css\images\toanha_bg.png" />
     <Content Include="Themes\KodeProperty\Content\css\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -1182,6 +1188,9 @@
     <Content Include="Themes\KodeProperty\Views\Shared\_FooterPartial.cshtml" />
     <Content Include="Themes\KodeProperty\Views\Shared\_HeaderPartial.cshtml" />
     <Content Include="Themes\KodeProperty\Views\Home\_SectionOfficeType.cshtml" />
+    <Content Include="Themes\KodeProperty\Views\Home\_LoadOfficeType1.cshtml" />
+    <Content Include="Themes\KodeProperty\Views\Home\_LoadOfficeType2.cshtml" />
+    <Content Include="Themes\KodeProperty\Views\Home\Search1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

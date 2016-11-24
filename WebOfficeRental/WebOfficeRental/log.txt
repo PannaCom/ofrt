@@ -1,0 +1,28 @@
+11/21/2016 3:18:50 PM: System.Data.Entity.Validation.DbEntityValidationException: Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+   at System.Data.Entity.Internal.InternalContext.SaveChangesAsync(CancellationToken cancellationToken)
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChangesAsync(CancellationToken cancellationToken)
+   at System.Data.Entity.DbContext.SaveChangesAsync(CancellationToken cancellationToken)
+   at System.Data.Entity.DbContext.SaveChangesAsync()
+   at WebOfficeRental.Controllers.OfficesController.<AddNewOffice>d__5.MoveNext() in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\OfficesController.cs:line 80
+11/21/2016 3:30:34 PM: System.Data.Entity.Validation.DbEntityValidationException: Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+   at System.Data.Entity.Internal.InternalContext.SaveChangesAsync(CancellationToken cancellationToken)
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChangesAsync(CancellationToken cancellationToken)
+   at System.Data.Entity.DbContext.SaveChangesAsync(CancellationToken cancellationToken)
+   at System.Data.Entity.DbContext.SaveChangesAsync()
+   at WebOfficeRental.Controllers.OfficesController.<AddNewOffice>d__5.MoveNext() in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\OfficesController.cs:line 80
+11/21/2016 3:49:53 PM: System.Data.Entity.Validation.DbEntityValidationException: Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+   at System.Data.Entity.Internal.InternalContext.SaveChangesAsync(CancellationToken cancellationToken)
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChangesAsync(CancellationToken cancellationToken)
+   at System.Data.Entity.DbContext.SaveChangesAsync(CancellationToken cancellationToken)
+   at System.Data.Entity.DbContext.SaveChangesAsync()
+   at WebOfficeRental.Controllers.OfficesController.<AddNewOffice>d__5.MoveNext() in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\OfficesController.cs:line 82
+11/21/2016 6:13:40 PM: System.ArgumentNullException: Value cannot be null.
+Parameter name: second
+   at System.Linq.Enumerable.SequenceEqual[TSource](IEnumerable`1 first, IEnumerable`1 second, IEqualityComparer`1 comparer)
+   at System.Linq.Enumerable.SequenceEqual[TSource](IEnumerable`1 first, IEnumerable`1 second)
+   at WebOfficeRental.Controllers.OfficesController.<EditOffice>d__1a.MoveNext() in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\OfficesController.cs:line 180
+11/21/2016 6:13:56 PM: System.ArgumentNullException: Value cannot be null.
+Parameter name: second
+   at System.Linq.Enumerable.SequenceEqual[TSource](IEnumerable`1 first, IEnumerable`1 second, IEqualityComparer`1 comparer)
+   at System.Linq.Enumerable.SequenceEqual[TSource](IEnumerable`1 first, IEnumerable`1 second)
+   at WebOfficeRental.Controllers.OfficesController.<EditOffice>d__1a.MoveNext() in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\OfficesController.cs:line 180

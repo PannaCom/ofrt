@@ -38,6 +38,7 @@ namespace WebOfficeRental.Models
         public virtual DbSet<UserLogin> UserLogins { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<BannerAdv> BannerAdvs { get; set; }
+        public virtual DbSet<contact_rent> contact_rent { get; set; }
         public virtual DbSet<register_email> register_email { get; set; }
     }
 }

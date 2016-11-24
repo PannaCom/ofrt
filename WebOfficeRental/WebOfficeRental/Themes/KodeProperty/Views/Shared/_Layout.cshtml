@@ -56,12 +56,14 @@
         <!--Main Banner Wrap Start-->
         @RenderSection("MainBanner", false)
         <!--Main Banner Wrap End-->
+
         <!--Content Wrap Start-->
         <div class="kf_property_content_wrap">
             @RenderBody()
         </div>
+        <!--Content Wrap End-->
     </div>
-    <!--Content Wrap End-->
+    
     @Html.Partial("_FooterPartial")
     
     <!--Kode Wrapper End-->

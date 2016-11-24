@@ -12,10 +12,16 @@ namespace WebOfficeRental.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class register_email
+    public partial class contact_rent
     {
         public long id { get; set; }
-        public string email_or_phone { get; set; }
-        public Nullable<System.DateTime> date { get; set; }
+        public string full_name { get; set; }
+        public string email { get; set; }
+        public string phone { get; set; }
+        public string message { get; set; }
+        public Nullable<long> office_id { get; set; }
+        public string office_name { get; set; }
+        public Nullable<System.DateTime> contact_date { get; set; }
+        public Nullable<bool> status { get; set; }
     }
 }
