@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -219,21 +220,97 @@ namespace WebOfficeRental
             );
             #endregion
 
-            #region Search Văn phòng 
+            #region Văn phòng
 
+            //Search
             routes.MapRoute(
                 "SearchOffices",
                 "search/van-phong",
                 new { controller = "Home", action = "Search1" }
             );
 
+            //Văn phòng cho thuê
+            routes.MapRoute(
+                "SearchOfficeType1",
+                "van-phong/van-phong-cho-thue",
+                new { controller = "Home", action = "VanPhong1" }
+            );
+            //Văn phòng trọn gói
+            routes.MapRoute(
+                "SearchOfficeType2",
+                "van-phong/van-phong-tron-goi",
+                new { controller = "Home", action = "VanPhong2" }
+            );
+
+            //Tòa nhà
+            routes.Add("SearchBuilds", new SeoFriendlyRoute("toa-nha/{tentoanha}-{id}",
+                new RouteValueDictionary(
+                    new
+                    {
+                        controller = "Home",
+                        action = "ToaNha",
+                        id = UrlParameter.Optional,
+                        tentoanha = UrlParameter.Optional
+                    }),
+                new MvcRouteHandler()));
+
+
             #endregion
+
+            #region 404 Notfound
+            // 404 not found
+            routes.MapRoute(
+                "NotFound",
+                "{url}",
+                new{ controller = "Home", action = "NotFoundPage" }
+            );
+            #endregion
+
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+        }
+    }
+
+    public class SeoFriendlyRoute : Route
+    {
+        public SeoFriendlyRoute(string url, RouteValueDictionary defaults, IRouteHandler routeHandler)
+            : base(url, defaults, routeHandler)
+        {
+        }
+
+        public override RouteData GetRouteData(HttpContextBase httpContext)
+        {
+            var routeData = base.GetRouteData(httpContext);
+
+            if (routeData != null)
+            {
+                if (routeData.Values.ContainsKey("id"))
+                    routeData.Values["id"] = GetIdValue(routeData.Values["id"]);
+            }
+
+            return routeData;
+        }
+
+        private object GetIdValue(object id)
+        {
+            if (id != null)
+            {
+                string idValue = id.ToString();
+
+                var regex = new Regex(@"^(?<id>\d+).*$");
+                var match = regex.Match(idValue);
+
+                if (match.Success)
+                {
+                    return match.Groups["id"].Value;
+                }
+            }
+
+            return id;
         }
     }
 }

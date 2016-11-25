@@ -6098,3 +6098,17 @@ ul.kf_tag_list {
 .margin_top_zero {
     margin-top: 0;
 }
+
+#menu > ul > li:hover a {
+    background-color: #0c5d98;
+}
+
+#menu ul li a {
+    color: #fff;
+}
+
+.kf_property_breadcrumb ul li a.bb1_p0_m010 {
+    border-bottom: 1px solid;
+    padding: 0;
+    margin: 0 10px;
+}

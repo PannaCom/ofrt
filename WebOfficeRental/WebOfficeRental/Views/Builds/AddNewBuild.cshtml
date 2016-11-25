@@ -102,6 +102,10 @@
                             <div id="dzbuilding_picture" class="dropzone undropzone">
                             </div>
                             @Html.ValidationMessageFor(m => m.building_picture, "", new { @class = "text-danger" })
+                            <span class="help-block">
+                                Chọn hình có kích thước 1x1, 500x500px, 400x310px
+                                và chọn hình ảnh có dung lượng không vượt quá 12 Mb.
+                            </span>
                         </div>
                     </div>
 

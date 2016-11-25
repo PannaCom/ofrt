@@ -24,7 +24,7 @@
                                 <img src="@item.building_picture" alt="@item.bulding_name">                                
                             </figure>
                             <div class="kf_property_listing_des">
-                                <h5><a href="@string.Format("/danh-sach-van-phong/toa-nha/{0}-{1}/", configs.unicodeToNoMark(item.bulding_name), item.bulding_id)">@item.bulding_name</a></h5>
+                                <h5><a href="@string.Format("/toa-nha/{0}-{1}", configs.unicodeToNoMark(item.bulding_name), item.bulding_id)">@item.bulding_name</a></h5>
                                 <p><i class="fa fa-map-marker"></i>&nbsp;@item.building_address</p>
                             </div>
                         </div>

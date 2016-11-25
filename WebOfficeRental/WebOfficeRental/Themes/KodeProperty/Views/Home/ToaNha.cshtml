@@ -1,0 +1,225 @@
+﻿@{
+    ViewBag.Title = "Tòa nhà";
+}
+
+@section metatags {
+    <meta name="description" content="Tìm kiếm văn phòng">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="robots" content="index,follow,noodp">
+    <meta property="og:locale" content="vi_VN">
+    <meta property="og:type" content="home">
+    <meta property="og:url" content="http://@Request.Url.Host">
+    <meta property="og:title" content="@ViewBag.Title">
+    <meta property="og:description" content="Website bất động sản">
+    <meta property="og:image" itemprop="thumbnailUrl" content="">
+}
+
+@section MainBanner {
+    <!--Sub Banner Wrap Start-->
+    <div class="kf_property_sub_banner">
+        <div class="container">
+            <div class="kf_sub_banner_hdg">
+                <h3>@Html.Raw(ViewBag.Title)</h3>
+            </div>
+            <div class="kf_property_breadcrumb">
+                <ul>
+                    <li><a href="#">Văn phòng</a></li>
+                    <li><a href="/van-phong/van-phong-cho-thue" class="bb1_p0_m010">@Html.Raw(ViewBag.Title)</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--Sub Banner Wrap End-->
+}
+
+<!--Property Listing 01 Wrap Start-->
+<section class="kf_property_lissting_bg">
+    <div class="container">
+        <!--Property Meta Wrap Start-->
+        <div class="kf_property_meta">
+            <h5>Property Listing Veiw</h5>
+            <div class="kf_view_type">
+                <div class="kf_property_view">
+                    <span>Sort By:</span>
+                    <select class="chosen-select">
+                        <option>Any</option>
+                        <option>Option 2</option>
+                        <option>Option 3</option>
+                    </select>
+                </div>
+
+                <div class="kf_property_view">
+                    <span>Select Veiw:</span>
+                    <select class="chosen-select">
+                        <option>Any</option>
+                        <option>Option 2</option>
+                        <option>Option 3</option>
+                    </select>
+                </div>
+
+                <div class="kf_property_view">
+                    <span>Select Veiw:</span>
+                    <i class="fa fa-th-list"></i>
+                    <i class="fa fa-th-large"></i>
+                </div>
+            </div>
+
+        </div>
+        <!--Property Meta Wrap End-->
+        <!--Section Wrap Start-->
+        <div class="row">
+            <!--Property Listing 02 List Wrap Start-->
+            <div class="col-md-9">
+                <div class="kf_listing_outer_wrap">
+                    <div class="kf_property_img">
+                        <figure>
+                            <img src="extra-images/property-listing-01.jpg" alt="image">
+                        </figure>
+                    </div>
+                    <div class="kf_property_place">
+                        <div class="kf_property_caption">
+                            <h5><a href="#">University near to sabestian</a></h5>
+                            <p><i class="fa fa-map-marker"></i>Myths Vealesd  568 E 1st Ave, New Jersey </p>
+                        </div>
+                        <h5>$2,450,00</h5>
+                        <ul class="kf_property_dolar">
+                            <li><i class="fa fa-arrows"></i><a href="#">Area: 20,000 Sq. FT</a></li>
+                            <li><i class="fa fa-bed"></i><a href="#">Bedroom: 5</a></li>
+                            <li><i class="fa fa-bed"></i><a href="#">Bathrooms: 03</a></li>
+                        </ul>
+                        <ul class="kf_property_dolar">
+                            <li><i class="fa fa-arrows"></i><a href="#">Garage:  2</a></li>
+                            <li><i class="fa fa-arrows"></i><a href="#">Swim-poll:  1</a></li>
+                        </ul>
+                        <a class="kf_property_more" href="#">More Information</a>
+                    </div>
+                </div>
+                <div class="kf_listing_outer_wrap">
+                    <div class="kf_property_img">
+                        <figure>
+                            <img src="extra-images/property-listing-02.jpg" alt="image">
+                        </figure>
+                    </div>
+                    <div class="kf_property_place">
+                        <div class="kf_property_caption">
+                            <h5><a href="#">LAW FIRM OPENED NEAR TO VILLA</a></h5>
+                            <p><i class="fa fa-map-marker"></i>Braidwood Dakota 68 E 1st, New Jersey </p>
+                        </div>
+                        <h5>$8,450,00</h5>
+                        <ul class="kf_property_dolar">
+                            <li><i class="fa fa-arrows"></i><a href="#">Area: 20,000 Sq. FT</a></li>
+                            <li><i class="fa fa-bed"></i><a href="#">Bedroom: 05</a></li>
+                            <li><i class="fa fa-bed"></i><a href="#">Bathrooms: 06</a></li>
+                        </ul>
+                        <ul class="kf_property_dolar">
+                            <li><i class="fa fa-arrows"></i><a href="#">Garage:  2</a></li>
+                            <li><i class="fa fa-arrows"></i><a href="#">Swim-poll:  1</a></li>
+                        </ul>
+                        <a class="kf_property_more" href="#">More Information</a>
+                    </div>
+                </div>
+                <div class="kf_listing_outer_wrap">
+                    <div class="kf_property_img">
+                        <figure>
+                            <img src="extra-images/property-listing-03.jpg" alt="image">
+                        </figure>
+                    </div>
+                    <div class="kf_property_place">
+                        <div class="kf_property_caption">
+                            <h5><a href="#">Villa In Hialeah, Dade County</a></h5>
+                            <p><i class="fa fa-map-marker"></i>  Queen's Walk, 568 E 1st Ave, New Jersey </p>
+                        </div>
+                        <h5>$65,00</h5>
+                        <ul class="kf_property_dolar">
+                            <li><i class="fa fa-arrows"></i><a href="#">Area: 80,000 Sq. FT</a></li>
+                            <li><i class="fa fa-bed"></i><a href="#">Bedroom: 05</a></li>
+                            <li><i class="fa fa-bed"></i><a href="#">Bathrooms: 12</a></li>
+                        </ul>
+                        <ul class="kf_property_dolar">
+                            <li><i class="fa fa-arrows"></i><a href="#">Garage:  2</a></li>
+                            <li><i class="fa fa-arrows"></i><a href="#">Swim-poll:  1</a></li>
+                        </ul>
+                        <a class="kf_property_more" href="#">More Information</a>
+                    </div>
+                </div>
+                <div class="kf_listing_outer_wrap">
+                    <div class="kf_property_img">
+                        <figure>
+                            <img src="extra-images/property-listing-04.jpg" alt="image">
+                        </figure>
+                    </div>
+                    <div class="kf_property_place">
+                        <div class="kf_property_caption">
+                            <h5><a href="#">1200 Anastasia Avenue, Coral Gables</a></h5>
+                            <p><i class="fa fa-map-marker"></i>Trinity Square 86 A Block </p>
+                        </div>
+                        <h5>$3,50,00</h5>
+                        <ul class="kf_property_dolar">
+                            <li><i class="fa fa-arrows"></i><a href="#">Area: 15,000 Sq. FT</a></li>
+                            <li><i class="fa fa-bed"></i><a href="#">Bedroom: 10</a></li>
+                            <li><i class="fa fa-bed"></i><a href="#">Bathrooms: 13</a></li>
+                        </ul>
+                        <ul class="kf_property_dolar">
+                            <li><i class="fa fa-arrows"></i><a href="#">Garage:  2</a></li>
+                            <li><i class="fa fa-arrows"></i><a href="#">Swim-poll:  1</a></li>
+                        </ul>
+                        <a class="kf_property_more" href="#">More Information</a>
+                    </div>
+                </div>
+                <div class="kf_listing_outer_wrap">
+                    <div class="kf_property_img">
+                        <figure>
+                            <img src="extra-images/property-listing-05.jpg" alt="image">
+                        </figure>
+                    </div>
+                    <div class="kf_property_place">
+                        <div class="kf_property_caption">
+                            <h5><a href="#">20 Apartments Of Type A</a></h5>
+                            <p><i class="fa fa-map-marker"></i>Braidwood Dakota </p>
+                        </div>
+                        <h5>$5,450,00</h5>
+                        <ul class="kf_property_dolar">
+                            <li><i class="fa fa-arrows"></i><a href="#">Area: 5,000 Sq. FT</a></li>
+                            <li><i class="fa fa-bed"></i><a href="#">Bedroom: 8</a></li>
+                            <li><i class="fa fa-bed"></i><a href="#">Bathrooms: 10</a></li>
+                        </ul>
+                        <ul class="kf_property_dolar">
+                            <li><i class="fa fa-arrows"></i><a href="#">Garage:  2</a></li>
+                            <li><i class="fa fa-arrows"></i><a href="#">Swim-poll:  1</a></li>
+                        </ul>
+                        <a class="kf_property_more" href="#">More Information</a>
+                    </div>
+                </div>
+                <div class="kf_listing_outer_wrap">
+                    <div class="kf_property_img">
+                        <figure>
+                            <img src="extra-images/property-listing-06.jpg" alt="image">
+                        </figure>
+                    </div>
+                    <div class="kf_property_place">
+                        <div class="kf_property_caption">
+                            <h5><a href="#">University near to sabestian villa</a></h5>
+                            <p><i class="fa fa-map-marker"></i>South Aylesford </p>
+                        </div>
+                        <h5>$450,00</h5>
+                        <ul class="kf_property_dolar">
+                            <li><i class="fa fa-arrows"></i><a href="#">Area: 20,000 Sq. FT</a></li>
+                            <li><i class="fa fa-bed"></i><a href="#">Bedroom: 5</a></li>
+                            <li><i class="fa fa-bed"></i><a href="#">Bathrooms: 03</a></li>
+                        </ul>
+                        <ul class="kf_property_dolar">
+                            <li><i class="fa fa-arrows"></i><a href="#">Garage:  2</a></li>
+                            <li><i class="fa fa-arrows"></i><a href="#">Swim-poll:  1</a></li>
+                        </ul>
+                        <a class="kf_property_more" href="#">More Information</a>
+                    </div>
+                </div>
+            </div>
+            <!--Property Listing 02 List Wrap End-->
+
+        </div>
+        <!--Section Wrap End-->
+    </div>
+</section>
+<!--Property Listing 01 Wrap End-->

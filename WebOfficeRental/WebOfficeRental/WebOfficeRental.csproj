@@ -1191,6 +1191,10 @@
     <Content Include="Themes\KodeProperty\Views\Home\_LoadOfficeType1.cshtml" />
     <Content Include="Themes\KodeProperty\Views\Home\_LoadOfficeType2.cshtml" />
     <Content Include="Themes\KodeProperty\Views\Home\Search1.cshtml" />
+    <Content Include="Themes\KodeProperty\Views\Home\VanPhong1.cshtml" />
+    <Content Include="Themes\KodeProperty\Views\Home\ToaNha.cshtml" />
+    <Content Include="Themes\KodeProperty\Views\Home\VanPhong2.cshtml" />
+    <Content Include="Themes\KodeProperty\Views\Home\NotFoundPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

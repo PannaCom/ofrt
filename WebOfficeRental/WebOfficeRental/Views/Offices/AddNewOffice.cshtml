@@ -184,7 +184,10 @@
                             <div id="dzoffice_photo" class="dropzone undropzone">
                             </div>
                             @Html.ValidationMessageFor(m => m.office_photo, "", new { @class = "text-danger" })
-                            <span class="help-block">Nên chọn hình có kích thước 1x1, ví dụ 500x500px.</span>
+                            <span class="help-block">
+                                Nên chọn hình có kích thước 1x1, 500x500px, 400x310px
+                                và chọn hình ảnh có dung lượng không vượt quá 12 Mb.
+                            </span>
                         </div>
                     </div>
 
@@ -199,7 +202,9 @@
                             <div id="dzoffice_photo_slider" class="dropzone undropzone">
                             </div>
                             @Html.ValidationMessageFor(m => m.office_photo_slider, "", new { @class = "text-danger" })
-                            <span class="help-block">Nên chọn hình có kích thước 16:9, ví dụ 1920x790px.</span>
+                            <span class="help-block">Nên chọn hình có kích thước 16:9, 1920x790px và
+                                chọn hình ảnh có dung lượng không vượt quá 12 Mb.
+                            </span>
                         </div>
                     </div>
 

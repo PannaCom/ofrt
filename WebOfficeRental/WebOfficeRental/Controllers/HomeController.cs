@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebOfficeRental.Models;
+using PagedList;
 
 namespace WebOfficeRental.Controllers
 {
@@ -154,20 +155,72 @@ namespace WebOfficeRental.Controllers
             return View();
         }
 
-        public ActionResult VanPhong1()
+        public ActionResult VanPhong1(int? pg)
         {
+            int pageSize = 25;
+            if (pg == null) pg = 1;
+            int pageNumber = (pg ?? 1);
+            ViewBag.pg = pg;
+            var data = (from q in db.offices where q.office_type == 1 && q.status == true orderby q.updated_date descending select q).ToList();
+            if (data == null)
+            {
+                return View(data);
+            }
+           
+            return View(data.ToPagedList(pageNumber, pageSize));
+        }
+
+        public ActionResult VanPhong2(int? pg)
+        {
+            int pageSize = 25;
+            if (pg == null) pg = 1;
+            int pageNumber = (pg ?? 1);
+            ViewBag.pg = pg;
+            var data = (from q in db.offices where q.office_type == 2 && q.status == true orderby q.updated_date descending select q).ToList();
+            if (data == null)
+            {
+                return View(data);
+            }
+
+            return View(data.ToPagedList(pageNumber, pageSize));
+        }
+
+        public ActionResult ToaNha(int? id, string tentoanha, int? pg)
+        {
+            // check id co tồn tại
+            if (id == null || id == 0)
+            {
+                return View();
+            }
+            // check id có phải là tòa nhà không?
+            var _build = (from bu in db.buildings where bu.bulding_id == id select bu).FirstOrDefault();
+            if (_build == null)
+            {
+                return View();
+            }
+
+            int pageSize = 25;
+            if (pg == null) pg = 1;
+            int pageNumber = (pg ?? 1);
+            ViewBag.pg = pg;
+            var data = (from q in db.offices where q.buiding_id == id && q.status == true orderby q.updated_date descending select q).ToList();
+            if (data == null)
+            {
+                return View(data);
+            }
+
+            return View(data.ToPagedList(pageNumber, pageSize));
+        }
+
+        public ActionResult NotFoundPage(string aspxerrorpath)
+        {
+            if (!string.IsNullOrEmpty(aspxerrorpath))
+            {               
+                return RedirectToRoute("NotFound");
+            }
             return View();
         }
 
-        public ActionResult VanPhong2()
-        {
-            return View();
-        }
-
-        public ActionResult ToaNha()
-        {
-            return View();
-        }
 
     }
 }
