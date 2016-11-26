@@ -222,7 +222,7 @@
         '.chosen_select_width200': { no_results_text: "Không tìm thấy kết quả!", width: '200px' },
         '.chosen-select-deselect': { allow_single_deselect: true, no_results_text: "Không tìm thấy kết quả!" },
         '.chosen-select-no-single': { disable_search_threshold: 10 },
-        '.chosen-select-no-results': { no_results_text: 'Không tìm thấy kết quả!' },
+        '.chosen_select_no_results': { no_results_text: 'Không tìm thấy kết quả!', width: 'auto' },
         '.chosen-select-width': { width: "95%" }
     }
     for (var selector in config) {

@@ -14,7 +14,7 @@
     <meta property="og:type" content="Văn phòng">
     <meta property="og:url" content="http://@Request.Url.Host">
     <meta property="og:title" content="@Html.Raw(ViewBag.Title)">
-    <meta property="og:description" content="@Html.Raw(ViewBag.Title) bất động sản officerental">
+    <meta property="og:description" content="@Html.Raw(ViewBag.Title) bất động sản officerental @ViewBag.ngay @ViewBag.gia">
     <meta property="og:image" itemprop="thumbnailUrl" content="">
 }
 
@@ -41,14 +41,14 @@
     <div class="container">
         <!--Property Meta Wrap Start-->
         <div class="kf_property_meta">
-            <h5>Tùy chọn hiển thị</h5>
+            <h5>Số văn phòng: @if (Model != null) { <text>@Model.Count</text> }</h5>
             <div class="kf_view_type">
 
                 <div class="kf_property_view">
                     <span>Mức giá:</span>
                     <select name="gia" id="gia" class="chosen_select_width200">
                         <option selected="selected" disabled>Chọn mức giá</option>
-                        <option value="-1">Thỏa thuận</option>
+                        <option value="thoathuan">Thỏa thuận</option>
                         @for (int i = 0; i <= 100; i += 5)
                         {
                             <option value="@string.Format("tu-{0}-{1}-trieu", i, i+5)">@string.Format("Từ {0} đến {1} triệu", i, i + 5)</option>
@@ -61,8 +61,8 @@
                     <span>Ngày đăng:</span>
                     <select name="ngay" id="ngay" class="chosen_select_width200">
                         <option selected="selected" disabled>Chọn kiểu sắp xếp</option>
-                        <option value="1">Mới hơn</option>
-                        <option value="2">Cũ hơn</option>
+                        <option value="moihon">Mới hơn</option>
+                        <option value="cuhon">Cũ hơn</option>
                     </select>
                 </div>
 
@@ -135,7 +135,9 @@
                     }
                     else
                     {
-                        <p>Chưa có văn phòng nào.</p>
+                        <div class="kf_listing_outer_wrap">
+                            <p>Chưa có văn phòng nào.</p>
+                        </div>
                     }
                 }
 
@@ -150,7 +152,7 @@
             <div class="col-md-12">
                 @if (Model != null)
                 {
-                    @Html.PagedListPager(Model, page => Url.RouteUrl("SearchOfficeType1", new { pg = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+                    @Html.PagedListPager(Model, page => Url.RouteUrl("SearchOfficeType1", new { ngay = ViewBag.ngay, gia = ViewBag.gia, pg = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
                 }
             </div>
         </div>

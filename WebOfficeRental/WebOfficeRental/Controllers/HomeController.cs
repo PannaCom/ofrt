@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebOfficeRental.Models;
 using PagedList;
+using WebOfficeRental.Helpers;
 
 namespace WebOfficeRental.Controllers
 {
@@ -155,37 +156,131 @@ namespace WebOfficeRental.Controllers
             return View();
         }
 
-        public ActionResult VanPhong1(int? pg)
+        public ActionResult VanPhong1(int? pg, string ngay, string gia)
         {
             int pageSize = 6;
             if (pg == null) pg = 1;
             int pageNumber = (pg ?? 1);
             ViewBag.pg = pg;
-            var data = (from q in db.offices where q.office_type == 1 && q.status == true orderby q.updated_date descending select q).ToList();
+            var data = (from q in db.offices where q.office_type == 1 && q.status == true select q);
             if (data == null)
             {
                 return View(data);
             }
-           
-            return View(data.ToPagedList(pageNumber, pageSize));
+
+            #region Thêm điều kiện tìm kiếm
+            try
+            {
+                if (ngay == null) ngay = ""; if (gia == null) gia = "";
+
+                int tuGia = 0; int toiGia = 0;
+                if (gia != null && gia != "")
+                {
+                    String[] ar_gia = gia.Split('-');
+                    if (ar_gia.Length == 4)
+                    {
+                        tuGia = Convert.ToInt32(ar_gia[1].ToString()) * 1000000;
+                        toiGia = Convert.ToInt32(ar_gia[2].ToString()) * 1000000;
+                    }
+
+                    switch (gia)
+                    {
+                        case "thoathuan":
+                            data = data.Where(x => x.office_price_public == -1);
+                            break;
+                        default:
+                            data = data.Where(x => x.office_price_public >= tuGia && x.office_price_public <= toiGia);
+                            break;
+                    }
+                }
+                if (ngay != null && ngay != "")
+                {
+                    ViewBag.ngay = ngay;
+                }
+
+                switch (ngay)
+                {
+                    case "cuhon":
+                        data = data.OrderBy(x => x.updated_date);
+                        ViewBag.ngay = ngay;
+                        break;
+                    default:
+                        data = data.OrderByDescending(x => x.updated_date);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                configs.SaveTolog(ex.ToString());
+            }
+            #endregion
+
+            return View(data.ToList().ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult VanPhong2(int? pg)
+        public ActionResult VanPhong2(int? pg, string ngay, string gia)
         {
             int pageSize = 6;
             if (pg == null) pg = 1;
             int pageNumber = (pg ?? 1);
             ViewBag.pg = pg;
-            var data = (from q in db.offices where q.office_type == 2 && q.status == true orderby q.updated_date descending select q).ToList();
+            var data = (from q in db.offices where q.office_type == 2 && q.status == true select q);
             if (data == null)
             {
                 return View(data);
             }
 
-            return View(data.ToPagedList(pageNumber, pageSize));
+            #region Thêm điều kiện tìm kiếm
+            try
+            {
+                if (ngay == null) ngay = ""; if (gia == null) gia = "";
+
+                int tuGia = 0; int toiGia = 0;
+                if (gia != null && gia != "")
+                {
+                    String[] ar_gia = gia.Split('-');
+                    if (ar_gia.Length == 4)
+                    {
+                        tuGia = Convert.ToInt32(ar_gia[1].ToString()) * 1000000;
+                        toiGia = Convert.ToInt32(ar_gia[2].ToString()) * 1000000;
+                    }
+
+                    switch (gia)
+                    {
+                        case "thoathuan":
+                            data = data.Where(x => x.office_price_public == -1);
+                            break;
+                        default:
+                            data = data.Where(x => x.office_price_public >= tuGia && x.office_price_public <= toiGia);
+                            break;
+                    }
+                    ViewBag.gia = gia;
+                }
+
+                switch (ngay)
+                {
+                    case "cuhon":
+                        data = data.OrderBy(x => x.updated_date);                        
+                        break;
+                    default:
+                        data = data.OrderByDescending(x => x.updated_date);
+                        break;
+                }
+                if (ngay != null && ngay != "")
+                {
+                    ViewBag.ngay = ngay;
+                }
+            }
+            catch (Exception ex)
+            {
+                configs.SaveTolog(ex.ToString());
+            }
+            #endregion
+
+            return View(data.ToList().ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult ToaNha(int? id, string tentoanha, int? pg)
+        public ActionResult ToaNha(int? id, string tentoanha, int? pg, string ngay, string gia, string loaivanphong)
         {
             // check id co tồn tại
             if (id == null || id == 0)
@@ -198,24 +293,91 @@ namespace WebOfficeRental.Controllers
             {
                 return View();
             }
+            
+            ViewBag.Tentoanha = _build.bulding_name;
+            ViewBag.Id = id;
+            ViewBag.url = tentoanha;
 
             int pageSize = 6;
             if (pg == null) pg = 1;
             int pageNumber = (pg ?? 1);
             ViewBag.pg = pg;
-            var data = (from q in db.offices where q.buiding_id == id && q.status == true orderby q.updated_date descending select q).ToList();
+            var data = (from q in db.offices where q.buiding_id == id && q.status == true select q);
             if (data == null)
             {
                 return View(data);
             }
 
-            return View(data.ToPagedList(pageNumber, pageSize));
+            #region Thêm điều kiện tìm kiếm
+            try
+            {
+                if (ngay == null) ngay = ""; if (gia == null) gia = ""; if (loaivanphong == null) loaivanphong = "";
+
+                int tuGia = 0; int toiGia = 0;
+                if (gia != null && gia != "")
+                {
+                    String[] ar_gia = gia.Split('-');
+                    if (ar_gia.Length == 4)
+                    {
+                        tuGia = Convert.ToInt32(ar_gia[1].ToString()) * 1000000;
+                        toiGia = Convert.ToInt32(ar_gia[2].ToString()) * 1000000;
+                    }
+
+                    switch (gia)
+                    {
+                        case "thoathuan":
+                            data = data.Where(x => x.office_price_public == -1);
+                            break;
+                        default:
+                            data = data.Where(x => x.office_price_public >= tuGia && x.office_price_public <= toiGia);
+                            break;
+                    }
+                    ViewBag.gia = gia;
+                }
+                
+                switch (loaivanphong)
+                {
+                    case "vanphongtrongoi":
+                        data = data.Where(x => x.office_type == 2);
+                        break;
+                    default:
+                        data = data.Where(x => x.office_type == 1);
+                        break;
+                }
+                if (loaivanphong != null && loaivanphong != "")
+                {
+                    ViewBag.loaivanphong = loaivanphong;
+                }
+
+                switch (ngay)
+                {
+                    case "cuhon":
+                        data = data.OrderBy(x => x.updated_date);
+                        break;
+                    default:
+                        data = data.OrderByDescending(x => x.updated_date);
+                        break;
+                }
+                if (ngay != null && ngay != "")
+                {
+                    ViewBag.ngay = ngay;
+                }
+               
+
+            }
+            catch (Exception ex)
+            {
+                configs.SaveTolog(ex.ToString());
+            }
+            #endregion
+
+            return View(data.ToList().ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult NotFoundPage(string aspxerrorpath)
         {
             if (!string.IsNullOrEmpty(aspxerrorpath))
-            {               
+            {
                 return RedirectToRoute("NotFound");
             }
             return View();

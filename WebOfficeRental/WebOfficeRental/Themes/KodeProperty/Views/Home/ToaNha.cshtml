@@ -1,9 +1,12 @@
-﻿@{
-    ViewBag.Title = "Tòa nhà";
+﻿@model PagedList.IPagedList<WebOfficeRental.Models.office>
+@using PagedList.Mvc
+@using WebOfficeRental.Helpers
+@{
+    ViewBag.Title = "Tòa nhà " + @ViewBag.Tentoanha;
 }
 
 @section metatags {
-    <meta name="description" content="Tìm kiếm văn phòng">
+    <meta name="description" content="Tòa nhà @ViewBag.Tentoanha cho thuê văn phòng @ViewBag.ngay @ViewBag.gia">
     <meta name="keywords" content="">
     <meta name="author" content="">
     <meta name="robots" content="index,follow,noodp">
@@ -24,8 +27,8 @@
             </div>
             <div class="kf_property_breadcrumb">
                 <ul>
-                    <li><a href="#">Văn phòng</a></li>
-                    <li><a href="/van-phong/van-phong-cho-thue" class="bb1_p0_m010">@Html.Raw(ViewBag.Title)</a></li>
+                    <li><a href="#">Tòa nhà</a></li>
+                    <li><a href="/toa-nha/@ViewBag.url-@ViewBag.Id" class="bb1_p0_m010">@Html.Raw(ViewBag.Tentoanha)</a></li>
                 </ul>
             </div>
         </div>
@@ -38,31 +41,43 @@
     <div class="container">
         <!--Property Meta Wrap Start-->
         <div class="kf_property_meta">
-            <h5>Property Listing Veiw</h5>
+            <h5>
+                Số văn phòng: @if (Model != null)
+                { <text>@Model.Count</text> }
+            </h5>
             <div class="kf_view_type">
-                <div class="kf_property_view">
-                    <span>Sort By:</span>
-                    <select class="chosen-select">
-                        <option>Any</option>
-                        <option>Option 2</option>
-                        <option>Option 3</option>
+
+                <div class="kf_property_view" style="margin-left: 24px;">
+                    <span>Mức giá:</span>
+                    <select name="gia" id="gia" class="chosen_select_no_results">
+                        <option selected="selected" disabled>Chọn mức giá</option>
+                        <option value="thoathuan">Thỏa thuận</option>
+                        @for (int i = 0; i <= 100; i += 5)
+                        {
+                            <option value="@string.Format("tu-{0}-{1}-trieu", i, i+5)">@string.Format("Từ {0} đến {1} triệu", i, i + 5)</option>
+                        }
+                    </select>
+                    @*<a href="/search/van-phong">Tìm kiếm nâng cao</a>*@
+                </div>
+
+                <div class="kf_property_view" style="margin-left: 24px;">
+                    <span>Ngày đăng:</span>
+                    <select name="ngay" id="ngay" class="chosen_select_no_results">
+                        <option selected="selected" disabled>Chọn kiểu sắp xếp</option>
+                        <option value="moihon">Mới hơn</option>
+                        <option value="cuhon">Cũ hơn</option>
                     </select>
                 </div>
 
-                <div class="kf_property_view">
-                    <span>Select Veiw:</span>
-                    <select class="chosen-select">
-                        <option>Any</option>
-                        <option>Option 2</option>
-                        <option>Option 3</option>
+                <div class="kf_property_view" style="margin-left: 24px;">
+                    <span>Loại văn phòng:</span>
+                    <select name="loaivanphong" id="loaivanphong" class="chosen_select_no_results">
+                        <option selected="selected" disabled>Chọn loại văn phòng</option>
+                        <option value="vanphongchothue">Văn phòng cho thuê</option>
+                        <option value="vanphongtrongoi">Văn phòng chọn gói</option>
                     </select>
                 </div>
 
-                <div class="kf_property_view">
-                    <span>Select Veiw:</span>
-                    <i class="fa fa-th-list"></i>
-                    <i class="fa fa-th-large"></i>
-                </div>
             </div>
 
         </div>
@@ -70,156 +85,131 @@
         <!--Section Wrap Start-->
         <div class="row">
             <!--Property Listing 02 List Wrap Start-->
-            <div class="col-md-9">
-                <div class="kf_listing_outer_wrap">
-                    <div class="kf_property_img">
-                        <figure>
-                            <img src="extra-images/property-listing-01.jpg" alt="image">
-                        </figure>
-                    </div>
-                    <div class="kf_property_place">
-                        <div class="kf_property_caption">
-                            <h5><a href="#">University near to sabestian</a></h5>
-                            <p><i class="fa fa-map-marker"></i>Myths Vealesd  568 E 1st Ave, New Jersey </p>
+
+
+            <div class="col-md-12">
+                @if (Model != null)
+                {
+                    if (Model.Count > 0)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <div class="kf_listing_outer_wrap">
+                                <div class="kf_property_img">
+                                    <figure>
+                                        <img src="@item.office_photo" alt="image">
+                                    </figure>
+                                </div>
+                                <div class="kf_property_place">
+                                    <div class="kf_property_caption">
+                                        <h5><a href="@string.Format("/van-phong/{0}/{1}-{2}", configs.unicodeToNoMark(@item.building.bulding_name), configs.unicodeToNoMark(@item.office_name), @item.office_id)">@item.office_name</a></h5>
+                                        <p>
+                                            <i class="fa fa-map-marker"></i>@if (item.office_address != null)
+                                            {<text>@item.office_address - </text>}@item.building.building_address
+                                        </p>
+                                        <p><i class="fa fa-clock-o"></i> @string.Format("{0:dd/MM/yyyy HH:mm tt}", item.updated_date)</p>
+                                    </div>
+                                    <h5>
+                                        @if (item.office_price_public == -1)
+                                        {
+                                            <text>Thỏa thuận</text>
+                                        }
+                                        else
+                                        {
+                                            <text>@string.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:#,###}", item.office_price_public) <b>đồng.</b></text>
+                                        }
+                                    </h5>
+                                    <ul class="kf_property_dolar">
+                                        <li><b>Diện tích: </b><a href="#">@item.office_acreage m<sup>2</sup></a></li>
+                                        <li><b>Số cửa: </b><a href="#">@item.office_door</a></li>
+                                        <li><b>Số bàn ghế: </b><a href="#">@item.office_table</a></li>
+                                    </ul>
+                                    @if (item.OfficeServices.Count > 0)
+                                    {
+                                        <ul class="kf_property_dolar">
+                                            @foreach (var item2 in item.OfficeServices)
+                                            {
+                                                <li><i class="fa fa-arrows"></i><a href="#">@item2.service.service_name</a></li>
+                                            }
+                                        </ul>
+                                    }
+
+                                    <a class="kf_property_more" href="@string.Format("/van-phong/{0}/{1}-{2}", configs.unicodeToNoMark(@item.building.bulding_name), configs.unicodeToNoMark(@item.office_name), @item.office_id)">Xem chi tiết</a>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="kf_listing_outer_wrap">
+                            <p>Chưa có văn phòng nào.</p>
                         </div>
-                        <h5>$2,450,00</h5>
-                        <ul class="kf_property_dolar">
-                            <li><i class="fa fa-arrows"></i><a href="#">Area: 20,000 Sq. FT</a></li>
-                            <li><i class="fa fa-bed"></i><a href="#">Bedroom: 5</a></li>
-                            <li><i class="fa fa-bed"></i><a href="#">Bathrooms: 03</a></li>
-                        </ul>
-                        <ul class="kf_property_dolar">
-                            <li><i class="fa fa-arrows"></i><a href="#">Garage:  2</a></li>
-                            <li><i class="fa fa-arrows"></i><a href="#">Swim-poll:  1</a></li>
-                        </ul>
-                        <a class="kf_property_more" href="#">More Information</a>
-                    </div>
-                </div>
-                <div class="kf_listing_outer_wrap">
-                    <div class="kf_property_img">
-                        <figure>
-                            <img src="extra-images/property-listing-02.jpg" alt="image">
-                        </figure>
-                    </div>
-                    <div class="kf_property_place">
-                        <div class="kf_property_caption">
-                            <h5><a href="#">LAW FIRM OPENED NEAR TO VILLA</a></h5>
-                            <p><i class="fa fa-map-marker"></i>Braidwood Dakota 68 E 1st, New Jersey </p>
-                        </div>
-                        <h5>$8,450,00</h5>
-                        <ul class="kf_property_dolar">
-                            <li><i class="fa fa-arrows"></i><a href="#">Area: 20,000 Sq. FT</a></li>
-                            <li><i class="fa fa-bed"></i><a href="#">Bedroom: 05</a></li>
-                            <li><i class="fa fa-bed"></i><a href="#">Bathrooms: 06</a></li>
-                        </ul>
-                        <ul class="kf_property_dolar">
-                            <li><i class="fa fa-arrows"></i><a href="#">Garage:  2</a></li>
-                            <li><i class="fa fa-arrows"></i><a href="#">Swim-poll:  1</a></li>
-                        </ul>
-                        <a class="kf_property_more" href="#">More Information</a>
-                    </div>
-                </div>
-                <div class="kf_listing_outer_wrap">
-                    <div class="kf_property_img">
-                        <figure>
-                            <img src="extra-images/property-listing-03.jpg" alt="image">
-                        </figure>
-                    </div>
-                    <div class="kf_property_place">
-                        <div class="kf_property_caption">
-                            <h5><a href="#">Villa In Hialeah, Dade County</a></h5>
-                            <p><i class="fa fa-map-marker"></i>  Queen's Walk, 568 E 1st Ave, New Jersey </p>
-                        </div>
-                        <h5>$65,00</h5>
-                        <ul class="kf_property_dolar">
-                            <li><i class="fa fa-arrows"></i><a href="#">Area: 80,000 Sq. FT</a></li>
-                            <li><i class="fa fa-bed"></i><a href="#">Bedroom: 05</a></li>
-                            <li><i class="fa fa-bed"></i><a href="#">Bathrooms: 12</a></li>
-                        </ul>
-                        <ul class="kf_property_dolar">
-                            <li><i class="fa fa-arrows"></i><a href="#">Garage:  2</a></li>
-                            <li><i class="fa fa-arrows"></i><a href="#">Swim-poll:  1</a></li>
-                        </ul>
-                        <a class="kf_property_more" href="#">More Information</a>
-                    </div>
-                </div>
-                <div class="kf_listing_outer_wrap">
-                    <div class="kf_property_img">
-                        <figure>
-                            <img src="extra-images/property-listing-04.jpg" alt="image">
-                        </figure>
-                    </div>
-                    <div class="kf_property_place">
-                        <div class="kf_property_caption">
-                            <h5><a href="#">1200 Anastasia Avenue, Coral Gables</a></h5>
-                            <p><i class="fa fa-map-marker"></i>Trinity Square 86 A Block </p>
-                        </div>
-                        <h5>$3,50,00</h5>
-                        <ul class="kf_property_dolar">
-                            <li><i class="fa fa-arrows"></i><a href="#">Area: 15,000 Sq. FT</a></li>
-                            <li><i class="fa fa-bed"></i><a href="#">Bedroom: 10</a></li>
-                            <li><i class="fa fa-bed"></i><a href="#">Bathrooms: 13</a></li>
-                        </ul>
-                        <ul class="kf_property_dolar">
-                            <li><i class="fa fa-arrows"></i><a href="#">Garage:  2</a></li>
-                            <li><i class="fa fa-arrows"></i><a href="#">Swim-poll:  1</a></li>
-                        </ul>
-                        <a class="kf_property_more" href="#">More Information</a>
-                    </div>
-                </div>
-                <div class="kf_listing_outer_wrap">
-                    <div class="kf_property_img">
-                        <figure>
-                            <img src="extra-images/property-listing-05.jpg" alt="image">
-                        </figure>
-                    </div>
-                    <div class="kf_property_place">
-                        <div class="kf_property_caption">
-                            <h5><a href="#">20 Apartments Of Type A</a></h5>
-                            <p><i class="fa fa-map-marker"></i>Braidwood Dakota </p>
-                        </div>
-                        <h5>$5,450,00</h5>
-                        <ul class="kf_property_dolar">
-                            <li><i class="fa fa-arrows"></i><a href="#">Area: 5,000 Sq. FT</a></li>
-                            <li><i class="fa fa-bed"></i><a href="#">Bedroom: 8</a></li>
-                            <li><i class="fa fa-bed"></i><a href="#">Bathrooms: 10</a></li>
-                        </ul>
-                        <ul class="kf_property_dolar">
-                            <li><i class="fa fa-arrows"></i><a href="#">Garage:  2</a></li>
-                            <li><i class="fa fa-arrows"></i><a href="#">Swim-poll:  1</a></li>
-                        </ul>
-                        <a class="kf_property_more" href="#">More Information</a>
-                    </div>
-                </div>
-                <div class="kf_listing_outer_wrap">
-                    <div class="kf_property_img">
-                        <figure>
-                            <img src="extra-images/property-listing-06.jpg" alt="image">
-                        </figure>
-                    </div>
-                    <div class="kf_property_place">
-                        <div class="kf_property_caption">
-                            <h5><a href="#">University near to sabestian villa</a></h5>
-                            <p><i class="fa fa-map-marker"></i>South Aylesford </p>
-                        </div>
-                        <h5>$450,00</h5>
-                        <ul class="kf_property_dolar">
-                            <li><i class="fa fa-arrows"></i><a href="#">Area: 20,000 Sq. FT</a></li>
-                            <li><i class="fa fa-bed"></i><a href="#">Bedroom: 5</a></li>
-                            <li><i class="fa fa-bed"></i><a href="#">Bathrooms: 03</a></li>
-                        </ul>
-                        <ul class="kf_property_dolar">
-                            <li><i class="fa fa-arrows"></i><a href="#">Garage:  2</a></li>
-                            <li><i class="fa fa-arrows"></i><a href="#">Swim-poll:  1</a></li>
-                        </ul>
-                        <a class="kf_property_more" href="#">More Information</a>
-                    </div>
-                </div>
+
+                    }
+                }
+
+
             </div>
             <!--Property Listing 02 List Wrap End-->
 
         </div>
         <!--Section Wrap End-->
+        <!--pagination-container-->
+        <div class="row">
+            <div class="col-md-12">
+                @if (Model != null)
+                {
+                    @Html.PagedListPager(Model, page => Url.RouteUrl("SearchOfficeType2", new { ngay = ViewBag.ngay, gia = ViewBag.gia, loaivanphong = ViewBag.loaivanphong, pg = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+                }
+            </div>
+        </div>
+        <!--pagination-container-->
     </div>
 </section>
 <!--Property Listing 01 Wrap End-->
+@* section quảng cáo *@
+@{Html.RenderAction("LoadCompnay", "Home");}
+
+@section Scripts {
+
+    <script>
+        $(document).ready(function () {
+            var ngay = gup('ngay', document.location.href);
+            var gia = gup('gia', document.location.href);
+            var loaivanphong = gup('loaivanphong', document.location.href);
+            if (ngay !== null) {
+                $("#ngay").val(ngay).trigger("chosen:updated");
+            }
+            if (gia !== null) {
+                $("#gia").val(gia).trigger("chosen:updated");
+            }
+            if (loaivanphong !== null) {
+                $('#loaivanphong').val(loaivanphong).trigger("chosen:updated");
+            }
+            $('#gia_chosen').children('.chosen-drop').css('width', '200px');
+
+            $('#ngay').chosen().change(function () {
+                var myValues = $('#ngay').chosen().val();
+                var url_2 = document.location.pathname + addUrlParam(document.location.search, 'ngay', myValues);
+                location.href = url_2;
+            });
+
+            $('#gia').chosen().change(function () {
+                var myValues = $('#gia').chosen().val();
+                var url_2 = document.location.pathname + addUrlParam(document.location.search, 'gia', myValues);
+                location.href = url_2;
+            });
+
+            $('#loaivanphong').chosen().change(function () {
+                var myValues = $('#loaivanphong').chosen().val();
+                var url_2 = document.location.pathname + addUrlParam(document.location.search, 'loaivanphong', myValues);
+                location.href = url_2;
+            })
+
+        })
+
+
+
+    </script>
+
+}
