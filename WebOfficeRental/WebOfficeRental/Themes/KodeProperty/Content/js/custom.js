@@ -450,3 +450,13 @@ var addUrlParam = function (search, key, val) {
 
     return params;
 };
+
+function gup(name, url) {
+    if (!url) url = location.href;
+    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    var regexS = "[\\?&]" + name + "=([^&#]*)";
+    var regex = new RegExp(regexS);
+    var results = regex.exec(url);
+    return results == null ? null : results[1];
+}
+//gup('q', 'hxxp://example.com/?q=abc')

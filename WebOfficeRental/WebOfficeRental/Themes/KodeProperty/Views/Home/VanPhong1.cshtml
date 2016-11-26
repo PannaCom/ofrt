@@ -67,10 +67,10 @@
                 </div>
 
                 @*<div class="kf_property_view">
-                    <span>Hiện thị:</span>
-                    <i class="fa fa-th-list"></i>
-                    <i class="fa fa-th-large"></i>
-                </div>*@
+                        <span>Hiện thị:</span>
+                        <i class="fa fa-th-list"></i>
+                        <i class="fa fa-th-large"></i>
+                    </div>*@
 
             </div>
 
@@ -106,11 +106,11 @@
                                     <h5>
                                         @if (item.office_price_public == -1)
                                         {
-                                            <text>Thỏa thuận</text>
+                                        <text>Thỏa thuận</text>
                                         }
                                         else
                                         {
-                                            <text>@string.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:#,###}", item.office_price_public) <b>đồng.</b></text>
+                                        <text>@string.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:#,###}", item.office_price_public) <b>đồng.</b></text>
                                         }
                                     </h5>
                                     <ul class="kf_property_dolar">
@@ -120,12 +120,12 @@
                                     </ul>
                                     @if (item.OfficeServices.Count > 0)
                                     {
-                                        <ul class="kf_property_dolar">
-                                            @foreach (var item2 in item.OfficeServices)
+                                    <ul class="kf_property_dolar">
+                                        @foreach (var item2 in item.OfficeServices)
                                             {
-                                                <li><i class="fa fa-arrows"></i><a href="#">@item2.service.service_name</a></li>
+                                            <li><i class="fa fa-arrows"></i><a href="#">@item2.service.service_name</a></li>
                                             }
-                                        </ul>
+                                    </ul>
                                     }
 
                                     <a class="kf_property_more" href="@string.Format("/van-phong/{0}/{1}-{2}", configs.unicodeToNoMark(@item.building.bulding_name), configs.unicodeToNoMark(@item.office_name), @item.office_id)">Xem chi tiết</a>
@@ -133,9 +133,10 @@
                             </div>
                         }
                     }
-
-                    
-
+                    else
+                    {
+                        <p>Chưa có văn phòng nào.</p>
+                    }
                 }
 
 
@@ -144,7 +145,6 @@
 
         </div>
         <!--Section Wrap End-->
-
         <!--pagination-container-->
         <div class="row">
             <div class="col-md-12">
@@ -161,13 +161,20 @@
 @* section quảng cáo *@
 @{Html.RenderAction("LoadCompnay", "Home");}
 
-@section Scripts { 
-    
+@section Scripts {
+
     <script>
         $(document).ready(function () {
+            var ngay = gup('ngay', document.location.href);
+            var gia = gup('gia', document.location.href);
+            if (ngay !== null) {
+                $("#ngay").val(ngay).trigger("chosen:updated");
+            }
+            if (gia !== null) {
+                $("#gia").val(gia).trigger("chosen:updated");
+            }
 
-
-            $('#ngay').chosen().change(function(){
+            $('#ngay').chosen().change(function () {
                 var myValues = $('#ngay').chosen().val();
                 //console.log(myValues);
 
@@ -176,10 +183,10 @@
                 location.href = url_2;
                 //console.log(url_2);
             });
-           
+
             $('#gia').chosen().change(function () {
                 var myValues = $('#gia').chosen().val();
-                
+
                 //console.log(myValues);
                 var url_2 = document.location.pathname + addUrlParam(document.location.search, 'gia', myValues);
                 //var url_2 = addUrlParam2(document.location.href, 'gia', myValues);
@@ -201,8 +208,8 @@
 
         })
 
-        
-        
+
+
     </script>
 
 }
