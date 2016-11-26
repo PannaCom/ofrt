@@ -1,4 +1,4 @@
-$(document).ready(function () {
+﻿$(document).ready(function () {
     "use strict";
     //$.ajax({
     //    url: "/Home/LoadMenu",
@@ -212,8 +212,23 @@ $(document).ready(function () {
 	  =======================================================================
 	*/
     if ($(".chosen-select").length) {
-        $(".chosen-select").chosen()
+        $(".chosen-select").chosen({
+            no_results_text: "Không tìm thấy kết quả nào.",
+        })
     }
+
+
+    var config = {
+        '.chosen_select_width200': { no_results_text: "Không tìm thấy kết quả!", width: '200px' },
+        '.chosen-select-deselect': { allow_single_deselect: true, no_results_text: "Không tìm thấy kết quả!" },
+        '.chosen-select-no-single': { disable_search_threshold: 10 },
+        '.chosen-select-no-results': { no_results_text: 'Không tìm thấy kết quả!' },
+        '.chosen-select-width': { width: "95%" }
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
 
     /*
 	  =======================================================================
@@ -410,4 +425,28 @@ function Validatephonenumber(inputtxt)
     {  
         return false;  
     }  
-} 
+}
+
+/**
+* Add a URL parameter (or changing it if it already exists)
+* @param {search} string  this is typically document.location.search
+* @param {key}    string  the key to set
+* @param {val}    string  value 
+*/
+var addUrlParam = function (search, key, val) {
+    var newParam = key + '=' + val,
+        params = '?' + newParam;
+
+    // If the "search" string exists, then build params from it
+    if (search) {
+        // Try to replace an existance instance
+        params = search.replace(new RegExp('([?&])' + key + '[^&]*'), '$1' + newParam);
+
+        // If nothing was replaced, then add the new param to the end
+        if (params === search) {
+            params += '&' + newParam;
+        }
+    }
+
+    return params;
+};

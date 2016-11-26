@@ -157,7 +157,7 @@ namespace WebOfficeRental.Controllers
 
         public ActionResult VanPhong1(int? pg)
         {
-            int pageSize = 25;
+            int pageSize = 6;
             if (pg == null) pg = 1;
             int pageNumber = (pg ?? 1);
             ViewBag.pg = pg;
@@ -172,7 +172,7 @@ namespace WebOfficeRental.Controllers
 
         public ActionResult VanPhong2(int? pg)
         {
-            int pageSize = 25;
+            int pageSize = 6;
             if (pg == null) pg = 1;
             int pageNumber = (pg ?? 1);
             ViewBag.pg = pg;
@@ -199,7 +199,7 @@ namespace WebOfficeRental.Controllers
                 return View();
             }
 
-            int pageSize = 25;
+            int pageSize = 6;
             if (pg == null) pg = 1;
             int pageNumber = (pg ?? 1);
             ViewBag.pg = pg;
