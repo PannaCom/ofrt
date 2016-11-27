@@ -1,0 +1,11 @@
+﻿<select class="chosen-select" name="toanha" id="toanha" data-placeholder="Chọn tòa nhà">
+    <option selected="selected" disabled>Chọn tòa nhà</option>
+    @if (Model != null)
+    {
+        @Html.Raw(Model)
+    }
+    @*<option>Commercial</option>
+        <option>-Office</option>
+        <option>-Shop</option>
+        <option>-Residential</option>*@
+</select>

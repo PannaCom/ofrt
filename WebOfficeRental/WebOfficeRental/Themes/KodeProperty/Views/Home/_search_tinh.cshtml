@@ -1,0 +1,10 @@
+﻿
+<select class="chosen-select" name="tinh" id="tinh" onchange="getSearchQuan();" data-placeholder="Chọn địa điểm">
+    <option selected="selected" disabled>Địa điểm cho thuê</option>
+    @if (Model != null)
+    {
+        @Html.Raw(Model)
+    }
+    @*<option value="Thái bình 1">Thái Bình</option>
+        <option value="Hà Nội">Hà Nội</option>*@
+</select>

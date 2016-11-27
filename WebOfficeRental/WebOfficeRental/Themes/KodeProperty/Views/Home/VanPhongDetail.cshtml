@@ -1,0 +1,123 @@
+﻿@using WebOfficeRental.Models;
+@using WebOfficeRental.Helpers;
+@model office
+
+@{
+    ViewBag.Title = @Model.office_name;
+}
+
+@section metatags {
+    <meta name="description" content="văn phòng @Model.office_name tòa nhà @Model.building.bulding_name">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="robots" content="index,follow,noodp">
+    <meta property="og:locale" content="vi_VN">
+    <meta property="og:type" content="home">
+    <meta property="og:url" content="http://@Request.Url.Host">
+    <meta property="og:title" content="@Html.Raw(ViewBag.Title)">
+    <meta property="og:description" content="văn phòng @Model.office_name tòa nhà @Model.building.bulding_name">
+    <meta property="og:image" itemprop="thumbnailUrl" content="http://@Request.Url.Host/@Model.office_photo">
+}
+
+@*@section MainBanner {
+    <!--Sub Banner Wrap Start-->
+    <div class="kf_property_sub_banner">
+        <div class="container">
+            <div class="kf_sub_banner_hdg">
+                <h3>@Html.Raw(ViewBag.Title)</h3>
+            </div>
+            <div class="kf_property_breadcrumb">
+                <ul>
+                    <li><a href="#">Tòa nhà</a></li>
+                    <li><a href="@HttpContext.Current.Request.Url.AbsolutePath" class="bb1_p0_m010">@Html.Raw(ViewBag.Title)</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--Sub Banner Wrap End-->
+}*@
+
+<!--Property Detail Wrap Start-->
+<section class="kf_property_detail_bg">
+    <div class="container">
+        <div class="row">
+            <!--Property Detail Description Wrap Start-->
+            <div class="col-md-9">
+                <div class="kf_detail_information">
+                    
+                    <!--kf_property_detail_uptwon strat-->
+                    <div class="kf_property_detail_uptwon">
+                        <h3>@Model.office_name</h3>
+                        <ul>
+                            <li><i class="fa fa-map-marker"></i><a href="#">@Model.building.building_address</a></li>
+                            <li><i class="fa fa-phone"></i><a href="tel:@Model.building.building_phonenumber">@Model.building.building_phonenumber</a></li>
+                            <li><i class="fa fa-inbox"></i><a href="mailto:@Model.building.building_email">@Model.building.building_email</a></li>
+                            <li><i class="fa fa-calendar-o"></i><a href="#">@Model.updated_date</a></li>
+                        </ul>
+                        @Html.Raw(Model.office_other_descriptions)
+
+                    </div>
+                    <!--kf_property_detail_uptwon end-->
+                    <!--kf_property_detail_link strat-->
+                    <div class="kf_property_detail_link">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="kf_property_detail_hdg">
+                                    <h5>Dịch vụ tòa nhà</h5>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="kf_property_detail_Essentail">
+                                    <ul>
+                                        @foreach (var item in @Model.OfficeServices)
+                                        {
+                                            <li><a href="#"><i class="fa fa-check-circle"></i>@item.service.service_name</a></li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="kf_property_form_lienhe">
+                        <form method="post" name="form_lienhe" id="form_lienhe" class="form-horizontal">
+                            <h4>Liên hệ</h4>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Họ và tên: </label>
+                                <div class="col-md-6">
+                                    <input type="text" name="hoten" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Số điện thoại: </label>
+                                <div class="col-md-6">
+                                    <input type="text" name="sodienthoai" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Email: </label>
+                                <div class="col-md-6">
+                                    <input type="email" name="email" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Tin nhắn: </label>
+                                <div class="col-md-6">
+                                    <textarea rows="10" name="loinhan" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <button class="btn btn-primary">Gửi liên hệ</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            <!--Property Detail Description Wrap End-->
+        </div>
+    </div>
+</section>
+<!--Property Detail Wrap End-->
