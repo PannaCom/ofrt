@@ -69,8 +69,8 @@
 }
 .chosen-container-single .chosen-single abbr {
 	position: absolute;
-	top: 6px;
-	right: 26px;
+	right: 36px;
+    top: 17px;
 	display: block;
 	width: 12px;
 	height: 12px;

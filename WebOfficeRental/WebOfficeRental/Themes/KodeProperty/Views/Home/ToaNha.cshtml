@@ -179,31 +179,43 @@
             var loaivanphong = gup('loaivanphong', document.location.href);
             if (ngay !== null) {
                 $("#ngay").val(ngay).trigger("chosen:updated");
+                $('#ngay_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
             }
             if (gia !== null) {
                 $("#gia").val(gia).trigger("chosen:updated");
+                $('#gia_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
             }
             if (loaivanphong !== null) {
                 $('#loaivanphong').val(loaivanphong).trigger("chosen:updated");
+                $('#loaivanphong_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
             }
             $('#gia_chosen').children('.chosen-drop').css('width', '200px');
 
             $('#ngay').chosen().change(function () {
                 var myValues = $('#ngay').chosen().val();
-                var url_2 = document.location.pathname + addUrlParam(document.location.search, 'ngay', myValues);
-                location.href = url_2;
+                if (myValues !== null) {                    
+                    var url_2 = document.location.pathname + addUrlParam(document.location.search, 'ngay', myValues);
+                    location.href = url_2;
+                }
+                
             });
 
             $('#gia').chosen().change(function () {
                 var myValues = $('#gia').chosen().val();
-                var url_2 = document.location.pathname + addUrlParam(document.location.search, 'gia', myValues);
-                location.href = url_2;
+                if (myValues !== null) {
+                    var url_2 = document.location.pathname + addUrlParam(document.location.search, 'gia', myValues);
+                    location.href = url_2;
+                }
+                
             });
 
             $('#loaivanphong').chosen().change(function () {
                 var myValues = $('#loaivanphong').chosen().val();
-                var url_2 = document.location.pathname + addUrlParam(document.location.search, 'loaivanphong', myValues);
-                location.href = url_2;
+                if (myValues !== null) {
+                    var url_2 = document.location.pathname + addUrlParam(document.location.search, 'loaivanphong', myValues);
+                    location.href = url_2;
+                }
+                
             })
 
         })

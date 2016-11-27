@@ -290,7 +290,7 @@ namespace WebOfficeRental.Controllers
         public string getToaNha()
         {
             var p = (from q in db.buildings where q.bulding_name != null orderby q.bulding_name ascending select new { id = q.bulding_id, name = q.bulding_name }).ToList().Distinct();
-            string toanha = "<option value=''>--Chọn tòa nhà--</option>";
+            string toanha = "";
             if (p.Count() > 0)
             {
                 foreach (var item in p)

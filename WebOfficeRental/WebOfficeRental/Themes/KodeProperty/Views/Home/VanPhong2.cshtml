@@ -175,21 +175,29 @@
             var gia = gup('gia', document.location.href);
             if (ngay !== null) {
                 $("#ngay").val(ngay).trigger("chosen:updated");
+                $('#ngay_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
             }
             if (gia !== null) {
                 $("#gia").val(gia).trigger("chosen:updated");
+                $('#gia_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
             }
 
             $('#ngay').chosen().change(function () {
                 var myValues = $('#ngay').chosen().val();
-                var url_2 = document.location.pathname + addUrlParam(document.location.search, 'ngay', myValues);
-                location.href = url_2;
+                if (myValues !== null) {
+                    var url_2 = document.location.pathname + addUrlParam(document.location.search, 'ngay', myValues);
+                    location.href = url_2;
+                }
+               
             });
 
             $('#gia').chosen().change(function () {
                 var myValues = $('#gia').chosen().val();
-                var url_2 = document.location.pathname + addUrlParam(document.location.search, 'gia', myValues);
-                location.href = url_2;
+                if (myValues !== null) {
+                    var url_2 = document.location.pathname + addUrlParam(document.location.search, 'gia', myValues);
+                    location.href = url_2;
+                }
+                
             });
 
         })

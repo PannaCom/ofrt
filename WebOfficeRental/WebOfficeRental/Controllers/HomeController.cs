@@ -91,6 +91,57 @@ namespace WebOfficeRental.Controllers
             return PartialView("_MenuMobile", _menu);
         }
 
+        public ActionResult LoadSearchTinh()
+        {
+            var p = (from q in db.cities where q.provinces != null orderby q.provinces ascending select q.provinces).ToList().Distinct();
+            string model = "";
+            if (p.Count() > 0)
+            {
+                foreach (var item in p)
+                {
+                    var _opt = string.Format("<option value='{0}'>{1}</option>", item, item);
+                    model += _opt;
+                }       
+            }             
+            return PartialView("_search_tinh", model);
+        }
+
+        public string LoadSearchQuan(string keyword)
+        {
+            if (keyword == null)
+            {
+                keyword = "";
+            }
+            var p = (from q in db.cities where q.provinces.Contains(keyword) orderby q.district ascending select q.district);
+            string model = "";
+            if (p.Count() > 0)
+            {
+                foreach (var item in p)
+                {
+                    string option = string.Format("<option value='{0}'>{1}</option>", item, item);
+                    model += option;
+                }
+            }
+            
+            return model;
+        }
+
+        public ActionResult LoadSearchToaNha()
+        {
+            var p = (from q in db.buildings where q.bulding_name != null orderby q.bulding_name ascending select new { id = q.bulding_id, name = q.bulding_name }).ToList().Distinct();
+            string toanha = "";
+            if (p.Count() > 0)
+            {
+                foreach (var item in p)
+                {
+                    string option = string.Format("<option value='{0}'>{1}</option>", item.id, item.name);
+                    toanha += option;
+                }
+            }
+            
+            return PartialView("_search_toa_nha", toanha);
+        }
+
         public ActionResult LoadOfficeNewHot()
         {
             var model = (from o in db.offices where o.status == true && o.office_new_type == 2 orderby o.updated_date descending select o).ToList();
@@ -150,10 +201,127 @@ namespace WebOfficeRental.Controllers
             return PartialView("_LoadOfficeType2", model);
         }
 
-        public ActionResult Search1()
+        public ActionResult Search1(int? pg, string keyword, string tinh, string quan, string gia, string toanha, string ngay, string loaivanphong)
         {
+            
+            int pageSize = 6;
+            if (pg == null) pg = 1;
+            int pageNumber = (pg ?? 1);
+            ViewBag.pg = pg;
 
-            return View();
+            var data = (from q in db.offices where q.status == true select q);
+            if (data == null)
+            {
+                return View(data);
+            }
+
+            #region Thêm điều kiện tìm kiếm
+            try
+            {
+                if(tinh == null) tinh = ""; if (quan == null) quan = ""; if (toanha == null) toanha = ""; if (ngay == null) ngay = ""; if (gia == null) gia = ""; if (loaivanphong == null) loaivanphong = "";
+                
+                // keyword
+                if (keyword != null && keyword != "")
+                {
+                    //aa là bảng input.split(' ');
+                    //_p = _p.Where(o => aa.Any(w => o.F2.Contains(w)));
+                    var arrKeyWord =  keyword.Split(' ');
+                    data = data.Where(o => arrKeyWord.Any(w => o.office_name.Contains(w)));
+                    ViewBag.keyword = keyword;
+                }
+
+                // tinh
+                if (tinh != null && tinh != "")
+                {
+                    data = data.Where(x => x.building.provinces.Contains(tinh));
+                    ViewBag.tinh = tinh;
+                }
+
+                // quan
+                if (quan != null && quan != "")
+                {
+                    data = data.Where(x => x.building.district.Contains(quan));
+                    ViewBag.quan = quan;
+                }
+
+                // toa nha
+                if (toanha != null && toanha != "")
+                {
+                    int _itoanha = Convert.ToInt32(toanha);
+                    var _toanha = db.buildings.Where(x => x.bulding_id == _itoanha).FirstOrDefault();
+                    ViewBag.TenToaNha = _toanha.bulding_name;
+                    ViewBag.toanha = toanha;
+                    data = data.Where(x => x.buiding_id == _itoanha);
+                }
+                
+                // gia
+                int tuGia = 0; int toiGia = 0;
+                if (gia != null && gia != "")
+                {
+                    String[] ar_gia = gia.Split('-');
+                    if (ar_gia.Length == 4)
+                    {
+                        tuGia = Convert.ToInt32(ar_gia[1].ToString()) * 1000000;
+                        toiGia = Convert.ToInt32(ar_gia[2].ToString()) * 1000000;
+                    }
+
+                    switch (gia)
+                    {
+                        case "thoathuan":
+                            data = data.Where(x => x.office_price_public == -1);
+                            break;
+                        default:
+                            data = data.Where(x => x.office_price_public >= tuGia && x.office_price_public <= toiGia);
+                            break;
+                    }
+                    ViewBag.gia = gia;
+                }
+
+                // loaivanphong
+                
+                if (loaivanphong != null && loaivanphong != "")
+                {
+                    switch (loaivanphong)
+                    {
+                        case "vanphongtrongoi":
+                            data = data.Where(x => x.office_type == 2);
+                            break;
+                        default:
+                            data = data.Where(x => x.office_type == 1);
+                            break;
+                    }
+                    ViewBag.loaivanphong = loaivanphong;
+                }
+
+                // ngay
+                
+                if (ngay != null && ngay != "")
+                {
+                    switch (ngay)
+                    {
+                        case "cuhon":
+                            data = data.OrderBy(x => x.updated_date);
+                            break;
+                        default:
+                            data = data.OrderByDescending(x => x.updated_date);
+                            break;
+                    }
+                    ViewBag.ngay = ngay;
+                }
+                else
+                {
+                    data = data.OrderByDescending(x => x.updated_date);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                configs.SaveTolog(ex.ToString());
+            }
+            #endregion
+
+            return View(data.ToList().ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult VanPhong1(int? pg, string ngay, string gia)
@@ -287,6 +455,7 @@ namespace WebOfficeRental.Controllers
             {
                 return View();
             }
+
             // check id có phải là tòa nhà không?
             var _build = (from bu in db.buildings where bu.bulding_id == id select bu).FirstOrDefault();
             if (_build == null)

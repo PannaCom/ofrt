@@ -320,7 +320,7 @@ else
         url: "/Offices/getToaNha",
         cache: false
     }).done(function (html) {
-        $("#buiding_id").html("" + html);
+        $("#dichvuvp").append(html);
         @if (@Model.buiding_id != null) {
             <text>$('#buiding_id').val('@Model.buiding_id');</text>
         }

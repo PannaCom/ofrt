@@ -258,7 +258,7 @@
             url: "/Offices/getDichvuvp",
             cache: false
         }).done(function (html) {
-            $("#dichvuvp").html("" + html);
+            $("#dichvuvp").append(html);
         });
 
         function getGiaCa() {

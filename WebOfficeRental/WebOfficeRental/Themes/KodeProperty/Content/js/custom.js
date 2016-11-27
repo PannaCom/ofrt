@@ -214,15 +214,17 @@
     if ($(".chosen-select").length) {
         $(".chosen-select").chosen({
             no_results_text: "Không tìm thấy kết quả nào.",
+            width: 'auto',
+            allow_single_deselect: true
         })
     }
 
 
     var config = {
-        '.chosen_select_width200': { no_results_text: "Không tìm thấy kết quả!", width: '200px' },
+        '.chosen_select_width200': { no_results_text: "Không tìm thấy kết quả!", width: '200px', allow_single_deselect: true },
         '.chosen-select-deselect': { allow_single_deselect: true, no_results_text: "Không tìm thấy kết quả!" },
         '.chosen-select-no-single': { disable_search_threshold: 10 },
-        '.chosen_select_no_results': { no_results_text: 'Không tìm thấy kết quả!', width: 'auto' },
+        '.chosen_select_no_results': { no_results_text: 'Không tìm thấy kết quả!', width: 'auto', allow_single_deselect: true },
         '.chosen-select-width': { width: "95%" }
     }
     for (var selector in config) {
@@ -345,6 +347,7 @@
 		  " - $" + $(".slider-range").slider("values", 1));
     }
 
+
 });
 
 /* ---------------------------------------------------------------------- */
@@ -460,3 +463,23 @@ function gup(name, url) {
     return results == null ? null : results[1];
 }
 //gup('q', 'hxxp://example.com/?q=abc')
+
+$(document).ready(function () {
+    /**
+     * Search panel
+     */
+    if ($('#search_header_btn').length) {
+        $('#search_header_btn').on('click', function (e) {
+            e.preventDefault();
+            if ($(this).siblings('#search_header_input').val() === "") {
+                alert('Vui lòng nhập từ khóa tìm kiếm');
+            } else {
+                var myValues = $(this).siblings('#search_header_input').val();
+                var url_2 = "/search/van-phong/?keyword=" + myValues;
+                location.href = url_2;
+            }
+        })
+    }
+
+
+});

@@ -171,29 +171,34 @@
             var gia = gup('gia', document.location.href);
             if (ngay !== null) {
                 $("#ngay").val(ngay).trigger("chosen:updated");
+                $('#ngay_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
             }
             if (gia !== null) {
                 $("#gia").val(gia).trigger("chosen:updated");
+                $('#gia_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
             }
 
             $('#ngay').chosen().change(function () {
                 var myValues = $('#ngay').chosen().val();
-                //console.log(myValues);
-
-                var url_2 = document.location.pathname + addUrlParam(document.location.search, 'ngay', myValues);
-                //var url_2 = addUrlParam2(document.location.href, 'ngay', myValues);
-                location.href = url_2;
-                //console.log(url_2);
+                if (myValues !== null) {
+                    var url_2 = document.location.pathname + addUrlParam(document.location.search, 'ngay', myValues);
+                    //var url_2 = addUrlParam2(document.location.href, 'ngay', myValues);
+                    location.href = url_2;
+                    //console.log(url_2);
+                }
+               
             });
 
             $('#gia').chosen().change(function () {
                 var myValues = $('#gia').chosen().val();
-
-                //console.log(myValues);
-                var url_2 = document.location.pathname + addUrlParam(document.location.search, 'gia', myValues);
-                //var url_2 = addUrlParam2(document.location.href, 'gia', myValues);
-                //console.log(url_2);
-                location.href = url_2;
+                if (myValues !== null) {
+                    //console.log(myValues);
+                    var url_2 = document.location.pathname + addUrlParam(document.location.search, 'gia', myValues);
+                    //var url_2 = addUrlParam2(document.location.href, 'gia', myValues);
+                    //console.log(url_2);
+                    location.href = url_2;
+                }
+                
             });
 
 

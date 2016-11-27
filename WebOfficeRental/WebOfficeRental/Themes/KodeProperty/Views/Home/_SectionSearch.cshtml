@@ -11,41 +11,36 @@
     <!--Search Form Wrap Start-->
     <div class="kf_advacnce_search_form">
 
-        <form id="search_office" action="/search/van-phong" method="get">
+        <form id="search_office" action="/search/van-phong" method="get" onsubmit="return validate_search()">
             <div class="row">
                 <div class="col-md-9 col-sm-6">
                     <div class="kf_search_field">
                         <label>Tên văn phòng</label>
-                        <input type="text" name="keyword" placeholder="Nhập từ khóa cần tìm">
+                        <input type="text" name="keyword" id="keyword" placeholder="Nhập từ khóa cần tìm">
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="kf_search_field">
                         <label>Địa điểm</label>
-                        <select class="chosen-select" name="tinh">
-                            <option value="">Địa điểm cho thuê</option>
-                            <option value="Thái bình 1">Thái Bình</option>
-                            <option value="Hà Nội">Hà Nội</option>
-                        </select>
+                        @{Html.RenderAction("LoadSearchTinh", "Home");}
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="kf_search_field">
                         <label>Quận/huyện/thành phố</label>
-                        <select class="chosen-select">
-                            <option>Chọn quận</option>
-                            <option>Huyện Ba vì</option>
-                            <option>Bắc Ninh</option>
-                            <option>-Phú Thọ</option>
-                            <option>-Lào Cai</option>
+                        
+                        <select class="chosen-select" name="quan" id="quan" data-placeholder="Chọn quận">
+                            <option selected="selected" disabled>Chọn quận</option>
+
                         </select>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="kf_search_field">
                         <label>Mức giá</label>
-                        <select class="chosen-select">
-                            <option value="-1">Thỏa thuận</option>
+                        <select class="chosen-select" name="gia" id="gia" data-placeholder="Chọn mức giá">
+                            <option selected="selected" disabled>Chọn mức giá</option>
+                            <option value="thoathuan">Thỏa thuận</option>
                             @for (int i = 0; i <= 100; i += 5)
                             {
                                 <option value="@string.Format("tu-{0}-{1}-trieu", i, i+5)">@string.Format("Từ {0} đến {1} triệu", i, i + 5)</option>
@@ -56,13 +51,7 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="kf_search_field">
                         <label>Tòa nhà</label>
-                        <select class="chosen-select">
-                            <option>Any</option>
-                            <option>Commercial</option>
-                            <option>-Office</option>
-                            <option>-Shop</option>
-                            <option>-Residential</option>
-                        </select>
+                        @{Html.RenderAction("LoadSearchToaNha", "Home");}
                     </div>
                 </div>
                 
@@ -79,8 +68,58 @@
 </div>
 
 <!--Advance Search Wrap Start-->
+<script>
 
+    function validate_search() {
+        var v_tinh = $('#tinh').chosen().val();
+        var v_quan = $('#quan').chosen().val();
+        var v_gia = $('#gia').chosen().val();
+        var v_toa_nha = $('#toanha').chosen().val();
+        //console.log(v_tinh);
+        if (document.getElementById("keyword").value === "" && v_tinh === null && v_quan === null && v_gia === null && v_toa_nha === null) {
+            alert('Vui lòng nhập từ khóa tìm kiếm hoặc chọn ít nhất một điều kiện.');
+            return false;
+        } else {
+            return true;
+        };
+    }    
 
-@section Script {
-        
-}
+    function getSearchQuan() {
+        // Cập nhật giá trị quận mới khi chọn tỉnh
+        var tinh = $('#tinh').chosen().val() !== null ? $('#tinh').chosen().val() : "";
+        $.ajax({
+            url: "/Home/LoadSearchQuan?keyword=" + tinh,
+            cache: false
+        }).done(function (html) {
+            $("#quan").empty().append("<option selected='selected' disabled>Chọn quận</option>"+html);
+            $('#quan').chosen().trigger("chosen:updated");
+        });
+        $('#tinh_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
+    }
+
+    //quan
+    
+    $.ajax({
+        url: "/Home/LoadSearchQuan?keyword=",
+        cache: false
+    }).done(function (html) {
+        $("#quan").append(html);
+        $('#quan').chosen().trigger("chosen:updated");
+    });
+
+    $(document).ready(function () {
+
+        $('#quan').chosen().change(function () {
+            $('#quan_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
+        });
+
+        $('#gia').chosen().change(function () {
+            $('#gia_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
+        });
+
+        $('#toanha').chosen().change(function () {
+            $('#toanha_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
+        });
+    })
+
+</script>
