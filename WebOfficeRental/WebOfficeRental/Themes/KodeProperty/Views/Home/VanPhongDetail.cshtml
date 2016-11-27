@@ -54,6 +54,14 @@
                             <li><i class="fa fa-inbox"></i><a href="mailto:@Model.building.building_email">@Model.building.building_email</a></li>
                             <li><i class="fa fa-calendar-o"></i><a href="#">@Model.updated_date</a></li>
                         </ul>
+                        <b>Giá: @if (Model.office_price_public == -1)
+                        {
+                            <text>Thỏa thuận</text>
+                        }
+                        else
+                        {
+                            <text>@string.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:#,###}", Model.office_price_public) <b>đồng.</b></text>
+                        }</b>
                         @Html.Raw(Model.office_other_descriptions)
 
                     </div>
