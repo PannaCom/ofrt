@@ -552,6 +552,23 @@ namespace WebOfficeRental.Controllers
             return View();
         }
 
+        public ActionResult VanPhongDetail(long? id)
+        {
+            if (id == null || id == 0)
+            {
+                return RedirectToRoute("NotFound");
+            }
+
+            var _vanphong = (from o in db.offices where o.status == true && o.office_id == id select o).FirstOrDefault();
+            if (_vanphong == null)
+            {
+                return RedirectToRoute("NotFound");
+            }
+
+            return View(_vanphong);
+        }  
+
+
 
     }
 }

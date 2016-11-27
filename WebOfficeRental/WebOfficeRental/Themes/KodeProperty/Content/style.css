@@ -6115,3 +6115,7 @@ ul.kf_tag_list {
     padding: 0;
     margin: 0 10px;
 }
+
+#form_lienhe label{
+    color: #333;
+}

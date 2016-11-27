@@ -254,6 +254,20 @@ namespace WebOfficeRental
                     }),
                 new MvcRouteHandler()));
 
+            // Chi tiết văn phòng
+            //VanPhongDetail
+            routes.Add("RVanPhongDetail", new SeoFriendlyRoute("van-phong/{tentoanha}/{tenvanphong}-{id}", 
+                new RouteValueDictionary(
+                   new
+                   {
+                       controller = "Home",
+                       action = "VanPhongDetail",
+                       id = UrlParameter.Optional,
+                       tentoanha = UrlParameter.Optional,
+                       tenvanphong = UrlParameter.Optional
+                   }), new MvcRouteHandler()));
+
+
 
             #endregion
 
@@ -262,7 +276,7 @@ namespace WebOfficeRental
             routes.MapRoute(
                 "NotFound",
                 "{url}",
-                new{ controller = "Home", action = "NotFoundPage" }
+                new { controller = "Home", action = "NotFoundPage" }
             );
             #endregion
 

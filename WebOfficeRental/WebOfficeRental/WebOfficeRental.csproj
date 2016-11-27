@@ -1197,6 +1197,7 @@
     <Content Include="Themes\KodeProperty\Views\Home\NotFoundPage.cshtml" />
     <Content Include="Themes\KodeProperty\Views\Home\_search_tinh.cshtml" />
     <Content Include="Themes\KodeProperty\Views\Home\_search_toa_nha.cshtml" />
+    <Content Include="Themes\KodeProperty\Views\Home\VanPhongDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
