@@ -568,7 +568,30 @@ namespace WebOfficeRental.Controllers
             return View(_vanphong);
         }  
 
-
+        [HttpPost]
+        public ActionResult LienHe(string hoten, string sodienthoai, string email, string loinhan)
+        {
+            int isSend = 0;
+            if (hoten == null) hoten = ""; if (sodienthoai == null) sodienthoai = ""; if (email == null) email = ""; if (loinhan == null) loinhan = "";
+            try
+            {
+                contact_rent _newForm = new contact_rent();
+                _newForm.full_name = hoten;
+                _newForm.phone = sodienthoai;
+                _newForm.email = email;
+                _newForm.message = loinhan;
+                db.contact_rent.Add(_newForm);
+                db.SaveChanges();
+                isSend = 1;
+                return Json(isSend, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Helpers.configs.SaveTolog(ex.ToString());
+                return Json(isSend, JsonRequestBehavior.AllowGet);
+            }
+            
+        }
 
     }
 }

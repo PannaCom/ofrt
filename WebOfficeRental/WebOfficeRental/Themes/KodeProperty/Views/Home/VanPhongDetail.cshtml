@@ -88,30 +88,30 @@
                     </div>
                     
                     <div class="kf_property_form_lienhe">
-                        <form method="post" name="form_lienhe" id="form_lienhe" class="form-horizontal">
+                        <form method="post" name="form_lienhe" id="form_lienhe" class="form-horizontal" action="/Home/LienHe">
                             <h4>Liên hệ</h4>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Họ và tên: </label>
                                 <div class="col-md-6">
-                                    <input type="text" name="hoten" class="form-control" />
+                                    <input type="text" name="hoten" class="form-control" id="hoten" required />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Số điện thoại: </label>
                                 <div class="col-md-6">
-                                    <input type="text" name="sodienthoai" class="form-control" />
+                                    <input type="text" name="sodienthoai" class="form-control" id="sodienthoai" required />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Email: </label>
                                 <div class="col-md-6">
-                                    <input type="email" name="email" class="form-control" />
+                                    <input type="email" name="email" class="form-control" id="email" required />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Tin nhắn: </label>
                                 <div class="col-md-6">
-                                    <textarea rows="10" name="loinhan" class="form-control"></textarea>
+                                    <textarea rows="10" name="loinhan" class="form-control" id="loinhan" required></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -129,3 +129,29 @@
     </div>
 </section>
 <!--Property Detail Wrap End-->
+
+@section Scripts { 
+    <script>
+        $(document).ready(function () {
+            // this is the id of the form
+            $("#form_lienhe").submit(function (e) {
+
+                var url = "/Home/LienHe"; // the script where you handle the form input.
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: $("#form_lienhe").serialize(), // serializes the form's elements.
+                    success: function (data) {
+                        if (data === 1) {
+                            alert('Tin nhắn đã được gửi thành công tới bên cho thuê.'); // show response from the php script.
+                        }
+                    }
+                });
+
+                e.preventDefault(); // avoid to execute the actual submit of the form.
+            });
+        })
+    </script>
+
+}
