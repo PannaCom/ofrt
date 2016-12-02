@@ -154,7 +154,7 @@
             <div class="col-md-12">
                 @if (Model != null)
                 {
-                    @Html.PagedListPager(Model, page => Url.RouteUrl("SearchOffices", new { keyword = ViewBag.keyword, tinh = ViewBag.tinh, quan = ViewBag.quan, ngay = ViewBag.ngay, gia = ViewBag.gia, loaivanphong = ViewBag.loaivanphong, toanha = ViewBag.toanha, pg = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+                    @Html.PagedListPager(Model, page => Url.RouteUrl("SearchOffices", new { keyword = ViewBag.keyword, tinh = ViewBag.tinh, quan = ViewBag.quan, ngay = ViewBag.ngay, gia = ViewBag.gia, loaivanphong = ViewBag.loaivanphong, toanha = ViewBag.toanha, dientich = ViewBag.dientich, pg = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
                 }
             </div>
         </div>

@@ -332,20 +332,23 @@
 	  =======================================================================
 		  		Range Slider Script Script
 	  =======================================================================
-	*/
-    if ($('.slider-range').length) {
+      if ($('.slider-range').length) {
         $(".slider-range").slider({
             range: true,
             min: 0,
-            max: 500,
-            values: [50, 450],
+            max: 500,            
             slide: function (event, ui) {
-                $(".amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+                $(".amount").html(ui.values[0] + "m<sup>2</sup>" + " - " + ui.values[1] + "m<sup>2</sup>");
+                $('#dientich').val(ui.values[0] + "-" + ui.values[1]);
             }
         });
-        $(".amount").val("$" + $(".slider-range").slider("values", 0) +
-		  " - $" + $(".slider-range").slider("values", 1));
+        $(".amount").html($(".slider-range").slider("values",0) +
+		  "m<sup>2</sup> - " + $(".slider-range").slider("values",1) + "m<sup>2</sup>");
+        $('#dientich').val($(".slider-range").slider("values", 0) +
+		  "-" + $(".slider-range").slider("values", 1));
     }
+	*/
+    
 
 
 });

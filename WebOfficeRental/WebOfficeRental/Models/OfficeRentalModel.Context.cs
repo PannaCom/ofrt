@@ -25,7 +25,6 @@ namespace WebOfficeRental.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<ArticleCategory> ArticleCategories { get; set; }
         public virtual DbSet<article> articles { get; set; }
         public virtual DbSet<building> buildings { get; set; }
         public virtual DbSet<city> cities { get; set; }
@@ -40,5 +39,6 @@ namespace WebOfficeRental.Models
         public virtual DbSet<BannerAdv> BannerAdvs { get; set; }
         public virtual DbSet<contact_rent> contact_rent { get; set; }
         public virtual DbSet<register_email> register_email { get; set; }
+        public virtual DbSet<category> categories { get; set; }
     }
 }

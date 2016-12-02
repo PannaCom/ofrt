@@ -192,6 +192,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenusController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\OfficesController.cs" />
     <Compile Include="Controllers\ServicesOfficeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -202,13 +203,13 @@
     <Compile Include="Models\article.cs">
       <DependentUpon>OfficeRentalModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ArticleCategory.cs">
-      <DependentUpon>OfficeRentalModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\BannerAdv.cs">
       <DependentUpon>OfficeRentalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\building.cs">
+      <DependentUpon>OfficeRentalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\category.cs">
       <DependentUpon>OfficeRentalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\city.cs">
@@ -1203,6 +1204,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\admin\img\" />
     <Folder Include="images\photos\" />
+    <Folder Include="Views\News\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

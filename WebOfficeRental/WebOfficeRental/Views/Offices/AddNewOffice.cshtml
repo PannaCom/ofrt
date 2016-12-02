@@ -250,7 +250,8 @@
             url: "/Offices/getToaNha",
             cache: false
         }).done(function (html) {
-            $("#buiding_id").html("" + html);
+            //$("#buiding_id").html("" + html);
+            $("#buiding_id").append(html);
         });
 
         

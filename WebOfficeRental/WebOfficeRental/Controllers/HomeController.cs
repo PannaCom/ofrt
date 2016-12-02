@@ -201,7 +201,7 @@ namespace WebOfficeRental.Controllers
             return PartialView("_LoadOfficeType2", model);
         }
 
-        public ActionResult Search1(int? pg, string keyword, string tinh, string quan, string gia, string toanha, string ngay, string loaivanphong)
+        public ActionResult Search1(int? pg, string keyword, string tinh, string quan, string gia, string toanha, string ngay, string loaivanphong, string dientich)
         {
             
             int pageSize = 6;
@@ -218,7 +218,7 @@ namespace WebOfficeRental.Controllers
             #region Thêm điều kiện tìm kiếm
             try
             {
-                if(tinh == null) tinh = ""; if (quan == null) quan = ""; if (toanha == null) toanha = ""; if (ngay == null) ngay = ""; if (gia == null) gia = ""; if (loaivanphong == null) loaivanphong = "";
+                if (tinh == null) tinh = ""; if (quan == null) quan = ""; if (toanha == null) toanha = ""; if (ngay == null) ngay = ""; if (gia == null) gia = ""; if (loaivanphong == null) loaivanphong = ""; if (dientich == null) dientich = "";
                 
                 // keyword
                 if (keyword != null && keyword != "")
@@ -291,6 +291,20 @@ namespace WebOfficeRental.Controllers
                             break;
                     }
                     ViewBag.loaivanphong = loaivanphong;
+                }
+
+                // dientich
+                if (dientich != null && dientich != "")
+                {
+                    int tudt = 0; int dendt = 0;
+                    string[] _dientich = dientich.Split('-');
+                    if (_dientich.Length == 2)
+                    {
+                        tudt = Convert.ToInt32(_dientich[0].ToString());
+                        dendt = Convert.ToInt32(_dientich[1].ToString());
+                        data = data.Where(x => x.office_acreage >= tudt && x.office_acreage <= dendt);
+                    }
+                    ViewBag.dientich = dientich;
                 }
 
                 // ngay

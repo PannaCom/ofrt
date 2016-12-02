@@ -31,6 +31,7 @@ namespace WebOfficeRental.Models
         public string building_phonenumber { get; set; }
         public string building_email { get; set; }
         public string building_fanpage { get; set; }
+        public string building_latlong { get; set; }
     
         public virtual city city { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

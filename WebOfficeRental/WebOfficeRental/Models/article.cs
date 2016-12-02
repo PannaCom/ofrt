@@ -31,7 +31,7 @@ namespace WebOfficeRental.Models
         public Nullable<System.DateTime> deleted_date { get; set; }
         public Nullable<bool> status { get; set; }
     
-        public virtual ArticleCategory ArticleCategory { get; set; }
         public virtual User User { get; set; }
+        public virtual category category { get; set; }
     }
 }

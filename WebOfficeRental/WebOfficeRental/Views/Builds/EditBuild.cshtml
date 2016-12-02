@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBkU0wNRlEciZZmIqc9QR7IiEm9tXg48I&libraries=places" type="text/javascript"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBkU0wNRlEciZZmIqc9QR7IiEm9tXg48I&libraries=places&language=vi&region=VN" type="text/javascript"></script>
 <script src="~/Scripts/jquery.geocomplete.min.js"></script>
 @section styles {
     @Styles.Render("~/Content/dropzonescss")
@@ -90,6 +90,7 @@
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.building_address, htmlAttributes: new { @class = "control-label col-md-4 required-after" })
+                        @Html.HiddenFor(m => m.building_latlong)
                         <div class="col-md-6">
                             @Html.TextBoxFor(model => model.building_address, htmlAttributes: new { @class = "form-control", placeholder = "Nhập địa chỉ tòa nhà" })
                             @Html.ValidationMessageFor(model => model.building_address, "", new { @class = "text-danger" })
@@ -209,7 +210,12 @@
         }
     }
 
-    $("input#building_address").geocomplete();
+    $("input#building_address").geocomplete().bind("geocode:result", function (event, result) {
+        var xxx = result.geometry.location.lat() + ',' + result.geometry.location.lng();
+        $('#building_latlong').val(xxx);
+        console.log(xxx);
+    });
+
     $.validator.setDefaults({
         ignore: ""
     });

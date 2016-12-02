@@ -13,12 +13,15 @@
 
         <form id="search_office" action="/search/van-phong" method="get" onsubmit="return validate_search()">
             <div class="row">
-                <div class="col-md-9 col-sm-6">
+                <div class="col-md-6 col-sm-6">
                     <div class="kf_search_field">
                         <label>Tên văn phòng</label>
                         <input type="text" name="keyword" id="keyword" placeholder="Nhập từ khóa cần tìm">
                     </div>
                 </div>
+
+                
+
                 <div class="col-md-3 col-sm-6">
                     <div class="kf_search_field">
                         <label>Địa điểm</label>
@@ -35,6 +38,21 @@
                         </select>
                     </div>
                 </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="kf_search_field kf_range_slider">
+                        <label>Diện tích</label>
+                        @*<input type="text" class="amount" readonly>*@
+                        <span class="amount"></span>
+                        <input type="hidden" name="dientich" id="dientich" />
+                        <div class="kf_range_slider">
+                            <span>0</span>
+                            <div class="slider-range"></div>
+                            <span>500</span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-md-3 col-sm-6">
                     <div class="kf_search_field">
                         <label>Mức giá</label>
@@ -70,19 +88,21 @@
 <!--Advance Search Wrap Start-->
 <script>
 
+
     function validate_search() {
         var v_tinh = $('#tinh').chosen().val();
         var v_quan = $('#quan').chosen().val();
         var v_gia = $('#gia').chosen().val();
         var v_toa_nha = $('#toanha').chosen().val();
+        
         //console.log(v_tinh);
-        if (document.getElementById("keyword").value === "" && v_tinh === null && v_quan === null && v_gia === null && v_toa_nha === null) {
+        if (document.getElementById("keyword").value === "" && v_tinh === null && v_quan === null && v_gia === null && v_toa_nha === null && document.getElementById('dientich').value === "") {
             alert('Vui lòng nhập từ khóa tìm kiếm hoặc chọn ít nhất một điều kiện.');
             return false;
         } else {
             return true;
         };
-    }    
+    }
 
     function getSearchQuan() {
         // Cập nhật giá trị quận mới khi chọn tỉnh
@@ -91,14 +111,14 @@
             url: "/Home/LoadSearchQuan?keyword=" + tinh,
             cache: false
         }).done(function (html) {
-            $("#quan").empty().append("<option selected='selected' disabled>Chọn quận</option>"+html);
+            $("#quan").empty().append("<option selected='selected' disabled>Chọn quận</option>" + html);
             $('#quan').chosen().trigger("chosen:updated");
         });
         $('#tinh_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
     }
 
     //quan
-    
+
     $.ajax({
         url: "/Home/LoadSearchQuan?keyword=",
         cache: false
@@ -120,6 +140,37 @@
         $('#toanha').chosen().change(function () {
             $('#toanha_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
         });
+
+        var values = [0, 500];
+        @if (ViewBag.dientich != null)
+	    {
+		    <text>
+                var xyz = '@ViewBag.dientich'; 
+                var xzy = xyz.split('-').map(Number);
+                values = [xzy[0], xzy[1]];
+                console.log(values);
+            </text>
+	    }
+
+        if ($('.slider-range').length) {
+            $(".slider-range").slider({
+                range: true,
+                min: 0,
+                max: 500,
+                values: values,
+                slide: function (event, ui) {
+                    $(".amount").html(ui.values[0] + "m<sup>2</sup>" + " - " + ui.values[1] + "m<sup>2</sup>");
+                    $('#dientich').val(ui.values[0] + "-" + ui.values[1]);
+                }
+            });
+            $(".amount").html($(".slider-range").slider("values", 0) +
+              "m<sup>2</sup> - " + $(".slider-range").slider("values", 1) + "m<sup>2</sup>");
+            $('#dientich').val($(".slider-range").slider("values", 0) +
+              "-" + $(".slider-range").slider("values", 1));
+        }
+
     })
+
+
 
 </script>

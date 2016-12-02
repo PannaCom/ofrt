@@ -5,16 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="officerentalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="ArticleCategories">
-          <Key>
-            <PropertyRef Name="art_cat_id" />
-          </Key>
-          <Property Name="art_cat_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="art_cat_name" Type="nvarchar" MaxLength="250" />
-          <Property Name="art_cat_position" Type="int" />
-          <Property Name="art_cat_slug_url" Type="nvarchar" MaxLength="505" />
-          <Property Name="art_cat_parent_id" Type="int" />
-        </EntityType>
         <EntityType Name="articles">
           <Key>
             <PropertyRef Name="article_id" />
@@ -60,6 +50,15 @@
           <Property Name="building_phonenumber" Type="nvarchar" MaxLength="50" />
           <Property Name="building_email" Type="nvarchar" MaxLength="250" />
           <Property Name="building_fanpage" Type="nvarchar" MaxLength="255" />
+          <Property Name="building_latlong" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="categories">
+          <Key>
+            <PropertyRef Name="art_cat_id" />
+          </Key>
+          <Property Name="art_cat_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="art_cat_name" Type="nvarchar" MaxLength="500" />
+          <Property Name="art_cat_parent_id" Type="int" />
         </EntityType>
         <EntityType Name="cities">
           <Key>
@@ -197,22 +196,22 @@
           <Property Name="FullName" Type="nvarchar" MaxLength="256" />
         </EntityType>
         <Association Name="FK_ArticleCategories_ArticleCategories">
-          <End Role="ArticleCategories" Type="Self.ArticleCategories" Multiplicity="0..1" />
-          <End Role="ArticleCategories1" Type="Self.ArticleCategories" Multiplicity="*" />
+          <End Role="categories" Type="Self.categories" Multiplicity="0..1" />
+          <End Role="categories1" Type="Self.categories" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ArticleCategories">
+            <Principal Role="categories">
               <PropertyRef Name="art_cat_id" />
             </Principal>
-            <Dependent Role="ArticleCategories1">
+            <Dependent Role="categories1">
               <PropertyRef Name="art_cat_parent_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_articles_ArticleCategories">
-          <End Role="ArticleCategories" Type="Self.ArticleCategories" Multiplicity="0..1" />
+          <End Role="categories" Type="Self.categories" Multiplicity="0..1" />
           <End Role="articles" Type="Self.articles" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ArticleCategories">
+            <Principal Role="categories">
               <PropertyRef Name="art_cat_id" />
             </Principal>
             <Dependent Role="articles">
@@ -349,10 +348,10 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="officerentalModelStoreContainer">
-          <EntitySet Name="ArticleCategories" EntityType="Self.ArticleCategories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="articles" EntityType="Self.articles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BannerAdvs" EntityType="Self.BannerAdvs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="buildings" EntityType="Self.buildings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="categories" EntityType="Self.categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cities" EntityType="Self.cities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="contact_rent" EntityType="Self.contact_rent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="menus" EntityType="Self.menus" Schema="dbo" store:Type="Tables" />
@@ -366,11 +365,11 @@
           <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ArticleCategories_ArticleCategories" Association="Self.FK_ArticleCategories_ArticleCategories">
-            <End Role="ArticleCategories" EntitySet="ArticleCategories" />
-            <End Role="ArticleCategories1" EntitySet="ArticleCategories" />
+            <End Role="categories" EntitySet="categories" />
+            <End Role="categories1" EntitySet="categories" />
           </AssociationSet>
           <AssociationSet Name="FK_articles_ArticleCategories" Association="Self.FK_articles_ArticleCategories">
-            <End Role="ArticleCategories" EntitySet="ArticleCategories" />
+            <End Role="categories" EntitySet="categories" />
             <End Role="articles" EntitySet="articles" />
           </AssociationSet>
           <AssociationSet Name="FK_articles_Users" Association="Self.FK_articles_Users">
@@ -419,7 +418,6 @@
     <edmx:ConceptualModels>
       <Schema Namespace="officerentalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="officerentalEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="ArticleCategories" EntityType="officerentalModel.ArticleCategory" />
           <EntitySet Name="articles" EntityType="officerentalModel.article" />
           <EntitySet Name="buildings" EntityType="officerentalModel.building" />
           <EntitySet Name="cities" EntityType="officerentalModel.city" />
@@ -431,14 +429,6 @@
           <EntitySet Name="UserClaims" EntityType="officerentalModel.UserClaim" />
           <EntitySet Name="UserLogins" EntityType="officerentalModel.UserLogin" />
           <EntitySet Name="Users" EntityType="officerentalModel.User" />
-          <AssociationSet Name="FK_ArticleCategories_ArticleCategories" Association="officerentalModel.FK_ArticleCategories_ArticleCategories">
-            <End Role="ArticleCategory" EntitySet="ArticleCategories" />
-            <End Role="ArticleCategory1" EntitySet="ArticleCategories" />
-          </AssociationSet>
-          <AssociationSet Name="FK_articles_ArticleCategories" Association="officerentalModel.FK_articles_ArticleCategories">
-            <End Role="ArticleCategory" EntitySet="ArticleCategories" />
-            <End Role="article" EntitySet="articles" />
-          </AssociationSet>
           <AssociationSet Name="FK_articles_Users" Association="officerentalModel.FK_articles_Users">
             <End Role="User" EntitySet="Users" />
             <End Role="article" EntitySet="articles" />
@@ -478,20 +468,16 @@
           <EntitySet Name="BannerAdvs" EntityType="officerentalModel.BannerAdv" />
           <EntitySet Name="contact_rent" EntityType="officerentalModel.contact_rent" />
           <EntitySet Name="register_email" EntityType="officerentalModel.register_email" />
-        </EntityContainer>
-        <EntityType Name="ArticleCategory">
-          <Key>
-            <PropertyRef Name="art_cat_id" />
-          </Key>
-          <Property Name="art_cat_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="art_cat_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="art_cat_position" Type="Int32" />
-          <Property Name="art_cat_slug_url" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
-          <Property Name="art_cat_parent_id" Type="Int32" />
-          <NavigationProperty Name="ArticleCategories1" Relationship="officerentalModel.FK_ArticleCategories_ArticleCategories" FromRole="ArticleCategory" ToRole="ArticleCategory1" />
-          <NavigationProperty Name="ArticleCategory1" Relationship="officerentalModel.FK_ArticleCategories_ArticleCategories" FromRole="ArticleCategory1" ToRole="ArticleCategory" />
-          <NavigationProperty Name="articles" Relationship="officerentalModel.FK_articles_ArticleCategories" FromRole="ArticleCategory" ToRole="article" />
-        </EntityType>
+          <EntitySet Name="categories" EntityType="officerentalModel.category" />
+          <AssociationSet Name="FK_articles_ArticleCategories" Association="officerentalModel.FK_articles_ArticleCategories">
+            <End Role="category" EntitySet="categories" />
+            <End Role="article" EntitySet="articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticleCategories_ArticleCategories" Association="officerentalModel.FK_ArticleCategories_ArticleCategories">
+            <End Role="category" EntitySet="categories" />
+            <End Role="category1" EntitySet="categories" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="article">
           <Key>
             <PropertyRef Name="article_id" />
@@ -512,8 +498,8 @@
           <Property Name="updated_date" Type="DateTime" Precision="3" />
           <Property Name="deleted_date" Type="DateTime" Precision="3" />
           <Property Name="status" Type="Boolean" />
-          <NavigationProperty Name="ArticleCategory" Relationship="officerentalModel.FK_articles_ArticleCategories" FromRole="article" ToRole="ArticleCategory" />
           <NavigationProperty Name="User" Relationship="officerentalModel.FK_articles_Users" FromRole="article" ToRole="User" />
+          <NavigationProperty Name="category" Relationship="officerentalModel.FK_articles_ArticleCategories" FromRole="article" ToRole="category" />
         </EntityType>
         <EntityType Name="building">
           <Key>
@@ -532,6 +518,7 @@
           <Property Name="building_fanpage" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="city" Relationship="officerentalModel.FK_buildings_cities" FromRole="building" ToRole="city" />
           <NavigationProperty Name="offices" Relationship="officerentalModel.FK_offices_buildings" FromRole="building" ToRole="office" />
+          <Property Name="building_latlong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="city">
           <Key>
@@ -653,30 +640,6 @@
           <NavigationProperty Name="UserLogins" Relationship="officerentalModel.FK_dbo_UserLogins_dbo_Users_UserId" FromRole="User" ToRole="UserLogin" />
           <NavigationProperty Name="Roles" Relationship="officerentalModel.UserRoles" FromRole="User" ToRole="Role" />
         </EntityType>
-        <Association Name="FK_ArticleCategories_ArticleCategories">
-          <End Type="officerentalModel.ArticleCategory" Role="ArticleCategory" Multiplicity="0..1" />
-          <End Type="officerentalModel.ArticleCategory" Role="ArticleCategory1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ArticleCategory">
-              <PropertyRef Name="art_cat_id" />
-            </Principal>
-            <Dependent Role="ArticleCategory1">
-              <PropertyRef Name="art_cat_parent_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_articles_ArticleCategories">
-          <End Type="officerentalModel.ArticleCategory" Role="ArticleCategory" Multiplicity="0..1" />
-          <End Type="officerentalModel.article" Role="article" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ArticleCategory">
-              <PropertyRef Name="art_cat_id" />
-            </Principal>
-            <Dependent Role="article">
-              <PropertyRef Name="art_cat_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_articles_Users">
           <End Type="officerentalModel.User" Role="User" Multiplicity="0..1" />
           <End Type="officerentalModel.article" Role="article" Multiplicity="*" />
@@ -812,23 +775,47 @@
           <Property Name="email_or_phone" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="date" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="art_cat_id" />
+          </Key>
+          <Property Name="art_cat_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="art_cat_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="art_cat_parent_id" Type="Int32" />
+          <NavigationProperty Name="articles" Relationship="officerentalModel.FK_articles_ArticleCategories" FromRole="category" ToRole="article" />
+          <NavigationProperty Name="categories1" Relationship="officerentalModel.FK_ArticleCategories_ArticleCategories" FromRole="category" ToRole="category1" />
+          <NavigationProperty Name="category1" Relationship="officerentalModel.FK_ArticleCategories_ArticleCategories" FromRole="category1" ToRole="category" />
+        </EntityType>
+        <Association Name="FK_articles_ArticleCategories">
+          <End Type="officerentalModel.category" Role="category" Multiplicity="0..1" />
+          <End Type="officerentalModel.article" Role="article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="art_cat_id" />
+            </Principal>
+            <Dependent Role="article">
+              <PropertyRef Name="art_cat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArticleCategories_ArticleCategories">
+          <End Type="officerentalModel.category" Role="category" Multiplicity="0..1" />
+          <End Type="officerentalModel.category" Role="category1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="art_cat_id" />
+            </Principal>
+            <Dependent Role="category1">
+              <PropertyRef Name="art_cat_parent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="officerentalModelStoreContainer" CdmEntityContainer="officerentalEntities">
-          <EntitySetMapping Name="ArticleCategories">
-            <EntityTypeMapping TypeName="officerentalModel.ArticleCategory">
-              <MappingFragment StoreEntitySet="ArticleCategories">
-                <ScalarProperty Name="art_cat_parent_id" ColumnName="art_cat_parent_id" />
-                <ScalarProperty Name="art_cat_slug_url" ColumnName="art_cat_slug_url" />
-                <ScalarProperty Name="art_cat_position" ColumnName="art_cat_position" />
-                <ScalarProperty Name="art_cat_name" ColumnName="art_cat_name" />
-                <ScalarProperty Name="art_cat_id" ColumnName="art_cat_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="articles">
             <EntityTypeMapping TypeName="officerentalModel.article">
               <MappingFragment StoreEntitySet="articles">
@@ -854,6 +841,7 @@
           <EntitySetMapping Name="buildings">
             <EntityTypeMapping TypeName="officerentalModel.building">
               <MappingFragment StoreEntitySet="buildings">
+                <ScalarProperty Name="building_latlong" ColumnName="building_latlong" />
                 <ScalarProperty Name="building_fanpage" ColumnName="building_fanpage" />
                 <ScalarProperty Name="building_email" ColumnName="building_email" />
                 <ScalarProperty Name="building_phonenumber" ColumnName="building_phonenumber" />
@@ -1019,6 +1007,15 @@
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="email_or_phone" ColumnName="email_or_phone" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="categories">
+            <EntityTypeMapping TypeName="officerentalModel.category">
+              <MappingFragment StoreEntitySet="categories">
+                <ScalarProperty Name="art_cat_parent_id" ColumnName="art_cat_parent_id" />
+                <ScalarProperty Name="art_cat_name" ColumnName="art_cat_name" />
+                <ScalarProperty Name="art_cat_id" ColumnName="art_cat_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

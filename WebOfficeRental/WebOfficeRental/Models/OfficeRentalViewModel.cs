@@ -100,6 +100,7 @@ namespace WebOfficeRental.Models
         [Required(ErrorMessage = "{0} không được để trống.")]
         [StringLength(255, ErrorMessage = "{0} không được dài quá 255 ký tự.")]
         public string building_fanpage { get; set; }
+        public string building_latlong { get; set; }
     }
 
     public class OfficeVM
