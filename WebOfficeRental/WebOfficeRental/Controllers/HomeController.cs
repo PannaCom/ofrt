@@ -258,19 +258,23 @@ namespace WebOfficeRental.Controllers
                 int tuGia = 0; int toiGia = 0;
                 if (gia != null && gia != "")
                 {
-                    String[] ar_gia = gia.Split('-');
-                    if (ar_gia.Length == 4)
-                    {
-                        tuGia = Convert.ToInt32(ar_gia[1].ToString()) * 1000000;
-                        toiGia = Convert.ToInt32(ar_gia[2].ToString()) * 1000000;
-                    }
 
                     switch (gia)
                     {
                         case "thoathuan":
                             data = data.Where(x => x.office_price_public == -1);
                             break;
+                        case "tren100trieu":
+                            double giaMax = 100 * 1000000;
+                            data = data.Where(x => x.office_price_public >= giaMax);
+                            break;
                         default:
+                            String[] ar_gia = gia.Split('-');
+                            if (ar_gia.Length == 4)
+                            {
+                                tuGia = Convert.ToInt32(ar_gia[1].ToString()) * 1000000;
+                                toiGia = Convert.ToInt32(ar_gia[2].ToString()) * 1000000;
+                            }
                             data = data.Where(x => x.office_price_public >= tuGia && x.office_price_public <= toiGia);
                             break;
                     }

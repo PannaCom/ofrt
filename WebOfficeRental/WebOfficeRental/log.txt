@@ -1,58 +1,10 @@
-11/21/2016 3:18:50 PM: System.Data.Entity.Validation.DbEntityValidationException: Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
-   at System.Data.Entity.Internal.InternalContext.SaveChangesAsync(CancellationToken cancellationToken)
-   at System.Data.Entity.Internal.LazyInternalContext.SaveChangesAsync(CancellationToken cancellationToken)
-   at System.Data.Entity.DbContext.SaveChangesAsync(CancellationToken cancellationToken)
-   at System.Data.Entity.DbContext.SaveChangesAsync()
-   at WebOfficeRental.Controllers.OfficesController.<AddNewOffice>d__5.MoveNext() in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\OfficesController.cs:line 80
-11/21/2016 3:30:34 PM: System.Data.Entity.Validation.DbEntityValidationException: Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
-   at System.Data.Entity.Internal.InternalContext.SaveChangesAsync(CancellationToken cancellationToken)
-   at System.Data.Entity.Internal.LazyInternalContext.SaveChangesAsync(CancellationToken cancellationToken)
-   at System.Data.Entity.DbContext.SaveChangesAsync(CancellationToken cancellationToken)
-   at System.Data.Entity.DbContext.SaveChangesAsync()
-   at WebOfficeRental.Controllers.OfficesController.<AddNewOffice>d__5.MoveNext() in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\OfficesController.cs:line 80
-11/21/2016 3:49:53 PM: System.Data.Entity.Validation.DbEntityValidationException: Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
-   at System.Data.Entity.Internal.InternalContext.SaveChangesAsync(CancellationToken cancellationToken)
-   at System.Data.Entity.Internal.LazyInternalContext.SaveChangesAsync(CancellationToken cancellationToken)
-   at System.Data.Entity.DbContext.SaveChangesAsync(CancellationToken cancellationToken)
-   at System.Data.Entity.DbContext.SaveChangesAsync()
-   at WebOfficeRental.Controllers.OfficesController.<AddNewOffice>d__5.MoveNext() in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\OfficesController.cs:line 82
-11/21/2016 6:13:40 PM: System.ArgumentNullException: Value cannot be null.
-Parameter name: second
-   at System.Linq.Enumerable.SequenceEqual[TSource](IEnumerable`1 first, IEnumerable`1 second, IEqualityComparer`1 comparer)
-   at System.Linq.Enumerable.SequenceEqual[TSource](IEnumerable`1 first, IEnumerable`1 second)
-   at WebOfficeRental.Controllers.OfficesController.<EditOffice>d__1a.MoveNext() in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\OfficesController.cs:line 180
-11/21/2016 6:13:56 PM: System.ArgumentNullException: Value cannot be null.
-Parameter name: second
-   at System.Linq.Enumerable.SequenceEqual[TSource](IEnumerable`1 first, IEnumerable`1 second, IEqualityComparer`1 comparer)
-   at System.Linq.Enumerable.SequenceEqual[TSource](IEnumerable`1 first, IEnumerable`1 second)
-   at WebOfficeRental.Controllers.OfficesController.<EditOffice>d__1a.MoveNext() in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\OfficesController.cs:line 180
-12/3/2016 11:54:04 AM: System.FormatException: Input string was not in a correct format.
+12/3/2016 12:01:28 PM: System.FormatException: Input string was not in a correct format.
    at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
    at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
    at System.Convert.ToInt32(String value)
-   at WebOfficeRental.Controllers.HomeController.Search1(Nullable`1 pg, String keyword, String tinh, String quan, String gia, String toanha, String ngay, String loaivanphong, String dientich) in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\HomeController.cs:line 265
-12/3/2016 11:54:14 AM: System.FormatException: Input string was not in a correct format.
+   at WebOfficeRental.Controllers.HomeController.Search1(Nullable`1 pg, String keyword, String tinh, String quan, String gia, String toanha, String ngay, String loaivanphong, String dientich) in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\HomeController.cs:line 272
+12/3/2016 12:02:57 PM: System.FormatException: Input string was not in a correct format.
    at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
    at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
    at System.Convert.ToInt32(String value)
-   at WebOfficeRental.Controllers.HomeController.Search1(Nullable`1 pg, String keyword, String tinh, String quan, String gia, String toanha, String ngay, String loaivanphong, String dientich) in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\HomeController.cs:line 265
-12/3/2016 11:54:17 AM: System.FormatException: Input string was not in a correct format.
-   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
-   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
-   at System.Convert.ToInt32(String value)
-   at WebOfficeRental.Controllers.HomeController.Search1(Nullable`1 pg, String keyword, String tinh, String quan, String gia, String toanha, String ngay, String loaivanphong, String dientich) in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\HomeController.cs:line 265
-12/3/2016 11:54:21 AM: System.FormatException: Input string was not in a correct format.
-   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
-   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
-   at System.Convert.ToInt32(String value)
-   at WebOfficeRental.Controllers.HomeController.Search1(Nullable`1 pg, String keyword, String tinh, String quan, String gia, String toanha, String ngay, String loaivanphong, String dientich) in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\HomeController.cs:line 265
-12/3/2016 11:54:25 AM: System.FormatException: Input string was not in a correct format.
-   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
-   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
-   at System.Convert.ToInt32(String value)
-   at WebOfficeRental.Controllers.HomeController.Search1(Nullable`1 pg, String keyword, String tinh, String quan, String gia, String toanha, String ngay, String loaivanphong, String dientich) in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\HomeController.cs:line 265
-12/3/2016 11:54:38 AM: System.FormatException: Input string was not in a correct format.
-   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
-   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
-   at System.Convert.ToInt32(String value)
-   at WebOfficeRental.Controllers.HomeController.Search1(Nullable`1 pg, String keyword, String tinh, String quan, String gia, String toanha, String ngay, String loaivanphong, String dientich) in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\HomeController.cs:line 265
+   at WebOfficeRental.Controllers.HomeController.Search1(Nullable`1 pg, String keyword, String tinh, String quan, String gia, String toanha, String ngay, String loaivanphong, String dientich) in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\HomeController.cs:line 272
