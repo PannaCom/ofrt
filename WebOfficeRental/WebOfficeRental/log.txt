@@ -26,3 +26,33 @@ Parameter name: second
    at System.Linq.Enumerable.SequenceEqual[TSource](IEnumerable`1 first, IEnumerable`1 second, IEqualityComparer`1 comparer)
    at System.Linq.Enumerable.SequenceEqual[TSource](IEnumerable`1 first, IEnumerable`1 second)
    at WebOfficeRental.Controllers.OfficesController.<EditOffice>d__1a.MoveNext() in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\OfficesController.cs:line 180
+12/3/2016 11:54:04 AM: System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Convert.ToInt32(String value)
+   at WebOfficeRental.Controllers.HomeController.Search1(Nullable`1 pg, String keyword, String tinh, String quan, String gia, String toanha, String ngay, String loaivanphong, String dientich) in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\HomeController.cs:line 265
+12/3/2016 11:54:14 AM: System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Convert.ToInt32(String value)
+   at WebOfficeRental.Controllers.HomeController.Search1(Nullable`1 pg, String keyword, String tinh, String quan, String gia, String toanha, String ngay, String loaivanphong, String dientich) in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\HomeController.cs:line 265
+12/3/2016 11:54:17 AM: System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Convert.ToInt32(String value)
+   at WebOfficeRental.Controllers.HomeController.Search1(Nullable`1 pg, String keyword, String tinh, String quan, String gia, String toanha, String ngay, String loaivanphong, String dientich) in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\HomeController.cs:line 265
+12/3/2016 11:54:21 AM: System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Convert.ToInt32(String value)
+   at WebOfficeRental.Controllers.HomeController.Search1(Nullable`1 pg, String keyword, String tinh, String quan, String gia, String toanha, String ngay, String loaivanphong, String dientich) in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\HomeController.cs:line 265
+12/3/2016 11:54:25 AM: System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Convert.ToInt32(String value)
+   at WebOfficeRental.Controllers.HomeController.Search1(Nullable`1 pg, String keyword, String tinh, String quan, String gia, String toanha, String ngay, String loaivanphong, String dientich) in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\HomeController.cs:line 265
+12/3/2016 11:54:38 AM: System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Convert.ToInt32(String value)
+   at WebOfficeRental.Controllers.HomeController.Search1(Nullable`1 pg, String keyword, String tinh, String quan, String gia, String toanha, String ngay, String loaivanphong, String dientich) in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\HomeController.cs:line 265
