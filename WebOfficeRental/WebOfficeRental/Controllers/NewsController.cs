@@ -14,9 +14,10 @@ namespace WebOfficeRental.Controllers
     [Authorize(Roles = "Administrator")]
     public class NewsController : Controller
     {
+        private officerentalEntities db = new officerentalEntities();
         // GET: News
 
-        public ActionResult Index()
+        public ActionResult AddCategory()
         {
             return View();
         }
