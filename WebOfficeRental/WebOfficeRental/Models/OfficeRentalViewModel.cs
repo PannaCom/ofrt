@@ -41,6 +41,33 @@ namespace WebOfficeRental.Models
         }
     }
 
+    // categorys class 
+    public class CatVM
+    {
+        public int art_cat_id { get; set; }
+        [Required(ErrorMessage = "Vui lòng nhập tên danh mục")]
+        [StringLength(500, ErrorMessage = "{0} không được dài quá 500 ký tự.")]
+        [Display(Name = "Tên danh mục")]
+        public string art_cat_name { get; set; }
+        [Required(ErrorMessage = "Vui lòng nhập tên menu")]
+        [StringLength(500, ErrorMessage = "{0} không được dài quá 500 ký tự.")]
+        [Display(Name = "Danh mục cha")]
+        public int? art_cat_parent_id { get; set; }
+    }
+
+    public class LstCat
+    {
+        public int CatId { get; set; }
+        public string CatName { get; set; }
+        public int? ParentCatId { get; set; }
+       
+        public IList<LstCat> LstCats { get; set; }
+        public LstCat()
+        {
+            LstCats = new List<LstCat>();
+        }
+    }
+
     public class CityVM
     {
         public int city_id { get; set; }

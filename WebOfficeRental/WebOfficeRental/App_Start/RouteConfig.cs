@@ -280,6 +280,58 @@ namespace WebOfficeRental
             );
             #endregion
 
+            #region Quản lý danh mục bài viết
+
+            routes.MapRoute(
+                "AdminListCats",
+                "admin/list/cats",
+                new { controller = "News", action = "ListCats" }
+            );
+
+            routes.MapRoute(
+               "AdminAddCat",
+               "admin/cat/add",
+               new { controller = "News", action = "AddCategory" }
+            );
+
+            routes.MapRoute(
+               "AdminEditCat",
+               "admin/cat/{id}/edit",
+               new { controller = "News", action = "EditCat", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+               "AdminDeleteCat",
+               "admin/cat/{id}/delete",
+               new { controller = "News", action = "DeleteCat", id = UrlParameter.Optional }
+            );
+
+            // tin tuc blog
+            routes.MapRoute(
+               "AdminListNewBlogs",
+               "admin/list/newblog",
+               new { controller = "News", action = "ListNewBlogs" }
+           );
+
+            routes.MapRoute(
+               "AdminAddNewBlog",
+               "admin/newblog/add",
+               new { controller = "News", action = "AddNewBlog" }
+            );
+
+            routes.MapRoute(
+               "AdminEditNewBlog",
+               "admin/newblog/{id}/edit",
+               new { controller = "News", action = "EditBlog", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+               "AdminDeleteNewBlog",
+               "admin/newblog/{id}/delete",
+               new { controller = "News", action = "DeleteBlog", id = UrlParameter.Optional }
+            );
+
+            #endregion 
 
             routes.MapRoute(
                 name: "Default",

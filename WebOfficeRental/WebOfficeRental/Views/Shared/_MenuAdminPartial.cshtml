@@ -63,9 +63,10 @@
         <li>
             <a href="#"><i class="fa fa-bell-o fa-fw"></i> Quản lý tin tức<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
-                <li><a href="#">Thêm danh mục tin tức</a></li>
-                <li><a href="#">Thêm mới tin tức</a></li>
-                <li><a href="#">Danh sách tin tức</a></li>
+                <li>@Html.RouteLink("Thêm danh mục tin tức", "AdminAddCat")</li>
+                <li>@Html.RouteLink("Danh mục tin tức", "AdminListCats")</li>
+                <li>@Html.RouteLink("Thêm tin tức", "AdminAddNewBlog")</li>
+                <li>@Html.RouteLink("Quản lý tin tức", "AdminListNewBlogs")</li>
             </ul>
         </li>
     }

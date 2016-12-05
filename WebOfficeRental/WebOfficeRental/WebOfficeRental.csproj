@@ -1199,12 +1199,14 @@
     <Content Include="Themes\KodeProperty\Views\Home\_search_tinh.cshtml" />
     <Content Include="Themes\KodeProperty\Views\Home\_search_toa_nha.cshtml" />
     <Content Include="Themes\KodeProperty\Views\Home\VanPhongDetail.cshtml" />
+    <Content Include="Views\News\AddCategory.cshtml" />
+    <Content Include="Views\News\_childCatPartial.cshtml" />
+    <Content Include="Views\News\_lstCatPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\admin\img\" />
     <Folder Include="images\photos\" />
-    <Folder Include="Views\News\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
