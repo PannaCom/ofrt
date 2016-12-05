@@ -49,8 +49,7 @@ namespace WebOfficeRental.Models
         [StringLength(500, ErrorMessage = "{0} không được dài quá 500 ký tự.")]
         [Display(Name = "Tên danh mục")]
         public string art_cat_name { get; set; }
-        [Required(ErrorMessage = "Vui lòng nhập tên menu")]
-        [StringLength(500, ErrorMessage = "{0} không được dài quá 500 ký tự.")]
+        [Required(ErrorMessage = "Vui lòng chọn danh mục cha")]
         [Display(Name = "Danh mục cha")]
         public int? art_cat_parent_id { get; set; }
     }
@@ -204,6 +203,23 @@ namespace WebOfficeRental.Models
         public int[] dichvuvp { get; set; }
 
         public bool? status { get; set; }
+    }
+
+    public class articlesVM
+    {
+        public long article_id { get; set; }
+        [Display(Name = "Tên bài viết")]
+        [Required(ErrorMessage = "{0} không được để trống.")]
+        [StringLength(500, ErrorMessage = "{0} không được dài quá 500 ký tự.")]
+        public string article_name { get; set; }
+        [Display(Name = "Mô tả bài viết")]
+        [Required(ErrorMessage = "{0} không được để trống.")]
+        [StringLength(500, ErrorMessage = "{0} không được dài quá 500 ký tự.")]
+        public string article_description { get; set; }
+        [Display(Name = "Nội dung bài viết")]
+        [Required(ErrorMessage = "{0} không được để trống.")]
+        public string article_content { get; set; }
+
     }
 
     public class banerVM

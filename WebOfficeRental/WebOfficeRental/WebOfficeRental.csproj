@@ -1202,6 +1202,10 @@
     <Content Include="Views\News\AddCategory.cshtml" />
     <Content Include="Views\News\_childCatPartial.cshtml" />
     <Content Include="Views\News\_lstCatPartial.cshtml" />
+    <Content Include="Views\News\ListCats.cshtml" />
+    <Content Include="Views\News\EditCat.cshtml" />
+    <Content Include="Views\News\DeleteCat.cshtml" />
+    <Content Include="Views\News\AddNewBlog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
