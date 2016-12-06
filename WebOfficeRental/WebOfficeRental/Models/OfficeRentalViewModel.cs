@@ -220,6 +220,7 @@ namespace WebOfficeRental.Models
         [Required(ErrorMessage = "{0} không được để trống.")]
         public string article_content { get; set; }
 
+
     }
 
     public class banerVM
