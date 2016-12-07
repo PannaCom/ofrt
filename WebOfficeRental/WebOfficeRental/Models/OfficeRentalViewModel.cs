@@ -216,11 +216,23 @@ namespace WebOfficeRental.Models
         [Required(ErrorMessage = "{0} không được để trống.")]
         [StringLength(500, ErrorMessage = "{0} không được dài quá 500 ký tự.")]
         public string article_description { get; set; }
-        [Display(Name = "Nội dung bài viết")]
-        [Required(ErrorMessage = "{0} không được để trống.")]
+        [Display(Name = "Nội dung bài viết")]        
         public string article_content { get; set; }
-
-
+        [Display(Name = "Mô tả bài viết")]
+        [Required(ErrorMessage = "{0} không được để trống.")]
+        public int article_type { get; set; }
+        [Display(Name = "Đường dẫn truy cập")]
+        [Required(ErrorMessage = "{0} không được để trống.")]
+        [StringLength(500, ErrorMessage = "{0} không được dài quá 500 ký tự.")]
+        public string article_slugurl { get; set; }
+        [Display(Name = "Hình ảnh bài viết (ảnh nhỏ)")]
+        public string article_photo_sm { get; set; }
+        [Display(Name = "Hình ảnh bài viết (ảnh lớn)")]
+        public string article_photo_lg { get; set; }
+        [Display(Name = "Đánh giá bài viết")]
+        public int votes { get; set; }
+        [Display(Name = "Đường dẫn truy cập")]
+        public bool status { get; set; }
     }
 
     public class banerVM
