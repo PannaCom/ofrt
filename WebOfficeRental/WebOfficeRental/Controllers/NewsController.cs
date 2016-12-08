@@ -214,59 +214,32 @@ namespace WebOfficeRental.Controllers
 
         [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AddNewOffice(OfficeVM model)
+        public async Task<ActionResult> AddNewBlog(articlesVM model)
         {
             if (!ModelState.IsValid)
             {
                 TempData["Errored"] = "Vui lòng kiểm tra lại các trường.";
-                return RedirectToRoute("AdminAddOffice");
+                return RedirectToRoute("AdminAddNewBlog");
             }
             try
             {
-                long id = 0;
-                office _office = new office();
-                _office.buiding_id = model.buiding_id ?? null;
-                _office.office_name = model.office_name ?? null;
-                _office.office_type = model.office_type ?? null;
-                _office.office_new_type = model.office_new_type ?? null;
-                _office.office_address = model.office_address ?? null;
-                _office.office_price_public = model.office_price_public ?? null;
-                _office.office_hotmail = model.office_hotmail ?? null;
-                _office.office_hotline = model.office_hotline ?? null;
-                _office.office_fanpage = model.office_fanpage ?? null;
-                _office.office_acreage = model.office_acreage ?? null;
-                _office.office_door = model.office_door ?? null;
-                _office.office_table = model.office_table ?? null;
-                _office.office_photo = model.office_photo ?? null;
-                _office.office_photo_slider = model.office_photo_slider ?? null;
-                _office.office_other_descriptions = model.office_other_descriptions ?? null;
-                _office.office_views = 0;
-                _office.office_votes = 0;
-                _office.updated_date = DateTime.Now;
-                _office.status = true;
-                db.offices.Add(_office);
+                article _newModel = new article();
+                _newModel.article_name = model.article_name ?? null;
+                _newModel.article_description = model.article_description ?? null;
+                _newModel.article_content = model.article_content ?? null;
+                _newModel.article_type = model.article_type ?? null;
+                _newModel.article_slugurl = model.article_slugurl != null ? model.article_slugurl : Helpers.configs.unicodeToNoMark(model.article_name);
+                _newModel.article_photo_sm = model.article_photo_sm ?? null;
+                _newModel.article_photo_lg = model.article_photo_lg ?? null;
+                _newModel.status = model.status;
+                db.articles.Add(_newModel);
                 await db.SaveChangesAsync();
-
-                id = (long)_office.office_id;
-
-                if (model.dichvuvp.Count() > 0)
-                {
-                    foreach (var item in model.dichvuvp)
-                    {
-                        var os = new OfficeService();
-                        os.office_id = id;
-                        os.service_id = item;
-                        db.OfficeServices.Add(os);
-                        await db.SaveChangesAsync();
-                    }
-                }
-
-                TempData["Updated"] = "Đã thêm văn phòng mới.";
-                return RedirectToRoute("AdminAddOffice");
+                TempData["Updated"] = "Đã thêm mới bài viết.";
+                return RedirectToRoute("AdminAddNewBlog");
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", "Có lỗi xảy ra khi thêm văn phòng");
+                ModelState.AddModelError("", "Có lỗi xảy ra khi thêm bài viết.");
                 configs.SaveTolog(ex.ToString());
                 return View(model);
             }

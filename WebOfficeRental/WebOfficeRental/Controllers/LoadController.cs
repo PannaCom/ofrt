@@ -176,5 +176,13 @@ namespace WebOfficeRental.Controllers
             return result;
         }
 
+        //genurl
+        [HttpPost]
+        public JsonResult genurl(string strText)
+        {
+            string result = Helpers.configs.unicodeToNoMark(strText);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
