@@ -166,3 +166,14 @@ function UploadImage(urllink, d1, d2, d3, i1) { /*Hàm upanh, phần tử up ả
         HiddenFilesPath: 'body'
     });
 }
+
+// Define appendVal by extending JQuery
+$.fn.appendVal = function (TextToAppend) {
+    var x = $(this).val($(this).val() + TextToAppend + ",").slice(0, -1);
+    return x;
+};
+
+$.fn.RemoveVal = function (TextToAppend) {
+    return $(this).val($(this).val().replace(TextToAppend, "").slice(0, -1)
+    );
+};

@@ -4,7 +4,7 @@
     ViewBag.Title = "Thêm tòa nhà";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBkU0wNRlEciZZmIqc9QR7IiEm9tXg48I&libraries=places&language=vi&region=VN" type="text/javascript"></script>
+@Html.Partial("_script_googlemap")
 <script src="~/Scripts/jquery.geocomplete.min.js"></script>
 @section styles {
     @Styles.Render("~/Content/dropzonescss")

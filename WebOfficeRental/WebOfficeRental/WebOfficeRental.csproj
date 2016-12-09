@@ -43,7 +43,9 @@
       <HintPath>..\packages\CaptchaMvc.Mvc4.1.5.0\lib\net40-full\CaptchaMvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -56,33 +58,75 @@
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.Web.DynamicData" />
-    <Reference Include="System.Web.Entity" />
-    <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Abstractions" />
-    <Reference Include="System.Web.Routing" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Web.Services" />
-    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Entity">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Abstractions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -277,11 +321,15 @@
     <Content Include="Content\admin\icomoon\icomoon.min.css" />
     <Content Include="Content\admin\js\sb-admin-2.js" />
     <Content Include="Content\admin\js\sb-admin-2.min.js" />
+    <Content Include="Content\admin\js\typeahead.bundle.js" />
     <Content Include="Content\admin\vendor\bootstrap\css\bootstrap.css" />
     <Content Include="Content\admin\vendor\bootstrap\css\bootstrap.min.css" />
     <Content Include="Content\admin\vendor\bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\admin\vendor\bootstrap\js\bootstrap.js" />
     <Content Include="Content\admin\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\admin\vendor\bstg\bootstrap-tagsinput.css" />
+    <Content Include="Content\admin\vendor\bstg\bootstrap-tagsinput.js" />
+    <Content Include="Content\admin\vendor\bstg\bootstrap-tagsinput.min.js" />
     <Content Include="Content\admin\vendor\bstv\bootstrap-treeview.min.css" />
     <Content Include="Content\admin\vendor\bstv\bootstrap-treeview.min.js" />
     <Content Include="Content\admin\vendor\datatable\dataTables.bootstrap.min.css" />
@@ -442,6 +490,8 @@
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Scripts\eModal.min.js.map" />
+    <Content Include="Content\admin\vendor\bstg\bootstrap-tagsinput.min.js.map" />
+    <None Include="Properties\PublishProfiles\officerental.vn.pubxml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
     <Content Include="Scripts\ckeditor\build-config.js" />
@@ -852,6 +902,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\skrollr.js" />
     <Content Include="Scripts\SmoothScroll.js" />
+    <Content Include="Scripts\typeahead.bundle.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Themes\KodeProperty\Content\css\bootstrap.css" />
     <Content Include="Themes\KodeProperty\Content\css\chosen-sprite%402x.png" />
@@ -1114,7 +1165,6 @@
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Shared\_PlainCaptchaPartial.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="extra-images\Thumbs.db" />
     <Content Include="Themes\KodeProperty\Content\fonts\fontawesome-webfont.eot" />
     <Content Include="Themes\KodeProperty\Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Themes\KodeProperty\Content\fonts\fontawesome-webfont.woff" />
@@ -1127,12 +1177,6 @@
     <Content Include="Themes\KodeProperty\Content\fonts\icomoon.eot" />
     <Content Include="Themes\KodeProperty\Content\fonts\icomoon.ttf" />
     <Content Include="Themes\KodeProperty\Content\fonts\icomoon.woff" />
-    <Content Include="images\prettyPhoto\dark_rounded\Thumbs.db" />
-    <Content Include="images\prettyPhoto\dark_square\Thumbs.db" />
-    <Content Include="images\prettyPhoto\default\Thumbs.db" />
-    <Content Include="images\prettyPhoto\facebook\Thumbs.db" />
-    <Content Include="images\prettyPhoto\light_rounded\Thumbs.db" />
-    <Content Include="images\prettyPhoto\light_square\Thumbs.db" />
     <Content Include="Views\Shared\_LoginPartial - Copy.cshtml" />
     <Content Include="Themes\KodeProperty\Views\Home\About.cshtml" />
     <Content Include="Themes\KodeProperty\Views\Home\Contact.cshtml" />
@@ -1206,6 +1250,10 @@
     <Content Include="Views\News\EditCat.cshtml" />
     <Content Include="Views\News\DeleteCat.cshtml" />
     <Content Include="Views\News\AddNewBlog.cshtml" />
+    <Content Include="Views\News\_lstOptionCatPartial.cshtml" />
+    <Content Include="Views\News\_childOptionCatPartial.cshtml" />
+    <Content Include="Views\Shared\_script_googlemap.cshtml" />
+    <Content Include="Views\Shared\_script_googleanalystic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

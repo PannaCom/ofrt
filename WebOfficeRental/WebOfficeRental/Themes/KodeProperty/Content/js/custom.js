@@ -366,64 +366,64 @@
 /* ---------------------------------------------------------------------- */
 /*	Google Map Function for Custom Style
 /* ---------------------------------------------------------------------- */
-function initialize() {
-    var MY_MAPTYPE_ID = 'custom_style';
-    var map;
-    var brooklyn = new google.maps.LatLng(40.6743890, -73.9455);
-    var featureOpts = [
-        {
-            stylers: [
-              { hue: '#f9f9f9' },
-              { visibility: 'simplified' },
-              { gamma: 0.7 },
-              { saturation: -200 },
-              { lightness: 45 },
-              { weight: 0.6 }
-            ]
-        },
-        {
-            featureType: "road",
-            elementType: "geometry",
-            stylers: [
-              { lightness: 200 },
-              { visibility: "simplified" }
-            ]
-        },
-        {
-            elementType: 'labels',
-            stylers: [
-              { visibility: 'on' }
-            ]
-        },
-        {
-            featureType: 'water',
-            stylers: [
-              { color: '#ffffff' }
-            ]
-        }
-    ];
+//function initialize() {
+//    var MY_MAPTYPE_ID = 'custom_style';
+//    var map;
+//    var brooklyn = new google.maps.LatLng(40.6743890, -73.9455);
+//    var featureOpts = [
+//        {
+//            stylers: [
+//              { hue: '#f9f9f9' },
+//              { visibility: 'simplified' },
+//              { gamma: 0.7 },
+//              { saturation: -200 },
+//              { lightness: 45 },
+//              { weight: 0.6 }
+//            ]
+//        },
+//        {
+//            featureType: "road",
+//            elementType: "geometry",
+//            stylers: [
+//              { lightness: 200 },
+//              { visibility: "simplified" }
+//            ]
+//        },
+//        {
+//            elementType: 'labels',
+//            stylers: [
+//              { visibility: 'on' }
+//            ]
+//        },
+//        {
+//            featureType: 'water',
+//            stylers: [
+//              { color: '#ffffff' }
+//            ]
+//        }
+//    ];
 
-    var mapOptions = {
-        zoom: 15,
-        scrollwheel: false,
-        center: brooklyn,
-        mapTypeControlOptions: {
-            mapTypeIds: [google.maps.MapTypeId.ROADMAP, MY_MAPTYPE_ID]
-        },
-        mapTypeId: MY_MAPTYPE_ID
-    };
+//    var mapOptions = {
+//        zoom: 15,
+//        scrollwheel: false,
+//        center: brooklyn,
+//        mapTypeControlOptions: {
+//            mapTypeIds: [google.maps.MapTypeId.ROADMAP, MY_MAPTYPE_ID]
+//        },
+//        mapTypeId: MY_MAPTYPE_ID
+//    };
 
-    map = new google.maps.Map(document.getElementById('map-canvas'),
-          mapOptions);
+//    map = new google.maps.Map(document.getElementById('map-canvas'),
+//          mapOptions);
 
-    var styledMapOptions = {
-        name: 'Custom Style'
-    };
+//    var styledMapOptions = {
+//        name: 'Custom Style'
+//    };
 
-    var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
+//    var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
 
-    map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
-}
+//    map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
+//}
 
 function validateEmail(email) {
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

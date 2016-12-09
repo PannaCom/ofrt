@@ -208,6 +208,10 @@ namespace WebOfficeRental.Models
     public class articlesVM
     {
         public long article_id { get; set; }
+        public string tags { get; set; }
+        [Display(Name = "Danh mục bài viết")]
+        [Required(ErrorMessage = "{0} không được để trống.")]
+        public int? art_cat_id { get; set; }
         [Display(Name = "Tên bài viết")]
         [Required(ErrorMessage = "{0} không được để trống.")]
         [StringLength(500, ErrorMessage = "{0} không được dài quá 500 ký tự.")]
@@ -228,6 +232,7 @@ namespace WebOfficeRental.Models
         public string article_photo_lg { get; set; }
         [Display(Name = "Trạng thái")]
         public bool status { get; set; }
+
     }
 
     public class banerVM

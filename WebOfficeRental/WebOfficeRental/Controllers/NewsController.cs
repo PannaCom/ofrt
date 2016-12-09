@@ -8,6 +8,7 @@ using WebOfficeRental.Helpers;
 using System.Threading.Tasks;
 using PagedList;
 using PagedList.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace WebOfficeRental.Controllers
 {
@@ -66,6 +67,21 @@ namespace WebOfficeRental.Controllers
             var presidents = data.Where(x => x.ParentCatId == null).FirstOrDefault();
             SetChildrenCat(presidents, data);
             return PartialView("_lstCatPartial", presidents);
+        }
+
+        // option cat new
+        public PartialViewResult _lstOptionCatPartial()
+        {
+            List<LstCat> data = db.categories.Select(x => new LstCat()
+            {
+                CatId = x.art_cat_id,
+                CatName = x.art_cat_name,
+                ParentCatId = x.art_cat_parent_id
+            }).OrderBy(x => x.CatName).ToList();
+
+            var presidents = data.Where(x => x.ParentCatId == null).FirstOrDefault();
+            SetChildrenCat(presidents, data);
+            return PartialView("_lstOptionCatPartial", presidents);
         }
 
         private void SetChildrenCat(LstCat model, List<LstCat> danhmuc)
@@ -232,6 +248,12 @@ namespace WebOfficeRental.Controllers
                 _newModel.article_photo_sm = model.article_photo_sm ?? null;
                 _newModel.article_photo_lg = model.article_photo_lg ?? null;
                 _newModel.status = model.status;
+                _newModel.art_cat_id = model.art_cat_id ?? null;
+                _newModel.tags = model.tags ?? null;
+                _newModel.updated_date = DateTime.Now;
+                string strUserId = User.Identity.GetUserId();
+                //HttpContext.Current.User.Identity.GetUserId();
+                _newModel.user_id = strUserId ?? null; 
                 db.articles.Add(_newModel);
                 await db.SaveChangesAsync();
                 TempData["Updated"] = "Đã thêm mới bài viết.";
