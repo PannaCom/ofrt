@@ -910,10 +910,12 @@
     <Content Include="Themes\KodeProperty\Content\css\chosen.min.css" />
     <Content Include="Themes\KodeProperty\Content\css\color.css" />
     <Content Include="Themes\KodeProperty\Content\css\font-awesome.css" />
+    <Content Include="Themes\KodeProperty\Content\css\images\bg-1.png" />
     <Content Include="Themes\KodeProperty\Content\css\images\bx_loader.gif" />
     <Content Include="Themes\KodeProperty\Content\css\images\controls.png" />
     <Content Include="Themes\KodeProperty\Content\css\images\footer-bg.png" />
     <Content Include="Themes\KodeProperty\Content\css\images\heading-icon.png" />
+    <Content Include="Themes\KodeProperty\Content\css\images\panel_ot_bg.png" />
     <Content Include="Themes\KodeProperty\Content\css\images\taisao_bg.png" />
     <Content Include="Themes\KodeProperty\Content\css\images\toanha_bg.png" />
     <Content Include="Themes\KodeProperty\Content\css\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -1253,7 +1255,7 @@
     <Content Include="Views\News\_lstOptionCatPartial.cshtml" />
     <Content Include="Views\News\_childOptionCatPartial.cshtml" />
     <Content Include="Views\Shared\_script_googlemap.cshtml" />
-    <Content Include="Views\Shared\_script_googleanalystic.cshtml" />
+    <Content Include="Themes\KodeProperty\Views\Shared\_script_googleanalystic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
