@@ -267,6 +267,146 @@ namespace WebOfficeRental.Controllers
             }
         }
 
+        //ListNewBlogs
+        public ActionResult ListNewBlogs(int? pg, string search)
+        {
+            int pageSize = 25;
+            if (pg == null) pg = 1;
+            int pageNumber = (pg ?? 1);
+            ViewBag.pg = pg;
+            var data = (from q in db.articles select q);
+            if (data == null)
+            {
+                return View(data);
+            }
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                search = search.Trim();
+                data = data.Where(x => x.article_name.Contains(search));
+                ViewBag.search = search;
+            }
+
+            data = data.OrderBy(x => x.updated_date);
+
+            return View(data.ToPagedList(pageNumber, pageSize));
+        }
+
+        //EditBlog
+        public async Task<ActionResult> EditBlog(long? id)
+        {
+
+            if (id == null || id == 0)
+            {
+                return RedirectToRoute("Admin");
+            }
+            article _model = await db.articles.FindAsync(id);
+            if (_model == null)
+            {
+                return View(_model);
+            }
+            var getArticle = new articlesVM()
+            {
+                article_id = _model.article_id,
+                tags = _model.tags,
+                art_cat_id = _model.art_cat_id,
+                article_name = _model.article_name,
+                article_description = _model.article_description,
+                article_content = _model.article_content,
+                article_type = _model.article_type,
+                article_slugurl = _model.article_slugurl,
+                article_photo_sm = _model.article_photo_sm,
+                article_photo_lg = _model.article_photo_lg,
+                status = (bool)_model.status
+            };
+
+            ViewBag.NameBlog = _model.article_name;
+            return View(getArticle);
+        }
+
+        [HttpPost, ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditBlog(articlesVM model)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["Errored"] = "Vui lòng kiểm tra lại các trường.";
+                return RedirectToRoute("AdminEditNewBlog", new { id = model.article_id });
+            }
+            try
+            {
+                var _model = await db.articles.FindAsync(model.article_id);
+                if (_model != null)
+                {
+                    //logic code
+                    _model.article_name = model.article_name ?? null;
+                    _model.article_description = model.article_description ?? null;
+                    _model.article_content = model.article_content ?? null;
+                    _model.article_type = model.article_type ?? null;
+                    _model.article_slugurl = model.article_slugurl != null ? model.article_slugurl : Helpers.configs.unicodeToNoMark(model.article_name);
+                    _model.article_photo_sm = model.article_photo_sm ?? null;
+                    _model.article_photo_lg = model.article_photo_lg ?? null;
+                    _model.status = model.status;
+                    _model.art_cat_id = model.art_cat_id ?? null;
+                    _model.tags = model.tags ?? null;
+                    _model.updated_date = DateTime.Now;
+                    string strUserId = User.Identity.GetUserId();
+                    //HttpContext.Current.User.Identity.GetUserId();
+                    _model.user_id = strUserId ?? null; 
+                    db.Entry(_model).State = System.Data.Entity.EntityState.Modified;
+                    await db.SaveChangesAsync();
+                    TempData["Updated"] = "Cập nhật bài viết thành công";
+                }
+                return RedirectToRoute("AdminEditNewBlog", new { id = model.article_id });
+            }
+            catch (Exception ex)
+            {
+                TempData["Errored"] = "Có lỗi xảy ra khi cập nhật bài viết.";
+                configs.SaveTolog(ex.ToString());
+                return RedirectToRoute("AdminEditNewBlog", new { id = model.article_id });
+            }
+
+        }
+
+        //DeleteBlog
+        public ActionResult DeleteBlog(long? id)
+        {
+            if (id == null || id == 0)
+            {
+                return RedirectToRoute("Admin");
+            }
+            article _model = db.articles.Find(id);
+            if (_model == null)
+            {
+                return View();
+            }
+            return View(_model);
+        }
+
+
+        [HttpPost, ActionName("DeleteBlog")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteBlogConfirmed(long? id)
+        {
+            article _model = await db.articles.FindAsync(id);
+            if (_model == null)
+            {
+                return View();
+            }
+            try
+            {
+                _model.status = false;
+                _model.deleted_date = DateTime.Now;
+                db.Entry(_model).State = System.Data.Entity.EntityState.Modified;
+                await db.SaveChangesAsync();
+                TempData["Deleted"] = "Bài viết đã xóa khỏi danh sách đã đăng.";
+            }
+            catch (Exception ex)
+            {
+                configs.SaveTolog(ex.ToString());
+            }
+            return RedirectToRoute("AdminListNewBlogs");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

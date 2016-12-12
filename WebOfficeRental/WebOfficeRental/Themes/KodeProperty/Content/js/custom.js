@@ -324,9 +324,9 @@
 		  		Map Script Script
 	  =======================================================================
 	*/
-    if ($('#map-canvas').length) {
-        google.maps.event.addDomListener(window, 'load', initialize);
-    }
+    //if ($('#map-canvas').length) {
+    //    google.maps.event.addDomListener(window, 'load', initialize);
+    //}
 
     /*
 	  =======================================================================

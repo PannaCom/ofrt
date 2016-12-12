@@ -267,7 +267,17 @@ namespace WebOfficeRental
                        tenvanphong = UrlParameter.Optional
                    }), new MvcRouteHandler()));
 
-
+            // Chi tiết tin tức
+            routes.Add("RBlogDetail", new SeoFriendlyRoute("tin/{url}-{id}",
+               new RouteValueDictionary(
+                   new
+                   {
+                       controller = "Home",
+                       action = "BlogDetail",
+                       id = UrlParameter.Optional,
+                       url = UrlParameter.Optional
+                   }),
+               new MvcRouteHandler()));
 
             #endregion
 

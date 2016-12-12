@@ -1,0 +1,186 @@
+﻿@using WebOfficeRental.Models;
+@using WebOfficeRental.Helpers;
+@model article
+@{
+    ViewBag.Title = "Chi tiết bài viết" + " | Bất động sản";
+}
+
+@section metatags {
+    <meta name="description" content="@Html.Raw(ViewBag.Title) bất động sản officerental">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="robots" content="index,follow,noodp">
+    <meta property="og:locale" content="vi_VN">
+    <meta property="og:type" content="Văn phòng">
+    <meta property="og:url" content="http://@Request.Url.Host">
+    <meta property="og:title" content="@Html.Raw(ViewBag.Title)">
+    <meta property="og:description" content="@Html.Raw(ViewBag.Title) bất động sản officerental">
+    <meta property="og:image" itemprop="thumbnailUrl" content="">
+}
+
+@if (Model != null)
+{
+
+@section MainBanner {
+    <!--Sub Banner Wrap Start-->
+    <div class="kf_property_sub_banner">
+        <div class="container">
+            <div class="kf_sub_banner_hdg">
+                <h3>@Html.Raw(ViewBag.Title)</h3>
+            </div>
+            <div class="kf_property_breadcrumb">
+                <ul>
+                    <li><a href="#">Tin tức</a></li>
+                    <li><a href="/van-phong/van-phong-cho-thue" class="bb1_p0_m010">Tin tức chi tiết</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--Sub Banner Wrap End-->
+}
+
+<!--Blog Listing Wrap Start-->
+<section>
+    <div class="container">
+        <div class="row">
+            <!--Blog Listing Detail Wrap Start-->
+            <div class="col-md-9">
+                <!--Blog Detail Description Wrap Start-->
+                <div class="kf_blog_detail_wrap">
+                    <div class="kf_blog_listing_wrap">
+                        <figure>
+                            <img src="extra-images/blog-listing-01.jpg" alt="">
+                        </figure>
+                        <div class="kf_blog_listing_des">
+                            <h5>Happydais</h5>
+                            <ul class="kf_blog_listing_meta">
+                                <li><i class="fa fa-calendar"></i><a href="#">12-08-2016</a></li>
+                                <li><i class="fa fa-user"></i><a href="#">Admin</a></li>
+                                <li><i class="fa fa-comments"></i><a href="#">Comment</a></li>
+                                <li><i class="fa fa-eye"></i><a href="#">View</a></li>
+                                <li><i class="fa fa-heart-o"></i><a href="#">99 + Like</a></li>
+                            </ul>
+                            <p>His room, a proper human room although a little too small, lay peacefully between its four familiar walls. A collection of textile samples lay spread out on the table – Samsa was a travelling salesman – and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame.</p>
+
+                            <p>Watch “Jeopardy! “, Alex Trebek’s fun TV quiz game. Woven silk pyjamas exchanged for blue quartz. Brawny gods just flocked up to quiz and vex him. Adjusting quiver and bow, Zompyc killed the fox. My faxed joke won a pager in the cable TV quiz show. Amazingly few discotheques provide jukeboxes. My girl wove six dozen plaid jackets before she quit.</p>
+
+                            <p>Cozy sphinx waves quart jug of bad milk. A very bad quack might jinx zippy fowls. Few quips galvanized the mock jury box. Quick brown dogs jump over the lazy fox. The jay, pig, fox, zebra, and my wolves quack! Blowzy red vixens fight for a quick jump. Joaquin Phoenix was gazed by MTV for luck. A wizard’s job is to vex chumps quickly in fog.</p>
+                        </div>
+                    </div>
+
+                    <div class="kf_blog_detail_img">
+                        <div class="kf_detail_img">
+                            <img src="extra-images/detail-img-01.jpg" alt="">
+                        </div>
+                        <div class="kf_detail_img">
+                            <img src="extra-images/detail-img-02.jpg" alt="">
+                        </div>
+                        <div class="kf_detail_img">
+                            <img src="extra-images/detail-img-03.jpg" alt="">
+                        </div>
+                    </div>
+
+                    <div class="kf_blog_extra_detail">
+                        <h6>Little Paradise</h6>
+                        <p>Aliquam dui justo, feugiat eu ligula at, posuere cursus enim. Fusce dictum egestas sem eu convallis. Suspendisse sapien turpis, iaculis eu congue at, tristique facilisis sapien. Vivamus sit amet cursus orci. Duis tempor vitae felis sed volutpat. Pellentesque quis leo turpis. Duis vestibulum euismod metus, ut iaculis tortor feugiat vel.</p>
+                    </div>
+                </div>
+                <!--Blog Detail Description Wrap End-->
+                <!--Blog Detail Tag Wrap Start-->
+                <div class="kf_blog_detail_tag">
+                    <span class="kf_tag_icon"><i class="fa fa-tags"></i></span>
+                    <ul class="kf_tag_list">
+                        <li><a href="#">Blog,</a></li>
+                        <li><a href="#">Real Estate,</a></li>
+                        <li><a href="#">Property for Sale,</a></li>
+                    </ul>
+                    <ul class="kf_blog_social_icon">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    </ul>
+                </div>
+                <!--Blog Detail Tag Wrap End-->
+                <!--Blog Detail Related Post Wrap Start-->
+                <div class="kf_blog_detail_related_post detail_heading">
+                    <h5>Related Post</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="kf_blog_post_wrap">
+                                <figure>
+                                    <img src="extra-images/blog-01.jpg" alt="">
+                                </figure>
+                                <div class="kf_blog_des">
+                                    <h6><a href="#">University near to sabestian villa</a></h6>
+                                    <ul class="kf_blog_post_meta">
+                                        <li><i class="fa fa-calendar"></i><a href="#">12/08/2016</a></li>
+                                        <li><i class="fa fa-user"></i><a href="#">Admin</a></li>
+                                        <li><i class="fa fa-comments"></i><a href="#">05</a></li>
+                                    </ul>
+                                    <p>Duis facilisis nibh quam, sit amet interdum tellus sollicitudin tempor. Curabitur aliquam…</p>
+                                    <a class="kf_link_2" href="#">Read more</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="kf_blog_post_wrap">
+                                <figure>
+                                    <img src="extra-images/blog-02.jpg" alt="">
+                                </figure>
+                                <div class="kf_blog_des">
+                                    <h6><a href="#">LAW FIRM OPENED NEAR TO VILLA</a></h6>
+                                    <ul class="kf_blog_post_meta">
+                                        <li><i class="fa fa-calendar"></i><a href="#">12/08/2016</a></li>
+                                        <li><i class="fa fa-user"></i><a href="#">Admin</a></li>
+                                        <li><i class="fa fa-comments"></i><a href="#">05</a></li>
+                                    </ul>
+                                    <p>Aliquam dui justo, feugiat eu ligula at, posuere cursus enim. Fusce dictum egestas sem eu </p>
+                                    <a class="kf_link_2" href="#">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Blog Detail Related Post Wrap End-->
+                
+            </div>
+            <!--Blog Listing Detail Wrap End-->
+            <!--Aside bar Wrap Start-->
+            <div class="col-md-3">
+                <div class="kf_asidebar_wrap">
+                    <div class="kf_aside_category aside_hdg">
+                        <h5>Categories</h5>
+                        <ul>
+                            <li><a href="#">Guidance</a> <span>(55)</span></li>
+                            <li><a href="#">Listing</a> <span>(45)</span></li>
+                            <li><a href="#">Advertise</a> <span>(10)</span></li>
+                            <li><a href="#">Consulting</a> <span>(15)</span></li>
+                            <li><a href="#">Clean design</a> <span>(25)</span></li>
+                            <li><a href="#">Happy Clients</a> <span>(50)</span></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            <!--Aside bar Wrap End-->
+        </div>
+    </div>
+</section>
+<!--Blog Listing Wrap End-->
+    
+}
+else
+{
+    @section MainBanner {
+    <!--Sub Banner Wrap Start-->
+    <div class="kf_property_sub_banner">
+        <div class="container">
+            <div class="kf_sub_banner_hdg">
+                <h3>Bài viết không tồn tại hoặc đã bị xóa.</h3>
+            </div>
+        </div>
+    </div>
+    <!--Sub Banner Wrap End-->
+    }
+}

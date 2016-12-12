@@ -45,7 +45,7 @@
     <link href="@Url.Content("~/Themes/KodeProperty/Content/css/responsive.css")" rel="stylesheet" />
     <!--Jquery Library-->
     <script src="@Url.Content("~/Themes/KodeProperty/Content/js/jquery.js")"></script>
-    
+    @RenderSection("scripts2", required: false)
 </head>
 
 <body>
@@ -90,7 +90,6 @@
     <script src="@Url.Content("~/Themes/KodeProperty/Content/js/dl-menu/modernizr.custom.js")"></script>
     <script src="@Url.Content("~/Themes/KodeProperty/Content/js/dl-menu/jquery.dlmenu.js")"></script>
     <!--Map JavaScript-->
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <!--Custom JavaScript-->
     <script src="@Url.Content("~/Themes/KodeProperty/Content/js/custom.js")"></script>
     @RenderSection("scripts", required: false)

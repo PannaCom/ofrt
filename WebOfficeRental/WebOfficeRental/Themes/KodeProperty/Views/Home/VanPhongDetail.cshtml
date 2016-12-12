@@ -6,6 +6,9 @@
     ViewBag.Title = @Model.office_name;
 }
 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJOSS8SAqdbmGPxCOCEcLHscxQ3-x1wlg&libraries=places&language=vi&region=VN" type="text/javascript"></script>
+
+
 @section metatags {
     <meta name="description" content="văn phòng @Model.office_name tòa nhà @Model.building.bulding_name">
     <meta name="keywords" content="">
@@ -20,22 +23,23 @@
 }
 
 @*@section MainBanner {
-    <!--Sub Banner Wrap Start-->
-    <div class="kf_property_sub_banner">
-        <div class="container">
-            <div class="kf_sub_banner_hdg">
-                <h3>@Html.Raw(ViewBag.Title)</h3>
-            </div>
-            <div class="kf_property_breadcrumb">
-                <ul>
-                    <li><a href="#">Tòa nhà</a></li>
-                    <li><a href="@HttpContext.Current.Request.Url.AbsolutePath" class="bb1_p0_m010">@Html.Raw(ViewBag.Title)</a></li>
-                </ul>
+        <!--Sub Banner Wrap Start-->
+        <div class="kf_property_sub_banner">
+            <div class="container">
+                <div class="kf_sub_banner_hdg">
+                    <h3>@Html.Raw(ViewBag.Title)</h3>
+                </div>
+                <div class="kf_property_breadcrumb">
+                    <ul>
+                        <li><a href="#">Tòa nhà</a></li>
+                        <li><a href="@HttpContext.Current.Request.Url.AbsolutePath" class="bb1_p0_m010">@Html.Raw(ViewBag.Title)</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <!--Sub Banner Wrap End-->
-}*@
+        <!--Sub Banner Wrap End-->
+    }*@
+
 
 <!--Property Detail Wrap Start-->
 <section class="kf_property_detail_bg">
@@ -43,84 +47,134 @@
         <div class="row">
             <!--Property Detail Description Wrap Start-->
             <div class="col-md-9">
+
                 <div class="kf_detail_information">
-                    
+
                     <!--kf_property_detail_uptwon strat-->
                     <div class="kf_property_detail_uptwon">
                         <h3>@Model.office_name</h3>
-                        <ul>
-                            <li><i class="fa fa-map-marker"></i><a href="#">@Model.building.building_address</a></li>
-                            <li><i class="fa fa-phone"></i><a href="tel:@Model.building.building_phonenumber">@Model.building.building_phonenumber</a></li>
-                            <li><i class="fa fa-inbox"></i><a href="mailto:@Model.building.building_email">@Model.building.building_email</a></li>
-                            <li><i class="fa fa-calendar-o"></i><a href="#">@Model.updated_date</a></li>
-                        </ul>
-                        <b>Giá: @if (Model.office_price_public == -1)
-                        {
-                            <text>Thỏa thuận</text>
-                        }
-                        else
-                        {
-                            <text>@string.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:#,###}", Model.office_price_public) <b>đồng.</b></text>
-                        }</b>
-                        @Html.Raw(Model.office_other_descriptions)
 
-                    </div>
-                    <!--kf_property_detail_uptwon end-->
-                    <!--kf_property_detail_link strat-->
-                    <div class="kf_property_detail_link">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="kf_property_detail_hdg">
-                                    <h5>Dịch vụ tòa nhà</h5>
+                        <div class="kf_chitietvanphong">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#ct_ttct" aria-controls="ct_ttct" role="tab" data-toggle="tab">Thông tin chi tiết</a></li>
+                                <li role="presentation"><a href="#ct_dichvu" aria-controls="ct_dichvu" role="tab" data-toggle="tab">Dịch vụ văn phòng</a></li>
+                                <li role="presentation"><a href="#ct_bando" aria-controls="ct_bando" role="tab" data-toggle="tab">Bản đồ</a></li>
+                                <li role="presentation"><a href="#ct_lienhe" aria-controls="ct_lienhe" role="tab" data-toggle="tab">Liên hệ đặt thuê</a></li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="ct_ttct">
+                                    <div class="kf_blog_listing_wrap">
+                                        <div class="kf_blog_listing_des">
+                                            <h5>
+                                                Giá thuê
+                                                <b>
+                                                    @if (Model.office_price_public == -1)
+                                                    {
+                                                        <text>Thỏa thuận</text>
+                                                    }
+                                                    else
+                                                    {
+                                                        <text>@string.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:#,###}", Model.office_price_public) <b>đồng.</b></text>
+                                                    }
+                                                </b>
+                                            </h5>
+                                            <ul class="kf_blog_listing_meta">
+                                                <li><i class="fa fa-calendar"></i><a href="#">@string.Format("{0:dd-MM-yyyy HH:mm tt}", Model.updated_date)</a></li>
+                                                <li><i class="fa fa-map-marker"></i><a href="#">@Model.building.building_address</a></li>
+                                                <li><i class="fa fa-phone"></i><a href="tel:@Model.building.building_phonenumber">@Model.building.building_phonenumber</a></li>
+                                                <li><i class="fa fa-eye"></i><a href="#">@Model.office_views</a></li>
+                                                <li><i class="fa fa-heart-o"></i><a href="#">@Model.office_votes 99 + Like</a></li>
+                                            </ul>
+                                        </div>
+                                        <ul class="kf_listing_slider">
+                                            <li>
+                                                <figure>
+                                                    <img src="@Model.office_photo" alt="@Model.office_name">
+                                                </figure>
+                                            </li>
+                                        </ul>
+                                        <div class="kf_blog_listing_pager">
+                                            <a data-slide-index="0" href=""><img style="width: 60px; height: 50px;" src="@Model.office_photo" alt="" /></a>
+                                        </div>
+                                        @Html.Raw(Model.office_other_descriptions)
+
+
+                                    </div>
+                                    <div class="kf_comment_list_wrap">
+                                        <h5>Bình luận văn phòng</h5>
+
+
+                                    </div>
+
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="kf_property_detail_Essentail">
-                                    <ul>
-                                        @foreach (var item in @Model.OfficeServices)
-                                        {
-                                            <li><a href="#"><i class="fa fa-check-circle"></i>@item.service.service_name</a></li>
-                                        }
-                                    </ul>
+                                <div role="tabpanel" class="tab-pane" id="ct_dichvu">
+                                    <div class="kf_property_detail_Essentail">
+                                        <ul>
+                                            @foreach (var item in @Model.OfficeServices)
+                                            {
+                                                <li><a href="#"><i class="fa fa-check-circle"></i>@item.service.service_name</a></li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="ct_bando">
+                                    <div id="map-canvas" style="width: 100%; height: 500px;">
+                                        Bản đồ
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="ct_lienhe">
+                                    <div class="kf_property_form_lienhe">
+                                        <form method="post" name="form_lienhe" id="form_lienhe" class="form-horizontal" action="/Home/LienHe">
+                                            <h4>Liên hệ</h4>
+                                            <ul style="margin-top: 10px;">
+                                                <li style="margin-right: 5px;"><a href="#"><i class="fa fa-map-marker"></i> @Model.building.building_address</a></li>
+                                                <li style="margin-right: 5px;"><a href="mailto:@Model.building.building_email"><i class="fa fa-inbox"></i> @Model.building.building_email</a></li>
+                                                <li style="margin-right: 5px;"><a href="tel:@Model.building.building_phonenumber"><i class="fa fa-phone"></i> @Model.building.building_phonenumber</a></li>
+                                            </ul>
+
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Họ và tên: </label>
+                                                <div class="col-md-6">
+                                                    <input type="text" name="hoten" class="form-control" id="hoten" required />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Số điện thoại: </label>
+                                                <div class="col-md-6">
+                                                    <input type="text" name="sodienthoai" class="form-control" id="sodienthoai" required />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Email: </label>
+                                                <div class="col-md-6">
+                                                    <input type="email" name="email" class="form-control" id="email" required />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Tin nhắn: </label>
+                                                <div class="col-md-6">
+                                                    <textarea rows="10" name="loinhan" class="form-control" id="loinhan" required></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-6 col-md-offset-3">
+                                                    <button class="btn btn-primary">Gửi liên hệ</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
-                    
-                    <div class="kf_property_form_lienhe">
-                        <form method="post" name="form_lienhe" id="form_lienhe" class="form-horizontal" action="/Home/LienHe">
-                            <h4>Liên hệ</h4>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Họ và tên: </label>
-                                <div class="col-md-6">
-                                    <input type="text" name="hoten" class="form-control" id="hoten" required />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Số điện thoại: </label>
-                                <div class="col-md-6">
-                                    <input type="text" name="sodienthoai" class="form-control" id="sodienthoai" required />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Email: </label>
-                                <div class="col-md-6">
-                                    <input type="email" name="email" class="form-control" id="email" required />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Tin nhắn: </label>
-                                <div class="col-md-6">
-                                    <textarea rows="10" name="loinhan" class="form-control" id="loinhan" required></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-6 col-md-offset-3">
-                                    <button class="btn btn-primary">Gửi liên hệ</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                    <!--kf_property_detail_uptwon end-->
+
+
 
                 </div>
             </div>
@@ -129,8 +183,7 @@
     </div>
 </section>
 <!--Property Detail Wrap End-->
-
-@section Scripts { 
+@section Scripts {
     <script>
         $(document).ready(function () {
             // this is the id of the form
@@ -151,7 +204,43 @@
 
                 e.preventDefault(); // avoid to execute the actual submit of the form.
             });
+            
         })
+
+        var myCenter = new google.maps.LatLng(@Model.building.building_latlong);
+        var marker = new google.maps.Marker({
+            position: myCenter
+        });
+
+        function initialize() {
+            var mapProp = {
+                center: myCenter,
+                zoom: 15,
+                draggable: false,
+                scrollwheel: false,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            var map = new google.maps.Map(document.getElementById("map-canvas"), mapProp);
+            marker.setMap(map);
+
+            google.maps.event.addListener(marker, 'click', function () {
+
+                infowindow.setContent(contentString);
+                infowindow.open(map, marker);
+
+            });
+        };
+
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            initialize();
+        });
+
+
+        
+        
+
     </script>
+
 
 }

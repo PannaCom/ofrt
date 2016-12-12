@@ -1,16 +1,15 @@
 ﻿@using WebOfficeRental.Models
 @model articlesVM
 @{
-    ViewBag.Title = "Thêm bài viết";
+    ViewBag.Title = "Sửa bài viết";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 @section styles {
     @Styles.Render("~/Content/dropzonescss")
-<link href="~/Content/admin/vendor/bstg/bootstrap-tagsinput.css" rel="stylesheet" />
+    <link href="~/Content/admin/vendor/bstg/bootstrap-tagsinput.css" rel="stylesheet" />
 }
 <script src="~/Scripts/ckeditor/ckeditor.js"></script>
-
 
 @section PageTitleHeader {
     <div class="page-header">
@@ -25,6 +24,7 @@
             @Html.Raw(TempData["Updated"])
         </div>
     }
+
     @if (TempData["Errored"] != null)
     {
         <div class="alert alert-danger alert-dismissible fade in" role="alert">
@@ -36,24 +36,24 @@
     }
 }
 
+
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default box box-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">Vui lòng nhập đầy đủ các trường có dấu <span class="color-red">(*)</span></h3>
+                <h3 class="panel-title">Sửa bài viết: @ViewBag.NameBlog</h3>
             </div>
             <div class="panel-body">
-                @using (Html.BeginForm("AddNewBlog", "News", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", role = "form", @id = "add-new-article" }))
+                @using (Html.BeginForm("EditBlog", "News", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", role = "form", @id = "add-edit-article" }))
                 {
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
+                    @Html.HiddenFor(m=>m.article_id)
+                    <h4>Vui lòng nhập đầy đủ các trường có dấu <span class="color-red">(*)</span></h4>
                     <div class="form-group">
                         <div class="col-md-6">
-                            <button class="btn btn-primary">
-                                <i class="fa fa-plus"></i> Thêm mới
-                            </button>
-                            <span class="btn btn-danger" onclick="gotoUrl('@Url.RouteUrl("AdminAddNewBlog")')"><i class="fa fa-close"></i> Hủy bỏ</span>
+                            <button class="btn btn-primary"><i class="fa fa-edit"></i> Cập nhật</button>
+                            <span class="btn btn-danger" onclick="gotoUrl('@Url.RouteUrl("AdminDeleteNewBlog", new { id = Model.article_id })')"><i class="fa fa-trash"></i> Xóa</span>
                         </div>
                     </div>
                     <!-- Nav tabs -->
@@ -75,7 +75,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.art_cat_id, htmlAttributes: new { @class = "control-label col-md-4 required-after" })
                                 <div class="col-md-8">
-                                    @Html.HiddenFor(m=>m.art_cat_id)
+                                    @Html.HiddenFor(m => m.art_cat_id)
                                     @{ Html.RenderAction("_lstOptionCatPartial", "News"); }
                                     @Html.ValidationMessageFor(model => model.art_cat_id, "", new { @class = "text-danger" })
                                 </div>
@@ -178,10 +178,8 @@
 
                     <div class="form-group">
                         <div class="col-md-6">
-                            <button class="btn btn-primary">
-                                <i class="fa fa-plus"></i> Thêm mới
-                            </button>
-                            <span class="btn btn-danger" onclick="gotoUrl('@Url.RouteUrl("AdminAddNewBlog")')"><i class="fa fa-close"></i> Hủy bỏ</span>
+                            <button class="btn btn-primary"><i class="fa fa-edit"></i> Cập nhật</button>
+                            <span class="btn btn-danger" onclick="gotoUrl('@Url.RouteUrl("AdminDeleteNewBlog", new { id = Model.article_id })')"><i class="fa fa-trash"></i> Xóa</span>
                         </div>
                     </div>
 
@@ -193,10 +191,17 @@
     </div>
 </div>
 
+@if (Model.article_type != null)
+{
+    <script>
+        $('#article_type').val('@Model.article_type');
+    </script>
+}
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/dropzonescripts")
-<script src="~/Content/admin/vendor/bstg/bootstrap-tagsinput.js"></script>
+    <script src="~/Content/admin/vendor/bstg/bootstrap-tagsinput.js"></script>
     <script>
 
         $.validator.setDefaults({
@@ -204,6 +209,14 @@
         });
 
         $(document).ready(function () {
+
+            if ($('#art_cat_id').val() !== "") {
+                $('#cat_op_parent').val($('#art_cat_id').val());
+            }
+
+            $('#article_photo_sm').val() !== "" ? $('#divarticle_photo_sm').css('background-image', 'url("' + $('#article_photo_sm').val() + '")') : false;
+            $('#article_photo_lg').val() !== "" ? $('#divarticle_photo_lg').css('background-image', 'url("' + $('#article_photo_lg').val() + '")') : false;
+
             // tag inserttag
             $('#inserttag').tagsinput();
             $('#inserttag').on('itemAdded', function (event) {
@@ -216,8 +229,11 @@
                 $('#tags').val($('#inserttag').val());
             });
             // set value default tag
-            $('#inserttag').tagsinput('add', 'office rental');
+            //$('#inserttag').tagsinput('add', 'office rental');
 
+            if ($('#tags').val() !== "") {
+                $('#inserttag').tagsinput('add', $('#tags').val());
+            }
 
             // tuy chinh dia chi
             $('#checkSlugname').change(function () {
@@ -256,7 +272,6 @@
                     });
                 }
             })
-
 
             // upload
             Dropzone.autoDiscover = false;

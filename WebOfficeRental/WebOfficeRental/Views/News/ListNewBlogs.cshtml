@@ -1,0 +1,164 @@
+﻿@model PagedList.IPagedList<WebOfficeRental.Models.article>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Danh sách bài viết";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Styles {
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <link href="~/Content/admin/vendor/datatable/dataTables.bootstrap.min.css" rel="stylesheet" />
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="page-header">
+            <h3>@ViewBag.Title <span class="btn btn-primary pull-right" onclick="gotoUrl('@Url.RouteUrl("AdminAddNewBlog")')"><i class="fa fa-plus"></i> Thêm bài viết mới</span></h3>
+        </div>
+        @if (TempData["Deleted"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                @Html.Raw(TempData["Deleted"])
+            </div>
+        }
+
+        @if (TempData["Updated"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                @Html.Raw(TempData["Updated"])
+            </div>
+        }
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default box box-primary">
+            <div class="panel-heading">
+                @using (Html.BeginForm("ListNewBlogs", "News", FormMethod.Get, new { @class = "form-inline", role = "form", @id = "search-article", onsubmit = "return validate()" }))
+                {
+                    <div class="form-group">
+                        <label for="searchQuery" class="control-label">Tìm kiếm: </label>
+                        @Html.TextBox("search", "", new { @class = "form-control", placeholder = "Nhập từ khóa tìm kiếm bài viết" })
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-primary"><i class="fa fa-search"></i>Tìm kiếm</button>
+                    </div>
+                }
+            </div>
+
+            <script>
+                function validate() {
+                    if (document.getElementById("search").value === "") {
+                        alert('Vui lòng nhập từ khóa tìm kiếm');
+                        return false;
+                    } else {
+                        return true;
+                    };
+                }
+            </script>
+
+            <div class="panel-body">
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped" id="table-articles">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên bài viết</th>
+                                <th>Danh mục</th>
+                                <th>Ngày tạo</th>
+                                <th>Tình trạng</th>
+                                <th style="width: 160px;" class="no-sort"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                if (Model.Count > 0)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <tr class='@if (item.status == false) {<text>text-line-through</text>}'>
+                                            <td>@item.article_id</td>
+                                            <td>@item.article_name</td>
+                                            <td>@item.category.art_cat_name</td>
+                                            <td>@string.Format("{0:dd/MM/yyyy HH:mm tt}", item.updated_date)</td>
+                                            <td>
+                                                @if (item.status == false)
+                                                {
+                                                    <span>Tạm khóa</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>Đã đăng</span>
+                                                }
+                                            </td>
+                                            <td>
+                                                <span class="btn btn-primary" onclick="gotoUrl('@Url.RouteUrl("AdminEditNewBlog", new { id = item.article_id })')"><i class="fa fa-edit"></i> Sửa</span>
+                                                <span class="btn btn-danger" onclick="gotoUrl('@Url.RouteUrl("AdminDeleteNewBlog", new { id = item.article_id })')"><i class="fa fa-trash"></i> Xóa</span>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="6">
+                                            Chưa có bài viết nào.
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="6">
+                                        Chưa có bài viết nào.
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                @if (Model != null)
+                {
+                    @Html.PagedListPager(Model, page => Url.RouteUrl("AdminListNewBlogs", new { search = ViewBag.search, pg = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/datatable")
+    <script>
+
+        $(document).ready(function () {
+            $('#table-articles').DataTable({
+                paging: false,
+                "oLanguage": {
+                    "sEmptyTable": "Không tìm thấy bài viết.",
+                    "sLoadingRecords": "Vui lòng - chờ...",
+                    "sSearch": "Tìm kiếm nhanh: ",
+                    "sZeroRecords": "Không tìm thấy bài viết.",
+                    "sInfo": ""
+                },
+                "order": [],
+                columnDefs: [
+                    { targets: 'no-sort', orderable: false }
+                ]
+            });
+        });
+
+    </script>
+}

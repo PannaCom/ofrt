@@ -610,6 +610,18 @@ namespace WebOfficeRental.Controllers
             }
             
         }
+        
+        // Chi tiết bài viết
+        public ActionResult BlogDetail(long? id, string url)
+        {
+            var blogdetail = db.articles.Where(x => x.article_slugurl == url && x.article_id == id && x.status == true).FirstOrDefault();
+            if (blogdetail == null)
+            {
+                return View();
+            }
+
+            return View(blogdetail);
+        }
 
     }
 }

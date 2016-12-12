@@ -6119,3 +6119,11 @@ ul.kf_tag_list {
 #form_lienhe label{
     color: #333;
 }
+
+.kf_chitietvanphong ul li {
+    margin-right: 0;
+}
+
+.bx-wrapper {
+    margin-top: 70px;
+}

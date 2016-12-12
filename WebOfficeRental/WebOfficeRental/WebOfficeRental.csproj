@@ -915,6 +915,7 @@
     <Content Include="Themes\KodeProperty\Content\css\images\controls.png" />
     <Content Include="Themes\KodeProperty\Content\css\images\footer-bg.png" />
     <Content Include="Themes\KodeProperty\Content\css\images\heading-icon.png" />
+    <Content Include="Themes\KodeProperty\Content\css\images\home_icon.png" />
     <Content Include="Themes\KodeProperty\Content\css\images\panel_ot_bg.png" />
     <Content Include="Themes\KodeProperty\Content\css\images\taisao_bg.png" />
     <Content Include="Themes\KodeProperty\Content\css\images\toanha_bg.png" />
@@ -1256,6 +1257,10 @@
     <Content Include="Views\News\_childOptionCatPartial.cshtml" />
     <Content Include="Views\Shared\_script_googlemap.cshtml" />
     <Content Include="Themes\KodeProperty\Views\Shared\_script_googleanalystic.cshtml" />
+    <Content Include="Views\News\ListNewBlogs.cshtml" />
+    <Content Include="Views\News\EditBlog.cshtml" />
+    <Content Include="Views\News\DeleteBlog.cshtml" />
+    <Content Include="Themes\KodeProperty\Views\Home\BlogDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
