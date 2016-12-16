@@ -8,6 +8,44 @@
 
 @Html.Partial("_scriptgoogleapi")
 
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '1160813953986944',
+            xfbml: true,
+            version: 'v2.8'
+        });
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/vi_VN/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    console.log(window.location.href);
+
+
+</script>
+
+<style>
+    .fb_iframe_widget {
+    display: block;
+}
+
+.fb_iframe_widget span {
+        margin-top: 10px;
+        display: block;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: justify;
+    }
+#fbcomments, .fb-comments, .fb-comments iframe[style], .fb-comments span {
+width: 100% !important;
+}
+</style>
 
 @section metatags {
     <meta name="description" content="Tòa nhà @Model.building.bulding_name cho thuê văn phòng @Model.office_name">
@@ -105,9 +143,12 @@
                                     </div>
                                     <div class="kf_comment_list_wrap">
                                         <h5>Bình luận văn phòng</h5>
-
+                                        <div id="fb-root"></div>
+                                        
                                         <div id="cmt_vaphong">
-                                            <div class="fb-comment-comment" data-href="@string.Format("/van-phong/{0}/{1}-{2}", configs.unicodeToNoMark(@Model.building.bulding_name), configs.unicodeToNoMark(@Model.office_name), @Model.office_id)"></div>
+                                            <div class="fb-comment-embed"
+                                                 data-href="@string.Format("http://localhost:59753/van-phong/{0}/{1}-{2}", configs.unicodeToNoMark(@Model.building.bulding_name), configs.unicodeToNoMark(@Model.office_name), @Model.office_id)"
+                                                 data-width=" 500"></div>
                                         </div>
 
                                     </div>
@@ -266,26 +307,7 @@
 
     </script>
 
-    <script>
-        window.fbAsyncInit = function () {
-            FB.init({
-                appId: '1160813953986944',
-                xfbml: true,
-                version: 'v2.8'
-            });
-        };
-
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) { return; }
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/vi_VN/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-        console.log(window.location.href);
-
-
-    </script>
+    
 
 
 
