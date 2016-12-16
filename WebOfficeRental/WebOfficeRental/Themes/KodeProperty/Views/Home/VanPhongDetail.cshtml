@@ -6,19 +6,19 @@
     ViewBag.Title = @Model.office_name;
 }
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJOSS8SAqdbmGPxCOCEcLHscxQ3-x1wlg&libraries=places&language=vi&region=VN" type="text/javascript"></script>
+@Html.Partial("_scriptgoogleapi")
 
 
 @section metatags {
-    <meta name="description" content="văn phòng @Model.office_name tòa nhà @Model.building.bulding_name">
+    <meta name="description" content="Tòa nhà @Model.building.bulding_name cho thuê văn phòng @Model.office_name">
     <meta name="keywords" content="">
     <meta name="author" content="">
     <meta name="robots" content="index,follow,noodp">
     <meta property="og:locale" content="vi_VN">
-    <meta property="og:type" content="home">
+    <meta property="og:type" content="officedetail">
     <meta property="og:url" content="http://@Request.Url.Host">
-    <meta property="og:title" content="@Html.Raw(ViewBag.Title)">
-    <meta property="og:description" content="văn phòng @Model.office_name tòa nhà @Model.building.bulding_name">
+    <meta property="og:title" content="Cho thuê văn phòng @Html.Raw(ViewBag.Title)">
+    <meta property="og:description" content="Tòa nhà @Model.building.bulding_name cho thuê văn phòng @Model.office_name">
     <meta property="og:image" itemprop="thumbnailUrl" content="http://@Request.Url.Host/@Model.office_photo">
 }
 
@@ -106,6 +106,9 @@
                                     <div class="kf_comment_list_wrap">
                                         <h5>Bình luận văn phòng</h5>
 
+                                        <div id="cmt_vaphong">
+
+                                        </div>
 
                                     </div>
 
@@ -121,9 +124,19 @@
                                     </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="ct_bando">
-                                    <div id="map-canvas" style="width: 100%; height: 500px;">
-                                        Bản đồ
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <input type="text" name="place" id="place" class="form-control" placeholder="Nhập vị trí của bạn" value="" />
+
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div id="map-canvas" style="width: 100%; height: 500px;">
+                                                Bản đồ
+                                            </div>
+                                        </div>
                                     </div>
+
+                                    
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="ct_lienhe">
                                     <div class="kf_property_form_lienhe">
@@ -216,31 +229,67 @@
             var mapProp = {
                 center: myCenter,
                 zoom: 15,
-                draggable: false,
-                scrollwheel: false,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
+                draggable: true,
+                scrollwheel: true,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                animation: google.maps.Animation.DROP,
             };
+
+            //var request = {
+            //    location: myCenter,
+            //    radius: '500',
+            //    query: 'restaurant'
+            //};
 
             var map = new google.maps.Map(document.getElementById("map-canvas"), mapProp);
             marker.setMap(map);
+    
+            // add animate when click to position map
+            marker.addListener('click', toggleBounce);
 
-            google.maps.event.addListener(marker, 'click', function () {
 
-                infowindow.setContent(contentString);
-                infowindow.open(map, marker);
 
-            });
         };
+
+        function toggleBounce() {
+            if (marker.getAnimation() !== null) {
+                marker.setAnimation(null);
+            } else {
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+            }
+        }
+        
 
         $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             initialize();
         });
 
-
-        
-        
-
     </script>
+
+    <script>
+        //window.fbAsyncInit = function () {
+        //    FB.init({
+        //        appId: '1160813953986944',
+        //        xfbml: true,
+        //        version: 'v2.8'
+        //    });
+        //};
+
+        //(function (d, s, id) {
+        //    var js, fjs = d.getElementsByTagName(s)[0];
+        //    if (d.getElementById(id)) { return; }
+        //    js = d.createElement(s); js.id = id;
+        //    js.src = "//connect.facebook.net/vi_VN/sdk.js";
+        //    fjs.parentNode.insertBefore(js, fjs);
+        //}(document, 'script', 'facebook-jssdk'));
+        console.log(window.location.href);
+    </script>
+
+
+
+
+
+
 
 
 }
