@@ -107,7 +107,7 @@
                                         <h5>Bình luận văn phòng</h5>
 
                                         <div id="cmt_vaphong">
-
+                                            <div class="fb-comment-comment" data-href="@string.Format("/van-phong/{0}/{1}-{2}", configs.unicodeToNoMark(@Model.building.bulding_name), configs.unicodeToNoMark(@Model.office_name), @Model.office_id)"></div>
                                         </div>
 
                                     </div>
@@ -267,22 +267,24 @@
     </script>
 
     <script>
-        //window.fbAsyncInit = function () {
-        //    FB.init({
-        //        appId: '1160813953986944',
-        //        xfbml: true,
-        //        version: 'v2.8'
-        //    });
-        //};
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '1160813953986944',
+                xfbml: true,
+                version: 'v2.8'
+            });
+        };
 
-        //(function (d, s, id) {
-        //    var js, fjs = d.getElementsByTagName(s)[0];
-        //    if (d.getElementById(id)) { return; }
-        //    js = d.createElement(s); js.id = id;
-        //    js.src = "//connect.facebook.net/vi_VN/sdk.js";
-        //    fjs.parentNode.insertBefore(js, fjs);
-        //}(document, 'script', 'facebook-jssdk'));
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/vi_VN/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
         console.log(window.location.href);
+
+
     </script>
 
 
