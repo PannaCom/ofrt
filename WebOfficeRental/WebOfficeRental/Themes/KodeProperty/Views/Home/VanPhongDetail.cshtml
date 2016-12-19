@@ -12,6 +12,7 @@
 
 @section scripts2 {
     @Html.Partial("_scriptgoogleapi")
+    <script src="~/Themes/KodeProperty/Content/js/jquery.js"></script>
     <script src="~/Scripts/jquery.geocomplete.min.js"></script>
 }
 
@@ -84,6 +85,7 @@
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane active" id="ct_ttct">
                                     <div class="kf_blog_listing_wrap">
+
                                         <div class="kf_blog_listing_des">
                                             <h5>
                                                 Giá thuê
@@ -125,10 +127,14 @@
                                                 </div>
                                             </div>
                                         </div>
-
-
-
                                     </div>
+
+
+
+
+
+
+
                                     <div class="kf_comment_list_wrap">
                                         <h5>Bình luận văn phòng</h5>
 
@@ -156,14 +162,16 @@
                                                 <label for="place">Nhập vị trí của bạn</label>
                                                 <input type="text" name="place" id="place" class="form-control" placeholder="Nhập vị trí của bạn" />
                                                 <input id="lon1" name="lon1" value="" type="hidden"><input id="lat1" name="lat1" value="" type="hidden">
-                                                <input type="button" id="find" value="Tìm đường" class="btn btn-primary" />
+                                                <input id="find" type="button" value="find" />
                                             </form>
-                                            <div id="examples">
-                                                Vị trí hay tìm:
-                                                <a href="#">Bến Xe Khách Mỹ Đình, Hà Nội</a>
-                                                <a href="#">Bến Xe Giáp Bát, Giải Phóng, Giáp Bát, Hà Nội</a>
-                                                <a href="#">Tây Sơn, Hà Nội</a>
-                                            </div>
+
+                                           
+                                            @*<div id="examples">
+                                                    Vị trí hay tìm:
+                                                    <a href="#">Bến Xe Khách Mỹ Đình, Hà Nội</a>
+                                                    <a href="#">Bến Xe Giáp Bát, Giải Phóng, Giáp Bát, Hà Nội</a>
+                                                    <a href="#">Tây Sơn, Hà Nội</a>
+                                                </div>*@
                                             <div id="logger">
                                                 Diện tích khoảng: 100m.
                                             </div>
@@ -172,6 +180,8 @@
                                             <div id="map-canvas" style="width: 100%; height: 500px;">
                                                 Bản đồ
                                             </div>
+
+                                            
                                         </div>
                                     </div>
 
@@ -233,7 +243,7 @@
             <!--Property Detail Description Wrap End-->
             <div class="col-md-3">
                 @{Html.RenderAction("LoadOfficeInvolve", "Home");}
-                
+
             </div>
         </div>
     </div>
@@ -242,8 +252,9 @@
 @section Scripts {
     <script src="~/Scripts/jquery.mousewheel.min.js"></script>
     <script src="~/Scripts/fcb/jquery.fancybox.js"></script>
-<script src="~/Themes/KodeProperty/Content/js/owl.carousel.js"></script>
+    <script src="~/Themes/KodeProperty/Content/js/owl.carousel.js"></script>
     <script>
+
 
 
         $(document).ready(function () {
@@ -269,25 +280,29 @@
 
 
 
+
             $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                initialize();
-                google.maps.event.trigger(map, 'resize');
-                
+                init2();
             });
 
-            var options1 = {
-                map: "#map-canvas"
-            };
+            //var options1 = {
+            //    map: "#map-canvas"
+            //};
 
-            $('#place').geocomplete(options1).bind("geocode:result", function (event, result) {
-                $("#lon1").val(result.geometry.location.lng());
-                $("#lat1").val(result.geometry.location.lat());
+            //$('#place').geocomplete(options1).bind("geocode:result", function (event, result) {
+            //    $("#lon1").val(result.geometry.location.lng());
+            //    $("#lat1").val(result.geometry.location.lat());
 
-            }).bind("geocode:error", function (event, status) {
-                console.log("ERROR: " + status);
-            }).bind("geocode:multiple", function (event, results) {
-                console.log("Multiple: " + results.length + " results found");
-            });
+            //}).bind("geocode:error", function (event, status) {
+            //    console.log("ERROR: " + status);
+            //}).bind("geocode:multiple", function (event, results) {
+            //    console.log("Multiple: " + results.length + " results found");
+            //});
+
+            //$('#find').click(function () {
+            //    $('#place').trigger("geocode");
+            //})
+
 
             //show_news_slider
             if ($('#show_news_slider').length) {
@@ -304,7 +319,27 @@
                 });
             }
 
+
+
         })
+
+        function init2() {
+            var lat_and_long = "@Model.building.building_latlong";
+            
+            $("#place").geocomplete({
+                map: "#map-canvas",
+                details: "form",
+                types: ["geocode", "establishment"],
+                zoom: 15,
+                draggable: true,
+                scrollwheel: false,
+            });
+            $("#place").val(lat_and_long);
+
+            $("#find").click(function () {
+                $("#place").trigger("geocode");
+            });
+        }
 
         function initialize() {
             var myCenter = new google.maps.LatLng(@Model.building.building_latlong);
@@ -327,6 +362,8 @@
             // add animate when click to position map
             marker.addListener('click', toggleBounce);
 
+
+
         };
 
         function toggleBounce() {
@@ -340,25 +377,6 @@
 
 
 
-    </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</script>
 
 }
