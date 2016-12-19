@@ -623,5 +623,11 @@ namespace WebOfficeRental.Controllers
             return View(blogdetail);
         }
 
+        public ActionResult LoadOfficeInvolve(long? id)
+        {
+            var model = (from s in db.offices where s.office_id != id && s.status == true orderby s.updated_date descending select s).ToList().Take(10).ToList();
+            return PartialView("_LoadOfficeInvolve", model);
+        }
+
     }
 }

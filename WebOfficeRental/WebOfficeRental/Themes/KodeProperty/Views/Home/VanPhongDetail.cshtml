@@ -6,46 +6,25 @@
     ViewBag.Title = @Model.office_name;
 }
 
-@Html.Partial("_scriptgoogleapi")
+@section Styles {
+    <link href="~/Scripts/fcb/jquery.fancybox.css" rel="stylesheet" />
+}
 
+@section scripts2 {
+    @Html.Partial("_scriptgoogleapi")
+    <script src="~/Scripts/jquery.geocomplete.min.js"></script>
+}
+
+<div id="fb-root"></div>
 <script>
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId: '1160813953986944',
-            xfbml: true,
-            version: 'v2.8'
-        });
-    };
-
     (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) { return; }
+        if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/vi_VN/sdk.js";
+        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.8&appId=1160813953986944";
         fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-    console.log(window.location.href);
+    }(document, 'script', 'facebook-jssdk'));</script>
 
-
-</script>
-
-<style>
-    .fb_iframe_widget {
-    display: block;
-}
-
-.fb_iframe_widget span {
-        margin-top: 10px;
-        display: block;
-        position: relative;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: justify;
-    }
-#fbcomments, .fb-comments, .fb-comments iframe[style], .fb-comments span {
-width: 100% !important;
-}
-</style>
 
 @section metatags {
     <meta name="description" content="Tòa nhà @Model.building.bulding_name cho thuê văn phòng @Model.office_name">
@@ -80,7 +59,7 @@ width: 100% !important;
 
 
 <!--Property Detail Wrap Start-->
-<section class="kf_property_detail_bg">
+<section class="kf_property_detail_bg" style="padding-top: 20px;">
     <div class="container">
         <div class="row">
             <!--Property Detail Description Wrap Start-->
@@ -89,7 +68,7 @@ width: 100% !important;
                 <div class="kf_detail_information">
 
                     <!--kf_property_detail_uptwon strat-->
-                    <div class="kf_property_detail_uptwon">
+                    <div class="kf_property_detail_uptwon" style="border-bottom: 0;">
                         <h3>@Model.office_name</h3>
 
                         <div class="kf_chitietvanphong">
@@ -121,34 +100,40 @@ width: 100% !important;
                                             </h5>
                                             <ul class="kf_blog_listing_meta">
                                                 <li><i class="fa fa-calendar"></i><a href="#">@string.Format("{0:dd-MM-yyyy HH:mm tt}", Model.updated_date)</a></li>
-                                                <li><i class="fa fa-map-marker"></i><a href="#">@Model.building.building_address</a></li>
+                                                <li><i class="fa fa-map-marker"></i><a href="#ct_bando" aria-controls="ct_bando" role="tab" data-toggle="tab">@Model.building.building_address</a></li>
                                                 <li><i class="fa fa-phone"></i><a href="tel:@Model.building.building_phonenumber">@Model.building.building_phonenumber</a></li>
                                                 <li><i class="fa fa-eye"></i><a href="#">@Model.office_views</a></li>
                                                 <li><i class="fa fa-heart-o"></i><a href="#">@Model.office_votes 99 + Like</a></li>
                                             </ul>
                                         </div>
-                                        <ul class="kf_listing_slider">
-                                            <li>
-                                                <figure>
-                                                    <img src="@Model.office_photo" alt="@Model.office_name">
-                                                </figure>
-                                            </li>
-                                        </ul>
-                                        <div class="kf_blog_listing_pager">
-                                            <a data-slide-index="0" href=""><img style="width: 60px; height: 50px;" src="@Model.office_photo" alt="" /></a>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <ul class="kf_listing_slider">
+                                                    <li>
+                                                        <a class="lightgallery" href="@Model.office_photo">
+                                                            <img src="@Model.office_photo" alt="@Model.office_name">
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <div class="kf_blog_listing_pager">
+                                                    <a data-slide-index="0" href=""><img style="width: 60px; height: 50px;" src="@Model.office_photo" alt="" /></a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <div class="kf_detail_information">
+                                                    @Html.Raw(Model.office_other_descriptions)
+                                                </div>
+                                            </div>
                                         </div>
-                                        @Html.Raw(Model.office_other_descriptions)
+
 
 
                                     </div>
                                     <div class="kf_comment_list_wrap">
                                         <h5>Bình luận văn phòng</h5>
-                                        <div id="fb-root"></div>
-                                        
+
                                         <div id="cmt_vaphong">
-                                            <div class="fb-comment-embed"
-                                                 data-href="@string.Format("http://localhost:59753/van-phong/{0}/{1}-{2}", configs.unicodeToNoMark(@Model.building.bulding_name), configs.unicodeToNoMark(@Model.office_name), @Model.office_id)"
-                                                 data-width=" 500"></div>
+                                            <div class="fb-comments" data-href="@string.Format("http://localhost:59753/van-phong/{0}/{1}-{2}", configs.unicodeToNoMark(@Model.building.bulding_name), configs.unicodeToNoMark(@Model.office_name), @Model.office_id)" data-numposts="5"></div>
                                         </div>
 
                                     </div>
@@ -166,25 +151,38 @@ width: 100% !important;
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="ct_bando">
                                     <div class="row">
-                                        <div class="col-sm-6">
-                                            <input type="text" name="place" id="place" class="form-control" placeholder="Nhập vị trí của bạn" value="" />
-
+                                        <div class="col-sm-5">
+                                            <form>
+                                                <label for="place">Nhập vị trí của bạn</label>
+                                                <input type="text" name="place" id="place" class="form-control" placeholder="Nhập vị trí của bạn" />
+                                                <input id="lon1" name="lon1" value="" type="hidden"><input id="lat1" name="lat1" value="" type="hidden">
+                                                <input type="button" id="find" value="Tìm đường" class="btn btn-primary" />
+                                            </form>
+                                            <div id="examples">
+                                                Vị trí hay tìm:
+                                                <a href="#">Bến Xe Khách Mỹ Đình, Hà Nội</a>
+                                                <a href="#">Bến Xe Giáp Bát, Giải Phóng, Giáp Bát, Hà Nội</a>
+                                                <a href="#">Tây Sơn, Hà Nội</a>
+                                            </div>
+                                            <div id="logger">
+                                                Diện tích khoảng: 100m.
+                                            </div>
                                         </div>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-7">
                                             <div id="map-canvas" style="width: 100%; height: 500px;">
                                                 Bản đồ
                                             </div>
                                         </div>
                                     </div>
 
-                                    
+
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="ct_lienhe">
                                     <div class="kf_property_form_lienhe">
                                         <form method="post" name="form_lienhe" id="form_lienhe" class="form-horizontal" action="/Home/LienHe">
                                             <h4>Liên hệ</h4>
                                             <ul style="margin-top: 10px;">
-                                                <li style="margin-right: 5px;"><a href="#"><i class="fa fa-map-marker"></i> @Model.building.building_address</a></li>
+                                                <li style="margin-right: 5px;"><a href="#" id="bando_1"><i class="fa fa-map-marker"></i> @Model.building.building_address</a></li>
                                                 <li style="margin-right: 5px;"><a href="mailto:@Model.building.building_email"><i class="fa fa-inbox"></i> @Model.building.building_email</a></li>
                                                 <li style="margin-right: 5px;"><a href="tel:@Model.building.building_phonenumber"><i class="fa fa-phone"></i> @Model.building.building_phonenumber</a></li>
                                             </ul>
@@ -233,13 +231,23 @@ width: 100% !important;
                 </div>
             </div>
             <!--Property Detail Description Wrap End-->
+            <div class="col-md-3">
+                @{Html.RenderAction("LoadOfficeInvolve", "Home");}
+                
+            </div>
         </div>
     </div>
 </section>
 <!--Property Detail Wrap End-->
 @section Scripts {
+    <script src="~/Scripts/jquery.mousewheel.min.js"></script>
+    <script src="~/Scripts/fcb/jquery.fancybox.js"></script>
+<script src="~/Themes/KodeProperty/Content/js/owl.carousel.js"></script>
     <script>
+
+
         $(document).ready(function () {
+            $(".lightgallery").fancybox();
             // this is the id of the form
             $("#form_lienhe").submit(function (e) {
 
@@ -258,37 +266,66 @@ width: 100% !important;
 
                 e.preventDefault(); // avoid to execute the actual submit of the form.
             });
-            
+
+
+
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                initialize();
+                google.maps.event.trigger(map, 'resize');
+                
+            });
+
+            var options1 = {
+                map: "#map-canvas"
+            };
+
+            $('#place').geocomplete(options1).bind("geocode:result", function (event, result) {
+                $("#lon1").val(result.geometry.location.lng());
+                $("#lat1").val(result.geometry.location.lat());
+
+            }).bind("geocode:error", function (event, status) {
+                console.log("ERROR: " + status);
+            }).bind("geocode:multiple", function (event, results) {
+                console.log("Multiple: " + results.length + " results found");
+            });
+
+            //show_news_slider
+            if ($('#show_news_slider').length) {
+                var owl = $("#show_news_slider");
+                owl.owlCarousel({
+                    autoPlay: 3000, //Set AutoPlay to 3 seconds
+                    slideSpeed: 300,
+                    paginationSpeed: 400,
+                    singleItem: true,
+                    navigation: true,
+                    items: 1,
+                    pagination: false,
+                    navigationText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+                });
+            }
+
         })
 
-        var myCenter = new google.maps.LatLng(@Model.building.building_latlong);
-        var marker = new google.maps.Marker({
-            position: myCenter
-        });
-
         function initialize() {
+            var myCenter = new google.maps.LatLng(@Model.building.building_latlong);
+            //console.log(myCenter.lng() + ',' + myCenter.lat());
+            var marker = new google.maps.Marker({
+                position: myCenter
+            });
             var mapProp = {
                 center: myCenter,
                 zoom: 15,
                 draggable: true,
-                scrollwheel: true,
+                scrollwheel: false,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 animation: google.maps.Animation.DROP,
             };
 
-            //var request = {
-            //    location: myCenter,
-            //    radius: '500',
-            //    query: 'restaurant'
-            //};
-
             var map = new google.maps.Map(document.getElementById("map-canvas"), mapProp);
             marker.setMap(map);
-    
+
             // add animate when click to position map
             marker.addListener('click', toggleBounce);
-
-
 
         };
 
@@ -299,15 +336,23 @@ width: 100% !important;
                 marker.setAnimation(google.maps.Animation.BOUNCE);
             }
         }
-        
 
-        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-            initialize();
-        });
+
+
 
     </script>
 
-    
+
+
+
+
+
+
+
+
+
+
+
 
 
 

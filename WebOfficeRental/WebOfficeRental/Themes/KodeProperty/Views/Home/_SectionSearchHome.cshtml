@@ -1,0 +1,167 @@
+﻿<!--Advance Search Wrap Start-->
+<div class="kf_advance_search_bg search_home">
+    <div class="container">
+        <!--Search Form Wrap Start-->
+        <div class="kf_advacnce_search_form">
+            <form id="search_office" action="/search/van-phong" method="get" onsubmit="return validate_search()">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="kf_search_field">
+                            <label>Tên văn phòng</label>
+                            <input type="text" name="keyword" id="keyword" placeholder="Nhập từ khóa cần tìm">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="kf_search_field">
+                            <label>Tỉnh thành</label>
+                            @{Html.RenderAction("LoadSearchTinh", "Home");}
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="kf_search_field">
+                            <label>Quận/huyện/thành phố</label>
+
+                            <select class="chosen-select" name="quan" id="quan" data-placeholder="Chọn quận">
+                                <option selected="selected" disabled>Chọn quận</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="kf_search_field kf_range_slider">
+                            <label>Diện tích</label>
+                            @*<input type="text" class="amount" readonly>*@
+                            <span class="amount"></span>
+                            <input type="hidden" name="dientich" id="dientich" />
+                            <div class="kf_range_slider">
+                                <span>0</span>
+                                <div class="slider-range"></div>
+                                <span>500</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="kf_search_field">
+                            <label>Mức giá</label>
+                            <select class="chosen-select" name="gia" id="gia" data-placeholder="Chọn mức giá">
+                                <option selected="selected" disabled>Chọn mức giá</option>
+                                <option value="thoathuan">Thỏa thuận</option>
+                                @for (int i = 0; i <= 100; i += 5)
+                                {
+                                    if (i == 100) { break; }
+                                    <option value="@string.Format("tu-{0}-{1}-trieu", i, i+5)">@string.Format("Từ {0} đến {1} triệu", i, i + 5)</option>
+                                }
+                                <option value="tren100trieu">Trên 100 triệu</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="kf_search_field">
+                            <label>Tòa nhà</label>
+                            @{Html.RenderAction("LoadSearchToaNha", "Home");}
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="kf_search_field">
+                            <input type="submit" value="Tìm văn phòng">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!--Search Form Wrap End-->
+    </div>
+</div>
+
+<script>
+
+    function validate_search() {
+        var v_tinh = $('#tinh').chosen().val();
+        var v_quan = $('#quan').chosen().val();
+        var v_gia = $('#gia').chosen().val();
+        var v_toa_nha = $('#toanha').chosen().val();
+
+        //console.log(v_tinh);
+        if (document.getElementById("keyword").value === "" && v_tinh === null && v_quan === null && v_gia === null && v_toa_nha === null && document.getElementById('dientich').value === "") {
+            alert('Vui lòng nhập từ khóa tìm kiếm hoặc chọn ít nhất một điều kiện.');
+            return false;
+        } else {
+            return true;
+        };
+    }
+
+    function getSearchQuan() {
+        // Cập nhật giá trị quận mới khi chọn tỉnh
+        var tinh = $('#tinh').chosen().val() !== null ? $('#tinh').chosen().val() : "";
+        $.ajax({
+            url: "/Home/LoadSearchQuan?keyword=" + tinh,
+            cache: false
+        }).done(function (html) {
+            $("#quan").empty().append("<option selected='selected' disabled>Chọn quận</option>" + html);
+            $('#quan').chosen().trigger("chosen:updated");
+        });
+        $('#tinh_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
+    }
+
+    //quan
+
+    $.ajax({
+        url: "/Home/LoadSearchQuan?keyword=",
+        cache: false
+    }).done(function (html) {
+        $("#quan").append(html);
+        $('#quan').chosen().trigger("chosen:updated");
+    });
+
+    $(document).ready(function () {
+
+        $('#quan').chosen().change(function () {
+            $('#quan_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
+        });
+
+        $('#gia').chosen().change(function () {
+            $('#gia_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
+        });
+
+        $('#toanha').chosen().change(function () {
+            $('#toanha_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
+        });
+
+        var values = [0, 500];
+        @if (ViewBag.dientich != null)
+	    {
+		    <text>
+        var xyz = '@ViewBag.dientich';
+        var xzy = xyz.split('-').map(Number);
+        values = [xzy[0], xzy[1]];
+        console.log(values);
+        </text>
+	    }
+
+        if ($('.slider-range').length) {
+            $(".slider-range").slider({
+                range: true,
+                min: 0,
+                max: 500,
+                values: values,
+                slide: function (event, ui) {
+                    $(".amount").html(ui.values[0] + "m<sup>2</sup>" + " - " + ui.values[1] + "m<sup>2</sup>");
+                    $('#dientich').val(ui.values[0] + "-" + ui.values[1]);
+                }
+            });
+            $(".amount").html($(".slider-range").slider("values", 0) +
+              "m<sup>2</sup> - " + $(".slider-range").slider("values", 1) + "m<sup>2</sup>");
+            $('#dientich').val($(".slider-range").slider("values", 0) +
+              "-" + $(".slider-range").slider("values", 1));
+        }
+
+    })
+
+
+
+</script>

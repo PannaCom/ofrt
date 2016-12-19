@@ -2276,15 +2276,16 @@ ul.kf_blog_post_meta {
 	  ==============================================================
 */
 .kf_schedule_wrap {
-    width: 410px;
+        width: 410px;
     position: absolute;
-    top: 50%;
+    top: 28%;
     left: 40%;
-    padding: 20px;
-    margin-left: -380px;
+    padding: 15px;
+    margin-left: -381px;
     margin-top: -130px;
     overflow: hidden;
     z-index: 5;
+    height: 252px;
 }
 
     .kf_schedule_wrap h3 {
@@ -2337,9 +2338,11 @@ ul.kf_schedule_room {
 .kf_schedule_visit {
     float: left;
     width: 100%;
-    position: relative;
+    position: absolute;
     background-color: rgba(255,255,255,0.1);
     padding: 10px;
+    bottom: 0;
+    left: 0;
 }
 
     .kf_schedule_visit h4 {
@@ -3162,7 +3165,6 @@ ul.kf_blog_listing_meta {
     width: 100%;
     position: relative;
     text-align: center;
-    margin-top: -110px;
 }
 
     .kf_blog_listing_pager a {
@@ -6096,6 +6098,10 @@ ul.kf_tag_list {
     .kf_office_type_wrap p {
         margin-bottom: 0;
     }
+    .kf_chitietvanphong > .tab-content, #ct_bando {
+        padding-top: 82px;
+    }
+
 }
 
 .margin_top_zero {
@@ -6124,6 +6130,23 @@ ul.kf_tag_list {
     margin-right: 0;
 }
 
-.bx-wrapper {
-    margin-top: 70px;
+.kf_listing_slider {
+    position: relative;
 }
+
+#ct_bando label {
+    color: #333;
+}
+
+.search_home {
+    padding: 0;
+    background: transparent;
+    margin-top: 0px;
+}
+
+    .search_home .kf_advacnce_search_form {
+        border: 0;
+        background: rgb(255, 255, 255);
+        padding-top: 15px;
+        padding-bottom: 10px;
+    }
