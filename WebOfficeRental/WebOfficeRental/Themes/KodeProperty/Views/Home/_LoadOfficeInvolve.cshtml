@@ -1,7 +1,7 @@
 ﻿@model List<WebOfficeRental.Models.office>
 @using WebOfficeRental.Helpers;
 
-<div class="kf_asidebar_wrap">
+@*<div class="kf_asidebar_wrap">
     <div class="kf_aside_post_wrap aside_hdg">
         <h5>Văn phòng liên quan</h5>
         <ul id="show_news_slider" class="owl-carousel owl-theme">
@@ -32,4 +32,88 @@
 
         </ul>
     </div>
-</div>
+</div>*@
+
+<!--Our Agent Warp Start-->
+<section class="kf_our_agent_bg">
+    <div class="container">
+        <!--Heading Wrap Start-->
+        <div class="kf_heading_1">
+            <h3>Văn phòng liên quan</h3>
+            <span class="kf_property_line"></span>
+        </div>
+        <!--Heading Wrap End-->
+        <!--Agent List Wrap Start-->
+        <div class="kf_agent_slider owl-carousel owl-theme">
+            @if (Model.Count > 0)
+            {
+                foreach (var item in Model)
+                {
+                    <div class="item">
+                        <div class="kf_agent_wrap">
+                            <figure>
+                                <img src="@item.office_photo" alt="@item.office_name">
+                                <figcaption>
+                                    <span class="kf_listing_overlay"></span>
+                                </figcaption>
+                            </figure>
+                            <div class="kf_agent_des">
+                                <h6><a href="@string.Format("/van-phong/{0}/{1}-{2}", configs.unicodeToNoMark(@item.building.bulding_name), configs.unicodeToNoMark(@item.office_name), @item.office_id)">@item.office_name</a></h6>
+                                <span class="kf_property_line"></span>
+                                <p>@Html.Raw(item.building.building_address)</p>
+                                <span>
+                                    @if (@item.office_price_public == -1)
+                                    {
+                                        <text>Thỏa thuận</text>
+                                    }
+                                    else
+                                    {
+                                        <text>@string.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:#,###}", item.office_price_public) <b>đồng.</b></text>
+                                    }
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                }
+            }
+            
+        </div>
+        <!--Agent List Wrap End-->
+
+    </div>
+</section>
+<!--Our Agent Warp End-->
+
+<!--Company Wrap Start-->
+@*<div class="kf_property_compnay_bg">
+    <div class="container">
+
+        <div class="owl-carousel owl-theme" id="show_news_slider">
+            @if (Model.Count > 0)
+            {
+                foreach (var item in Model)
+                {
+                    <div class="item">
+                        <div class="kf_compnay_wrap">
+                            <h6><a href="@string.Format("http://localhost:59753/van-phong/{0}/{1}-{2}", configs.unicodeToNoMark(@item.building.bulding_name), configs.unicodeToNoMark(@item.office_name), @item.office_id)">@item.office_name</a></h6>
+                            <p>@item.building.building_address</p>
+                            <span>
+                                @if (@item.office_price_public == -1)
+                                {
+                                    <text>Thỏa thuận</text>
+                                }
+                                else
+                                {
+                                    <text>@string.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:#,###}", item.office_price_public) <b>đồng.</b></text>
+                                }
+                            </span>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+</div>*@
+<!--Company Wrap End-->

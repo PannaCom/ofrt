@@ -417,7 +417,6 @@ p {
 	=============================================
 				top_strip end
 	=============================================
-	*/
 /*
 	==========================================
 			kf_hdr2_logo_bar start
@@ -426,7 +425,7 @@ p {
 .kf_hdr2_logo_bar {
     float: left;
     width: 100%;
-    padding: 20px 0px;
+   padding: 20px 0px 0;
 }
 
 .kf_hdr2_logo_wrap {
@@ -568,7 +567,7 @@ p {
 
     .header2 .kf_main_navigation > ul > li > a {
         color: #fff;
-        padding: 25px 14px 26px;
+        padding: 12px 14px 13px;
     }
 
     .header2 .kf_main_navigation > ul > li.active > a,
@@ -602,7 +601,7 @@ p {
 
 .kf_menu_scl_icon {
     float: right;
-    padding: 17px 0;
+    padding: 4px 0;
 }
 
     .kf_menu_scl_icon ul li a {
@@ -5016,6 +5015,10 @@ ul.kf_tag_list {
     position: relative;
 }
 
+.kf_detail_information p {
+    color: #333;
+}
+
 .kf_property_img_datil {
     float: left;
     width: 100%;
@@ -5142,12 +5145,12 @@ ul.kf_tag_list {
 
             .kf_property_detail_uptwon ul li a {
                 display: inline-block;
-                color: #999999;
+                color: #333;
             }
 
             .kf_property_detail_uptwon ul li i {
                 font-size: 17px;
-                margin-right: 16px;
+                margin-right: 5px;
             }
 
 .kf_property_detail_link {
@@ -6150,3 +6153,35 @@ ul.kf_tag_list {
         padding-top: 15px;
         padding-bottom: 10px;
     }
+
+    .color_red {
+        color: red;
+        -webkit-transition: color ease .5s;
+        -o-transition: color ease .5s;
+        -moz-transition: color ease .5s;
+        transition: color ease .5s;
+    }
+
+.disabled {
+    pointer-events: none;
+    cursor: default;
+} 
+
+.kf_chitietvanphong a {
+    color: #333;
+}
+
+.dichvu_vp li {
+    display: block!important;
+}
+
+.totop {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    cursor: pointer;
+}

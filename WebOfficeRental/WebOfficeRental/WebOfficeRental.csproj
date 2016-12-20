@@ -319,6 +319,7 @@
     <Content Include="Content\admin\icomoon\fonts\icomoon.svg" />
     <Content Include="Content\admin\icomoon\icomoon.css" />
     <Content Include="Content\admin\icomoon\icomoon.min.css" />
+    <Content Include="Content\admin\js\custom.js" />
     <Content Include="Content\admin\js\sb-admin-2.js" />
     <Content Include="Content\admin\js\sb-admin-2.min.js" />
     <Content Include="Content\admin\js\typeahead.bundle.js" />
@@ -367,6 +368,9 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\admin\vendor\chosen\chosen-sprite%402x.png" />
+    <Content Include="Content\admin\vendor\chosen\chosen-sprite.png" />
+    <Content Include="Content\admin\vendor\chosen\chosen.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\img\no-image.png" />
@@ -453,6 +457,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\admin\vendor\chosen\chosen.jquery.min.js" />
     <Content Include="Scripts\ckeditor\CHANGES.md" />
     <Content Include="Scripts\ckeditor\LICENSE.md" />
     <Content Include="Scripts\ckeditor\plugins\scayt\CHANGELOG.md" />

@@ -494,5 +494,16 @@ $(document).ready(function () {
         })
     }
 
+    // scroll top
+    //==========================================    
+    $(window).scroll(function () {
+        $(this).scrollTop() > 500 ? $('.totop').fadeIn() : $('.totop').fadeOut();
+    });
+    if ($('.totop').length) {
+        $('.totop').click(function () {
+            $('html,body').animate({ scrollTop: 0 }, 500);
+            return false;
+        })
+    }
 
 });

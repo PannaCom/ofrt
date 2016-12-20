@@ -584,20 +584,38 @@ namespace WebOfficeRental.Controllers
             }
 
             return View(_vanphong);
-        }  
+        }
+
+        public ActionResult VoteOffice(long? id)
+        {
+            var data = "";
+            var office = (from o in db.offices where o.office_id == id select o).FirstOrDefault();
+            if (office != null)
+            {
+                string sql = "update offices set office_votes = office_votes + 1 where office_id = " + id;
+                db.Database.ExecuteSqlCommand(sql);
+                var office2 = (from o in db.offices where o.office_id == id select o).FirstOrDefault();
+                data = office2.office_votes.ToString();
+            }
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPost]
-        public ActionResult LienHe(string hoten, string sodienthoai, string email, string loinhan)
+        public ActionResult LienHe(string hoten, string sodienthoai, string email, string loinhan, long? office_id, string office_name)
         {
             int isSend = 0;
             if (hoten == null) hoten = ""; if (sodienthoai == null) sodienthoai = ""; if (email == null) email = ""; if (loinhan == null) loinhan = "";
             try
             {
                 contact_rent _newForm = new contact_rent();
-                _newForm.full_name = hoten;
-                _newForm.phone = sodienthoai;
-                _newForm.email = email;
-                _newForm.message = loinhan;
+                _newForm.full_name = hoten ?? null;
+                _newForm.phone = sodienthoai ?? null;
+                _newForm.email = email ?? null;
+                _newForm.message = loinhan ?? null;
+                _newForm.office_id = office_id ?? null;
+                _newForm.office_name = office_name ?? null;
+                _newForm.contact_date = DateTime.Now;
+                _newForm.status = false;
                 db.contact_rent.Add(_newForm);
                 db.SaveChanges();
                 isSend = 1;
