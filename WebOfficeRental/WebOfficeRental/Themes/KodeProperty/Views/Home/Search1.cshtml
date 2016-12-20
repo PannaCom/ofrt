@@ -4,41 +4,85 @@
 
 @{
     ViewBag.Title = "Tìm kiếm văn phòng";
+    if (@ViewBag.keyword != null)
+    {
+        ViewBag.Title += @ViewBag.keyword;
+    }
+    if (ViewBag.tinh != null)
+    {
+        ViewBag.Title += " tỉnh " + ViewBag.tinh;
+    }
+    if (@ViewBag.quan != null)
+    {
+        ViewBag.Title += " quận " + ViewBag.quan;
+    }
+    if (@ViewBag.ngay != null)
+    {
+        ViewBag.Title += " ngày " + ViewBag.ngay;
+    }
+    if (@ViewBag.gia != null)
+    {
+        ViewBag.Title += " giá " + ViewBag.gia;
+    }
+    if (@ViewBag.loaivanphong != null)
+    {
+        ViewBag.Title += " loại phòng " + @ViewBag.loaivanphong;
+    }
+    if (@ViewBag.toanha != null)
+    {
+        ViewBag.Title += @ViewBag.toanha;
+    }
+    if (@ViewBag.dientich != null)
+    {
+        ViewBag.Title += " diện tích " + ViewBag.dientich;
+    }
+}
+
+@{
+    string url = Request.Url.Authority + HttpContext.Current.Request.RawUrl.ToString();
+    if (Request.ServerVariables["HTTPS"] == "on")
+    {
+        url = "https://" + url;
+    }
+    else
+    {
+        url = "http://" + url;
+    }
 }
 
 @section metatags {
-    <meta name="description" content="Tìm kiếm văn phòng động sản officerental">
+    <meta name="description" content="@Html.Raw(ViewBag.Title)">
     <meta name="keywords" content="">
     <meta name="author" content="">
     <meta name="robots" content="index,follow,noodp">
     <meta property="og:locale" content="vi_VN">
-    <meta property="og:type" content="home">
-    <meta property="og:url" content="http://@Request.Url.Host">
-    <meta property="og:title" content="@ViewBag.Title">
-    <meta property="og:description" content="Tìm kiếm văn phòng bất động sản officerental">
+    <meta property="og:type" content="search">
+    <meta property="og:url" content="@Html.Raw(url)">
+    <meta property="og:title" content="@Html.Raw(ViewBag.Title)">
+    <meta property="og:description" content="@Html.Raw(ViewBag.Title)">
     <meta property="og:image" itemprop="thumbnailUrl" content="">
 }
 
 
 @*@section MainBanner {
-    <!--Sub Banner Wrap Start-->
-    <div class="kf_property_sub_banner">
-        <div class="container">
-            <div class="kf_sub_banner_hdg">
-                <h3>Tìm kiếm văn phòng</h3>
-            </div>
-            <div class="kf_property_breadcrumb">
-                <ul>
-                    <li><a href="#">Văn phòng</a></li>
-                    <li><a href="/search/van-phong" class="bb1_p0_m010">Tìm kiếm văn phòng</a></li>
-                </ul>
+        <!--Sub Banner Wrap Start-->
+        <div class="kf_property_sub_banner">
+            <div class="container">
+                <div class="kf_sub_banner_hdg">
+                    <h3>Tìm kiếm văn phòng</h3>
+                </div>
+                <div class="kf_property_breadcrumb">
+                    <ul>
+                        <li><a href="#">Văn phòng</a></li>
+                        <li><a href="/search/van-phong" class="bb1_p0_m010">Tìm kiếm văn phòng</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <!--Sub Banner Wrap End-->
-}*@
+        <!--Sub Banner Wrap End-->
+    }*@
 
-<div class="kf_advance_search_bg margin_top_zero" id="search_section">
+<div class="kf_advance_search_bg margin_top_zero" id="search_section" style="padding: 10px 0;">
     @Html.Partial("_SectionSearch")
 </div>
 
@@ -52,8 +96,6 @@
                 { <text>@Model.Count</text> }
             </h5>
             <div class="kf_view_type">
-
-                
 
                 <div class="kf_property_view" style="margin-left: 24px;">
                     <span>Ngày đăng:</span>
@@ -168,124 +210,123 @@
 @section Scripts {
 
     <script>
-    $(document).ready(function () {
-        var ngay = gup('ngay', document.location.href);
-        var gia = gup('gia', document.location.href);
-        var loaivanphong = gup('loaivanphong', document.location.href);
-        var tinh = @if(ViewBag.tinh != null) { <text>"@Html.Raw(ViewBag.tinh)"</text> } else { <text>""</text>};
-        var quan = @if(ViewBag.quan != null) { <text>"@Html.Raw(ViewBag.quan)"</text> } else { <text>""</text>};
-        var keyword = @if(ViewBag.keyword != null) { <text>"@Html.Raw(ViewBag.keyword)"</text> } else { <text>""</text>};
-        var toanha = gup('toanha', document.location.href);
+        $(document).ready(function () {
+            var ngay = gup('ngay', document.location.href);
+            var gia = gup('gia', document.location.href);
+            var loaivanphong = gup('loaivanphong', document.location.href);
+            var tinh = @if(ViewBag.tinh != null) { <text>"@Html.Raw(ViewBag.tinh)"</text> } else { <text>""</text>};
+            var quan = @if(ViewBag.quan != null) { <text>"@Html.Raw(ViewBag.quan)"</text> } else { <text>""</text>};
+            var keyword = @if(ViewBag.keyword != null) { <text>"@Html.Raw(ViewBag.keyword)"</text> } else { <text>""</text>};
+            var toanha = gup('toanha', document.location.href);
 
 
-        if (ngay !== null) {
-            $("#ngay").val(ngay).trigger("chosen:updated");
-            $('#ngay_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
-        }
-        if (gia !== null) {
-            $("#gia").val(gia).trigger("chosen:updated");
-            $('#gia_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
-        }
-        if (loaivanphong !== null) {
-            $('#loaivanphong').val(loaivanphong).trigger("chosen:updated");
-            $('#loaivanphong_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
-        }
-
-        if (tinh != "") {
-            $('#tinh').val(tinh).trigger("chosen:updated");
-            $('#tinh_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
-        }
-
-        if (quan != "") {
-            $.ajax({
-                url: "/Home/LoadSearchQuan?keyword="+tinh,
-                cache: false
-            }).done(function (html) {
-                $('#quan').empty().append("<option selected='selected' disabled>Chọn quận</option>"+html);
-                $('#quan').val(quan).trigger("chosen:updated");
-                //$('#quan').chosen().trigger("chosen:updated");
-                $('#quan_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
-            });            
-        }else if (tinh != ""){
-            $.ajax({
-                url: "/Home/LoadSearchQuan?keyword="+tinh,
-                cache: false
-            }).done(function (html) {
-                $('#quan').empty().append("<option selected='selected' disabled>Chọn quận</option>"+html);
-                //$('#quan').val(quan).trigger("chosen:updated");
-                $('#quan').chosen().trigger("chosen:updated");
-            });         
-        }
-
-        if (keyword != "") {
-            $('#keyword').val(keyword);
-        }
-
-        if (toanha != null) {
-            $('#toanha').val(toanha).trigger("chosen:updated");
-            $('#toanha_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
-        }
-
-        $('#gia').chosen().change(function () {
-            
-            var myValues = $('#gia').chosen().val();
-            if (myValues !== null) {
-                var url_2 = document.location.pathname + addUrlParam(document.location.search, 'gia', myValues);
-                location.href = url_2;
+            if (ngay !== null) {
+                $("#ngay").val(ngay).trigger("chosen:updated");
+                $('#ngay_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
             }
-           
+            if (gia !== null) {
+                $("#gia").val(gia).trigger("chosen:updated");
+                $('#gia_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
+            }
+            if (loaivanphong !== null) {
+                $('#loaivanphong').val(loaivanphong).trigger("chosen:updated");
+                $('#loaivanphong_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
+            }
+
+            if (tinh != "") {
+                $('#tinh').val(tinh).trigger("chosen:updated");
+                $('#tinh_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
+            }
+
+            if (quan != "") {
+                $.ajax({
+                    url: "/Home/LoadSearchQuan?keyword="+tinh,
+                    cache: false
+                }).done(function (html) {
+                    $('#quan').empty().append("<option selected='selected' disabled>Chọn quận</option>"+html);
+                    $('#quan').val(quan).trigger("chosen:updated");
+                    //$('#quan').chosen().trigger("chosen:updated");
+                    $('#quan_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
+                });
+            }else if (tinh != ""){
+                $.ajax({
+                    url: "/Home/LoadSearchQuan?keyword="+tinh,
+                    cache: false
+                }).done(function (html) {
+                    $('#quan').empty().append("<option selected='selected' disabled>Chọn quận</option>"+html);
+                    //$('#quan').val(quan).trigger("chosen:updated");
+                    $('#quan').chosen().trigger("chosen:updated");
+                });
+            }
+
+            if (keyword != "") {
+                $('#keyword').val(keyword);
+            }
+
+            if (toanha != null) {
+                $('#toanha').val(toanha).trigger("chosen:updated");
+                $('#toanha_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
+            }
+
+            $('#gia').chosen().change(function () {
+
+                var myValues = $('#gia').chosen().val();
+                if (myValues !== null) {
+                    var url_2 = document.location.pathname + addUrlParam(document.location.search, 'gia', myValues);
+                    location.href = url_2;
+                }
+
+            })
+
+            $('#toanha').chosen().change(function () {
+                var myValues = $('#toanha').chosen().val();
+                if (myValues !== null) {
+                    var url_2 = document.location.pathname + addUrlParam(document.location.search, 'toanha', myValues);
+                    location.href = url_2;
+                }
+
+            })
+
+            $('#ngay').chosen().change(function () {
+                var myValues = $('#ngay').chosen().val();
+                if (myValues !== null) {
+                    var url_2 = document.location.pathname + addUrlParam(document.location.search, 'ngay', myValues);
+                    location.href = url_2;
+                }
+
+            });
+
+
+            $('#loaivanphong').chosen().change(function () {
+                var myValues = $('#loaivanphong').chosen().val();
+                if (myValues !== null) {
+                    var url_2 = document.location.pathname + addUrlParam(document.location.search, 'loaivanphong', myValues);
+                    location.href = url_2;
+                }
+
+            })
+
+            $('#tinh').chosen().change(function () {
+                var myValues = $('#tinh').chosen().val();
+                if (myValues !== null) {
+                    var url_2 = document.location.pathname + addUrlParam(document.location.search, 'tinh', myValues);
+                    location.href = url_2;
+                }
+
+            })
+
+            $('#quan').chosen().change(function () {
+                var myValues = $('#quan').chosen().val();
+                if (myValues !== null) {
+                    var url_2 = document.location.pathname + addUrlParam(document.location.search, 'quan', myValues);
+                    location.href = url_2;
+                }
+
+            })
+
         })
 
-        $('#toanha').chosen().change(function () {
-            var myValues = $('#toanha').chosen().val();
-            if (myValues !== null) {
-                var url_2 = document.location.pathname + addUrlParam(document.location.search, 'toanha', myValues);
-                location.href = url_2;
-            }
-            
-        })
-
-        $('#ngay').chosen().change(function () {
-            var myValues = $('#ngay').chosen().val();
-            if (myValues !== null) {
-                var url_2 = document.location.pathname + addUrlParam(document.location.search, 'ngay', myValues);
-                location.href = url_2;
-            }
-            
-        });
 
 
-        $('#loaivanphong').chosen().change(function () {
-            var myValues = $('#loaivanphong').chosen().val();
-            if (myValues !== null) {
-                var url_2 = document.location.pathname + addUrlParam(document.location.search, 'loaivanphong', myValues);
-                location.href = url_2;
-            }
-            
-        })
-
-        $('#tinh').chosen().change(function () {
-            var myValues = $('#tinh').chosen().val();
-            if (myValues !== null) {
-                var url_2 = document.location.pathname + addUrlParam(document.location.search, 'tinh', myValues);
-                location.href = url_2;
-            }
-            
-        })
-
-        $('#quan').chosen().change(function () {
-            var myValues = $('#quan').chosen().val();
-            if (myValues !== null) {
-                var url_2 = document.location.pathname + addUrlParam(document.location.search, 'quan', myValues);
-                location.href = url_2;
-            }
-            
-        })
-
-    })
-
-
-
-</script>
-
+    </script>
 }

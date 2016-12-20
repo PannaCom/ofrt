@@ -1,0 +1,58 @@
+﻿@using WebOfficeRental.Models;
+@model building
+@if (Model != null)
+{
+    <section class="kf_property_detail_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="kf_detail_information">
+                        <div class="kf_property_detail_uptwon" style="border-bottom: 0; margin-bottom: 0; padding-bottom: 0;">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-map-marker"></i> @Model.building_address</a></li>
+                                <li><a href="mailto:@Model.building_email"><i class="fa fa-envelope"></i> @Model.building_email</a></li>
+                                <li><a href="tel:@Model.building_phonenumber"><i class="fa fa-phone"></i> @Model.building_phonenumber</a></li>
+                            </ul>
+                            <div class="kf_property_detail_content">
+                                @Html.Raw(Model.building_description)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kf_property_detail_map" style="border-bottom: 0;margin-bottom: -50px;">
+                        <h5>Bản đồ</h5>
+                        <div class="map-canvas" id="map-canvas"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    @Html.Partial("_scriptgoogleapi")
+    <script>
+        if ($('#map-canvas').length) {
+            google.maps.event.addDomListener(window, 'load', initialize);
+        }
+        function initialize() {
+            var myVitri = new google.maps.LatLng(@Model.building_latlong);
+            var map = new google.maps.Map(document.getElementById('map-canvas'), {
+                center: { lat: myVitri.lat(), lng: myVitri.lng() },
+                zoom: 20,
+                draggable: true,
+                scrollwheel: false,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                animation: google.maps.Animation.DROP,
+            });
+            
+            var infoWindow = new google.maps.InfoWindow({ map: map });
+            var pos = {
+                lat: myVitri.lat(),
+                lng: myVitri.lng()
+            };
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('<i class="fa fa-home fa-2x"></i> @Model.bulding_name');
+            map.setCenter(pos);
+            
+        }
+    </script>
+    
+}

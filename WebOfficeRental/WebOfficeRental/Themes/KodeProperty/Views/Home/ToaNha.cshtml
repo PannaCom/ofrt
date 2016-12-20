@@ -2,11 +2,11 @@
 @using PagedList.Mvc
 @using WebOfficeRental.Helpers
 @{
-    ViewBag.Title = "Tòa nhà " + @ViewBag.Tentoanha;
+    ViewBag.Title = ViewBag.Tentoanha;
 }
 
 @section metatags {
-    <meta name="description" content="Tòa nhà @ViewBag.Tentoanha cho thuê văn phòng @ViewBag.ngay @ViewBag.gia">
+    <meta name="description" content="@ViewBag.Tentoanha cho thuê văn phòng @ViewBag.ngay @ViewBag.gia">
     <meta name="keywords" content="">
     <meta name="author" content="">
     <meta name="robots" content="index,follow,noodp">
@@ -36,9 +36,12 @@
     <!--Sub Banner Wrap End-->
 }
 
+@{Html.RenderAction("LoadInfoBuilding", "Home", new { id = @ViewBag.Id });}
+
 <!--Property Listing 01 Wrap Start-->
-<section class="kf_property_lissting_bg">
-    <div class="container">
+<section class="kf_property_lissting_bg" style="padding-top: 10px;">
+    <div class="container">       
+
         <!--Property Meta Wrap Start-->
         <div class="kf_property_meta">
             <h5>
@@ -170,6 +173,7 @@
 @* section quảng cáo *@
 @{Html.RenderAction("LoadCompnay", "Home");}
 
+
 @section Scripts {
 
     <script>
@@ -193,11 +197,11 @@
 
             $('#ngay').chosen().change(function () {
                 var myValues = $('#ngay').chosen().val();
-                if (myValues !== null) {                    
+                if (myValues !== null) {
                     var url_2 = document.location.pathname + addUrlParam(document.location.search, 'ngay', myValues);
                     location.href = url_2;
                 }
-                
+
             });
 
             $('#gia').chosen().change(function () {
@@ -206,7 +210,7 @@
                     var url_2 = document.location.pathname + addUrlParam(document.location.search, 'gia', myValues);
                     location.href = url_2;
                 }
-                
+
             });
 
             $('#loaivanphong').chosen().change(function () {
@@ -215,13 +219,13 @@
                     var url_2 = document.location.pathname + addUrlParam(document.location.search, 'loaivanphong', myValues);
                     location.href = url_2;
                 }
-                
+
             })
 
         })
 
 
-
     </script>
+
 
 }

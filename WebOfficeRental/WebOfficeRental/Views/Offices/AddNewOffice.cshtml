@@ -105,7 +105,8 @@
                                         <option value='1'>-Văn phòng cho thuê</option>
                                         <option value='2'>-Văn phòng chọn gói</option>
                                         <option value='3'>-Phòng họp</option>
-                                        <option value='4'>-Loại khác</option>
+                                        <option value='4'>-Văn phòng ảo</option>
+                                        <option value='5'>-Chỗ ngồi cố định</option>
                                     </select>
                                     @Html.ValidationMessageFor(model => model.office_type, "", new { @class = "text-danger" })
                                 </div>
@@ -219,7 +220,7 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(m => m.office_photo_slider, new { @class = "col-md-4 control-label required-after" })
+                                @Html.LabelFor(m => m.office_photo_slider, new { @class = "col-md-4 control-label" })
                                 <div class="col-md-6">
                                     <div id="divoffice_photo_slider" class="upanh" style="width: 100%;">
                                         <a class="closed"><i class="fa fa-close fa-2x"></i></a>
@@ -228,7 +229,7 @@
                                     </div>
                                     <div id="dzoffice_photo_slider" class="dropzone undropzone">
                                     </div>
-                                    @Html.ValidationMessageFor(m => m.office_photo_slider, "", new { @class = "text-danger" })
+                                    @*@Html.ValidationMessageFor(m => m.office_photo_slider, "", new { @class = "text-danger" })*@
                                     <span class="help-block">
                                         Nên chọn hình có kích thước 16:9, 1920x790px và
                                         chọn hình ảnh có dung lượng không vượt quá 12 Mb.
@@ -270,6 +271,18 @@
     </div>
 </div>
 
+@if (ViewBag.office_type != null)
+{
+    <script>
+
+        $(document).ready(function () {
+            setTimeout(function () {
+                $('#office_type').val('@ViewBag.office_type');
+            }, 500)
+        })
+    </script>
+}
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/dropzonescripts")
@@ -283,6 +296,8 @@
         }).done(function (html) {
             //$("#buiding_id").html("" + html);
             $("#buiding_id").append(html);
+            @if (@ViewBag.buiding_id != null) {
+                <text>$('#buiding_id').val('@ViewBag.buiding_id');</text>}
         });
 
         

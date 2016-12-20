@@ -1302,6 +1302,7 @@
     <Content Include="Scripts\lg\fonts\lg.woff" />
     <Content Include="Themes\KodeProperty\Views\Home\_LoadOfficeInvolve.cshtml" />
     <Content Include="Themes\KodeProperty\Views\Home\_SectionSearchHome.cshtml" />
+    <Content Include="Themes\KodeProperty\Views\Home\_LoadInfoBuilding.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -51,6 +51,7 @@
           <Property Name="building_email" Type="nvarchar" MaxLength="250" />
           <Property Name="building_fanpage" Type="nvarchar" MaxLength="255" />
           <Property Name="building_latlong" Type="nvarchar(max)" />
+          <Property Name="building_description" Type="ntext" />
         </EntityType>
         <EntityType Name="categories">
           <Key>
@@ -419,7 +420,6 @@
       <Schema Namespace="officerentalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="officerentalEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="articles" EntityType="officerentalModel.article" />
-          <EntitySet Name="buildings" EntityType="officerentalModel.building" />
           <EntitySet Name="cities" EntityType="officerentalModel.city" />
           <EntitySet Name="menus" EntityType="officerentalModel.menu" />
           <EntitySet Name="offices" EntityType="officerentalModel.office" />
@@ -432,14 +432,6 @@
           <AssociationSet Name="FK_articles_Users" Association="officerentalModel.FK_articles_Users">
             <End Role="User" EntitySet="Users" />
             <End Role="article" EntitySet="articles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_buildings_cities" Association="officerentalModel.FK_buildings_cities">
-            <End Role="city" EntitySet="cities" />
-            <End Role="building" EntitySet="buildings" />
-          </AssociationSet>
-          <AssociationSet Name="FK_offices_buildings" Association="officerentalModel.FK_offices_buildings">
-            <End Role="building" EntitySet="buildings" />
-            <End Role="office" EntitySet="offices" />
           </AssociationSet>
           <AssociationSet Name="FK_menus_menus" Association="officerentalModel.FK_menus_menus">
             <End Role="menu" EntitySet="menus" />
@@ -477,6 +469,15 @@
             <End Role="category" EntitySet="categories" />
             <End Role="category1" EntitySet="categories" />
           </AssociationSet>
+          <EntitySet Name="buildings" EntityType="officerentalModel.building" />
+          <AssociationSet Name="FK_buildings_cities" Association="officerentalModel.FK_buildings_cities">
+            <End Role="city" EntitySet="cities" />
+            <End Role="building" EntitySet="buildings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_offices_buildings" Association="officerentalModel.FK_offices_buildings">
+            <End Role="building" EntitySet="buildings" />
+            <End Role="office" EntitySet="offices" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="article">
           <Key>
@@ -500,25 +501,6 @@
           <Property Name="status" Type="Boolean" />
           <NavigationProperty Name="User" Relationship="officerentalModel.FK_articles_Users" FromRole="article" ToRole="User" />
           <NavigationProperty Name="category" Relationship="officerentalModel.FK_articles_ArticleCategories" FromRole="article" ToRole="category" />
-        </EntityType>
-        <EntityType Name="building">
-          <Key>
-            <PropertyRef Name="bulding_id" />
-          </Key>
-          <Property Name="bulding_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="bulding_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="building_url" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
-          <Property Name="city_id" Type="Int32" />
-          <Property Name="district" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="provinces" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="building_address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="building_picture" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="building_phonenumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="building_email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="building_fanpage" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="city" Relationship="officerentalModel.FK_buildings_cities" FromRole="building" ToRole="city" />
-          <NavigationProperty Name="offices" Relationship="officerentalModel.FK_offices_buildings" FromRole="building" ToRole="office" />
-          <Property Name="building_latlong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="city">
           <Key>
@@ -568,8 +550,8 @@
           <Property Name="updated_date" Type="DateTime" Precision="3" />
           <Property Name="deleted_date" Type="DateTime" Precision="3" />
           <Property Name="status" Type="Boolean" />
-          <NavigationProperty Name="building" Relationship="officerentalModel.FK_offices_buildings" FromRole="office" ToRole="building" />
           <NavigationProperty Name="OfficeServices" Relationship="officerentalModel.FK_OfficeServices_offices" FromRole="office" ToRole="OfficeService" />
+          <NavigationProperty Name="building" Relationship="officerentalModel.FK_offices_buildings" FromRole="office" ToRole="building" />
         </EntityType>
         <EntityType Name="OfficeService">
           <Key>
@@ -649,30 +631,6 @@
             </Principal>
             <Dependent Role="article">
               <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_buildings_cities">
-          <End Type="officerentalModel.city" Role="city" Multiplicity="0..1" />
-          <End Type="officerentalModel.building" Role="building" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="city">
-              <PropertyRef Name="city_id" />
-            </Principal>
-            <Dependent Role="building">
-              <PropertyRef Name="city_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_offices_buildings">
-          <End Type="officerentalModel.building" Role="building" Multiplicity="0..1" />
-          <End Type="officerentalModel.office" Role="office" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="building">
-              <PropertyRef Name="bulding_id" />
-            </Principal>
-            <Dependent Role="office">
-              <PropertyRef Name="buiding_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -810,6 +768,50 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="building">
+          <Key>
+            <PropertyRef Name="bulding_id" />
+          </Key>
+          <Property Name="bulding_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bulding_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="building_url" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
+          <Property Name="city_id" Type="Int32" />
+          <Property Name="district" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="provinces" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="building_address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="building_picture" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="building_phonenumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="building_email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="building_fanpage" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="building_latlong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="building_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="city" Relationship="officerentalModel.FK_buildings_cities" FromRole="building" ToRole="city" />
+          <NavigationProperty Name="offices" Relationship="officerentalModel.FK_offices_buildings" FromRole="building" ToRole="office" />
+        </EntityType>
+        <Association Name="FK_buildings_cities">
+          <End Type="officerentalModel.city" Role="city" Multiplicity="0..1" />
+          <End Type="officerentalModel.building" Role="building" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="city">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="building">
+              <PropertyRef Name="city_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_offices_buildings">
+          <End Type="officerentalModel.building" Role="building" Multiplicity="0..1" />
+          <End Type="officerentalModel.office" Role="office" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="building">
+              <PropertyRef Name="bulding_id" />
+            </Principal>
+            <Dependent Role="office">
+              <PropertyRef Name="buiding_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -835,24 +837,6 @@
                 <ScalarProperty Name="article_description" ColumnName="article_description" />
                 <ScalarProperty Name="article_name" ColumnName="article_name" />
                 <ScalarProperty Name="article_id" ColumnName="article_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="buildings">
-            <EntityTypeMapping TypeName="officerentalModel.building">
-              <MappingFragment StoreEntitySet="buildings">
-                <ScalarProperty Name="building_latlong" ColumnName="building_latlong" />
-                <ScalarProperty Name="building_fanpage" ColumnName="building_fanpage" />
-                <ScalarProperty Name="building_email" ColumnName="building_email" />
-                <ScalarProperty Name="building_phonenumber" ColumnName="building_phonenumber" />
-                <ScalarProperty Name="building_picture" ColumnName="building_picture" />
-                <ScalarProperty Name="building_address" ColumnName="building_address" />
-                <ScalarProperty Name="provinces" ColumnName="provinces" />
-                <ScalarProperty Name="district" ColumnName="district" />
-                <ScalarProperty Name="city_id" ColumnName="city_id" />
-                <ScalarProperty Name="building_url" ColumnName="building_url" />
-                <ScalarProperty Name="bulding_name" ColumnName="bulding_name" />
-                <ScalarProperty Name="bulding_id" ColumnName="bulding_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1016,6 +1000,25 @@
                 <ScalarProperty Name="art_cat_parent_id" ColumnName="art_cat_parent_id" />
                 <ScalarProperty Name="art_cat_name" ColumnName="art_cat_name" />
                 <ScalarProperty Name="art_cat_id" ColumnName="art_cat_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="buildings">
+            <EntityTypeMapping TypeName="officerentalModel.building">
+              <MappingFragment StoreEntitySet="buildings">
+                <ScalarProperty Name="building_description" ColumnName="building_description" />
+                <ScalarProperty Name="building_latlong" ColumnName="building_latlong" />
+                <ScalarProperty Name="building_fanpage" ColumnName="building_fanpage" />
+                <ScalarProperty Name="building_email" ColumnName="building_email" />
+                <ScalarProperty Name="building_phonenumber" ColumnName="building_phonenumber" />
+                <ScalarProperty Name="building_picture" ColumnName="building_picture" />
+                <ScalarProperty Name="building_address" ColumnName="building_address" />
+                <ScalarProperty Name="provinces" ColumnName="provinces" />
+                <ScalarProperty Name="district" ColumnName="district" />
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+                <ScalarProperty Name="building_url" ColumnName="building_url" />
+                <ScalarProperty Name="bulding_name" ColumnName="bulding_name" />
+                <ScalarProperty Name="bulding_id" ColumnName="bulding_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

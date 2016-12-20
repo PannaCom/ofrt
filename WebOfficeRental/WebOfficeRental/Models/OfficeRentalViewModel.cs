@@ -127,6 +127,7 @@ namespace WebOfficeRental.Models
         [StringLength(255, ErrorMessage = "{0} không được dài quá 255 ký tự.")]
         public string building_fanpage { get; set; }
         public string building_latlong { get; set; }
+        public string building_description { get; set; }
     }
 
     public class OfficeVM
@@ -189,8 +190,6 @@ namespace WebOfficeRental.Models
         public string office_photo { get; set; }
 
         [Display(Name = "Ảnh lớn")]
-        [Required(ErrorMessage = "{0} không được để trống.")]
-        [StringLength(250, ErrorMessage = "{0} không được dài quá 250 ký tự.")]
         public string office_photo_slider { get; set; }
 
         [Display(Name = "Thông tin thêm")]

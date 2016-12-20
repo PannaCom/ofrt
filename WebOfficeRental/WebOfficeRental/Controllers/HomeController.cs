@@ -466,6 +466,12 @@ namespace WebOfficeRental.Controllers
             return View(data.ToList().ToPagedList(pageNumber, pageSize));
         }
 
+        public ActionResult LoadInfoBuilding(int? id)
+        {
+            var model = db.buildings.Where(x => x.bulding_id == id).FirstOrDefault();
+            return PartialView("_LoadInfoBuilding", model);
+        }
+
         public ActionResult ToaNha(int? id, string tentoanha, int? pg, string ngay, string gia, string loaivanphong)
         {
             // check id co tồn tại

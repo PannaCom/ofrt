@@ -58,8 +58,10 @@ namespace WebOfficeRental.Controllers
                 long id = 0;
                 office _office = new office();
                 _office.buiding_id = model.buiding_id ?? null;
+                ViewBag.buiding_id = _office.buiding_id;
                 _office.office_name = model.office_name ?? null;
                 _office.office_type = model.office_type ?? null;
+                ViewBag.office_type = _office.office_type;
                 _office.office_new_type = model.office_new_type ?? null;
                 _office.office_address = model.office_address ?? null;
                 _office.office_price_public = model.office_price_public ?? null;
