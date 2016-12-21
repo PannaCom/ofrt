@@ -48,16 +48,29 @@
     }
 }
 
+@Html.Partial("_scriptgoogleapi")
+
+<div id="fb-root"></div>
+<script>
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.8&appId=1160813953986944";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
 @section metatags {
     <meta name="description" content="@ViewBag.Tentoanha cho thuê văn phòng @ViewBag.ngay @ViewBag.gia">
     <meta name="keywords" content="">
     <meta name="author" content="">
     <meta name="robots" content="index,follow,noodp">
+    <meta property="fb:app_id" content="1160813953986944" />
     <meta property="og:locale" content="vi_VN">
     <meta property="og:type" content="home">
-    <meta property="og:url" content="http://@Request.Url.Host">
-    <meta property="og:title" content="@Html.Raw(url)">
-    <meta property="og:description" content="Website bất động sản">
+    <meta property="og:url" content="@Html.Raw(url)">
+    <meta property="og:title" content="@ViewBag.Title">
+    <meta property="og:description" content="@ViewBag.Tentoanha cho thuê văn phòng @ViewBag.ngay @ViewBag.gia">
     <meta property="og:image" itemprop="thumbnailUrl" content="">
 }
 
@@ -66,7 +79,7 @@
     <div class="kf_property_sub_banner">
         <div class="container">
             <div class="kf_sub_banner_hdg">
-                <h3>@Html.Raw(ViewBag.Title)</h3>
+                <h3>@Html.Raw(ViewBag.Tentoanha)</h3>
             </div>
             <div class="kf_property_breadcrumb">
                 <ul>
@@ -269,6 +282,10 @@
                 }
 
             })
+
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                initialize();
+            });
 
         })
 

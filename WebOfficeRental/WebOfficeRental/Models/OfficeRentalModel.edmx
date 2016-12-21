@@ -52,6 +52,7 @@
           <Property Name="building_fanpage" Type="nvarchar" MaxLength="255" />
           <Property Name="building_latlong" Type="nvarchar(max)" />
           <Property Name="building_description" Type="ntext" />
+          <Property Name="building_services" Type="ntext" />
         </EntityType>
         <EntityType Name="categories">
           <Key>
@@ -785,6 +786,7 @@
           <Property Name="building_fanpage" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="building_latlong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="building_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="building_services" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="city" Relationship="officerentalModel.FK_buildings_cities" FromRole="building" ToRole="city" />
           <NavigationProperty Name="offices" Relationship="officerentalModel.FK_offices_buildings" FromRole="building" ToRole="office" />
         </EntityType>
@@ -1006,6 +1008,7 @@
           <EntitySetMapping Name="buildings">
             <EntityTypeMapping TypeName="officerentalModel.building">
               <MappingFragment StoreEntitySet="buildings">
+                <ScalarProperty Name="building_services" ColumnName="building_services" />
                 <ScalarProperty Name="building_description" ColumnName="building_description" />
                 <ScalarProperty Name="building_latlong" ColumnName="building_latlong" />
                 <ScalarProperty Name="building_fanpage" ColumnName="building_fanpage" />

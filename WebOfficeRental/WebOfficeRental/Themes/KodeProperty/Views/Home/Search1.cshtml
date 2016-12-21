@@ -240,7 +240,7 @@
             var quan = @if(ViewBag.quan != null) { <text>"@Html.Raw(ViewBag.quan)"</text> } else { <text>""</text>};
             var keyword = @if(ViewBag.keyword != null) { <text>"@Html.Raw(ViewBag.keyword)"</text> } else { <text>""</text>};
             var toanha = gup('toanha', document.location.href);
-
+            var dientich = @if(ViewBag.ViewBag.dientich != null){<text>"@Html.Raw(ViewBag.dientich)"</text>}else{<text>""</text>};
 
             if (ngay !== null) {
                 $("#ngay").val(ngay).trigger("chosen:updated");
@@ -253,6 +253,11 @@
             if (loaivanphong !== null) {
                 $('#loaivanphong').val(loaivanphong).trigger("chosen:updated");
                 $('#loaivanphong_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
+            }
+
+            if (dientich !== null) {
+                $("#dientich").val(dientich).trigger("chosen:updated");
+                $('#dientich_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
             }
 
             if (tinh != "") {
@@ -345,6 +350,17 @@
                 }
 
             })
+
+            $('#dientich').chosen().change(function () {
+
+                var myValues = $('#dientich').chosen().val();
+                if (myValues !== null) {
+                    var url_2 = document.location.pathname + addUrlParam(document.location.search, 'dientich', myValues);
+                    location.href = url_2;
+                }
+
+            })
+
 
         })
 

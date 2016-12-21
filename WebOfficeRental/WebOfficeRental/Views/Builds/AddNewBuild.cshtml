@@ -143,6 +143,13 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="building_services" class="control-label col-md-4">Hạ tầng dịch vụ</label>
+                        <div class="col-md-6">
+                            @Html.TextAreaFor(m => m.building_services, htmlAttributes: new { @class = "form-control", @rows = "10" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <div class="col-md-offset-4 col-md-6">
                             <button class="btn btn-primary">
                                 <i class="fa fa-plus"></i> Thêm mới
@@ -211,6 +218,22 @@
             });
 
             CKEDITOR.replace('building_description', {
+                // Define the toolbar groups as it is a more accessible solution.
+                toolbarGroups: [
+                    { "name": "basicstyles", "groups": ["basicstyles"] },
+                    { "name": "links", "groups": ["links"] },
+                    { "name": "paragraph", "groups": ["list", "blocks"] },
+                    { "name": "document", "groups": ["mode"] },
+                    { "name": "insert", "groups": ["insert"] },
+                    { "name": "styles", "groups": ["styles"] },
+                    { "name": "about", "groups": ["about"] }
+                ],
+                // Remove the redundant buttons from toolbar groups defined above.
+                removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar',
+                height: '200px'
+            });
+
+            CKEDITOR.replace('building_services', {
                 // Define the toolbar groups as it is a more accessible solution.
                 toolbarGroups: [
                     { "name": "basicstyles", "groups": ["basicstyles"] },

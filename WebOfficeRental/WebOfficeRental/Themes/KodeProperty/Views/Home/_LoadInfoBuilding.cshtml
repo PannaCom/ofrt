@@ -1,58 +1,101 @@
 ﻿@using WebOfficeRental.Models;
+@using WebOfficeRental.Helpers;
 @model building
+
+@{
+    string url = string.Format("{0}/toa-nha/{1}-{2}", Request.Url.Authority, configs.unicodeToNoMark(Model.bulding_name), Model.bulding_id);
+    if (Request.ServerVariables["HTTPS"] == "on")
+    {
+        url = "https://" + url;
+    }
+    else
+    {
+        url = "http://" + url;
+    }
+}
+
 @if (Model != null)
 {
     <section class="kf_property_detail_bg">
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                    <div class="kf_detail_information">
-                        <div class="kf_property_detail_uptwon" style="border-bottom: 0; margin-bottom: 0; padding-bottom: 0;">
-                            <ul>
-                                <li><a href="#"><i class="fa fa-map-marker"></i> @Model.building_address</a></li>
-                                <li><a href="mailto:@Model.building_email"><i class="fa fa-envelope"></i> @Model.building_email</a></li>
-                                <li><a href="tel:@Model.building_phonenumber"><i class="fa fa-phone"></i> @Model.building_phonenumber</a></li>
-                            </ul>
+
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist" style="margin-bottom: 11px;">
+                        <li role="presentation" class="active"><a href="#tn_ct" aria-controls="tn_ct" role="tab" data-toggle="tab">Giới thiệu tòa nhà</a></li>
+                        <li role="presentation"><a href="#tn_htdv" aria-controls="tn_htdv" role="tab" data-toggle="tab">Hạ tầng dịch vụ</a></li>
+                        <li role="presentation"><a href="#tn_yk_dg" aria-controls="tn_yk_dg" role="tab" data-toggle="tab">Ý kiến đánh giá</a></li>
+                        <li role="presentation"><a href="#tn_map" aria-controls="tn_map" role="tab" data-toggle="tab">Bản đồ</a></li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="tn_ct">
+                            <div class="kf_detail_information">
+                                <div class="kf_property_detail_uptwon" style="border-bottom: 0; margin-bottom: 0; padding-bottom: 0;">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-map-marker"></i> @Model.building_address</a></li>
+                                        <li><a href="mailto:@Model.building_email"><i class="fa fa-envelope"></i> @Model.building_email</a></li>
+                                        <li><a href="tel:@Model.building_phonenumber"><i class="fa fa-phone"></i> @Model.building_phonenumber</a></li>
+                                    </ul>
+                                    <div class="kf_property_detail_content">
+                                        @Html.Raw(Model.building_description)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="tn_htdv">
                             <div class="kf_property_detail_content">
-                                @Html.Raw(Model.building_description)
+                                @Html.Raw(Model.building_services)
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="tn_yk_dg">
+                            <div class="kf_comment_list_wrap">
+                                <div id="cmt_toanha">
+                                    <div class="fb-comments" data-href="@url" data-numposts="5"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="tn_map">
+                            <div class="kf_property_detail_map" style="border-bottom: 0;margin-bottom: -50px;">
+                                <h5>Bản đồ</h5>
+                                <div class="map-canvas" id="map-canvas"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="kf_property_detail_map" style="border-bottom: 0;margin-bottom: -50px;">
-                        <h5>Bản đồ</h5>
-                        <div class="map-canvas" id="map-canvas"></div>
-                    </div>
+                    
+                    
                 </div>
             </div>
         </div>
     </section>
-    @Html.Partial("_scriptgoogleapi")
     <script>
-        if ($('#map-canvas').length) {
-            google.maps.event.addDomListener(window, 'load', initialize);
-        }
-        function initialize() {
-            var myVitri = new google.maps.LatLng(@Model.building_latlong);
-            var map = new google.maps.Map(document.getElementById('map-canvas'), {
-                center: { lat: myVitri.lat(), lng: myVitri.lng() },
-                zoom: 20,
-                draggable: true,
-                scrollwheel: false,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                animation: google.maps.Animation.DROP,
-            });
-            
-            var infoWindow = new google.maps.InfoWindow({ map: map });
-            var pos = {
-                lat: myVitri.lat(),
-                lng: myVitri.lng()
-            };
+    //if ($('#map-canvas').length) {
+    //    google.maps.event.addDomListener(window, 'load', initialize);
+    //}
+    function initialize() {
+        var myVitri = new google.maps.LatLng(@Model.building_latlong);
+        var map = new google.maps.Map(document.getElementById('map-canvas'), {
+            center: { lat: myVitri.lat(), lng: myVitri.lng() },
+            zoom: 15,
+            draggable: true,
+            scrollwheel: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            animation: google.maps.Animation.DROP,
+        });
 
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('<i class="fa fa-home fa-2x"></i> @Model.bulding_name');
-            map.setCenter(pos);
-            
-        }
+        var infoWindow = new google.maps.InfoWindow({ map: map });
+        var pos = {
+            lat: myVitri.lat(),
+            lng: myVitri.lng()
+        };
+
+        infoWindow.setPosition(pos);
+        infoWindow.setContent('<i class="fa fa-home fa-2x"></i> @Model.bulding_name');
+        map.setCenter(pos);
+
+    }
     </script>
-    
 }

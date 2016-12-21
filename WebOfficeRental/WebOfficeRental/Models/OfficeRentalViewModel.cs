@@ -128,6 +128,7 @@ namespace WebOfficeRental.Models
         public string building_fanpage { get; set; }
         public string building_latlong { get; set; }
         public string building_description { get; set; }
+        public string building_services { get; set; }
     }
 
     public class OfficeVM

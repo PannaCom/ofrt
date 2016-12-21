@@ -33,13 +33,22 @@
                         <div class="kf_search_field kf_range_slider">
                             <label>Diện tích</label>
                             @*<input type="text" class="amount" readonly>*@
-                            <span class="amount"></span>
+                            @*<span class="amount"></span>
                             <input type="hidden" name="dientich" id="dientich" />
                             <div class="kf_range_slider">
                                 <span>0</span>
                                 <div class="slider-range"></div>
                                 <span>500</span>
-                            </div>
+                            </div>*@
+                            <select class="chosen-select" name="dientich" id="dientich" data-placeholder="Chọn diện tích">
+                                <option selected="selected" disabled>Chọn diện tích</option>
+                                @for (int i = 0; i <= 5; i += 1)
+                                {
+                                    if (i == 5) { break; }
+                                    <option value="@string.Format("{0}-{1}", i*100, (i+1)*100)">@string.Format("Từ {0} đến {1} m2", i * 100, (i + 1) * 100)</option>
+                                }
+                                <option value="tren500m">Trên 500 m2</option>
+                            </select>
                         </div>
                     </div>
 
@@ -85,9 +94,10 @@
         var v_quan = $('#quan').chosen().val();
         var v_gia = $('#gia').chosen().val();
         var v_toa_nha = $('#toanha').chosen().val();
+        var v_dientich = $('#dientich').chosen().val();
 
         //console.log(v_tinh);
-        if (document.getElementById("keyword").value === "" && v_tinh === null && v_quan === null && v_gia === null && v_toa_nha === null && document.getElementById('dientich').value === "") {
+        if (document.getElementById("keyword").value === "" && v_tinh === null && v_quan === null && v_gia === null && v_toa_nha === null && v_dientich === null) {
             alert('Vui lòng nhập từ khóa tìm kiếm hoặc chọn ít nhất một điều kiện.');
             return false;
         } else {
@@ -132,7 +142,11 @@
             $('#toanha_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
         });
 
-        var values = [0, 500];
+        $('#dientich').chosen().change(function () {
+            $('#dientich_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
+        });
+
+        @*var values = [0, 500];
         @if (ViewBag.dientich != null)
 	    {
 		    <text>
@@ -158,7 +172,7 @@
               "m<sup>2</sup> - " + $(".slider-range").slider("values", 1) + "m<sup>2</sup>");
             $('#dientich').val($(".slider-range").slider("values", 0) +
               "-" + $(".slider-range").slider("values", 1));
-        }
+        }*@
 
     })
 

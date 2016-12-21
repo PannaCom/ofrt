@@ -28,7 +28,7 @@
         <EntityTypeShape EntityType="officerentalModel.category" Width="1.5" PointX="12.375" PointY="0.875" />
         <AssociationConnector Association="officerentalModel.FK_articles_ArticleCategories" />
         <AssociationConnector Association="officerentalModel.FK_ArticleCategories_ArticleCategories" />
-        <EntityTypeShape EntityType="officerentalModel.building" Width="1.5" PointX="11" PointY="11" />
+        <EntityTypeShape EntityType="officerentalModel.building" Width="1.5" PointX="11" PointY="10.875" />
         <AssociationConnector Association="officerentalModel.FK_buildings_cities" />
         <AssociationConnector Association="officerentalModel.FK_offices_buildings" />
         </Diagram>

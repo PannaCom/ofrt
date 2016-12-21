@@ -67,6 +67,7 @@ namespace WebOfficeRental.Controllers
                 _newBuild.building_fanpage = model.building_fanpage ?? null;
                 _newBuild.building_latlong = model.building_latlong ?? null;
                 _newBuild.building_description = model.building_description ?? null;
+                _newBuild.building_services = model.building_services ?? null;
                 db.buildings.Add(_newBuild);
                 await db.SaveChangesAsync();
 
@@ -107,7 +108,8 @@ namespace WebOfficeRental.Controllers
                 building_email = model.building_email,                
                 building_fanpage = model.building_fanpage,
                 building_latlong = model.building_latlong,
-                building_description = model.building_description
+                building_description = model.building_description,
+                building_services = model.building_services
             };
 
             ViewBag.BuildName = model.bulding_name;
@@ -139,6 +141,7 @@ namespace WebOfficeRental.Controllers
                     _b.building_fanpage = model.building_fanpage ?? null;
                     _b.building_latlong = model.building_latlong ?? null;
                     _b.building_description = model.building_description ?? null;
+                    _b.building_services = model.building_services ?? null;
                     db.Entry(_b).State = System.Data.Entity.EntityState.Modified;
                     await db.SaveChangesAsync();
                     TempData["Updated"] = "Đã cập nhật thông tin tòa nhà.";
