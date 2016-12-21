@@ -26,7 +26,26 @@
     }
     if (@ViewBag.loaivanphong != null)
     {
-        ViewBag.Title += " loại phòng " + @ViewBag.loaivanphong;
+        if (ViewBag.loaivanphong == "1")
+        {
+            ViewBag.Title += " loại bất động sản văn phòng cho thuê ";
+        }
+        if (ViewBag.loaivanphong == "2")
+        {
+            ViewBag.Title += " loại bất động sản Văn phòng trọn gói ";
+        }
+        if (ViewBag.loaivanphong == "3")
+        {
+            ViewBag.Title += " loại bất động sản Phòng họp ";
+        }
+        if (ViewBag.loaivanphong == "4")
+        {
+            ViewBag.Title += " loại bất động sản Văn phòng ảo ";
+        }
+        if (ViewBag.loaivanphong == "5")
+        {
+            ViewBag.Title += " Chỗ ngồi cố định ";
+        }        
     }
     if (@ViewBag.toanha != null)
     {
@@ -110,8 +129,11 @@
                     <span>Loại văn phòng:</span>
                     <select name="loaivanphong" id="loaivanphong" class="chosen_select_no_results">
                         <option selected="selected" disabled>Chọn loại văn phòng</option>
-                        <option value="vanphongchothue">Văn phòng cho thuê</option>
-                        <option value="vanphongtrongoi">Văn phòng chọn gói</option>
+                        <option value='1'>Văn phòng cho thuê</option>
+                        <option value='2'>Văn phòng chọn gói</option>
+                        <option value='3'>Phòng họp</option>
+                        <option value='4'>Văn phòng ảo</option>
+                        <option value='5'>Chỗ ngồi cố định</option>
                     </select>
                 </div>
 

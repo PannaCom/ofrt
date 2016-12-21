@@ -285,15 +285,17 @@ namespace WebOfficeRental.Controllers
                 
                 if (loaivanphong != null && loaivanphong != "")
                 {
-                    switch (loaivanphong)
-                    {
-                        case "vanphongtrongoi":
-                            data = data.Where(x => x.office_type == 2);
-                            break;
-                        default:
-                            data = data.Where(x => x.office_type == 1);
-                            break;
-                    }
+                    //switch (loaivanphong)
+                    //{
+                    //    case "vanphongtrongoi":
+                    //        data = data.Where(x => x.office_type == 2);
+                    //        break;
+                    //    default:
+                    //        data = data.Where(x => x.office_type == 1);
+                    //        break;
+                    //}
+                    int iloai = Convert.ToInt32(loaivanphong);
+                    data = data.Where(x => x.office_type == iloai);
                     ViewBag.loaivanphong = loaivanphong;
                 }
 
@@ -528,17 +530,19 @@ namespace WebOfficeRental.Controllers
                     ViewBag.gia = gia;
                 }
                 
-                switch (loaivanphong)
-                {
-                    case "vanphongtrongoi":
-                        data = data.Where(x => x.office_type == 2);
-                        break;
-                    default:
-                        data = data.Where(x => x.office_type == 1);
-                        break;
-                }
+                //switch (loaivanphong)
+                //{
+                //    case "vanphongtrongoi":
+                //        data = data.Where(x => x.office_type == 2);
+                //        break;
+                //    default:
+                //        data = data.Where(x => x.office_type == 1);
+                //        break;
+                //}
                 if (loaivanphong != null && loaivanphong != "")
                 {
+                    int iloai = Convert.ToInt32(loaivanphong);
+                    data = data.Where(x => x.office_type == iloai);
                     ViewBag.loaivanphong = loaivanphong;
                 }
 
