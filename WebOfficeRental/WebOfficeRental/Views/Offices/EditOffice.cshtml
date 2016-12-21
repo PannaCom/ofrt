@@ -20,6 +20,12 @@
 @section styles {
     @Styles.Render("~/Content/dropzonescss")
     <link href="~/Content/admin/vendor/chosen/chosen.min.css" rel="stylesheet" />
+<style>
+    #UploadPhoto .dz-preview {
+        display: inline-block!important;
+    }
+</style>
+
 }
 <script src="~/Scripts/ckeditor/ckeditor.js"></script>
 
@@ -259,6 +265,12 @@
                                     @Html.TextAreaFor(m => m.office_other_descriptions, new { @class = "form-control", @rows = "5" })
                                 </div>
                             </div>
+
+                            <div id="UploadPhoto" class="dropzone">
+                                <div class="dz-default dz-message" data-dz-message>
+                                    <span>Chọn ảnh cần tải lên</span>
+                                </div>
+                            </div>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="office_dvvp">
                             <div class="form-group">
@@ -424,6 +436,38 @@ else
                 removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar',
                 height: '200px'
             })
+
+            var upload2 = new Dropzone("#UploadPhoto", {
+                url: "/Load/UploadPhoto",
+                addRemoveLinks: true,
+                maxFiles: 5,
+                maxFilesize: 10,
+                uploadMultiple: true,
+                acceptedFiles: "image/*",
+                dictFallbackMessage: "Trình duyệt của bạn không hỗ trợ kéo thả tệp để tải lên.",
+                dictFallbackText: "Please use the fallback form below to upload your files like in the olden days.",
+                dictFileTooBig: "Tệp có dung lượng quá lớn ({{filesize}}MiB). Dung lượng cho phép: {{maxFilesize}}MiB.",
+                dictInvalidFileType: "Tệp bạn chọn không được phép tải lên.",
+                dictResponseError: "Server responded with {{statusCode}} code.",
+                dictRemoveFile: "Loại bỏ tệp tin",
+                dictMaxFilesExceeded: "Bạn không thể tải lên quá 10 hình.",
+                success: function (file, response) {
+                    var imgPath = response.Message;
+                    if (imgPath !== "") {
+                        var oEditor = CKEDITOR.instances.office_other_descriptions;
+                        var img = "<img style='width: 200px;' src='" + imgPath + "'/>";
+                        var newElement = CKEDITOR.dom.element.createFromHtml(img, oEditor.document);
+                        oEditor.insertElement( newElement );
+
+                        file.previewElement.classList.add("dz-success");
+                    }
+                },
+                error: function (file, response) {
+                    file.previewElement.classList.add("dz-error");
+                    $(file.previewElement).find('.dz-error-message').text(response);
+                },
+                HiddenFilesPath: 'body'
+            });
 
         })
 
