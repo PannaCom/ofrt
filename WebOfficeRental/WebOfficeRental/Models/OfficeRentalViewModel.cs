@@ -153,7 +153,7 @@ namespace WebOfficeRental.Models
         [StringLength(505, ErrorMessage = "{0} không được dài quá 505 ký tự.")]
         public string office_address { get; set; }
 
-        [Display(Name = "Giá phòng cho thuê")]
+        [Display(Name = "Giá thuê")]
         [Required(ErrorMessage = "Nhập giá cho thuê phòng")]
         public Nullable<int> office_price_public { get; set; }
 
@@ -178,11 +178,11 @@ namespace WebOfficeRental.Models
         public Nullable<int> office_acreage { get; set; }
 
         [Display(Name = "Số cửa")]
-        [Required(ErrorMessage = "{0} không được để trống.")]
+        //[Required(ErrorMessage = "{0} không được để trống.")]
         public Nullable<int> office_door { get; set; }
 
         [Display(Name = "Số bàn ghế")]
-        [Required(ErrorMessage = "{0} không được để trống.")]
+        //[Required(ErrorMessage = "{0} không được để trống.")]
         public Nullable<int> office_table { get; set; }
 
         [Display(Name = "Ảnh văn phòng")]

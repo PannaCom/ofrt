@@ -8,3 +8,7 @@
    at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
    at System.Convert.ToInt32(String value)
    at WebOfficeRental.Controllers.HomeController.Search1(Nullable`1 pg, String keyword, String tinh, String quan, String gia, String toanha, String ngay, String loaivanphong, String dientich) in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\HomeController.cs:line 272
+12/22/2016 11:07:10 AM: System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
+   at WebOfficeRental.Controllers.OfficesController.<AddNewOffice>d__8.MoveNext() in d:\CongViec_webBatDongSan\BatDongSan\trunk\WebOfficeRental\WebOfficeRental\Controllers\OfficesController.cs:line 86

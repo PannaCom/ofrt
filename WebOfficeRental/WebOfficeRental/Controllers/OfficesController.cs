@@ -83,17 +83,20 @@ namespace WebOfficeRental.Controllers
 
                 id = (long)_office.office_id;
 
-                if (model.dichvuvp.Count() > 0)
+                if (model.dichvuvp != null)
                 {
-                    foreach (var item in model.dichvuvp)
+                    if (model.dichvuvp.Count() > 0)
                     {
-                        var os = new OfficeService();
-                        os.office_id = id;
-                        os.service_id = item;
-                        db.OfficeServices.Add(os);
-                        await db.SaveChangesAsync();
+                        foreach (var item in model.dichvuvp)
+                        {
+                            var os = new OfficeService();
+                            os.office_id = id;
+                            os.service_id = item;
+                            db.OfficeServices.Add(os);
+                            await db.SaveChangesAsync();
+                        }
                     }
-                }
+                }                
 
                 TempData["Updated"] = "Đã thêm văn phòng mới.";
                 return RedirectToRoute("AdminAddOffice");
