@@ -144,7 +144,7 @@ namespace WebOfficeRental.Controllers
 
         public ActionResult LoadOfficeNewHot()
         {
-            var model = (from o in db.offices where o.status == true && o.office_new_type == 2 orderby o.updated_date descending select o).ToList();
+            var model = (from o in db.offices where o.status == true && o.office_new_type == 2 && o.office_photo_slider != null orderby o.updated_date descending select o).ToList().Take(10).ToList();
             return PartialView("_SectionOfficeHot", model);
         }
 
@@ -299,22 +299,29 @@ namespace WebOfficeRental.Controllers
                     ViewBag.loaivanphong = loaivanphong;
                 }
 
-                // dientich
+                // dientich tren500m
                 if (dientich != null && dientich != "")
                 {
-                    int tudt = 0; int dendt = 0;
-                    string[] _dientich = dientich.Split('-');
-                    if (_dientich.Length == 2)
+                    switch (dientich)
                     {
-                        tudt = Convert.ToInt32(_dientich[0].ToString());
-                        dendt = Convert.ToInt32(_dientich[1].ToString());
-                        data = data.Where(x => x.office_acreage >= tudt && x.office_acreage <= dendt);
-                    }
-                    ViewBag.dientich = dientich;
+                        case "tren500m":
+                            data = data.Where(x => x.office_acreage >= 500);
+                            break;
+                        default:
+                            int tudt = 0; int dendt = 0;
+                            string[] _dientich = dientich.Split('-');
+                            if (_dientich.Length == 2)
+                            {
+                                tudt = Convert.ToInt32(_dientich[0].ToString());
+                                dendt = Convert.ToInt32(_dientich[1].ToString());
+                                data = data.Where(x => x.office_acreage >= tudt && x.office_acreage <= dendt);
+                            }
+                            break;
+                    }   
+                    
                 }
 
-                // ngay
-                
+                // ngay                
                 if (ngay != null && ngay != "")
                 {
                     switch (ngay)

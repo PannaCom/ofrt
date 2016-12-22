@@ -28,7 +28,6 @@ namespace WebOfficeRental.Models
         public virtual DbSet<article> articles { get; set; }
         public virtual DbSet<city> cities { get; set; }
         public virtual DbSet<menu> menus { get; set; }
-        public virtual DbSet<office> offices { get; set; }
         public virtual DbSet<OfficeService> OfficeServices { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<service> services { get; set; }
@@ -40,5 +39,6 @@ namespace WebOfficeRental.Models
         public virtual DbSet<register_email> register_email { get; set; }
         public virtual DbSet<category> categories { get; set; }
         public virtual DbSet<building> buildings { get; set; }
+        public virtual DbSet<office> offices { get; set; }
     }
 }

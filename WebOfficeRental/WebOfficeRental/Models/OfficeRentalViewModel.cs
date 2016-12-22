@@ -203,6 +203,7 @@ namespace WebOfficeRental.Models
         public int[] dichvuvp { get; set; }
 
         public bool? status { get; set; }
+        public string donvi { get; set; }
     }
 
     public class articlesVM

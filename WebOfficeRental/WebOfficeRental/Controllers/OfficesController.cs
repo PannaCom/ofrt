@@ -78,6 +78,7 @@ namespace WebOfficeRental.Controllers
                 _office.office_votes = 0;                
                 _office.updated_date = DateTime.Now;
                 _office.status = true;
+                _office.office_unit = model.donvi ?? null;
                 db.offices.Add(_office);
                 await db.SaveChangesAsync();
 
@@ -141,7 +142,8 @@ namespace WebOfficeRental.Controllers
                 office_other_descriptions = model.office_other_descriptions,
                 buiding_id = model.buiding_id,
                 dichvuvp = model.OfficeServices.Select(x=>x.service_id).ToArray(),
-                status = model.status
+                status = model.status,
+                donvi = model.office_unit
             };
 
             ViewBag.OfficeName = model.office_name;
@@ -178,6 +180,7 @@ namespace WebOfficeRental.Controllers
                     _office.office_photo_slider = model.office_photo_slider ?? null;
                     _office.office_other_descriptions = model.office_other_descriptions ?? null;
                     _office.updated_date = DateTime.Now;
+                    _office.office_unit = model.donvi ?? null;
                     db.Entry(_office).State = System.Data.Entity.EntityState.Modified;
                     await db.SaveChangesAsync();
                     if (model.dichvuvp != null)

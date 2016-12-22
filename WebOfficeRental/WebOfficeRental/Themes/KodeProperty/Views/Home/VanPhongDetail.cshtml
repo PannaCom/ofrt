@@ -103,19 +103,7 @@
                                     <div class="kf_blog_listing_wrap">
 
                                         <div class="kf_blog_listing_des">
-                                            <h5>
-                                                Giá thuê
-                                                <b>
-                                                    @if (Model.office_price_public == -1)
-                                                    {
-                                                        <text>Thỏa thuận</text>
-                                                    }
-                                                    else
-                                                    {
-                                                        <text>@string.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:#,###}", Model.office_price_public) <b>đồng.</b></text>
-                                                    }
-                                                </b>
-                                            </h5>
+                                            
                                             <ul class="kf_blog_listing_meta">
                                                 <li><i class="fa fa-calendar"></i><a href="#">@string.Format("{0:dd-MM-yyyy HH:mm tt}", Model.updated_date)</a></li>
                                                 <li><i class="fa fa-map-marker"></i><a href="#ct_bando" aria-controls="ct_bando" role="tab" data-toggle="tab">@Model.building.building_address</a></li>
@@ -139,9 +127,22 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="kf_detail_information">
-                                                    <p><b>Diện tích: </b>@Model.office_acreage m<sup>2</sup></p>
+                                                    @*<p><b>Diện tích: </b>@Model.office_acreage m<sup>2</sup></p>
                                                     <p><b>Số cửa: </b>@Model.office_door</p>
-                                                    <p><b>Số bàn ghế: </b>@Model.office_table</p>
+                                                    <p><b>Số bàn ghế: </b>@Model.office_table</p>*@
+                                                    <h5 style="margin-bottom: 15px;">
+                                                        Giá thuê
+                                                        <b>
+                                                            @if (Model.office_price_public == -1)
+                                                            {
+                                                                <text>Thỏa thuận</text>
+                                                            }
+                                                            else
+                                                            {
+                                                                <text>@string.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:#,###}", Model.office_price_public) <b>đồng.</b></text>
+                                                            }
+                                                        </b>
+                                                    </h5>
                                                     @Html.Raw(Model.office_other_descriptions)
                                                 </div>
                                             </div>

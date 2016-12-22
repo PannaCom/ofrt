@@ -6185,3 +6185,5 @@ ul.kf_tag_list {
     text-align: center;
     cursor: pointer;
 }
+
+#tn_ct .kf_property_detail_content * {color: #333;}

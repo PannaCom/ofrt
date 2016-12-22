@@ -18,7 +18,7 @@ namespace WebOfficeRental.Models
         public long office_id { get; set; }
         public int service_id { get; set; }
     
-        public virtual office office { get; set; }
         public virtual service service { get; set; }
+        public virtual office office { get; set; }
     }
 }

@@ -125,7 +125,7 @@
                     </select>
                 </div>
 
-                <div class="kf_property_view" style="margin-left: 24px;">
+                @*<div class="kf_property_view" style="margin-left: 24px;">
                     <span>Loại văn phòng:</span>
                     <select name="loaivanphong" id="loaivanphong" class="chosen_select_no_results">
                         <option selected="selected" disabled>Chọn loại văn phòng</option>
@@ -135,7 +135,7 @@
                         <option value='4'>Văn phòng ảo</option>
                         <option value='5'>Chỗ ngồi cố định</option>
                     </select>
-                </div>
+                </div>*@
 
             </div>
 
@@ -240,7 +240,7 @@
             var quan = @if(ViewBag.quan != null) { <text>"@Html.Raw(ViewBag.quan)"</text> } else { <text>""</text>};
             var keyword = @if(ViewBag.keyword != null) { <text>"@Html.Raw(ViewBag.keyword)"</text> } else { <text>""</text>};
             var toanha = gup('toanha', document.location.href);
-            var dientich = @if(ViewBag.ViewBag.dientich != null){<text>"@Html.Raw(ViewBag.dientich)"</text>}else{<text>""</text>};
+            var dientich = gup('dientich', document.location.href);;
 
             if (ngay !== null) {
                 $("#ngay").val(ngay).trigger("chosen:updated");

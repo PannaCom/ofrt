@@ -42,9 +42,10 @@ namespace WebOfficeRental.Models
         public Nullable<System.DateTime> updated_date { get; set; }
         public Nullable<System.DateTime> deleted_date { get; set; }
         public Nullable<bool> status { get; set; }
+        public string office_unit { get; set; }
     
+        public virtual building building { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OfficeService> OfficeServices { get; set; }
-        public virtual building building { get; set; }
     }
 }

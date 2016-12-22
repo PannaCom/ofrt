@@ -121,6 +121,7 @@
           <Property Name="updated_date" Type="datetime" />
           <Property Name="deleted_date" Type="datetime" />
           <Property Name="status" Type="bit" />
+          <Property Name="office_unit" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="OfficeServices">
           <Key>
@@ -423,7 +424,6 @@
           <EntitySet Name="articles" EntityType="officerentalModel.article" />
           <EntitySet Name="cities" EntityType="officerentalModel.city" />
           <EntitySet Name="menus" EntityType="officerentalModel.menu" />
-          <EntitySet Name="offices" EntityType="officerentalModel.office" />
           <EntitySet Name="OfficeServices" EntityType="officerentalModel.OfficeService" />
           <EntitySet Name="Roles" EntityType="officerentalModel.Role" />
           <EntitySet Name="services" EntityType="officerentalModel.service" />
@@ -437,10 +437,6 @@
           <AssociationSet Name="FK_menus_menus" Association="officerentalModel.FK_menus_menus">
             <End Role="menu" EntitySet="menus" />
             <End Role="menu1" EntitySet="menus" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OfficeServices_offices" Association="officerentalModel.FK_OfficeServices_offices">
-            <End Role="office" EntitySet="offices" />
-            <End Role="OfficeService" EntitySet="OfficeServices" />
           </AssociationSet>
           <AssociationSet Name="FK_OfficeServices_services" Association="officerentalModel.FK_OfficeServices_services">
             <End Role="service" EntitySet="services" />
@@ -475,9 +471,14 @@
             <End Role="city" EntitySet="cities" />
             <End Role="building" EntitySet="buildings" />
           </AssociationSet>
+          <EntitySet Name="offices" EntityType="officerentalModel.office" />
           <AssociationSet Name="FK_offices_buildings" Association="officerentalModel.FK_offices_buildings">
             <End Role="building" EntitySet="buildings" />
             <End Role="office" EntitySet="offices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OfficeServices_offices" Association="officerentalModel.FK_OfficeServices_offices">
+            <End Role="office" EntitySet="offices" />
+            <End Role="OfficeService" EntitySet="OfficeServices" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="article">
@@ -525,35 +526,6 @@
           <NavigationProperty Name="menus1" Relationship="officerentalModel.FK_menus_menus" FromRole="menu" ToRole="menu1" />
           <NavigationProperty Name="menu1" Relationship="officerentalModel.FK_menus_menus" FromRole="menu1" ToRole="menu" />
         </EntityType>
-        <EntityType Name="office">
-          <Key>
-            <PropertyRef Name="office_id" />
-          </Key>
-          <Property Name="office_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="office_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="office_type" Type="Int32" />
-          <Property Name="office_new_type" Type="Int32" />
-          <Property Name="office_address" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
-          <Property Name="office_price_public" Type="Int32" />
-          <Property Name="office_hotmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="office_hotline" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="office_fanpage" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
-          <Property Name="office_acreage" Type="Int32" />
-          <Property Name="office_door" Type="Int32" />
-          <Property Name="office_table" Type="Int32" />
-          <Property Name="office_photo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="office_photo_slider" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="office_other_descriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="office_views" Type="Int32" />
-          <Property Name="office_votes" Type="Int32" />
-          <Property Name="office_connection" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="buiding_id" Type="Int32" />
-          <Property Name="updated_date" Type="DateTime" Precision="3" />
-          <Property Name="deleted_date" Type="DateTime" Precision="3" />
-          <Property Name="status" Type="Boolean" />
-          <NavigationProperty Name="OfficeServices" Relationship="officerentalModel.FK_OfficeServices_offices" FromRole="office" ToRole="OfficeService" />
-          <NavigationProperty Name="building" Relationship="officerentalModel.FK_offices_buildings" FromRole="office" ToRole="building" />
-        </EntityType>
         <EntityType Name="OfficeService">
           <Key>
             <PropertyRef Name="id" />
@@ -561,8 +533,8 @@
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="office_id" Type="Int64" Nullable="false" />
           <Property Name="service_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="office" Relationship="officerentalModel.FK_OfficeServices_offices" FromRole="OfficeService" ToRole="office" />
           <NavigationProperty Name="service" Relationship="officerentalModel.FK_OfficeServices_services" FromRole="OfficeService" ToRole="service" />
+          <NavigationProperty Name="office" Relationship="officerentalModel.FK_OfficeServices_offices" FromRole="OfficeService" ToRole="office" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -644,18 +616,6 @@
             </Principal>
             <Dependent Role="menu1">
               <PropertyRef Name="menu_parent_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_OfficeServices_offices">
-          <End Type="officerentalModel.office" Role="office" Multiplicity="1" />
-          <End Type="officerentalModel.OfficeService" Role="OfficeService" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="office">
-              <PropertyRef Name="office_id" />
-            </Principal>
-            <Dependent Role="OfficeService">
-              <PropertyRef Name="office_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -802,6 +762,36 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="office">
+          <Key>
+            <PropertyRef Name="office_id" />
+          </Key>
+          <Property Name="office_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="office_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="office_type" Type="Int32" />
+          <Property Name="office_new_type" Type="Int32" />
+          <Property Name="office_address" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
+          <Property Name="office_price_public" Type="Int32" />
+          <Property Name="office_hotmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="office_hotline" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="office_fanpage" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
+          <Property Name="office_acreage" Type="Int32" />
+          <Property Name="office_door" Type="Int32" />
+          <Property Name="office_table" Type="Int32" />
+          <Property Name="office_photo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="office_photo_slider" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="office_other_descriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="office_views" Type="Int32" />
+          <Property Name="office_votes" Type="Int32" />
+          <Property Name="office_connection" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="buiding_id" Type="Int32" />
+          <Property Name="updated_date" Type="DateTime" Precision="3" />
+          <Property Name="deleted_date" Type="DateTime" Precision="3" />
+          <Property Name="status" Type="Boolean" />
+          <Property Name="office_unit" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="building" Relationship="officerentalModel.FK_offices_buildings" FromRole="office" ToRole="building" />
+          <NavigationProperty Name="OfficeServices" Relationship="officerentalModel.FK_OfficeServices_offices" FromRole="office" ToRole="OfficeService" />
+        </EntityType>
         <Association Name="FK_offices_buildings">
           <End Type="officerentalModel.building" Role="building" Multiplicity="0..1" />
           <End Type="officerentalModel.office" Role="office" Multiplicity="*" />
@@ -811,6 +801,18 @@
             </Principal>
             <Dependent Role="office">
               <PropertyRef Name="buiding_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OfficeServices_offices">
+          <End Type="officerentalModel.office" Role="office" Multiplicity="1" />
+          <End Type="officerentalModel.OfficeService" Role="OfficeService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="office">
+              <PropertyRef Name="office_id" />
+            </Principal>
+            <Dependent Role="OfficeService">
+              <PropertyRef Name="office_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -860,34 +862,6 @@
                 <ScalarProperty Name="menu_url" ColumnName="menu_url" />
                 <ScalarProperty Name="menu_name" ColumnName="menu_name" />
                 <ScalarProperty Name="menu_id" ColumnName="menu_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="offices">
-            <EntityTypeMapping TypeName="officerentalModel.office">
-              <MappingFragment StoreEntitySet="offices">
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="deleted_date" ColumnName="deleted_date" />
-                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
-                <ScalarProperty Name="buiding_id" ColumnName="buiding_id" />
-                <ScalarProperty Name="office_connection" ColumnName="office_connection" />
-                <ScalarProperty Name="office_votes" ColumnName="office_votes" />
-                <ScalarProperty Name="office_views" ColumnName="office_views" />
-                <ScalarProperty Name="office_other_descriptions" ColumnName="office_other_descriptions" />
-                <ScalarProperty Name="office_photo_slider" ColumnName="office_photo_slider" />
-                <ScalarProperty Name="office_photo" ColumnName="office_photo" />
-                <ScalarProperty Name="office_table" ColumnName="office_table" />
-                <ScalarProperty Name="office_door" ColumnName="office_door" />
-                <ScalarProperty Name="office_acreage" ColumnName="office_acreage" />
-                <ScalarProperty Name="office_fanpage" ColumnName="office_fanpage" />
-                <ScalarProperty Name="office_hotline" ColumnName="office_hotline" />
-                <ScalarProperty Name="office_hotmail" ColumnName="office_hotmail" />
-                <ScalarProperty Name="office_price_public" ColumnName="office_price_public" />
-                <ScalarProperty Name="office_address" ColumnName="office_address" />
-                <ScalarProperty Name="office_new_type" ColumnName="office_new_type" />
-                <ScalarProperty Name="office_type" ColumnName="office_type" />
-                <ScalarProperty Name="office_name" ColumnName="office_name" />
-                <ScalarProperty Name="office_id" ColumnName="office_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1022,6 +996,35 @@
                 <ScalarProperty Name="building_url" ColumnName="building_url" />
                 <ScalarProperty Name="bulding_name" ColumnName="bulding_name" />
                 <ScalarProperty Name="bulding_id" ColumnName="bulding_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="offices">
+            <EntityTypeMapping TypeName="officerentalModel.office">
+              <MappingFragment StoreEntitySet="offices">
+                <ScalarProperty Name="office_unit" ColumnName="office_unit" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="deleted_date" ColumnName="deleted_date" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="buiding_id" ColumnName="buiding_id" />
+                <ScalarProperty Name="office_connection" ColumnName="office_connection" />
+                <ScalarProperty Name="office_votes" ColumnName="office_votes" />
+                <ScalarProperty Name="office_views" ColumnName="office_views" />
+                <ScalarProperty Name="office_other_descriptions" ColumnName="office_other_descriptions" />
+                <ScalarProperty Name="office_photo_slider" ColumnName="office_photo_slider" />
+                <ScalarProperty Name="office_photo" ColumnName="office_photo" />
+                <ScalarProperty Name="office_table" ColumnName="office_table" />
+                <ScalarProperty Name="office_door" ColumnName="office_door" />
+                <ScalarProperty Name="office_acreage" ColumnName="office_acreage" />
+                <ScalarProperty Name="office_fanpage" ColumnName="office_fanpage" />
+                <ScalarProperty Name="office_hotline" ColumnName="office_hotline" />
+                <ScalarProperty Name="office_hotmail" ColumnName="office_hotmail" />
+                <ScalarProperty Name="office_price_public" ColumnName="office_price_public" />
+                <ScalarProperty Name="office_address" ColumnName="office_address" />
+                <ScalarProperty Name="office_new_type" ColumnName="office_new_type" />
+                <ScalarProperty Name="office_type" ColumnName="office_type" />
+                <ScalarProperty Name="office_name" ColumnName="office_name" />
+                <ScalarProperty Name="office_id" ColumnName="office_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

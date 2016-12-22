@@ -8,7 +8,6 @@
         <EntityTypeShape EntityType="officerentalModel.article" Width="1.5" PointX="8.25" PointY="4" />
         <EntityTypeShape EntityType="officerentalModel.city" Width="1.5" PointX="8.75" PointY="12" />
         <EntityTypeShape EntityType="officerentalModel.menu" Width="1.5" PointX="0.75" PointY="9.75" />
-        <EntityTypeShape EntityType="officerentalModel.office" Width="1.5" PointX="13.25" PointY="10.125" />
         <EntityTypeShape EntityType="officerentalModel.OfficeService" Width="1.5" PointX="15.5" PointY="11.875" />
         <EntityTypeShape EntityType="officerentalModel.Role" Width="1.5" PointX="0.75" PointY="5.375" />
         <EntityTypeShape EntityType="officerentalModel.service" Width="1.5" PointX="13.25" PointY="7.125" />
@@ -17,7 +16,6 @@
         <EntityTypeShape EntityType="officerentalModel.User" Width="1.5" PointX="3" PointY="4" />
         <AssociationConnector Association="officerentalModel.FK_articles_Users" />
         <AssociationConnector Association="officerentalModel.FK_menus_menus" />
-        <AssociationConnector Association="officerentalModel.FK_OfficeServices_offices" />
         <AssociationConnector Association="officerentalModel.FK_OfficeServices_services" />
         <AssociationConnector Association="officerentalModel.FK_dbo_UserClaims_dbo_Users_UserId" />
         <AssociationConnector Association="officerentalModel.FK_dbo_UserLogins_dbo_Users_UserId" />
@@ -30,7 +28,9 @@
         <AssociationConnector Association="officerentalModel.FK_ArticleCategories_ArticleCategories" />
         <EntityTypeShape EntityType="officerentalModel.building" Width="1.5" PointX="11" PointY="10.875" />
         <AssociationConnector Association="officerentalModel.FK_buildings_cities" />
+        <EntityTypeShape EntityType="officerentalModel.office" Width="1.5" PointX="13.25" PointY="10" />
         <AssociationConnector Association="officerentalModel.FK_offices_buildings" />
+        <AssociationConnector Association="officerentalModel.FK_OfficeServices_offices" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

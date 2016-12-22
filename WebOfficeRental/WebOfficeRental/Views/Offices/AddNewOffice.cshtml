@@ -145,8 +145,8 @@
                                 <div class="col-md-3">
                                     <select class="form-control" name="giaca" id="giaca" onchange="getGiaCa();">
                                         <option value="">-Giá thuê-</option>
-                                        <option value="-1">-Giá thỏa thuận</option>
-                                        <option value="1">-Giá công khai</option>
+                                        <option value="-1">Giá thỏa thuận</option>                                        
+                                        <option value="1">Giá công khai</option>
                                     </select>
                                     @Html.ValidationMessageFor(model => model.office_price_public, "", new { @class = "text-danger" })
                                 </div>
@@ -154,6 +154,22 @@
                                     <input type="number" name="GiaCongKhai" id="GiaCongKhai" class="form-control" placeholder="Nhập giá cho thuê" onchange="setPricePublic();" />
                                 </div>
 
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="donvi" class="control-label col-md-4">Đơn vị</label>
+                                <div class="col-md-3">
+                                    <select class="form-control" name="donvi" id="donvi">
+                                        <option value="">Chọn đơn vị</option>
+                                        <option value="Trăm nghìn/tháng">Trăm nghìn/tháng</option>
+                                        <option value="Triệu/tháng">Triệu/tháng</option>
+                                        <option value="USD/m2/tháng">USD/m2/tháng</option>
+                                        <option value="Trăm nghìn/m2/tháng">Trăm nghìn/m2/tháng</option>
+                                        <option value="Triệu/m2/tháng">Triệu/m2/tháng</option>
+                                        <option value="Nghìn/m2/tháng">Nghìn/m2/tháng</option>
+                                    </select>
+                                </div>
                             </div>
 
 

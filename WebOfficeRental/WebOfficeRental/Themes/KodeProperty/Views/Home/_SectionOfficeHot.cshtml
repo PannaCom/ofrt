@@ -11,31 +11,43 @@
                 <li>
                     <img src="@item.office_photo_slider" alt="">
                     <div class="kf_schedule_wrap">
-    <h3>@item.office_name</h3>
-    <p>@if (item.office_address != null)
-    {<text>@item.office_address - </text>} @item.building.building_address</p>
-    <ul class="kf_schedule_room">
-        <li>Diện tích: @item.office_acreage m<sup>2</sup></li>
-        <li>Số cửa: @item.office_door</li>
-        <li>Số bàn ghế: @item.office_table</li>
-    </ul>
-    <div class="kf_schedule_visit">
-        <h4>
-            @if (item.office_price_public == -1)
-            {
-                <text>Thỏa thuận</text>
-            }
-            else
-            {
-                <text>@string.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:#,###}", item.office_price_public)</text>
-            }
-        </h4>
-        <a href="@string.Format("/van-phong/{0}/{1}-{2}", configs.unicodeToNoMark(@item.building.bulding_name), configs.unicodeToNoMark(@item.office_name), @item.office_id)">Đặt thuê</a>
-    </div>
-                </div>
+                        <h3>
+                            @if (item.office_name != null)
+                            {
+                                if (@item.office_name.Length > 30)
+                                {
+                                    <text>@item.office_name.Substring(0, 30).ToString()...</text>
+                                }
+                                else
+                                {
+                                    @item.office_name
+                                }
+                            }
+                        </h3>
+                        <p>
+                            @if (item.office_address != null)
+                            {<text>@item.office_address</text>}else{@item.building.building_address}
+                        </p>
+                        <ul class="kf_schedule_room">
+                            <li>Diện tích: @item.office_acreage m<sup>2</sup></li>
+                        </ul>
+                        <div class="kf_schedule_visit">
+                            <h4>
+                                @if (item.office_price_public == -1)
+                                {
+                                    <text>Thỏa thuận</text>
+                                }
+                                else
+                                {
+                                    <text>@string.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:#,###}", item.office_price_public)</text>
+                                }
+                            </h4>
+                            <a href="@string.Format("/van-phong/{0}/{1}-{2}", configs.unicodeToNoMark(@item.building.bulding_name), configs.unicodeToNoMark(@item.office_name), @item.office_id)">Đặt thuê</a>
+                        </div>
+                    </div>
                 </li>
             }
         }
-        
+
     </ul>
 </div>

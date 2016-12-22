@@ -13,12 +13,27 @@
 
         <form id="search_office" action="/search/van-phong" method="get" onsubmit="return validate_search()">
             <div class="row">
-                <div class="col-md-6 col-sm-6">
+                <div class="col-md-3 col-sm-6">
                     <div class="kf_search_field">
                         <label>Tên văn phòng</label>
                         <input type="text" name="keyword" id="keyword" placeholder="Nhập từ khóa cần tìm">
                     </div>
                 </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="kf_search_field">
+                        <label>Loại văn phòng</label>
+                        <select name="loaivanphong" id="loaivanphong" class="chosen-select" data-placeholder="Chọn loại văn phòng">
+                            <option selected="selected" disabled>Chọn loại văn phòng</option>
+                            <option value='1'>Văn phòng cho thuê</option>
+                            <option value='2'>Văn phòng chọn gói</option>
+                            <option value='3'>Phòng họp</option>
+                            <option value='4'>Văn phòng ảo</option>
+                            <option value='5'>Chỗ ngồi cố định</option>
+                        </select>
+                    </div>
+                </div>
+                
 
                 <div class="col-md-3 col-sm-6">
                     <div class="kf_search_field">
@@ -38,7 +53,7 @@
                 </div>
 
                 <div class="col-md-3 col-sm-6">
-                    <div class="kf_search_field kf_range_slider">
+                    <div class="kf_search_field">
                         <label>Diện tích</label>
                         @*<input type="text" class="amount" readonly>*@
                         @*<span class="amount"></span>
@@ -53,7 +68,9 @@
                             @for (int i = 0; i <= 5; i += 1)
                             {
                                 if (i == 5) { break; }
-                                <option value="@string.Format("{0}-{1}", i*100, (i+1)*100)">@string.Format("Từ {0} đến {1} m2", i * 100, (i + 1) * 100)</option>
+                                var x1 = i * 100 / 2;
+                                var x2 = (i + 1) * 100 / 2;
+                                <option value="@string.Format("{0}-{1}", x1, x2)">@string.Format("Từ {0} đến {1} m2", x1, x2)</option>
                             }
                             <option value="tren500m">Trên 500 m2</option>
                         </select>
@@ -104,9 +121,10 @@
         var v_gia = $('#gia').chosen().val();
         var v_toa_nha = $('#toanha').chosen().val();
         var v_dientich = $('#dientich').chosen().val();
-        
+        var v_loaivanphong = $('#loaivanphong').chosen().val();
+
         //console.log(v_tinh);
-        if (document.getElementById("keyword").value === "" && v_tinh === null && v_quan === null && v_gia === null && v_toa_nha === null && v_dientich === null) {
+        if (document.getElementById("keyword").value === "" && v_tinh === null && v_quan === null && v_gia === null && v_toa_nha === null && v_dientich === null && v_loaivanphong === null) {
             alert('Vui lòng nhập từ khóa tìm kiếm hoặc chọn ít nhất một điều kiện.');
             return false;
         } else {
@@ -154,6 +172,10 @@
         $('#dientich').chosen().change(function () {
             $('#dientich_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
         });
+
+        $('#loaivanphong').chosen().change(function () {
+            $('#loaivanphong_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
+        })
 
         @*var values = [0, 500];
         @if (ViewBag.dientich != null)
