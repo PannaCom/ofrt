@@ -7,13 +7,22 @@
     <div class="container">
         <!--Heading Wrap Start-->
         <div class="kf_heading_1">
-            <h3>Tòa nhà</h3>
-            <p>Danh sách tòa nhà cho thuê văn phòng</p>
+            <h3>Tòa nhà văn phòng</h3>
             <span class="kf_property_line"></span>
         </div>
+        @Html.Partial("_searchToaNha")
         <!--Heading Wrap End-->
         <!--Property Listing Wrap Start-->
+        
+        <!--Property Listing Wrap End-->
+    </div>
+</section>
+<!--Properting Listing Wrap End-->
+
+<section class="kf_property_listing_bg" style="padding-top: 0;">
+    <div class="container">
         <div class="row">
+
             @if (Model.Count > 0)
             {
                 foreach (var item in Model)
@@ -21,7 +30,7 @@
                     <div class="col-md-4 col-sm-6">
                         <div class="kf_property_listing_wrap">
                             <figure>
-                                <img src="@item.building_picture" alt="@item.bulding_name">                                
+                                <img src="@item.building_picture" alt="@item.bulding_name">
                             </figure>
                             <div class="kf_property_listing_des">
                                 <h5><a href="@string.Format("/toa-nha/{0}-{1}", configs.unicodeToNoMark(item.bulding_name), item.bulding_id)">@item.bulding_name</a></h5>
@@ -31,9 +40,7 @@
                     </div>
                 }
             }
-           
+
         </div>
-        <!--Property Listing Wrap End-->
     </div>
 </section>
-<!--Properting Listing Wrap End-->

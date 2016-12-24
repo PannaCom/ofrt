@@ -1,0 +1,77 @@
+﻿<!--Search Form Wrap Start-->
+<div class="kf_advacnce_search_form" style="border-top: 1px solid #c4c4c4; background: #fff;">
+
+    <form id="search_building" action="/toa-nha-van-phong" method="get" onsubmit="return validate_search2()">
+        <div class="row">
+
+            <div class="col-md-3 col-sm-6">
+                <div class="kf_search_field">
+                    <label>Tỉnh thành</label>
+                    @{Html.RenderAction("LoadSearchTinh2", "Home");}
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="kf_search_field">
+                    <label>Quận/huyện/thành phố</label>
+
+                    <select class="chosen-select" name="quan2" id="quan2" data-placeholder="Chọn quận">
+                        <option selected="selected" disabled>Chọn quận</option>
+
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="kf_search_field">
+                    <input type="submit" value="Tìm kiếm">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!--Search Form Wrap End-->
+
+<script>
+    if ($('#tinh2').length) {
+        $('#tinh2').val('Hà Nội').trigger("chosen:updated");
+    }
+    function validate_search2() {
+        var v_tinh = $('#tinh2').chosen().val();
+        var v_quan = $('#quan2').chosen().val();
+
+        if (v_tinh === null && v_quan === null) {
+            alert('Vui lòng chọn tỉnh hoặc huyện để tìm tòa nhà.');
+            return false;
+        } else {
+            return true;
+        };
+    }
+
+    function getSearchQuan2() {
+        // Cập nhật giá trị quận mới khi chọn tỉnh
+        var tinh2 = $('#tinh2').chosen().val() !== null ? $('#tinh2').chosen().val() : "";
+        $.ajax({
+            url: "/Home/LoadSearchQuan?keyword=" + tinh2,
+            cache: false
+        }).done(function (html) {
+            $("#quan2").empty().append("<option selected='selected' disabled>Chọn quận</option>" + html);
+            $('#quan2').chosen().trigger("chosen:updated");
+        });
+        $('#tinh2_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
+    }
+
+    //quan
+
+    $.ajax({
+        url: "/Home/LoadSearchQuan?keyword=",
+        cache: false
+    }).done(function (html) {
+        $("#quan2").append(html);
+        $('#quan2').chosen().trigger("chosen:updated");
+    });
+
+
+</script>
+
+
+

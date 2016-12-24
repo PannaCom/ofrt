@@ -1098,7 +1098,7 @@ p {
     position: absolute;
     top: 50%;
     left: 50%;
-    margin: -29px 0 0 -45px;
+        margin: 0 -70px;
     transform: scale(0);
     -webkit-transform: scale(0);
     -moz-transform: scale(0);

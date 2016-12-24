@@ -106,6 +106,21 @@ namespace WebOfficeRental.Controllers
             return PartialView("_search_tinh", model);
         }
 
+        public ActionResult LoadSearchTinh2()
+        {
+            var p = (from q in db.cities where q.provinces != null orderby q.provinces ascending select q.provinces).ToList().Distinct();
+            string model = "";
+            if (p.Count() > 0)
+            {
+                foreach (var item in p)
+                {
+                    var _opt = string.Format("<option value='{0}'>{1}</option>", item, item);
+                    model += _opt;
+                }
+            }
+            return PartialView("_search_tinh_2", model);
+        }
+
         public string LoadSearchQuan(string keyword)
         {
             if (keyword == null)
@@ -150,7 +165,7 @@ namespace WebOfficeRental.Controllers
 
         public ActionResult LoadAllBuilds()
         {
-            var model = (from b in db.buildings select b).ToList();
+            var model = (from b in db.buildings orderby b.bulding_id select b).ToList().Take(6).ToList();
             return PartialView("_SectionAllBuilds", model);
         }
 
@@ -662,6 +677,48 @@ namespace WebOfficeRental.Controllers
         {
             var model = (from s in db.offices where s.office_id != id && s.status == true orderby s.updated_date descending select s).ToList().Take(10).ToList();
             return PartialView("_LoadOfficeInvolve", model);
+        }
+
+        public ActionResult TimKiemToaNha(int? pg, string tinh2, string quan2)
+        {
+            int pageSize = 10;
+            if (pg == null) pg = 1;
+            int pageNumber = (pg ?? 1);
+            ViewBag.pg = pg;
+
+            var data = (from q in db.buildings select q);
+            if (data == null)
+            {
+                return View(data);
+            }
+
+            #region Thêm điều kiện tìm kiếm
+            try
+            {
+                if (tinh2 == null) tinh2 = ""; if (quan2 == null) quan2 = ""; 
+                
+                // tinh
+                if (tinh2 != null && tinh2 != "")
+                {
+                    data = data.Where(x => x.provinces.Contains(tinh2));
+                    ViewBag.tinh2 = tinh2;
+                }
+
+                // quan
+                if (quan2 != null && quan2 != "")
+                {
+                    data = data.Where(x => x.district.Contains(quan2));
+                    ViewBag.quan2 = quan2;
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                configs.SaveTolog(ex.ToString());
+            }
+            #endregion
+
+            return View(data.ToList().ToPagedList(pageNumber, pageSize));
         }
 
     }

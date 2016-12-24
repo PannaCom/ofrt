@@ -240,7 +240,7 @@
             var quan = @if(ViewBag.quan != null) { <text>"@Html.Raw(ViewBag.quan)"</text> } else { <text>""</text>};
             var keyword = @if(ViewBag.keyword != null) { <text>"@Html.Raw(ViewBag.keyword)"</text> } else { <text>""</text>};
             var toanha = gup('toanha', document.location.href);
-            var dientich = gup('dientich', document.location.href);;
+            var dientich = gup('dientich', document.location.href);
 
             if (ngay !== null) {
                 $("#ngay").val(ngay).trigger("chosen:updated");

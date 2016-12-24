@@ -229,6 +229,12 @@ namespace WebOfficeRental
                 new { controller = "Home", action = "Search1" }
             );
 
+            routes.MapRoute(
+                "ToaNhaVanPhong",
+                "toa-nha-van-phong",
+                new { controller = "Home", action = "TimKiemToaNha" }
+            );
+
             //Văn phòng cho thuê
             routes.MapRoute(
                 "SearchOfficeType1",
