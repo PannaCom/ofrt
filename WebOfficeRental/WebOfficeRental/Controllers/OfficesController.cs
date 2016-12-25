@@ -176,6 +176,26 @@ namespace WebOfficeRental.Controllers
             return RedirectToRoute("AdminEditOffice", new { id = office_id });
         }
 
+        public ActionResult xoa_anh(long? id)
+        {
+            long? idoffice = 0;
+            try
+            {
+                var photo = db.office_photos.Find(id);
+                if (photo != null)
+                {
+                    idoffice = photo.office_id;
+                    db.office_photos.Remove(photo);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                configs.SaveTolog(ex.ToString());
+            }
+            return RedirectToRoute("AdminEditOffice", new { id = idoffice });
+        }
+
         [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditOffice(OfficeVM model)

@@ -11,6 +11,7 @@
                         <th>Hình ảnh</th>
                         <th>Title</th>
                         <th>Alt</th>
+                        <th>Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -21,6 +22,7 @@
                             <td><img width="100" height="100" src="@item.photo_url" /></td>
                             <td>@item.photo_title</td>
                             <td>@item.photo_alt</td>
+                            <td><a class="btn btn-danger remove_anh" href="#" onclick="delete_photo(@item.photo_id);">Xóa ảnh</a></td>
                         </tr>
                     }
                 </tbody>
@@ -29,3 +31,13 @@
     }    
 }
 
+<script>
+    function delete_photo(id) {        
+        if (confirm('Bạn chắc chắn muốn xóa ảnh này?')) {
+            var anh_xoa = "/Offices/xoa_anh?id=" + id;
+            window.location.href = anh_xoa;
+            return true;
+        }
+        return false;
+    }
+</script>
