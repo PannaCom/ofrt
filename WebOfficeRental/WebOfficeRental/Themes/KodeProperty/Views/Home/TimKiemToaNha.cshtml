@@ -1,0 +1,152 @@
+﻿@model PagedList.IPagedList<WebOfficeRental.Models.building>
+@using PagedList.Mvc
+@using WebOfficeRental.Helpers
+
+@{
+    ViewBag.Title = "Tòa nhà cho thuê văn phòng bất động sản";
+    if (ViewBag.tinh2 != null)
+    {
+        ViewBag.Title += " tỉnh " + ViewBag.tinh2;
+    }
+    if (@ViewBag.quan2 != null)
+    {
+        ViewBag.Title += " quận " + ViewBag.quan2;
+    }
+}
+
+@{
+    string url = Request.Url.Authority + HttpContext.Current.Request.RawUrl.ToString();
+    if (Request.ServerVariables["HTTPS"] == "on")
+    {
+        url = "https://" + url;
+    }
+    else
+    {
+        url = "http://" + url;
+    }
+}
+
+@section metatags {
+    <meta name="description" content="@Html.Raw(ViewBag.Title)">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="robots" content="index,follow,noodp">
+    <meta property="og:locale" content="vi_VN">
+    <meta property="og:type" content="search">
+    <meta property="og:url" content="@Html.Raw(url)">
+    <meta property="og:title" content="@Html.Raw(ViewBag.Title)">
+    <meta property="og:description" content="@Html.Raw(ViewBag.Title)">
+    <meta property="og:image" itemprop="thumbnailUrl" content="">
+}
+
+<div class="kf_advance_search_bg margin_top_zero" id="search_section" style="padding: 10px 0;">
+    <div class="container">
+        @Html.Partial("_searchToaNha")        
+    </div>
+</div>
+
+<!--Property Listing Wrap Start-->
+<section class="kf_property_lissting_bg">
+    <div class="container">
+        <!--Property Listing List Wrap Start-->
+        <div class="row">
+            @if (Model != null)
+            {
+                
+                foreach (var item in Model)
+                {
+                    var link_url = string.Format("/toa-nha/{0}-{1}", configs.unicodeToNoMark(item.bulding_name), item.bulding_id);
+                    <div class="col-md-4 col-md-6">
+                        <div class="kf_property_listing_wrap">
+                            <figure>
+                                <img src="@item.building_picture" alt="@item.bulding_name">
+                                <figcaption class="kf_listing_detail">
+                                    <span class="kf_listing_overlay"></span>
+                                    <a class="kf_md_btn kf_link_1" href="@link_url">Xem tòa nhà</a>
+                                </figcaption>
+                            </figure>
+                            <div class="kf_property_listing_des">
+                                <h5><a href="@link_url">@item.bulding_name</a></h5>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            
+
+        </div>
+        <!--Property Listing List Wrap End-->
+        <!--Section Wrap End-->
+        <!--pagination-container-->
+        <div class="row">
+            <div class="col-md-12">
+                @if (Model != null)
+                {
+                    @Html.PagedListPager(Model, page => Url.RouteUrl("ToaNhaVanPhong", new { tinh = ViewBag.tinh2, quan = ViewBag.quan2, pg = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+                }
+            </div>
+        </div>
+        <!--pagination-container-->
+    </div>
+</section>
+<!--Property Listing Wrap End-->
+
+
+@section Scripts {
+        
+<script>
+    $(document).ready(function () {
+        var tinh2 = @if(ViewBag.tinh2 != null) { <text>"@Html.Raw(ViewBag.tinh2)"</text> } else { <text>""</text>};
+        var quan2 = @if(ViewBag.quan2 != null) { <text>"@Html.Raw(ViewBag.quan2)"</text> } else { <text>""</text>};
+       
+        if (tinh2 != "") {
+            $('#tinh2').val(tinh2).trigger("chosen:updated");
+            $('#tinh2_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
+        }
+
+        if (quan2 != "") {
+            $.ajax({
+                url: "/Home/LoadSearchQuan?keyword="+tinh2,
+                cache: false
+            }).done(function (html) {
+                $('#quan2').empty().append("<option selected='selected' disabled>Chọn quận</option>"+html);
+                $('#quan2').val(quan).trigger("chosen:updated");
+                //$('#quan').chosen().trigger("chosen:updated");
+                $('#quan2_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
+            });
+        }else if (tinh2 != ""){
+            $.ajax({
+                url: "/Home/LoadSearchQuan?keyword="+tinh2,
+                cache: false
+            }).done(function (html) {
+                $('#quan2').empty().append("<option selected='selected' disabled>Chọn quận</option>"+html);
+                //$('#quan').val(quan).trigger("chosen:updated");
+                $('#quan2').chosen().trigger("chosen:updated");
+            });
+        }
+
+        $('#tinh2').chosen().change(function () {
+            var myValues = $('#tinh2').chosen().val();
+            if (myValues !== null) {
+                var url_2 = document.location.pathname + addUrlParam(document.location.search, 'tinh2', myValues);
+                location.href = url_2;
+            }
+
+        })
+
+        $('#quan2').chosen().change(function () {
+            var myValues = $('#quan2').chosen().val();
+            if (myValues !== null) {
+                var url_2 = document.location.pathname + addUrlParam(document.location.search, 'quan2', myValues);
+                location.href = url_2;
+            }
+
+        })
+
+    })
+
+</script>
+
+
+
+}

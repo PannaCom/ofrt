@@ -489,3 +489,7 @@ table.table_order_stt tr td:first-child::before {
 .chosen-container {
 
 }
+
+#hinhanh_vp .dz-preview {
+    display: block!important;
+}

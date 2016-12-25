@@ -289,6 +289,9 @@
     <Compile Include="Models\OfficeService.cs">
       <DependentUpon>OfficeRentalModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\office_photos.cs">
+      <DependentUpon>OfficeRentalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\register_email.cs">
       <DependentUpon>OfficeRentalModel.tt</DependentUpon>
     </Compile>
@@ -1306,6 +1309,7 @@
     <Content Include="Themes\KodeProperty\Views\Home\TimKiemToaNha.cshtml" />
     <Content Include="Themes\KodeProperty\Views\Home\_searchToaNha.cshtml" />
     <Content Include="Themes\KodeProperty\Views\Home\_search_tinh_2.cshtml" />
+    <Content Include="Views\Offices\_LoadPhotoOffice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

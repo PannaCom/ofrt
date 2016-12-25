@@ -177,13 +177,13 @@ namespace WebOfficeRental.Models
         [Required(ErrorMessage = "{0} không được để trống.")]
         public Nullable<int> office_acreage { get; set; }
 
-        [Display(Name = "Số cửa")]
-        //[Required(ErrorMessage = "{0} không được để trống.")]
-        public Nullable<int> office_door { get; set; }
+        //[Display(Name = "Số cửa")]
+        ////[Required(ErrorMessage = "{0} không được để trống.")]
+        //public Nullable<int> office_door { get; set; }
 
-        [Display(Name = "Số bàn ghế")]
-        //[Required(ErrorMessage = "{0} không được để trống.")]
-        public Nullable<int> office_table { get; set; }
+        //[Display(Name = "Số bàn ghế")]
+        ////[Required(ErrorMessage = "{0} không được để trống.")]
+        //public Nullable<int> office_table { get; set; }
 
         [Display(Name = "Ảnh văn phòng")]
         [Required(ErrorMessage = "{0} không được để trống.")]

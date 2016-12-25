@@ -28,8 +28,10 @@
         <AssociationConnector Association="officerentalModel.FK_ArticleCategories_ArticleCategories" />
         <EntityTypeShape EntityType="officerentalModel.building" Width="1.5" PointX="11" PointY="10.875" />
         <AssociationConnector Association="officerentalModel.FK_buildings_cities" />
-        <EntityTypeShape EntityType="officerentalModel.office" Width="1.5" PointX="13.25" PointY="10" />
+        <EntityTypeShape EntityType="officerentalModel.office_photos" Width="1.5" PointX="15.5" PointY="16.875" />
+        <EntityTypeShape EntityType="officerentalModel.office" Width="1.5" PointX="13.25" PointY="14.875" />
         <AssociationConnector Association="officerentalModel.FK_offices_buildings" />
+        <AssociationConnector Association="officerentalModel.FK_office_photos_offices" />
         <AssociationConnector Association="officerentalModel.FK_OfficeServices_offices" />
         </Diagram>
     </edmx:Diagrams>

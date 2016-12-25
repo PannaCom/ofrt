@@ -69,8 +69,8 @@ namespace WebOfficeRental.Controllers
                 _office.office_hotline = model.office_hotline ?? null;
                 _office.office_fanpage = model.office_fanpage ?? null;
                 _office.office_acreage = model.office_acreage ?? null;
-                _office.office_door = model.office_door ?? null;
-                _office.office_table = model.office_table ?? null;
+                //_office.office_door = model.office_door ?? null;
+                //_office.office_table = model.office_table ?? null;
                 _office.office_photo = model.office_photo ?? null;
                 _office.office_photo_slider = model.office_photo_slider ?? null;
                 _office.office_other_descriptions = model.office_other_descriptions ?? null;
@@ -100,7 +100,8 @@ namespace WebOfficeRental.Controllers
                 }                
 
                 TempData["Updated"] = "Đã thêm văn phòng mới.";
-                return RedirectToRoute("AdminAddOffice");
+                //return RedirectToRoute("AdminAddOffice");
+                return RedirectToRoute("AdminEditOffice", new { id = id });
             }
             catch (Exception ex)
             {
@@ -135,8 +136,8 @@ namespace WebOfficeRental.Controllers
                 office_hotline = model.office_hotline,
                 office_fanpage = model.office_fanpage,
                 office_acreage = model.office_acreage,
-                office_door = model.office_door,
-                office_table = model.office_table,
+                //office_door = model.office_door,
+                //office_table = model.office_table,
                 office_photo = model.office_photo,
                 office_photo_slider = model.office_photo_slider,
                 office_other_descriptions = model.office_other_descriptions,
@@ -148,6 +149,31 @@ namespace WebOfficeRental.Controllers
 
             ViewBag.OfficeName = model.office_name;
             return View(getModel);
+        }
+
+        public ActionResult LoadPhotoOffice(long? id)
+        {
+            var model = db.offices.Find(id).office_photos.ToList();
+            return PartialView("_LoadPhotoOffice", model);
+        }
+
+        public ActionResult upanhvanphong(long? office_id, string photo_url, string photo_title, string photo_alt)
+        {
+            try
+            {
+                office_photos _anhmoi = new office_photos();
+                _anhmoi.office_id = office_id ?? null;
+                _anhmoi.photo_url = photo_url ?? null;
+                _anhmoi.photo_title = photo_title ?? null;
+                _anhmoi.photo_alt = photo_alt ?? null;
+                db.office_photos.Add(_anhmoi);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                configs.SaveTolog(ex.ToString());
+            }
+            return RedirectToRoute("AdminEditOffice", new { id = office_id });
         }
 
         [HttpPost, ValidateInput(false)]
@@ -174,8 +200,8 @@ namespace WebOfficeRental.Controllers
                     _office.office_hotline = model.office_hotline ?? null;
                     _office.office_fanpage = model.office_fanpage ?? null;
                     _office.office_acreage = model.office_acreage ?? null;
-                    _office.office_door = model.office_door ?? null;
-                    _office.office_table = model.office_table ?? null;
+                    //_office.office_door = model.office_door ?? null;
+                    //_office.office_table = model.office_table ?? null;
                     _office.office_photo = model.office_photo ?? null;
                     _office.office_photo_slider = model.office_photo_slider ?? null;
                     _office.office_other_descriptions = model.office_other_descriptions ?? null;

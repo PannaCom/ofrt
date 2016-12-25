@@ -95,6 +95,16 @@
           <Property Name="menu_position" Type="int" />
           <Property Name="menu_position_index" Type="int" />
         </EntityType>
+        <EntityType Name="office_photos">
+          <Key>
+            <PropertyRef Name="photo_id" />
+          </Key>
+          <Property Name="photo_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="photo_url" Type="nvarchar" MaxLength="505" />
+          <Property Name="photo_title" Type="nvarchar" MaxLength="250" />
+          <Property Name="photo_alt" Type="nvarchar" MaxLength="250" />
+          <Property Name="office_id" Type="bigint" />
+        </EntityType>
         <EntityType Name="offices">
           <Key>
             <PropertyRef Name="office_id" />
@@ -314,6 +324,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_office_photos_offices">
+          <End Role="offices" Type="Self.offices" Multiplicity="0..1" />
+          <End Role="office_photos" Type="Self.office_photos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="offices">
+              <PropertyRef Name="office_id" />
+            </Principal>
+            <Dependent Role="office_photos">
+              <PropertyRef Name="office_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_offices_buildings">
           <End Role="buildings" Type="Self.buildings" Multiplicity="0..1" />
           <End Role="offices" Type="Self.offices" Multiplicity="*" />
@@ -358,6 +380,7 @@
           <EntitySet Name="cities" EntityType="Self.cities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="contact_rent" EntityType="Self.contact_rent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="menus" EntityType="Self.menus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="office_photos" EntityType="Self.office_photos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="offices" EntityType="Self.offices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OfficeServices" EntityType="Self.OfficeServices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="register_email" EntityType="Self.register_email" Schema="dbo" store:Type="Tables" />
@@ -402,6 +425,10 @@
           <AssociationSet Name="FK_menus_menus" Association="Self.FK_menus_menus">
             <End Role="menus" EntitySet="menus" />
             <End Role="menus1" EntitySet="menus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_office_photos_offices" Association="Self.FK_office_photos_offices">
+            <End Role="offices" EntitySet="offices" />
+            <End Role="office_photos" EntitySet="office_photos" />
           </AssociationSet>
           <AssociationSet Name="FK_offices_buildings" Association="Self.FK_offices_buildings">
             <End Role="buildings" EntitySet="buildings" />
@@ -471,10 +498,15 @@
             <End Role="city" EntitySet="cities" />
             <End Role="building" EntitySet="buildings" />
           </AssociationSet>
+          <EntitySet Name="office_photos" EntityType="officerentalModel.office_photos" />
           <EntitySet Name="offices" EntityType="officerentalModel.office" />
           <AssociationSet Name="FK_offices_buildings" Association="officerentalModel.FK_offices_buildings">
             <End Role="building" EntitySet="buildings" />
             <End Role="office" EntitySet="offices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_office_photos_offices" Association="officerentalModel.FK_office_photos_offices">
+            <End Role="office" EntitySet="offices" />
+            <End Role="office_photos" EntitySet="office_photos" />
           </AssociationSet>
           <AssociationSet Name="FK_OfficeServices_offices" Association="officerentalModel.FK_OfficeServices_offices">
             <End Role="office" EntitySet="offices" />
@@ -762,6 +794,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="office_photos">
+          <Key>
+            <PropertyRef Name="photo_id" />
+          </Key>
+          <Property Name="photo_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="photo_url" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
+          <Property Name="photo_title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="photo_alt" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="office_id" Type="Int64" />
+          <NavigationProperty Name="office" Relationship="officerentalModel.FK_office_photos_offices" FromRole="office_photos" ToRole="office" />
+        </EntityType>
         <EntityType Name="office">
           <Key>
             <PropertyRef Name="office_id" />
@@ -790,6 +833,7 @@
           <Property Name="status" Type="Boolean" />
           <Property Name="office_unit" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="building" Relationship="officerentalModel.FK_offices_buildings" FromRole="office" ToRole="building" />
+          <NavigationProperty Name="office_photos" Relationship="officerentalModel.FK_office_photos_offices" FromRole="office" ToRole="office_photos" />
           <NavigationProperty Name="OfficeServices" Relationship="officerentalModel.FK_OfficeServices_offices" FromRole="office" ToRole="OfficeService" />
         </EntityType>
         <Association Name="FK_offices_buildings">
@@ -801,6 +845,18 @@
             </Principal>
             <Dependent Role="office">
               <PropertyRef Name="buiding_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_office_photos_offices">
+          <End Type="officerentalModel.office" Role="office" Multiplicity="0..1" />
+          <End Type="officerentalModel.office_photos" Role="office_photos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="office">
+              <PropertyRef Name="office_id" />
+            </Principal>
+            <Dependent Role="office_photos">
+              <PropertyRef Name="office_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -996,6 +1052,17 @@
                 <ScalarProperty Name="building_url" ColumnName="building_url" />
                 <ScalarProperty Name="bulding_name" ColumnName="bulding_name" />
                 <ScalarProperty Name="bulding_id" ColumnName="bulding_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="office_photos">
+            <EntityTypeMapping TypeName="officerentalModel.office_photos">
+              <MappingFragment StoreEntitySet="office_photos">
+                <ScalarProperty Name="office_id" ColumnName="office_id" />
+                <ScalarProperty Name="photo_alt" ColumnName="photo_alt" />
+                <ScalarProperty Name="photo_title" ColumnName="photo_title" />
+                <ScalarProperty Name="photo_url" ColumnName="photo_url" />
+                <ScalarProperty Name="photo_id" ColumnName="photo_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

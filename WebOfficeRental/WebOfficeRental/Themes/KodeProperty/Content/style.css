@@ -79,6 +79,18 @@ Sidebar heading:	'Source Sans Pro', sans-serif;
 
 /*-------------------------------------------------------------------*/
 
+::-webkit-scrollbar {
+    width: 5px;
+}
+/* for vertical scrollbars */
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5);
+}
+
 .kf_wrapper,
 header,
 .kf_property_content_wrap,
@@ -6187,3 +6199,22 @@ ul.kf_tag_list {
 }
 
 #tn_ct .kf_property_detail_content * {color: #333;}
+
+#ct_ttct .bx-controls-direction a {
+    opacity: 0;
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+}
+
+#ct_ttct .bx-wrapper:hover .bx-controls-direction a {
+    opacity: 1;
+}
+
+#ct_ttct .bx-controls-direction a {
+    display: none;
+}
+
+#ct_ttct .bx-wrapper:hover .bx-controls-direction a {
+    display: block;
+}

@@ -60,7 +60,7 @@ namespace WebOfficeRental.Controllers
                     {
                         var originalDirectory = new DirectoryInfo(string.Format("{0}images\\photos", Server.MapPath(@"\")));
                         //string strDay = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString()+DateTime.Now.Day.ToString();
-                        string strDay = DateTime.Now.ToString("yyyyMMdd");
+                        string strDay = DateTime.Now.ToString("yyyyMM");
                         string pathString = System.IO.Path.Combine(originalDirectory.ToString(), strDay);
 
                         var _fileName = Guid.NewGuid().ToString("N") + ".jpg";
@@ -120,7 +120,7 @@ namespace WebOfficeRental.Controllers
                     {
                         var originalDirectory = new DirectoryInfo(string.Format("{0}images\\photos", Server.MapPath(@"\")));
                         //string strDay = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString()+DateTime.Now.Day.ToString();
-                        string strDay = DateTime.Now.ToString("yyyyMMdd");
+                        string strDay = DateTime.Now.ToString("yyyyMM");
                         string pathString = System.IO.Path.Combine(originalDirectory.ToString(), strDay);
 
                         var _fileName = Guid.NewGuid().ToString("N") + ".jpg";
@@ -135,17 +135,17 @@ namespace WebOfficeRental.Controllers
                         // Thay đổi kích thước ảnh
                         bm = ResizeBitmap((Bitmap)bm, 400, 310); /// new width, height
                         // Giảm dung lượng ảnh trước khi lưu
-                        ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
-                        ImageCodecInfo ici = null;
-                        foreach (ImageCodecInfo codec in codecs)
-                        {
-                            if (codec.MimeType == "image/jpeg")
-                                ici = codec;
-                        }
-                        EncoderParameters ep = new EncoderParameters();
-                        ep.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, (long)80);
-                        bm.Save(path, ici, ep);
-                        //bm.Save(path);
+                        //ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+                        //ImageCodecInfo ici = null;
+                        //foreach (ImageCodecInfo codec in codecs)
+                        //{
+                        //    if (codec.MimeType == "image/jpeg")
+                        //        ici = codec;
+                        //}
+                        //EncoderParameters ep = new EncoderParameters();
+                        //ep.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, (long)80);
+                        //bm.Save(path, ici, ep);
+                        bm.Save(path);
                         //file.SaveAs(path);
                         fName = "/images/photos/" + strDay + "/" + _fileName;
                     }
@@ -180,7 +180,7 @@ namespace WebOfficeRental.Controllers
                     {
                         var originalDirectory = new DirectoryInfo(string.Format("{0}images\\photos", Server.MapPath(@"\")));
                         //string strDay = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString()+DateTime.Now.Day.ToString();
-                        string strDay = DateTime.Now.ToString("yyyyMMdd");
+                        string strDay = DateTime.Now.ToString("yyyyMM");
                         string pathString = System.IO.Path.Combine(originalDirectory.ToString(), strDay);
 
                         var _fileName = Guid.NewGuid().ToString("N") + ".jpg";

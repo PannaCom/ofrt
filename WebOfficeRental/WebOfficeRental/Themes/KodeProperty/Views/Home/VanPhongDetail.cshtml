@@ -114,15 +114,37 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-5">
+                                                
                                                 <ul class="kf_listing_slider">
                                                     <li>
                                                         <a class="lightgallery" href="@Model.office_photo">
                                                             <img src="@Model.office_photo" alt="@Model.office_name">
                                                         </a>
                                                     </li>
+                                                    @if (Model.office_photos.Count > 0)
+                                                    {
+                                                        foreach (var item in @Model.office_photos)
+                                                        {
+                                                            <li>
+                                                                <a class="lightgallery" href="@item.photo_url">
+                                                                    <img src="@item.photo_url" alt="@item.photo_alt">
+                                                                </a>
+                                                            </li>
+                                                        }
+                                                    }
+                                                    
                                                 </ul>
                                                 <div class="kf_blog_listing_pager">
                                                     <a data-slide-index="0" href=""><img style="width: 60px; height: 50px;" src="@Model.office_photo" alt="" /></a>
+                                                    @if (Model.office_photos.Count > 0)
+                                                    {
+                                                        int i = 1;
+                                                        foreach (var item in @Model.office_photos)
+                                                        {
+                                                            <a data-slide-index="@i" href=""><img style="width: 60px; height: 50px;" src="@item.photo_url" alt="@item.photo_alt" /></a>
+                                                            i++;
+                                                        }
+                                                    }
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
@@ -130,7 +152,7 @@
                                                     @*<p><b>Diện tích: </b>@Model.office_acreage m<sup>2</sup></p>
                                                     <p><b>Số cửa: </b>@Model.office_door</p>
                                                     <p><b>Số bàn ghế: </b>@Model.office_table</p>*@
-                                                    <h5 style="margin-bottom: 15px;">
+                                                    <h5 style="margin-bottom: 20px;">
                                                         Giá thuê
                                                         <b>
                                                             @if (Model.office_price_public == -1)
@@ -143,6 +165,7 @@
                                                             }
                                                         </b>
                                                     </h5>
+                                                    <p><b>Diện tích: </b>@Model.office_acreage m<sup>2</sup></p>
                                                     @Html.Raw(Model.office_other_descriptions)
                                                 </div>
                                             </div>

@@ -17,6 +17,7 @@ namespace WebOfficeRental.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public office()
         {
+            this.office_photos = new HashSet<office_photos>();
             this.OfficeServices = new HashSet<OfficeService>();
         }
     
@@ -45,6 +46,8 @@ namespace WebOfficeRental.Models
         public string office_unit { get; set; }
     
         public virtual building building { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<office_photos> office_photos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OfficeService> OfficeServices { get; set; }
     }

@@ -75,6 +75,9 @@
                         <li role="presentation">
                             <a href="#office_dvvp" aria-controls="office_dvvp" role="tab" data-toggle="tab">Dịch vụ văn phòng</a>
                         </li>
+                        <li role="presentation">
+                            <a href="#office_addphoto" aria-controls="office_addphoto" role="tab" data-toggle="tab">Thêm ảnh văn phòng</a>
+                        </li>
                     </ul>
 
                     <!-- Tab panes -->
@@ -205,11 +208,11 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 @Html.LabelFor(model => model.office_door, htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
                                     @Html.TextBoxFor(model => model.office_door, htmlAttributes: new { @class = "form-control", placeholder = "Nhập số cửa văn phòng", type = "number" })
-                                    @*@Html.ValidationMessageFor(model => model.office_door, "", new { @class = "text-danger" })*@
+                                    @Html.ValidationMessageFor(model => model.office_door, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
@@ -217,9 +220,9 @@
                                 @Html.LabelFor(model => model.office_table, htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
                                     @Html.TextBoxFor(model => model.office_table, htmlAttributes: new { @class = "form-control", placeholder = "Nhập số bàn ghế văn phòng", type = "number" })
-                                    @*@Html.ValidationMessageFor(model => model.office_table, "", new { @class = "text-danger" })*@
+                                    @Html.ValidationMessageFor(model => model.office_table, "", new { @class = "text-danger" })
                                 </div>
-                            </div>
+                            </div>*@
                         </div>
                         <div role="tabpanel" class="tab-pane"  id="office_ptvp">
                             <div class="form-group">
@@ -234,8 +237,9 @@
                                     </div>
                                     @Html.ValidationMessageFor(m => m.office_photo, "", new { @class = "text-danger" })
                                     <span class="help-block">
-                                        Nên chọn hình có kích thước 1x1, 500x500px, 400x310px
-                                        và chọn hình ảnh có dung lượng không vượt quá 12 Mb.
+                                        Là hình ảnh đại diện của văn phòng
+                                        Nên chọn hình bắt mắt nhất, có kích thước 1x1, 500x500px, 400x310px
+                                        ,dung lượng không vượt quá 5 Mb giúp ảnh tải nhanh hơn.
                                     </span>
                                 </div>
                             </div>
@@ -252,6 +256,7 @@
                                     </div>
                                     @*@Html.ValidationMessageFor(m => m.office_photo_slider, "", new { @class = "text-danger" })*@
                                     <span class="help-block">
+                                        Là hình ảnh hiện thị ở slider trên trang chủ dành cho những văn phòng là văn phòng nổi bật
                                         Nên chọn hình có kích thước 16:9, 1920x790px và
                                         chọn hình ảnh có dung lượng không vượt quá 12 Mb.
                                     </span>
@@ -278,6 +283,13 @@
                                 <div class="col-md-12">
                                     <select multiple class="form-control chosen-select" name="dichvuvp" id="dichvuvp" data-placeholder="Chọn dịch vụ văn phòng" style="width: 100%;"></select>
                                     <span class="help-block">Có thể chọn nhiều dịch vụ cho văn phòng.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="office_addphoto" class="tab-pane">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <p>Vui lòng thêm văn phòng trước khi thêm ảnh</p>
                                 </div>
                             </div>
                         </div>
