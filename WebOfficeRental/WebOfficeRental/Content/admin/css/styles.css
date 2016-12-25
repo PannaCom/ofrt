@@ -491,5 +491,5 @@ table.table_order_stt tr td:first-child::before {
 }
 
 #hinhanh_vp .dz-preview {
-    display: block!important;
+    display: inline-block!important;
 }
