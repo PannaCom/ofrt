@@ -442,8 +442,14 @@
 	}
 	/*Home 2 Style*/
 	.kf_schedule_wrap{
-		display:none;	
+        	position: absolute;
+            left: 0;
 	}
+
+    .kf_schedule_visit a {
+        margin-right: 46px;
+    }
+
 	.kf_advance_search_bg{
 		margin:0px;
 		padding-top:70px;	

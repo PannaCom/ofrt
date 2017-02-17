@@ -194,47 +194,51 @@
                                     </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="ct_bando">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <form class="form-horizontal" id="form_map">
-                                                    <div class="form-group">
-                                                        <label for="place_from">Nhập vị trí của bạn</label>
-                                                        <input type="text" name="place_from" id="place_from" class="form-control" placeholder="Nhập vị trí của bạn" />
-                                                        <input id="lon1" name="lon1" value="" type="hidden"><input id="lat1" name="lat1" value="" type="hidden">
-                                                    </div>
 
-                                                    <div class="form-group">
-                                                        <label for="place_to">Vị trí văn phòng</label>
-                                                        <input type="text" name="place_to" id="place_to" class="form-control" placeholder="Nhập vị trí của văn phòng" />
-                                                        <input id="lon2" name="lon2" value="" type="hidden"><input id="lat2" name="lat2" value="" type="hidden">
-                                                    </div>
+                                    <div>
 
-                                                    <div class="form-group">
-                                                        <label for="mode">Phương tiện đi lại</label>
-                                                        <select id="mode" name="mode" class="form-control" onchange="CreateLine();">
-                                                            <option value="DRIVING">Ô tô</option>
-                                                            <option value="WALKING">Đi bộ</option>
-                                                            <option value="TRANSIT">Xe bus</option>
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <input id="find" type="button" value="Tìm đường đi" class="btn btn-primary" onclick="CreateLine();" />
-                                                    </div>
-                                                </form>
-
-                                                <div id="logger" style="background: #ececec; padding: 20px;">
+                                        <form class="form-horizontal" id="form_map">
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <label for="place_from">Nhập vị trí của bạn</label>
+                                                    <input type="text" name="place_from" id="place_from" class="form-control" placeholder="Nhập vị trí của bạn" />
+                                                    <input id="lon1" name="lon1" value="" type="hidden"><input id="lat1" name="lat1" value="" type="hidden">
                                                 </div>
                                             </div>
-                                            <div class="col-md-7">
-                                                <div id="map-canvas" style="width: 100%; height: 500px;">
-                                                    Bản đồ
+
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <label for="place_to">Vị trí văn phòng</label>
+                                                    <input type="text" name="place_to" id="place_to" class="form-control" placeholder="Nhập vị trí của văn phòng" />
+                                                    <input id="lon2" name="lon2" value="" type="hidden"><input id="lat2" name="lat2" value="" type="hidden">
                                                 </div>
                                             </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <label for="mode">Phương tiện đi lại</label>
+                                                    <select id="mode" name="mode" class="form-control" onchange="CreateLine();">
+                                                        <option value="DRIVING">Ô tô</option>
+                                                        <option value="WALKING">Đi bộ</option>
+                                                        <option value="TRANSIT">Xe bus</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <input id="find" type="button" value="Tìm đường đi" class="btn btn-primary" onclick="CreateLine();" />
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                        <div id="logger" style="background: #ececec; padding: 20px;">
+                                        </div>
+
+                                        <div id="map-canvas" style="width: 100%; height: 500px;">
+                                            Bản đồ
                                         </div>
                                     </div>
-
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="ct_lienhe">
                                     <div class="kf_property_form_lienhe">
@@ -289,11 +293,7 @@
 
                 </div>
             </div>
-            <!--Property Detail Description Wrap End-->
-            @*<div class="col-md-3">
-                
-
-            </div>*@
+            @Html.Partial("_asidebarwrap")
         </div>
     </div>
 </section>

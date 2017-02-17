@@ -78,6 +78,9 @@ Sidebar heading:	'Source Sans Pro', sans-serif;
 
 
 /*-------------------------------------------------------------------*/
+body {
+        background: #f1f1f1;
+}
 
 ::-webkit-scrollbar {
     width: 5px;
@@ -2286,6 +2289,8 @@ ul.kf_blog_post_meta {
 		   Index 2 Page Css Start
 	  ==============================================================
 */
+
+
 .kf_schedule_wrap {
         width: 410px;
     position: absolute;
@@ -5019,6 +5024,7 @@ ul.kf_tag_list {
 */
 .kf_property_detail_bg {
     padding-bottom: 40px;
+        background: #fff;
 }
 
 .kf_detail_information {
@@ -6218,3 +6224,35 @@ ul.kf_tag_list {
 #ct_ttct .bx-wrapper:hover .bx-controls-direction a {
     display: block;
 }
+
+.thumb-zoom img {
+        display: inline-block;
+        vertical-align: middle;
+        -webkit-transform: translateZ(0px);
+        -moz-transform: translateZ(0px);
+        -ms-transform: translateZ(0px);
+        -o-transform: translateZ(0px);
+        transform: translateZ(0px);
+        -moz-transition-duration: 1s;
+        -o-transition-duration: 1s;
+        -webkit-transition-duration: 1s;
+        transition-duration: 1s;
+        -webkit-duration: 1s;
+        -webkit-transition-property: transform;
+        -moz-transition-property: transform;
+        -o-transition-property: transform;
+        transition-property: transform;
+    }
+
+    .thumb-zoom:hover img {
+        display: inline-block;
+        -webkit-transform: scale(1.3) rotateZ(-5deg);
+        -moz-transform: scale(1.3) rotateZ(-5deg);
+        -ms-transform: scale(1.3) rotateZ(-5deg);
+        -o-transform: scale(1.3) rotateZ(-5deg);
+        transform: scale(1.3) rotateZ(-5deg);
+    }
+
+    .aside_toanha ul li {
+        width: 46%;
+    }

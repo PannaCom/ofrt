@@ -1,0 +1,18 @@
+﻿@model List<WebOfficeRental.Models.building>
+@using WebOfficeRental.Helpers;
+@if (Model != null)
+{
+    if (Model.Count > 0)
+    {
+        <div class="kf_aside_fea_properties aside_hdg aside_toanha">
+            <h5>Danh sách tòa nhà</h5>
+            <ul>
+                @foreach (var item in @Model)
+                {
+                    string _link = string.Format("/toa-nha/{0}-{1}", configs.unicodeToNoMark(@item.bulding_name), item.bulding_id);
+                    <li><a href="@_link" title="@item.bulding_name"><img src="@item.building_picture"></a></li>
+                }
+            </ul>
+        </div>
+    }
+}

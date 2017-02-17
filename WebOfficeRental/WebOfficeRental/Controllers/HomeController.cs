@@ -721,5 +721,11 @@ namespace WebOfficeRental.Controllers
             return View(data.ToList().ToPagedList(pageNumber, pageSize));
         }
 
+        public ActionResult LoadListToaNha()
+        {
+            var model = db.buildings.Select(x => x).ToList();
+            return PartialView("_LoadListToaNha", model);
+        }
+
     }
 }
