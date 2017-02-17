@@ -755,8 +755,9 @@ p {
     }
 
     .kf_banner_wrap ul li img {
-        width: 100%;
-        height: auto;
+            text-align: center;
+    vertical-align: middle;
+    margin: 0 auto;
     }
 /*Mega Kingx Wrap*/
 .kf_banner_mega_kingx {
@@ -6256,3 +6257,8 @@ ul.kf_tag_list {
     .aside_toanha ul li {
         width: 46%;
     }
+
+
+    .bx-wrapper .bx-viewport {
+    background: rgba(246, 145, 30, 0.84);
+}
