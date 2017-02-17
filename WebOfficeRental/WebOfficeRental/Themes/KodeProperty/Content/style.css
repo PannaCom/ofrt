@@ -1062,7 +1062,7 @@ p {
 }
 
 .kf_property_lissting_bg {
-    padding-bottom: 40px;
+    padding-bottom: 40px;    background: #fff;
 }
 
 .kf_property_listing_wrap {
