@@ -174,7 +174,7 @@ namespace WebOfficeRental.Models
         public string office_fanpage { get; set; }
 
         [Display(Name = "Diện tích văn phòng")]
-        [Required(ErrorMessage = "{0} không được để trống.")]
+        //[Required(ErrorMessage = "{0} không được để trống.")]
         public Nullable<int> office_acreage { get; set; }
 
         //[Display(Name = "Số cửa")]
