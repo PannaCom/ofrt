@@ -282,7 +282,7 @@ namespace WebOfficeRental.Controllers
 
         [HttpPost, ActionName("DeleteOffice")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteOfficeConfirmed(long? id)
+        public async Task<ActionResult> DeleteOfficeConfirmed(long? id, bool? checkdelete)
         {
             office model = await db.offices.FindAsync(id);
             if (model == null)
@@ -298,10 +298,21 @@ namespace WebOfficeRental.Controllers
 
             try
             {
-                model.deleted_date = DateTime.Now;
-                model.status = false;
-                db.Entry(model).State = System.Data.Entity.EntityState.Modified;
-                await db.SaveChangesAsync();
+                if (checkdelete == true)
+                {
+                    string sql = "DELETE FROM office_photos WHERE office_id = " + model.office_id;
+                    var deleted = db.Database.ExecuteSqlCommand(sql);
+                    db.offices.Remove(model);
+                    await db.SaveChangesAsync();
+                }
+                else
+                {
+                    model.deleted_date = DateTime.Now;
+                    model.status = false;
+                    db.Entry(model).State = System.Data.Entity.EntityState.Modified;
+                    await db.SaveChangesAsync();
+                }
+                
                 TempData["Deleted"] = "Đã xóa văn phòng thành công.";
             }
             catch (Exception ex)

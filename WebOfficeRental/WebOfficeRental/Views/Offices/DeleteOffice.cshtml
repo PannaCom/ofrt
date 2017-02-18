@@ -45,10 +45,13 @@
                     @using (Html.BeginForm())
                     {
                         @Html.AntiForgeryToken()
+                        <label>@Html.CheckBox("checkdelete") Xóa hẳn
+                    </label>
                         <button type="submit" class="btn btn-danger" id="confirmdelete">
                             <i class=" fa fa-trash">
                             </i> Xóa
                         </button>
+                        
                         <span class="btn btn-default" onclick="gotoUrl('@Url.RouteUrl("AdminListOffices")')"><i class="fa fa-close"></i> Hủy xóa</span>
                     }
                 </div>
@@ -64,11 +67,11 @@ else
 
 @section Scripts {
 
-    <script>
+    @*<script>
         $(document).ready(function () {
             $('#confirmdelete').on('click', function (e) {
                 confirmDelete(e);
             })
         })
-    </script>
+    </script>*@
 }
