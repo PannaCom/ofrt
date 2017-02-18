@@ -82,7 +82,7 @@
             <div class="col-md-12">
                 @if (Model != null)
                 {
-                    @Html.PagedListPager(Model, page => Url.RouteUrl("ToaNhaVanPhong", new { tinh = ViewBag.tinh2, quan = ViewBag.quan2, pg = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+                    @Html.PagedListPager(Model, page => Url.RouteUrl("ToaNhaVanPhong", new { tinh2 = ViewBag.tinh2, quan2 = ViewBag.quan2, pg = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
                 }
             </div>
         </div>
@@ -110,7 +110,7 @@
                 cache: false
             }).done(function (html) {
                 $('#quan2').empty().append("<option selected='selected' disabled>Chọn quận</option>"+html);
-                $('#quan2').val(quan).trigger("chosen:updated");
+                $('#quan2').val(quan2).trigger("chosen:updated");
                 //$('#quan').chosen().trigger("chosen:updated");
                 $('#quan2_chosen').children('a').append('<abbr class="search-choice-close"></abbr>');
             });
