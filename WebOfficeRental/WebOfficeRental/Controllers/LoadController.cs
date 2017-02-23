@@ -131,9 +131,9 @@ namespace WebOfficeRental.Controllers
                             System.IO.Directory.CreateDirectory(pathString);                      
 
                         var path = string.Format("{0}\\{1}", pathString, _fileName);
-                        System.Drawing.Image bm = System.Drawing.Image.FromStream(file.InputStream);
-                        // Thay đổi kích thước ảnh
-                        bm = ResizeBitmap((Bitmap)bm, 400, 310); /// new width, height
+                        //System.Drawing.Image bm = System.Drawing.Image.FromStream(file.InputStream);
+                        //// Thay đổi kích thước ảnh
+                        //bm = ResizeBitmap((Bitmap)bm, 400, 310); /// new width, height
                         // Giảm dung lượng ảnh trước khi lưu
                         //ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
                         //ImageCodecInfo ici = null;
@@ -145,8 +145,8 @@ namespace WebOfficeRental.Controllers
                         //EncoderParameters ep = new EncoderParameters();
                         //ep.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, (long)80);
                         //bm.Save(path, ici, ep);
-                        bm.Save(path);
-                        //file.SaveAs(path);
+                        //bm.Save(path);
+                        file.SaveAs(path);
                         fName = "/images/photos/" + strDay + "/" + _fileName;
                     }
                 }
